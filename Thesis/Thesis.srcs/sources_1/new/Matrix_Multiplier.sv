@@ -24,7 +24,7 @@ module Matrix_Multiplier(
     input logic i_clk
     );
 
-    logic [31:0] mults [8] = {0,1,2,3,4,5,6,7};
+    logic [31:0] mults [8] = {7,6,5,4,3,2,1,0};
 
 
     Accordian_Buffer acc_buff (

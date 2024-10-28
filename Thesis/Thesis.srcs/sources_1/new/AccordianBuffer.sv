@@ -38,9 +38,10 @@ module Accordian_Buffer #(
     input logic [31:0] i_mults [MULTIPLIERS]
     );
 
-    logic [31:0] curr = 0, n_curr = 0, read_count = 0;
+    logic [31:0] curr = 0, n_curr, read_count = 0, sum = 0;
     logic [31:0] adds [SEGMENTS/2];
     logic [31:0] seg_vals [SEGMENTS];
+    logic reads[SEGMENTS];
 
 
     assign n_curr = curr >> 1;
@@ -48,19 +49,20 @@ module Accordian_Buffer #(
     genvar seg;
     generate 
         for (seg=0; seg < SEGMENTS; seg++) begin : seg_gen
-            Accordian_Segment #(.SEGMENT_INDEX(seg), .ADD_COUNT(SEGMENTS/2)) acc_seg(
+            Accordian_Segment #(.SEGMENT_INDEX(seg), .ADD_COUNT(SEGMENTS/2), .MULT_COUNT(MULTIPLIERS)) acc_seg(
                 .i_clk(i_clk),
                 .i_pull(1),
                 .i_clear(0),
 
                 .i_mults(i_mults),
-                .i_add(0),
+                .i_add(adds),
                 .i_spacers(0),
 
                 .i_curr(n_curr),
                 .i_op_cnt(0),
 
-                .o_val(seg_vals[seg])
+                .o_val(seg_vals[seg]),
+                .o_pulled(reads[seg])
             );
         end
 
@@ -68,16 +70,17 @@ module Accordian_Buffer #(
             Simple_Adder add_unit(
                 .i_A(seg_vals[seg]),
                 .i_B(seg_vals[seg+1]),
-                .o_res(adds[seg>>1])
+                .o_res(adds[seg/2])
             );
         end
 
     endgenerate
+    
 
     always_comb begin
         sum = 0;
-        for (int i = 0; SEGMENTS; i++) begin
-            sum += seg_gen[i].acc_seg.o_did_read;
+        for (int i = 0; i < SEGMENTS; i++) begin
+            sum += reads[i];
         end
     end
 

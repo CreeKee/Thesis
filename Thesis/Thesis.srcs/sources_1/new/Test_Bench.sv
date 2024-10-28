@@ -25,7 +25,7 @@ module Test_Bench(
     );
 
     logic clk;
-
+    
     Matrix_Multiplier dut(
     .i_clk(clk)
     );
@@ -34,5 +34,11 @@ module Test_Bench(
         clk <= 0;
         
         forever #1 clk <= ~clk;
+    end
+
+    initial begin
+        
+        #256
+        $finish;
     end
 endmodule
