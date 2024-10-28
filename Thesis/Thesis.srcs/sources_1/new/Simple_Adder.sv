@@ -21,10 +21,12 @@
 
 
 module Simple_Adder(
-    input logic [31:0] i_A,
-    input logic [31:0] i_B,
-    output logic [31:0] o_res
+    input data_packet i_A,
+    input data_packet i_B,
+    output data_packet o_res
     );
 
-    assign o_res = i_A+i_B;
+    assign o_res.val = i_A.val+i_B.val;
+    assign o_res.is_head = i_A.is_head | i_B.is_head;
+    assign o_res.is_tail = i_A.is_tail | i_B.is_tail;
 endmodule

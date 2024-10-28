@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+import data_packet_pkg::*;
 
 module Accordian_Segment #(
     parameter SEGMENT_INDEX,
@@ -29,25 +30,24 @@ module Accordian_Segment #(
     input logic i_pull,
     input logic i_clear,
 
-    input logic [31:0] i_mults [MULT_COUNT],
-    input logic [31:0] i_add [ADD_COUNT],
+    input data_packet i_mults [MULT_COUNT],
+    input data_packet i_add [ADD_COUNT],
     input logic [31:0] i_spacers,
 
     input logic[31:0] i_curr,
     input logic[31:0] i_op_cnt,
 
-    output logic[31:0] o_val,
+    output data_packet o_val,
     output logic o_pulled
     );
 
     logic [31:0] index;
-    logic [31:0] canary;
-    assign canary = i_add[0];
     assign index = SEGMENT_INDEX;//+i_op_cnt-i_curr;
-
-    assign o_pulled = i_pull;
     
-
+    always_comb begin : ComBlock
+        if(i_curr <= SEGMENT_INDEX) o_pulled = 1;
+        else o_pulled = 0;
+    end
 
     always_ff @( posedge i_clk ) begin : SeqBlock
 
@@ -57,10 +57,9 @@ module Accordian_Segment #(
                 o_val <= i_mults[index];
             end
             else begin
-                o_val <= i_add[0];
-                // if(i_clear) o_val <= -1;
+                if(i_clear) o_val <= 0;
 
-                // else o_val <= i_add[0]; //SEGMENT_INDEX+i_spacers];
+                else o_val <= i_add[SEGMENT_INDEX]; //SEGMENT_INDEX+i_spacers];
             end
 
         end

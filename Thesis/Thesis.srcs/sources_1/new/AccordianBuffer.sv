@@ -22,25 +22,20 @@
 //assumptions:
 //all accumulations will be of the same length (vector multiplications)
 
-struct {
 
-    logic[31:0] val;
-    logic [3:0] id;
-
-
-} data_packet;
+import data_packet_pkg::*;
 
 module Accordian_Buffer #(
-    parameter SEGMENTS = 8,
-    parameter MULTIPLIERS = 8
+    parameter SEGMENTS = 4,
+    parameter MULTIPLIERS = 4
     )(
     input logic i_clk,
-    input logic [31:0] i_mults [MULTIPLIERS]
+    input data_packet i_mults [MULTIPLIERS]
     );
 
-    logic [31:0] curr = 0, n_curr, read_count = 0, sum = 0;
-    logic [31:0] adds [SEGMENTS/2];
-    logic [31:0] seg_vals [SEGMENTS];
+    logic [31:0] curr = 0, n_curr, read_count = 0, pulls, pops;
+    data_packet adds [SEGMENTS/2];
+    data_packet seg_vals [SEGMENTS];
     logic reads[SEGMENTS];
 
 
@@ -58,7 +53,7 @@ module Accordian_Buffer #(
                 .i_add(adds),
                 .i_spacers(0),
 
-                .i_curr(n_curr),
+                .i_curr(curr>>1),
                 .i_op_cnt(0),
 
                 .o_val(seg_vals[seg]),
@@ -78,15 +73,20 @@ module Accordian_Buffer #(
     
 
     always_comb begin
-        sum = 0;
-        for (int i = 0; i < SEGMENTS; i++) begin
-            sum += reads[i];
+        pulls = 0;
+        for (int idx = 0; idx < SEGMENTS; idx++) begin
+            pulls += reads[idx];
+        end
+
+        pops = 0;
+        for (int idx = 0; idx < SEGMENTS/2; idx++) begin
+
         end
     end
 
     always_ff @ (posedge i_clk) begin
 
-        curr <= n_curr + sum;
+        curr <= (curr>>1) + pulls;
 
     end
 
