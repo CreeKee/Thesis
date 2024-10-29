@@ -37,7 +37,7 @@ module Accordian_Segment #(
     input logic[31:0] i_curr,
     input logic[31:0] i_op_cnt,
 
-    output data_packet o_val,
+    output data_packet o_val = 0,
     output logic o_pulled
     );
 
@@ -59,7 +59,7 @@ module Accordian_Segment #(
             else begin
                 if(i_clear) o_val <= 0;
 
-                else o_val <= i_add[SEGMENT_INDEX]; //SEGMENT_INDEX+i_spacers];
+                else o_val <= i_add[SEGMENT_INDEX+i_spacers]; //SEGMENT_INDEX+i_spacers];
             end
 
         end

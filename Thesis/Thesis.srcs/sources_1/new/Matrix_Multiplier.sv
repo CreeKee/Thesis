@@ -45,12 +45,13 @@ module Matrix_Multiplier(
     .i_mults(mults)
     );
 
+    //just here to only allow 1 set of data in, eventually should be moved to the testbench
     always_ff @ ( posedge i_clk ) begin
         mults = {
-            '{0,0,0},
-            '{0,0,0},
-            '{0,0,0},
-            '{0,0,0}
+            '{0,0,16},
+            '{0,0,16},
+            '{0,0,16},
+            '{0,0,16}
         };
     end
 endmodule

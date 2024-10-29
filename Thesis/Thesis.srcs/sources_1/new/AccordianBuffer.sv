@@ -33,13 +33,13 @@ module Accordian_Buffer #(
     input data_packet i_mults [MULTIPLIERS]
     );
 
-    logic [31:0] curr = 0, n_curr, read_count = 0, pulls, pops;
+    logic [31:0] curr = 0, n_curr, pull_sum, pop_sum;
     data_packet adds [SEGMENTS/2];
     data_packet seg_vals [SEGMENTS];
-    logic reads[SEGMENTS];
+    logic pulls[SEGMENTS];
+    logic pops[SEGMENTS/2];
 
-
-    assign n_curr = curr >> 1;
+    assign n_curr = (curr >> 1) - pop_sum;
 
     genvar seg;
     generate 
@@ -51,13 +51,13 @@ module Accordian_Buffer #(
 
                 .i_mults(i_mults),
                 .i_add(adds),
-                .i_spacers(0),
+                .i_spacers(pop_sum),
 
-                .i_curr(curr>>1),
+                .i_curr(n_curr),
                 .i_op_cnt(0),
 
                 .o_val(seg_vals[seg]),
-                .o_pulled(reads[seg])
+                .o_pulled(pulls[seg])
             );
         end
 
@@ -65,7 +65,8 @@ module Accordian_Buffer #(
             Simple_Adder add_unit(
                 .i_A(seg_vals[seg]),
                 .i_B(seg_vals[seg+1]),
-                .o_res(adds[seg/2])
+                .o_res(adds[seg/2]),
+                .o_pop(pops[seg/2])
             );
         end
 
@@ -73,20 +74,20 @@ module Accordian_Buffer #(
     
 
     always_comb begin
-        pulls = 0;
+        pull_sum = 0;
         for (int idx = 0; idx < SEGMENTS; idx++) begin
-            pulls += reads[idx];
+            pull_sum += pulls[idx];
         end
 
-        pops = 0;
+        pop_sum = 0;
         for (int idx = 0; idx < SEGMENTS/2; idx++) begin
-
+            pop_sum += pops[idx];
         end
     end
 
     always_ff @ (posedge i_clk) begin
 
-        curr <= (curr>>1) + pulls;
+        curr <= (n_curr) + pull_sum ;
 
     end
 
