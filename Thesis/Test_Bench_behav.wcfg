@@ -13,21 +13,26 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="11.661 ns"></ZoomEndTime>
-      <Cursor1Time time="5.000 ns"></Cursor1Time>
+      <ZoomEndTime time="11.664 ns"></ZoomEndTime>
+      <Cursor1Time time="1.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="225"></NameColumnWidth>
-      <ValueColumnWidth column_width="280"></ValueColumnWidth>
+      <ValueColumnWidth column_width="256"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="12" />
    <wvobject fp_name="/Test_Bench/dut/acc_buff/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
    </wvobject>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/add_clk" type="logic">
+      <obj_property name="ElementShortName">add_clk</obj_property>
+      <obj_property name="ObjectShortName">add_clk</obj_property>
+   </wvobject>
    <wvobject fp_name="/Test_Bench/dut/acc_buff/i_mults" type="array">
       <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
       <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/dut/acc_buff/curr" type="array">
       <obj_property name="ElementShortName">curr[31:0]</obj_property>
@@ -58,9 +63,18 @@
       <obj_property name="ElementShortName">seg_vals[0:3]</obj_property>
       <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/dut/acc_buff/pops" type="array">
       <obj_property name="ElementShortName">pops[0:1]</obj_property>
       <obj_property name="ObjectShortName">pops[0:1]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/\add_gen[0].add_unit /o_pop" type="logic">
+      <obj_property name="ElementShortName">o_pop</obj_property>
+      <obj_property name="ObjectShortName">o_pop</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].acc_seg /i_curr" type="array">
+      <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+      <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
    </wvobject>
 </wave_config>

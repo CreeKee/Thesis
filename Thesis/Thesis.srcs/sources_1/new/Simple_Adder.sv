@@ -21,15 +21,28 @@
 
 
 module Simple_Adder(
+    input logic i_clk,
     input data_packet i_A,
     input data_packet i_B,
-    output data_packet o_res,
-    output logic o_pop
+    output data_packet o_res = 0,
+    output logic o_pop = 0
     );
 
-    assign o_res.val = i_A.val+i_B.val;
-    assign o_res.is_head = i_A.is_head | i_B.is_head;
-    assign o_res.is_tail = i_A.is_tail | i_B.is_tail;
+    logic [3:0] count = 0;
 
-    assign o_pop = o_res.is_head & o_res.is_tail;
+    // assign o_res.val = i_A.val+i_B.val;
+    // assign o_res.is_head = i_A.is_head | i_B.is_head;
+    // assign o_res.is_tail = i_A.is_tail | i_B.is_tail;
+
+    // assign o_pop = o_res.is_head & o_res.is_tail;
+
+
+    always_ff @ ( posedge i_clk) begin
+        o_res.val <= i_A.val+i_B.val;
+        o_res.is_head <= i_A.is_head | i_B.is_head;
+        o_res.is_tail <= i_A.is_tail | i_B.is_tail;
+
+        o_pop <= o_res.is_head & o_res.is_tail;
+    end
+
 endmodule

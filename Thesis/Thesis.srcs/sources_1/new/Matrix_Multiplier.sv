@@ -32,11 +32,11 @@ import data_packet_pkg::*;
 module Matrix_Multiplier(
     input logic i_clk
     );
-
+    logic [31:0] cnt = 0;
     data_packet mults [4] = {
         '{1,0,0},
-        '{0,0,1},
-        '{0,0,2},
+        '{0,1,1},
+        '{1,0,2},
         '{0,1,3}
     };
 
@@ -47,11 +47,14 @@ module Matrix_Multiplier(
 
     //just here to only allow 1 set of data in, eventually should be moved to the testbench
     always_ff @ ( posedge i_clk ) begin
-        mults = {
-            '{0,0,16},
-            '{0,0,16},
-            '{0,0,16},
-            '{0,0,16}
-        };
+        cnt <= cnt+1;
+        if(cnt==9)begin
+            mults <= {
+                '{0,0,16},
+                '{0,0,16},
+                '{0,0,16},
+                '{0,0,16}
+            };
+        end
     end
 endmodule
