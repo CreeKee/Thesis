@@ -25,7 +25,10 @@ module Simple_Adder(
     input data_packet i_A,
     input data_packet i_B,
     output data_packet o_res = 0,
-    output logic o_pop = 0
+    output logic o_pop = 0,
+    output logic o_mismatch = 0,
+    output logic [31:0] o_dest_row = 0,
+    output logic [31:0] o_dest_col = 0
     );
 
     logic [3:0] count = 0;
@@ -43,6 +46,7 @@ module Simple_Adder(
         o_res.is_tail <= i_A.is_tail | i_B.is_tail;
 
         o_pop <= o_res.is_head & o_res.is_tail;
+        o_mismatch <= i_A.is_head & i_B.is_tail;
     end
 
 endmodule
