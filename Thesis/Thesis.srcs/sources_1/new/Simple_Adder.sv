@@ -40,13 +40,13 @@ module Simple_Adder(
     // assign o_pop = o_res.is_head & o_res.is_tail;
 
 
-    always_ff @ ( posedge i_clk) begin
-        o_res.val <= i_A.val+i_B.val;
+    always_ff @ ( posedge i_clk ) begin
+        o_res.val     <= i_A.val     + i_B.val;
         o_res.is_head <= i_A.is_head | i_B.is_head;
         o_res.is_tail <= i_A.is_tail | i_B.is_tail;
 
-        o_pop <= o_res.is_head & o_res.is_tail;
-        o_mismatch <= i_A.is_head & i_B.is_tail;
+        o_pop         <= i_A.is_head & i_B.is_tail;
+        o_mismatch    <= i_A.is_tail & i_B.is_head;
     end
 
 endmodule

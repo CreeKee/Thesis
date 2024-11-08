@@ -13,14 +13,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="11.664 ns"></ZoomEndTime>
-      <Cursor1Time time="1.000 ns"></Cursor1Time>
+      <ZoomEndTime time="48.416 ns"></ZoomEndTime>
+      <Cursor1Time time="17.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="225"></NameColumnWidth>
-      <ValueColumnWidth column_width="256"></ValueColumnWidth>
+      <ValueColumnWidth column_width="224"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="12" />
+   <WVObjectSize size="18" />
    <wvobject fp_name="/Test_Bench/dut/acc_buff/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -64,17 +64,119 @@
       <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[0]" type="array">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[1]" type="array">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[2]" type="array">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[3]" type="array">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[0]" type="array">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[1]" type="array">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[2]" type="array">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[3]" type="array">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="/Test_Bench/dut/acc_buff/pops" type="array">
       <obj_property name="ElementShortName">pops[0:1]</obj_property>
       <obj_property name="ObjectShortName">pops[0:1]</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/dut/acc_buff/\add_gen[0].add_unit /o_pop" type="logic">
-      <obj_property name="ElementShortName">o_pop</obj_property>
-      <obj_property name="ObjectShortName">o_pop</obj_property>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/spaces" type="array">
+      <obj_property name="ElementShortName">spaces[0:1]</obj_property>
+      <obj_property name="ObjectShortName">spaces[0:1]</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].acc_seg /i_curr" type="array">
-      <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/space_sum" type="array">
+      <obj_property name="ElementShortName">space_sum[31:0]</obj_property>
+      <obj_property name="ObjectShortName">space_sum[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/spaced_values" type="array">
+      <obj_property name="ElementShortName">spaced_values[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">spaced_values[0:3][31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/dut/acc_buff/op_count" type="array">
+      <obj_property name="ElementShortName">op_count[1:0]</obj_property>
+      <obj_property name="ObjectShortName">op_count[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider441">
+      <obj_property name="label">Segments</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group443" type="group">
+      <obj_property name="label">Segment 0</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/Test_Bench/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].genblk1.acc_seg /i_spacers" type="array">
+         <obj_property name="ElementShortName">i_spacers[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_spacers[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].genblk1.acc_seg /o_spaced" type="array">
+         <obj_property name="ElementShortName">o_spaced[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_spaced[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].genblk1.acc_seg /i_curr" type="array">
+         <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].genblk1.acc_seg /index" type="array">
+         <obj_property name="ElementShortName">index[1:0]</obj_property>
+         <obj_property name="ObjectShortName">index[1:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider440">
+      <obj_property name="label">Adders</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="group442" type="group">
+      <obj_property name="label">Adder 0</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\add_gen[0].add_unit /i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\add_gen[0].add_unit /i_A" type="array">
+         <obj_property name="ElementShortName">i_A</obj_property>
+         <obj_property name="ObjectShortName">i_A</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\add_gen[0].add_unit /i_B" type="array">
+         <obj_property name="ElementShortName">i_B</obj_property>
+         <obj_property name="ObjectShortName">i_B</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>
