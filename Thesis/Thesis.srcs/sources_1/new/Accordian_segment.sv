@@ -46,15 +46,16 @@ module Accordian_Segment #(
     );
 
     logic [$clog2(MULT_COUNT)-1:0] index;
-    logic [31:0] add_dex;
+    logic [$clog2(ADD_COUNT):0] add_dex, seg_dex;
     assign index = (SEGMENT_INDEX+i_op_cnt-i_curr);//&MULT_COUNT;
-    assign add_dex = SEGMENT_INDEX-(i_spacers>>2) + i_pops;
+    assign add_dex = SEGMENT_INDEX-(i_spacers>>2) - (i_spacers&1) + i_pops;
+    assign seg_dex = ((add_dex)<<1)+(i_spacers&1);
     
     always_comb begin : ComBlock
         if(i_curr <= SEGMENT_INDEX) o_pulled = 1;
         else o_pulled = 0;
 
-        if(i_override[add_dex]) o_spaced = i_spacers + 1;
+        if(i_curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
         else o_spaced = i_spacers;
     end
 
@@ -73,7 +74,7 @@ module Accordian_Segment #(
                 if(i_override[add_dex]) begin
 
                     //pull in value from a later segment
-                    o_val <= i_seg[(add_dex<<1)+(i_spacers&1)];
+                    o_val <= i_seg[seg_dex];
                 end
                 else begin
 

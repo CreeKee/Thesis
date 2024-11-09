@@ -13,14 +13,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="48.416 ns"></ZoomEndTime>
-      <Cursor1Time time="17.000 ns"></Cursor1Time>
+      <ZoomEndTime time="58.053 ns"></ZoomEndTime>
+      <Cursor1Time time="23.651 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="225"></NameColumnWidth>
-      <ValueColumnWidth column_width="224"></ValueColumnWidth>
+      <ValueColumnWidth column_width="204"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="18" />
+   <WVObjectSize size="21" />
    <wvobject fp_name="/Test_Bench/dut/acc_buff/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -58,12 +58,16 @@
       <obj_property name="ElementShortName">adds[0:1]</obj_property>
       <obj_property name="ObjectShortName">adds[0:1]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals" type="array">
       <obj_property name="ElementShortName">seg_vals[0:3]</obj_property>
       <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
       <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
       <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[0]" type="array">
          <obj_property name="ElementShortName">[0]</obj_property>
          <obj_property name="ObjectShortName">[0]</obj_property>
@@ -87,22 +91,6 @@
          <obj_property name="ObjectShortName">[3]</obj_property>
          <obj_property name="CustomSignalColor">#00FFFF</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[0]" type="array">
-         <obj_property name="ElementShortName">[0]</obj_property>
-         <obj_property name="ObjectShortName">[0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[1]" type="array">
-         <obj_property name="ElementShortName">[1]</obj_property>
-         <obj_property name="ObjectShortName">[1]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[2]" type="array">
-         <obj_property name="ElementShortName">[2]</obj_property>
-         <obj_property name="ObjectShortName">[2]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/Test_Bench/dut/acc_buff/seg_vals[3]" type="array">
-         <obj_property name="ElementShortName">[3]</obj_property>
-         <obj_property name="ObjectShortName">[3]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="/Test_Bench/dut/acc_buff/pops" type="array">
@@ -154,6 +142,259 @@
       <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[0].genblk1.acc_seg /index" type="array">
          <obj_property name="ElementShortName">index[1:0]</obj_property>
          <obj_property name="ObjectShortName">index[1:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group694" type="group">
+      <obj_property name="label">Segment 1</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_pull" type="logic">
+         <obj_property name="ElementShortName">i_pull</obj_property>
+         <obj_property name="ObjectShortName">i_pull</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_clear" type="logic">
+         <obj_property name="ElementShortName">i_clear</obj_property>
+         <obj_property name="ObjectShortName">i_clear</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_override" type="array">
+         <obj_property name="ElementShortName">i_override[0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_override[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_mults" type="array">
+         <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_add" type="array">
+         <obj_property name="ElementShortName">i_add[0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_add[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_seg" type="array">
+         <obj_property name="ElementShortName">i_seg[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_seg[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_spacers" type="array">
+         <obj_property name="ElementShortName">i_spacers[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_spacers[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_pops" type="array">
+         <obj_property name="ElementShortName">i_pops[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_pops[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_curr" type="array">
+         <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /i_op_cnt" type="array">
+         <obj_property name="ElementShortName">i_op_cnt[1:0]</obj_property>
+         <obj_property name="ObjectShortName">i_op_cnt[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /o_val" type="array">
+         <obj_property name="ElementShortName">o_val</obj_property>
+         <obj_property name="ObjectShortName">o_val</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /o_pulled" type="logic">
+         <obj_property name="ElementShortName">o_pulled</obj_property>
+         <obj_property name="ObjectShortName">o_pulled</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /o_spaced" type="array">
+         <obj_property name="ElementShortName">o_spaced[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_spaced[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /index" type="array">
+         <obj_property name="ElementShortName">index[1:0]</obj_property>
+         <obj_property name="ObjectShortName">index[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /add_dex" type="array">
+         <obj_property name="ElementShortName">add_dex[0:0]</obj_property>
+         <obj_property name="ObjectShortName">add_dex[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /seg_dex" type="array">
+         <obj_property name="ElementShortName">seg_dex[0:0]</obj_property>
+         <obj_property name="ObjectShortName">seg_dex[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /SEGMENT_INDEX" type="array">
+         <obj_property name="ElementShortName">SEGMENT_INDEX[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEGMENT_INDEX[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[1].genblk1.acc_seg /ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group612" type="group">
+      <obj_property name="label">Segment 2</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_pull" type="logic">
+         <obj_property name="ElementShortName">i_pull</obj_property>
+         <obj_property name="ObjectShortName">i_pull</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_clear" type="logic">
+         <obj_property name="ElementShortName">i_clear</obj_property>
+         <obj_property name="ObjectShortName">i_clear</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_override" type="array">
+         <obj_property name="ElementShortName">i_override[0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_override[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_mults" type="array">
+         <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_add" type="array">
+         <obj_property name="ElementShortName">i_add[0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_add[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_seg" type="array">
+         <obj_property name="ElementShortName">i_seg[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_seg[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_spacers" type="array">
+         <obj_property name="ElementShortName">i_spacers[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_spacers[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_pops" type="array">
+         <obj_property name="ElementShortName">i_pops[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_pops[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_curr" type="array">
+         <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /i_op_cnt" type="array">
+         <obj_property name="ElementShortName">i_op_cnt[1:0]</obj_property>
+         <obj_property name="ObjectShortName">i_op_cnt[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /o_val" type="array">
+         <obj_property name="ElementShortName">o_val</obj_property>
+         <obj_property name="ObjectShortName">o_val</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /o_pulled" type="logic">
+         <obj_property name="ElementShortName">o_pulled</obj_property>
+         <obj_property name="ObjectShortName">o_pulled</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /o_spaced" type="array">
+         <obj_property name="ElementShortName">o_spaced[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_spaced[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /index" type="array">
+         <obj_property name="ElementShortName">index[1:0]</obj_property>
+         <obj_property name="ObjectShortName">index[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /add_dex" type="array">
+         <obj_property name="ElementShortName">add_dex[0:0]</obj_property>
+         <obj_property name="ObjectShortName">add_dex[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /seg_dex" type="array">
+         <obj_property name="ElementShortName">seg_dex[0:0]</obj_property>
+         <obj_property name="ObjectShortName">seg_dex[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /SEGMENT_INDEX" type="array">
+         <obj_property name="ElementShortName">SEGMENT_INDEX[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEGMENT_INDEX[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[2].genblk1.acc_seg /ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group962" type="group">
+      <obj_property name="label">Segment 3</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_pull" type="logic">
+         <obj_property name="ElementShortName">i_pull</obj_property>
+         <obj_property name="ObjectShortName">i_pull</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_clear" type="logic">
+         <obj_property name="ElementShortName">i_clear</obj_property>
+         <obj_property name="ObjectShortName">i_clear</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_override" type="array">
+         <obj_property name="ElementShortName">i_override[0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_override[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_mults" type="array">
+         <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_add" type="array">
+         <obj_property name="ElementShortName">i_add[0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_add[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_seg" type="array">
+         <obj_property name="ElementShortName">i_seg[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_seg[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_spacers" type="array">
+         <obj_property name="ElementShortName">i_spacers[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_spacers[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_pops" type="array">
+         <obj_property name="ElementShortName">i_pops[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_pops[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_curr" type="array">
+         <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /i_op_cnt" type="array">
+         <obj_property name="ElementShortName">i_op_cnt[1:0]</obj_property>
+         <obj_property name="ObjectShortName">i_op_cnt[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /o_val" type="array">
+         <obj_property name="ElementShortName">o_val</obj_property>
+         <obj_property name="ObjectShortName">o_val</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /o_pulled" type="logic">
+         <obj_property name="ElementShortName">o_pulled</obj_property>
+         <obj_property name="ObjectShortName">o_pulled</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /o_spaced" type="array">
+         <obj_property name="ElementShortName">o_spaced[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_spaced[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /index" type="array">
+         <obj_property name="ElementShortName">index[1:0]</obj_property>
+         <obj_property name="ObjectShortName">index[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /add_dex" type="array">
+         <obj_property name="ElementShortName">add_dex[0:0]</obj_property>
+         <obj_property name="ObjectShortName">add_dex[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /seg_dex" type="array">
+         <obj_property name="ElementShortName">seg_dex[0:0]</obj_property>
+         <obj_property name="ObjectShortName">seg_dex[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /SEGMENT_INDEX" type="array">
+         <obj_property name="ElementShortName">SEGMENT_INDEX[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEGMENT_INDEX[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/dut/acc_buff/\seg_gen[3].genblk1.acc_seg /ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="divider" fp_name="divider440">
