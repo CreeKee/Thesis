@@ -47,6 +47,7 @@ module Accordian_Segment #(
 
     logic [$clog2(MULT_COUNT)-1:0] index;
     logic [$clog2(ADD_COUNT):0] add_dex, seg_dex;
+    
     assign index = (SEGMENT_INDEX+i_op_cnt-i_curr);//&MULT_COUNT;
     assign add_dex = SEGMENT_INDEX-(i_spacers>>2) - (i_spacers&1) + i_pops;
     assign seg_dex = ((add_dex)<<1)+(i_spacers&1);

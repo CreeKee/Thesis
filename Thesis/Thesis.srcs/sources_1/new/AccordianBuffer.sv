@@ -26,8 +26,8 @@
 import data_packet_pkg::*;
 
 module Accordian_Buffer #(
-    parameter SEGMENTS = 4,
-    parameter MULTIPLIERS = 4
+    parameter SEGMENTS = 8,
+    parameter MULTIPLIERS = 8
     )(
     input logic i_clk,
     input data_packet i_mults [MULTIPLIERS]

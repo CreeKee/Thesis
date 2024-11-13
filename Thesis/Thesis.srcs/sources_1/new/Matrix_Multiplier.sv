@@ -30,14 +30,19 @@ endpackage
 import data_packet_pkg::*;
 
 module Matrix_Multiplier(
+    //dut_if _dut,
     input logic i_clk
     );
     logic [31:0] cnt = 0;
-    data_packet mults [4] = {
+    data_packet mults [8] = {
         '{1,0,0},
         '{0,0,1},
         '{0,0,2},
-        '{0,1,3}
+        '{0,1,3},
+        '{1,0,4},
+        '{0,0,5},
+        '{0,0,6},
+        '{0,1,7}
     };
 
     Accordian_Buffer acc_buff (

@@ -3,6 +3,7 @@ sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" \
 "../../../../Thesis.srcs/sources_1/new/Matrix_Multiplier.sv" \
 "../../../../Thesis.srcs/sources_1/new/AccordianBuffer.sv" \
 "../../../../Thesis.srcs/sources_1/new/Accordian_segment.sv" \
+"../../../../Thesis.srcs/sources_1/new/Output_Buffer.sv" \
 "../../../../Thesis.srcs/sources_1/new/Simple_Adder.sv" \
 "../../../../Thesis.srcs/sources_1/new/Test_Bench.sv" \
 
