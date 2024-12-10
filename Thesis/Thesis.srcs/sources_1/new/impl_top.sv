@@ -50,15 +50,15 @@ module impl_top(
     );
 
     Uart_Top_Mod uart(
-        input logic [7:0] sw,
-        input logic btnC,
-        input logic btnU,
-        input logic i_clk,
-        output logic TxD,
-        output logic TxD_debug,
-        output logic transmit_debug,
-        output logic button_debug, 
-        output logic clk_debug,
+        .sw(sw),
+        .btnC(btnC),
+        .btnU(btnU),
+        .i_clk(i_clk),
+        .TxD(TxD),
+        .TxD_debug(TxD_debug),
+        .transmit_debug(transmit_debug),
+        .button_debug(button_debug), 
+        .clk_debug(clk_debug),
         .LED(LED)
     ); 
 endmodule

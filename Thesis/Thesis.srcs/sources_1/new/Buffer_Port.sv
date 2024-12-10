@@ -20,17 +20,42 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import data_packet_pkg::*;
-module Buffer_Port(
+module Buffer_Port
+    #(
+        parameter BUFF_SIZE = 32,
+        parameter ADD_COUNT,
+        parameter MOD_MASK
+    )(
     input logic i_clk,
-    input logic [31:0] i_val,
-    input logic i_push,
-    input logic [31:0] i_idx,
-    output logic o_val_push,
-    output logic [31:0] o_idx
+    input logic i_push[ADD_COUNT],
+    input logic  [31:0] i_vals [ADD_COUNT],
+    input logic  [31:0] i_push_lim,
+    input logic  [31:0] i_push_cnt,
+    input logic  [31:0] i_curr,
+    input logic  [31:0] i_tail,
+
+    output logic [31:0] o_push_cnt,
+    output logic o_do_push,
+    output logic [31:0] o_val
+
     );
 
-    assign o_idx = (4'b1000 & (o_val_push<<4)) + i_idx;
+    assign index = i_curr+i_push_cnt;
+    assign o_val = i_vals[(index)&MOD_MASK];
 
-    assign index = i_push_cnt;
+    always_comb begin
+        if(i_push_cnt == i_push_lim) begin
+            o_push_cnt = i_push_lim;
+            o_do_push = 0;
+        end
+        else begin
+            o_push_cnt = i_push_cnt + 1;
+
+            if(index+i_tail > BUFF_SIZE-1) o_do_push = 1&(i_push[i_push_cnt]);
+            else o_do_push = 0;
+        end
+    end
+
+
 
 endmodule
