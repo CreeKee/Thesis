@@ -24,36 +24,39 @@ module Buffer_Port
     #(
         parameter BUFF_SIZE = 32,
         parameter ADD_COUNT,
-        parameter MOD_MASK
+        parameter MOD_MASK,
+        parameter PORT_ID
     )(
     input logic i_clk,
     input logic i_push[ADD_COUNT],
     input logic  [31:0] i_vals [ADD_COUNT],
-    input logic  [31:0] i_push_lim,
-    input logic  [31:0] i_push_cnt,
-    input logic  [31:0] i_curr,
-    input logic  [31:0] i_tail,
+    input logic  [$clog2(ADD_COUNT)-1:0] i_push_cnt,
+    input logic  [$clog2(BUFF_SIZE)-1:0] i_n_tail,
+    input logic  [$clog2(BUFF_SIZE)-1:0] i_delta,
 
-    output logic [31:0] o_push_cnt,
     output logic o_do_push,
     output logic [31:0] o_val
 
     );
 
-    assign index = i_curr+i_push_cnt;
-    assign o_val = i_vals[(index)&MOD_MASK];
+
+    logic [31:0] r_zero;
+    logic [$clog2(ADD_COUNT)-1:0] index;
+
+    assign index = r_zero;
+    assign o_val = i_vals[index];
+    
 
     always_comb begin
-        if(i_push_cnt == i_push_lim) begin
-            o_push_cnt = i_push_lim;
-            o_do_push = 0;
+        if(r_zero < i_push_cnt && i_delta + r_zero <= BUFF_SIZE-2) begin
+            o_do_push <= i_push[index];
         end
-        else begin
-            o_push_cnt = i_push_cnt + 1;
+        else o_do_push = 0;
 
-            if(index+i_tail > BUFF_SIZE-1) o_do_push = 1&(i_push[i_push_cnt]);
-            else o_do_push = 0;
-        end
+    end
+
+    always_ff @ ( posedge i_clk ) begin
+        r_zero <= PORT_ID-i_n_tail;
     end
 
 

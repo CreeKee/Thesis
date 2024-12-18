@@ -29,6 +29,7 @@ module Accordian_Segment #(
     input logic i_clk,
     input logic i_pull,
     input logic i_clear,
+    input logic i_stall,
     input logic i_override [ADD_COUNT],
 
     input data_packet i_mults [MULT_COUNT],
@@ -53,16 +54,34 @@ module Accordian_Segment #(
     assign seg_dex = ((add_dex)<<1)+(i_spacers&1);
     
     always_comb begin : ComBlock
-        if(i_curr <= SEGMENT_INDEX) o_pulled = 1;
-        else o_pulled = 0;
 
-        if(i_curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
-        else o_spaced = i_spacers;
+        if(i_clear | i_stall) begin
+            o_pulled = 0;
+            o_spaced = i_spacers;
+        end
+
+        else begin
+
+            if(i_curr <= SEGMENT_INDEX) o_pulled = 1;
+            else o_pulled = 0;
+
+            if(i_curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
+            else o_spaced = i_spacers;
+
+        end
     end
 
     always_ff @( posedge i_clk ) begin : SeqBlock
 
-        if(i_pull) begin
+        if(i_clear) begin
+            o_val <= 0;
+        end
+
+        else if(i_stall) begin
+            o_val <= o_val;
+        end
+
+        else if(i_pull) begin
 
             //pull next value from multipliers
             if(i_curr <= SEGMENT_INDEX) begin
@@ -82,10 +101,7 @@ module Accordian_Segment #(
                     //pull in value from adder
                     o_val <= i_add[add_dex];
                 end
-
-
             end
-
         end
     end
 endmodule

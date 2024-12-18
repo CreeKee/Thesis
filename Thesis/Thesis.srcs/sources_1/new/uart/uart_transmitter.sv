@@ -23,14 +23,14 @@ module transmitter(
     input logic clk, //UART input clock
     input logic reset, // reset signal
     input logic transmit, //btn signal to trigger the UART communication
+    input logic baude
     input logic [7:0] data, // data transmitted
     output logic TxD // Transmitter serial output. TxD will be held high during reset, or when no transmissions aretaking place. 
 );
 
 //internal variables
 logic [3:0] bitcounter; //4 bits counter to count up to 10
-logic [13:0] counter; //14 bits counter to count the baud rate, counter = clock / baud rate
-logic state,nextstate; // initial & next state variable
+logic state, nextstate; // initial & next state variable
 // 10 bits data needed to be shifted out during transmission.
 //The least significant bit is initialized with the binary value “0” (a start bit) A binary value “1” is introduced in the most significant bit 
 logic [9:0] rightshiftreg; 
@@ -42,15 +42,11 @@ logic clear; //clear signal to start reset the bitcounter for UART transmission
 always @ (posedge clk) begin 
     if (reset) begin // reset is asserted (reset = 1)
         state <=0; // state is idle (state = 0)
-        counter <=0; // counter for baud rate is reset to 0 
         bitcounter <=0; //counter for bit transmission is reset to 0
     end
     else begin
-        counter <= counter + 1; //counter for baud rate generator start counting 
-        if (counter >= 10415) begin//if count to 10416 (from 0 to 10415)
- 
+        if (baude) begin
                 state <= nextstate; //previous state change to next state
-                counter <=0; // reset couter to 0
                 if (load) rightshiftreg <= {1'b1,data,1'b0}; //load the data if load is asserted
                 if (clear) bitcounter <=0; // reset the bitcounter if clear is asserted
                 if (shift) begin // if shift is asserted
@@ -86,6 +82,7 @@ always @ (posedge clk) begin//trigger by positive edge of clock,
            end
         1: begin  // transmit state
             if (bitcounter >=10) begin // check if transmission is complete or not. If complete
+                o_done <= 1;
                 nextstate <= 0; // set nextstate back to 0 to idle state
                 clear <=1; // set clear to 1 to clear all counters
             end 

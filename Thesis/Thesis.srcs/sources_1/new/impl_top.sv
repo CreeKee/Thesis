@@ -19,19 +19,36 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+package data_packet_pkg;
+    typedef struct packed {
+        logic is_head;
+        logic is_tail;
+        logic[31:0] val;
+    } data_packet;
+endpackage
 
-module impl_top(
+import data_packet_pkg::*;
+
+module impl_top #(
+    parameter SEGMENTS = 8,
+    parameter MULTIPLIERS = 8,
+    parameter ADD_COUNT = SEGMENTS/2
+    )(
     input logic i_clk,
-    input logic [7:0] sw,
-    input logic btnC,
-    input logic btnU,
-    output logic TxD,
-    output logic TxD_debug,
-    output logic transmit_debug,
-    output logic button_debug, 
-    output logic clk_debug,
-    output logic [7:0] LED
+    output logic o_TxD,
+    output logic led
 );
+
+    assign led = ld;
+
+    logic [31:0] cnt = 0;
+    logic ld = 0;
+    logic [31:0] adds [ADD_COUNT];
+    logic [31:0] output_topval;
+    logic uart_read_in;
+    logic txd;
+    logic out_buff_empty, out_buff_full;
+    logic adder_push [ADD_COUNT];
 
     data_packet mults [8] = {
         '{1,0,0},
@@ -46,19 +63,48 @@ module impl_top(
 
     Accordian_Buffer acc_buff (
         .i_clk(i_clk),
-        .i_mults(mults)
+        .i_mults(mults),
+        .i_stall(out_buff_full),
+        .i_clear(0),
+
+        .o_adds(adds),
+        .o_pushs(adder_push)
+    );
+
+    Output_Buffer out_buff(
+        .i_clk(i_clk),
+        .i_vals(adds),
+        .i_push(adder_push),
+        .i_pull(uart_read_in),
+        .o_top_val(output_topval),
+        .o_empty(out_buff_empty),
+        .o_full(out_buff_full)
     );
 
     Uart_Top_Mod uart(
-        .sw(sw),
-        .btnC(btnC),
-        .btnU(btnU),
         .i_clk(i_clk),
-        .TxD(TxD),
-        .TxD_debug(TxD_debug),
-        .transmit_debug(transmit_debug),
-        .button_debug(button_debug), 
-        .clk_debug(clk_debug),
-        .LED(LED)
-    ); 
+        .i_top_val(output_topval),
+        .i_top_ready(~out_buff_empty),
+        .TxD(o_TxD),
+        .o_read_in(uart_read_in)
+    );
+
+    // Uart_Top_Mod uart(
+    //     .i_clk(i_clk),
+    //     .i_top_val(5),
+    //     .i_top_ready(1),
+    //     .TxD(o_TxD),
+    //     .o_read_in(uart_read_in)
+    // );
+
+    always_ff @ ( posedge i_clk ) begin
+        if(cnt <= 100000000) begin
+            cnt <= cnt + 1;
+            ld <= ld;
+        end
+        else begin 
+            cnt <= 0;
+            ld <= ~ ld;
+        end
+    end
 endmodule
