@@ -6,24 +6,81 @@
       <db_ref path="Test_Bench_behav.wdb" id="1">
          <top_modules>
             <top_module name="Test_Bench" />
-            <top_module name="\$unit_AccordianBuffer_sv_1123691424 " />
             <top_module name="data_packet_pkg" />
             <top_module name="glbl" />
-            <top_module name="std" />
-            <top_module name="uvm_pkg" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="234.640 ns"></ZoomStartTime>
-      <ZoomEndTime time="260.841 ns"></ZoomEndTime>
-      <Cursor1Time time="243.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="671.000001 us"></ZoomEndTime>
+      <Cursor1Time time="0.000000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="225"></NameColumnWidth>
-      <ValueColumnWidth column_width="136"></ValueColumnWidth>
+      <ValueColumnWidth column_width="104"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="71" />
+   <WVObjectSize size="92" />
+   <wvobject fp_name="/Test_Bench/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/cnt" type="array">
+      <obj_property name="ElementShortName">cnt[31:0]</obj_property>
+      <obj_property name="ObjectShortName">cnt[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/uart_val" type="array">
+      <obj_property name="ElementShortName">uart_val[31:0]</obj_property>
+      <obj_property name="ObjectShortName">uart_val[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/top_ready" type="logic">
+      <obj_property name="ElementShortName">top_ready</obj_property>
+      <obj_property name="ObjectShortName">top_ready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/ld" type="logic">
+      <obj_property name="ElementShortName">ld</obj_property>
+      <obj_property name="ObjectShortName">ld</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/adds" type="array">
+      <obj_property name="ElementShortName">adds[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">adds[0:3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/output_topval" type="array">
+      <obj_property name="ElementShortName">output_topval[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_topval[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/uart_read_in" type="logic">
+      <obj_property name="ElementShortName">uart_read_in</obj_property>
+      <obj_property name="ObjectShortName">uart_read_in</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff_empty" type="logic">
+      <obj_property name="ElementShortName">out_buff_empty</obj_property>
+      <obj_property name="ObjectShortName">out_buff_empty</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff_full" type="logic">
+      <obj_property name="ElementShortName">out_buff_full</obj_property>
+      <obj_property name="ObjectShortName">out_buff_full</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/adder_push" type="array">
+      <obj_property name="ElementShortName">adder_push[0:3]</obj_property>
+      <obj_property name="ObjectShortName">adder_push[0:3]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/mults" type="array">
+      <obj_property name="ElementShortName">mults[0:7]</obj_property>
+      <obj_property name="ObjectShortName">mults[0:7]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/o_TxD" type="logic">
+      <obj_property name="ElementShortName">o_TxD</obj_property>
+      <obj_property name="ObjectShortName">o_TxD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/ADD_COUNT" type="array">
+      <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider4820">
+      <obj_property name="label">Accordian Buffer</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
    <wvobject fp_name="/Test_Bench/acc_buff/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -32,10 +89,17 @@
       <obj_property name="ElementShortName">i_mults[0:7]</obj_property>
       <obj_property name="ObjectShortName">i_mults[0:7]</obj_property>
    </wvobject>
+   <wvobject fp_name="/Test_Bench/acc_buff/i_stall" type="logic">
+      <obj_property name="ElementShortName">i_stall</obj_property>
+      <obj_property name="ObjectShortName">i_stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/acc_buff/i_clear" type="logic">
+      <obj_property name="ElementShortName">i_clear</obj_property>
+      <obj_property name="ObjectShortName">i_clear</obj_property>
+   </wvobject>
    <wvobject fp_name="/Test_Bench/acc_buff/o_adds" type="array">
       <obj_property name="ElementShortName">o_adds[0:3][31:0]</obj_property>
       <obj_property name="ObjectShortName">o_adds[0:3][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/acc_buff/o_pushs" type="array">
       <obj_property name="ElementShortName">o_pushs[0:3]</obj_property>
@@ -89,13 +153,13 @@
       <obj_property name="ElementShortName">op_count[2:0]</obj_property>
       <obj_property name="ObjectShortName">op_count[2:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/Test_Bench/acc_buff/do_step" type="logic">
+      <obj_property name="ElementShortName">do_step</obj_property>
+      <obj_property name="ObjectShortName">do_step</obj_property>
+   </wvobject>
    <wvobject fp_name="/Test_Bench/acc_buff/add_clk" type="logic">
       <obj_property name="ElementShortName">add_clk</obj_property>
       <obj_property name="ObjectShortName">add_clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Test_Bench/acc_buff/i_stall" type="logic">
-      <obj_property name="ElementShortName">i_stall</obj_property>
-      <obj_property name="ObjectShortName">i_stall</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/acc_buff/SEGMENTS" type="array">
       <obj_property name="ElementShortName">SEGMENTS[31:0]</obj_property>
@@ -222,18 +286,54 @@
       <obj_property name="label">Adder 0</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /i_A" type="array">
+         <obj_property name="ElementShortName">i_A</obj_property>
+         <obj_property name="ObjectShortName">i_A</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /i_B" type="array">
+         <obj_property name="ElementShortName">i_B</obj_property>
+         <obj_property name="ObjectShortName">i_B</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /o_res" type="array">
+         <obj_property name="ElementShortName">o_res</obj_property>
+         <obj_property name="ObjectShortName">o_res</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /o_pop" type="logic">
+         <obj_property name="ElementShortName">o_pop</obj_property>
+         <obj_property name="ObjectShortName">o_pop</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /o_mismatch" type="logic">
+         <obj_property name="ElementShortName">o_mismatch</obj_property>
+         <obj_property name="ObjectShortName">o_mismatch</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /o_dest_row" type="array">
+         <obj_property name="ElementShortName">o_dest_row[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_dest_row[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /o_dest_col" type="array">
+         <obj_property name="ElementShortName">o_dest_col[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_dest_col[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/Test_Bench/acc_buff/\add_gen[0].add_unit /count" type="array">
+         <obj_property name="ElementShortName">count[3:0]</obj_property>
+         <obj_property name="ObjectShortName">count[3:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="divider" fp_name="divider126">
       <obj_property name="label">Output Buffer</obj_property>
       <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/MOD_MASK" type="array">
-      <obj_property name="ElementShortName">MOD_MASK[31:0]</obj_property>
-      <obj_property name="ObjectShortName">MOD_MASK[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/i_step" type="logic">
+      <obj_property name="ElementShortName">i_step</obj_property>
+      <obj_property name="ObjectShortName">i_step</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/i_vals" type="array">
       <obj_property name="ElementShortName">i_vals[0:3][31:0]</obj_property>
@@ -247,21 +347,38 @@
       <obj_property name="ElementShortName">i_pull</obj_property>
       <obj_property name="ObjectShortName">i_pull</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/o_stalls" type="array">
-      <obj_property name="ElementShortName">o_stalls[0:3]</obj_property>
-      <obj_property name="ObjectShortName">o_stalls[0:3]</obj_property>
+   <wvobject fp_name="/Test_Bench/out_buff/o_top_val" type="array">
+      <obj_property name="ElementShortName">o_top_val[31:0]</obj_property>
+      <obj_property name="ObjectShortName">o_top_val[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/tail" type="array">
-      <obj_property name="ElementShortName">tail[4:0]</obj_property>
-      <obj_property name="ObjectShortName">tail[4:0]</obj_property>
+   <wvobject fp_name="/Test_Bench/out_buff/o_empty" type="logic">
+      <obj_property name="ElementShortName">o_empty</obj_property>
+      <obj_property name="ObjectShortName">o_empty</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/o_full" type="logic">
+      <obj_property name="ElementShortName">o_full</obj_property>
+      <obj_property name="ObjectShortName">o_full</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/curr" type="array">
       <obj_property name="ElementShortName">curr[4:0]</obj_property>
       <obj_property name="ObjectShortName">curr[4:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/next_curr" type="array">
+      <obj_property name="ElementShortName">next_curr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">next_curr[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/tail" type="array">
+      <obj_property name="ElementShortName">tail[4:0]</obj_property>
+      <obj_property name="ObjectShortName">tail[4:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/next_tail" type="array">
+      <obj_property name="ElementShortName">next_tail[4:0]</obj_property>
+      <obj_property name="ObjectShortName">next_tail[4:0]</obj_property>
+   </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/buffer" type="array">
       <obj_property name="ElementShortName">buffer[0:31][31:0]</obj_property>
       <obj_property name="ObjectShortName">buffer[0:31][31:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/pass_vals" type="array">
       <obj_property name="ElementShortName">pass_vals[0:31][31:0]</obj_property>
@@ -271,26 +388,29 @@
       <obj_property name="ElementShortName">push_sum[1:0]</obj_property>
       <obj_property name="ObjectShortName">push_sum[1:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/o_top_val" type="array">
-      <obj_property name="ElementShortName">o_top_val[31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_top_val[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/act_push_sum" type="array">
       <obj_property name="ElementShortName">act_push_sum[1:0]</obj_property>
       <obj_property name="ObjectShortName">act_push_sum[1:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/pop_sum" type="array">
-      <obj_property name="ElementShortName">pop_sum[1:0]</obj_property>
-      <obj_property name="ObjectShortName">pop_sum[1:0]</obj_property>
+   <wvobject fp_name="/Test_Bench/out_buff/delta" type="array">
+      <obj_property name="ElementShortName">delta[4:0]</obj_property>
+      <obj_property name="ObjectShortName">delta[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/do_push" type="array">
       <obj_property name="ElementShortName">do_push[0:31]</obj_property>
       <obj_property name="ObjectShortName">do_push[0:31]</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/o_full" type="logic">
-      <obj_property name="ElementShortName">o_full</obj_property>
-      <obj_property name="ObjectShortName">o_full</obj_property>
+   <wvobject fp_name="/Test_Bench/out_buff/ADD_COUNT" type="array">
+      <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/BUFF_SIZE" type="array">
+      <obj_property name="ElementShortName">BUFF_SIZE[31:0]</obj_property>
+      <obj_property name="ObjectShortName">BUFF_SIZE[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/out_buff/MOD_MASK" type="array">
+      <obj_property name="ElementShortName">MOD_MASK[31:0]</obj_property>
+      <obj_property name="ObjectShortName">MOD_MASK[31:0]</obj_property>
    </wvobject>
    <wvobject type="divider" fp_name="divider716">
       <obj_property name="label">Output Buffer Ports</obj_property>
@@ -308,10 +428,6 @@
    <wvobject fp_name="/Test_Bench/out_buff/\port_gen[0].buff_port /i_push_cnt" type="array">
       <obj_property name="ElementShortName">i_push_cnt[1:0]</obj_property>
       <obj_property name="ObjectShortName">i_push_cnt[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/Test_Bench/out_buff/\port_gen[0].buff_port /i_curr" type="array">
-      <obj_property name="ElementShortName">i_curr[4:0]</obj_property>
-      <obj_property name="ObjectShortName">i_curr[4:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/out_buff/\port_gen[0].buff_port /i_tail" type="array">
       <obj_property name="ElementShortName">i_tail[4:0]</obj_property>
@@ -385,13 +501,13 @@
       <obj_property name="ElementShortName">next_state[31:0]</obj_property>
       <obj_property name="ObjectShortName">next_state[31:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/Test_Bench/uart/counter" type="array">
-      <obj_property name="ElementShortName">counter[31:0]</obj_property>
-      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
-   </wvobject>
    <wvobject fp_name="/Test_Bench/uart/rightshiftreg" type="array">
       <obj_property name="ElementShortName">rightshiftreg[9:0]</obj_property>
       <obj_property name="ObjectShortName">rightshiftreg[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/Test_Bench/uart/counter" type="array">
+      <obj_property name="ElementShortName">counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/Test_Bench/uart/bitcounter" type="array">
       <obj_property name="ElementShortName">bitcounter[3:0]</obj_property>

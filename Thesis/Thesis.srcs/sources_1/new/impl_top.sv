@@ -36,19 +36,25 @@ module impl_top #(
     )(
     input logic i_clk,
     output logic o_TxD,
-    output logic led
+    output logic LED[2:0]
 );
 
-    assign led = ld;
+    assign LED[0] = ld;
+    assign LED[1] = top_ready;
+    assign LED[2] = out_buff_full;
 
     logic [31:0] cnt = 0;
+    logic [31:0] uart_val;
+    logic top_ready;
     logic ld = 0;
     logic [31:0] adds [ADD_COUNT];
     logic [31:0] output_topval;
     logic uart_read_in;
-    logic txd;
-    logic out_buff_empty, out_buff_full;
+    logic out_buff_empty, out_buff_full, acc_step;
     logic adder_push [ADD_COUNT];
+
+    assign top_ready = ~out_buff_empty;
+    assign uart_val = 65+output_topval;
 
     data_packet mults [8] = {
         '{1,0,0},
@@ -68,12 +74,14 @@ module impl_top #(
         .i_clear(0),
 
         .o_adds(adds),
-        .o_pushs(adder_push)
+        .o_pushs(adder_push),
+        .o_step_ready(acc_step)
     );
 
     Output_Buffer out_buff(
         .i_clk(i_clk),
         .i_vals(adds),
+        .i_step(acc_step),
         .i_push(adder_push),
         .i_pull(uart_read_in),
         .o_top_val(output_topval),
@@ -83,16 +91,16 @@ module impl_top #(
 
     Uart_Top_Mod uart(
         .i_clk(i_clk),
-        .i_top_val(output_topval),
-        .i_top_ready(~out_buff_empty),
+        .i_top_val(uart_val),
+        .i_top_ready(top_ready),
         .TxD(o_TxD),
         .o_read_in(uart_read_in)
     );
 
     // Uart_Top_Mod uart(
     //     .i_clk(i_clk),
-    //     .i_top_val(5),
-    //     .i_top_ready(1),
+    //     .i_top_val(test_val),
+    //     .i_top_ready(top_ready),
     //     .TxD(o_TxD),
     //     .o_read_in(uart_read_in)
     // );

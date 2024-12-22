@@ -21,7 +21,7 @@
 
 //assumptions:
 //all accumulations will be of the same length (vector multiplications)
-
+`include "includes.vh"
 import data_packet_pkg::*;
 
 module Accordian_Buffer #(
@@ -35,10 +35,11 @@ module Accordian_Buffer #(
     input logic i_clear,
 
     output logic [31:0] o_adds [ADD_COUNT],
-    output logic o_pushs [ADD_COUNT]
+    output logic o_pushs [ADD_COUNT],
+    output logic o_step_ready
     );
 
-    logic [31:0] curr = 0, n_curr = 0, pull_sum, pop_sum, space_sum;
+    logic [31:0] curr = 0, n_curr, pull_sum, pop_sum, space_sum;
     data_packet adds [ADD_COUNT];
     data_packet seg_vals [SEGMENTS];
     logic pulls[SEGMENTS];
@@ -46,8 +47,12 @@ module Accordian_Buffer #(
     logic [31:0] spaced_values [SEGMENTS];
     logic [1:0] op_cycle = 2'b11;
     logic [$clog2(MULTIPLIERS)-1:0] op_count = 0;
+    logic do_step;
 
-    assign add_clk = op_cycle == 0;
+    assign o_step_ready = do_step;
+    assign do_step = ~(i_stall|add_clk);
+    assign add_clk = (op_cycle != 0);
+    assign n_curr = (curr >> 1) - pop_sum + (space_sum);
 
     genvar seg;
     generate 
@@ -58,10 +63,10 @@ module Accordian_Buffer #(
             if(seg != 0) begin
 
                 Accordian_Segment #(.SEGMENT_INDEX(seg), .ADD_COUNT(ADD_COUNT), .MULT_COUNT(MULTIPLIERS)) acc_seg(
-                    .i_clk(add_clk),
+                    .i_clk(i_clk),
                     .i_pull(1),
                     .i_clear(0),
-                    .i_stall(i_stall),
+                    .i_stall(i_stall|add_clk),
                     .i_override(spaces),
 
                     .i_mults(i_mults),
@@ -82,10 +87,10 @@ module Accordian_Buffer #(
             else begin
 
                 Accordian_Segment #(.SEGMENT_INDEX(seg), .ADD_COUNT(ADD_COUNT), .MULT_COUNT(MULTIPLIERS)) acc_seg(
-                    .i_clk(add_clk),
+                    .i_clk(i_clk),
                     .i_pull(1),
                     .i_clear(0),
-                    .i_stall(i_stall),
+                    .i_stall(i_stall|add_clk),
                     .i_override(spaces),
 
                     .i_mults(i_mults),
@@ -108,6 +113,7 @@ module Accordian_Buffer #(
         for (seg = 0; seg < SEGMENTS; seg += 2) begin : add_gen
             Simple_Adder add_unit(
                 .i_clk(i_clk),
+                //.i_do_step(do_step),
                 .i_A(seg_vals[seg]),
                 .i_B(seg_vals[seg+1]),
                 .o_res(adds[seg/2]),
@@ -140,22 +146,30 @@ module Accordian_Buffer #(
     always_ff @ (posedge i_clk) begin
 
         if(i_clear) begin
-            n_curr <= 0;
             curr <= 0;
             op_cycle <= 2'b11;
             op_count <= 0;
         end
 
         else if(i_stall) begin
-            n_curr <= n_curr;
             curr <= curr;
             op_cycle <= op_cycle;
-            op_count <= op_count;
+            
+
+            if(op_cycle != 0) op_cycle <= op_cycle+2'b01;
+            else op_cycle <= op_cycle;
         end
 
         else begin
-            n_curr <= (curr >> 1) - pop_sum + (space_sum);
-            curr <= (n_curr) + pull_sum;
+
+            if(do_step) begin
+                
+                curr <= n_curr + pull_sum;
+            end
+            else begin
+                curr <= curr;
+            end
+            
             op_cycle <= op_cycle + 2'b01;
 
             if (op_cycle == 0) op_count <= op_count + pull_sum;

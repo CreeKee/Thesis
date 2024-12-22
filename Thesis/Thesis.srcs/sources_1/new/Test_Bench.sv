@@ -19,8 +19,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-//`include "uvm_macros.svh"
-//import uvm_pkg::*;
+// `include "uvm_macros.svh"
+// import uvm_pkg::*;
 
 // package my_pkg;
 
@@ -31,18 +31,26 @@
 
 // endpackage
 
+`include "includes.vh"
 
-interface dut_if();
+import data_packet_pkg::*;
 
-    logic clk;
+// interface dut_if();
 
-endinterface
+//     logic clk;
 
-module Test_Bench#(parameter ADD_COUNT = 8)(
+// endinterface
+
+module Test_Bench#(
+    parameter SEGMENTS = 8,
+    parameter MULTIPLIERS = 8,
+    parameter ADD_COUNT = SEGMENTS/2)(
 
     );
-    dut_if dut_if1();
+    // dut_if dut_if1();
     logic clk;
+    logic o_TxD;
+
 
     // Matrix_Multiplier dut(
     // .i_clk(clk)
@@ -50,22 +58,18 @@ module Test_Bench#(parameter ADD_COUNT = 8)(
 
     
 
+    logic [31:0] cnt = 0;
+    logic [31:0] uart_val;
+    logic top_ready;
+    logic ld = 0;
     logic [31:0] adds [ADD_COUNT];
     logic [31:0] output_topval;
     logic uart_read_in;
-    logic txd;
-    logic out_buff_empty, out_buff_full;
+    logic out_buff_empty, out_buff_full, acc_step;
     logic adder_push [ADD_COUNT];
 
-    logic [5:0] cnt = 0;
-
-
-    always_ff @ ( posedge clk ) begin
-        
-        if(cnt == 40) cnt<=0;
-        else cnt <= cnt + 1;
-    end
-
+    assign top_ready = ~out_buff_empty;
+    assign uart_val = 65+output_topval;
 
     data_packet mults [8] = {
         '{1,0,0},
@@ -85,12 +89,14 @@ module Test_Bench#(parameter ADD_COUNT = 8)(
         .i_clear(0),
 
         .o_adds(adds),
-        .o_pushs(adder_push)
+        .o_pushs(adder_push),
+        .o_step_ready(acc_step)
     );
 
     Output_Buffer out_buff(
         .i_clk(clk),
         .i_vals(adds),
+        .i_step(acc_step),
         .i_push(adder_push),
         .i_pull(uart_read_in),
         .o_top_val(output_topval),
@@ -100,9 +106,9 @@ module Test_Bench#(parameter ADD_COUNT = 8)(
 
     Uart_Top_Mod uart(
         .i_clk(clk),
-        .i_top_val(output_topval),
-        .i_top_ready(~out_buff_empty),
-        .TxD(txd),
+        .i_top_val(uart_val),
+        .i_top_ready(top_ready),
+        .TxD(o_TxD),
         .o_read_in(uart_read_in)
     );
 
@@ -119,7 +125,7 @@ module Test_Bench#(parameter ADD_COUNT = 8)(
     end
 endmodule
 
-class my_env extends uvm_env;
-    //`uvm_component_utils(my_env)
+// class my_env extends uvm_env;
+//     //`uvm_component_utils(my_env)
 
-endclass: my_env
+// endclass: my_env

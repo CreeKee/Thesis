@@ -1,0 +1,123 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
+| Date         : Fri Dec 20 10:35:24 2024
+| Host         : WINDOWS-RV84OD0 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file impl_top_control_sets_placed.rpt
+| Design       : impl_top
+| Device       : xc7a35t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    45 |
+|    Minimum number of control sets                        |    45 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    38 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    45 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     8 |
+| >= 6 to < 8        |     0 |
+| >= 8 to < 10       |    32 |
+| >= 10 to < 12      |     1 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     1 |
+| >= 16              |     3 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              95 |           34 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              37 |           10 |
+| Yes          | No                    | No                     |             342 |          151 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |              40 |           38 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++------------------+---------------------------------------------+------------------------------------------------+------------------+----------------+--------------+
+|   Clock Signal   |                Enable Signal                |                Set/Reset Signal                | Slice Load Count | Bel Load Count | Bels / Slice |
++------------------+---------------------------------------------+------------------------------------------------+------------------+----------------+--------------+
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]   |                5 |              5 |         1.00 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_4 |                5 |              5 |         1.00 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_0 |                5 |              5 |         1.00 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_1 |                5 |              5 |         1.00 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_3 |                5 |              5 |         1.00 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_6 |                4 |              5 |         1.25 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_2 |                4 |              5 |         1.25 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] | acc_buff/add_gen[0].add_unit/op_cycle_reg[1]_5 |                5 |              5 |         1.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[11].buff_port/E[0]        |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[12].buff_port/E[0]        |                                                |                1 |              8 |         8.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[13].buff_port/E[0]        |                                                |                2 |              8 |         4.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[14].buff_port/E[0]        |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[16].buff_port/E[0]        |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[17].buff_port/E[0]        |                                                |                1 |              8 |         8.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[18].buff_port/E[0]        |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[19].buff_port/E[0]        |                                                |                1 |              8 |         8.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[20].buff_port/E[0]        |                                                |                1 |              8 |         8.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[3].buff_port/E[0]         |                                                |                2 |              8 |         4.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[22].buff_port/E[0]        |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[23].buff_port/E[0]        |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[24].buff_port/E[0]        |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[25].buff_port/E[0]        |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[21].buff_port/E[0]        |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[26].buff_port/E[0]        |                                                |                7 |              8 |         1.14 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[2].buff_port/E[0]         |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[0].buff_port/E[0]         |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[1].buff_port/E[0]         |                                                |                2 |              8 |         4.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[15].buff_port/E[0]        |                                                |                5 |              8 |         1.60 |
+|  i_clk_IBUF_BUFG | out_buff/do_push[31]_0                      |                                                |                6 |              8 |         1.33 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[27].buff_port/E[0]        |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[28].buff_port/E[0]        |                                                |                5 |              8 |         1.60 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[29].buff_port/E[0]        |                                                |                5 |              8 |         1.60 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[30].buff_port/E[0]        |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[4].buff_port/E[0]         |                                                |                1 |              8 |         8.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[5].buff_port/E[0]         |                                                |                2 |              8 |         4.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[6].buff_port/E[0]         |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[7].buff_port/E[0]         |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[8].buff_port/E[0]         |                                                |                1 |              8 |         8.00 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[9].buff_port/E[0]         |                                                |                3 |              8 |         2.67 |
+|  i_clk_IBUF_BUFG | out_buff/port_gen[10].buff_port/E[0]        |                                                |                4 |              8 |         2.00 |
+|  i_clk_IBUF_BUFG |                                             | uart/baude                                     |                3 |             10 |         3.33 |
+|  i_clk_IBUF_BUFG | uart/baude                                  |                                                |                4 |             15 |         3.75 |
+|  i_clk_IBUF_BUFG |                                             | clear                                          |                7 |             27 |         3.86 |
+|  i_clk_IBUF_BUFG | acc_buff/seg_gen[1].acc_seg/op_cycle_reg[1] |                                                |               46 |             71 |         1.54 |
+|  i_clk_IBUF_BUFG |                                             |                                                |               34 |             95 |         2.79 |
++------------------+---------------------------------------------+------------------------------------------------+------------------+----------------+--------------+
+
+
