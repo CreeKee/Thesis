@@ -30,7 +30,7 @@ module Multiplier_Unit#(
     output logic o_ready,
 
 
-    input logic clk,
+    input logic i_clk,
     input logic i_active,
     input logic [31:0] i_jump_delay,
     input logic [31:0] i_jump_amount,
@@ -39,6 +39,127 @@ module Multiplier_Unit#(
     input logic [31:0] i_l_cols
 
     );
+
+    typedef enum {IDLE, STARTING, CALCULATING, ACTIVE} state_t;
+
+    logic active = 0;
+    state_t curr_state, next_state;
+
+    logic [31:0] x = 0, y = 0, z = 0;
+
+    logic [31:0] n0_x, n1_x, n2_x;
+    logic [31:0] n0_y, n1_y, n2_y;
+    logic [31:0] n0_z, n1_z, n2_z;
+    logic [31:0] alpha_x, alpha_y, alpha_z;
+    logic [31:0] beta_x, beta_y, beta_z;
+
+
+    assign n0_z = z    + MULT_COUNT;
+    assign n1_z = n0_z - alpha_z;
+    assign n2_z = n1_z - i_N;
+
+    assign n0_y = y    + beta_y;
+    assign n1_y = n0_y - alpha_y;
+    assign n2_y = n1_y - 1;
+
+    assign n0_x = x    + beta_x;
+
+
+    always_comb begin
+        case(curr_state)
+
+            IDLE: begin
+                if(i_active) next_state = ACTIVE;
+                else next_state = IDLE;
+            end
+
+        endcase
+    end
+
+    always_ff @ ( posedge i_clk ) begin
+
+
+        case(curr_state)
+
+            IDLE: begin
+                if(next_state == ACTIVE) begin
+
+                end
+            end
+
+
+
+
+            case(dim)
+
+                XDIM: begin
+                    dim <= YDIM;
+                    if(n0_z > i_P) begin
+                        if(n1_z > i_P) begin
+                            z <= n2_z
+                            y <= n0_y + 1
+                        end
+                        else begin
+                            z <= n1_z
+                            y <= n0_y
+                        end
+                    end
+                    else begin
+                        z <= n0_z;
+                        y <= y;
+                    end
+                end
+
+                YDIM: begin
+                    dim <= XDIM;
+                    if(n0_y > i_N) begin
+                        if(n1_y > i_N) begin
+                            y <= n2_y;
+                            x <= n0_x + 1;
+                        end
+                        else begin
+                            z <= n1_z;
+                            x <= n0_x;
+                        end
+                    end
+                    else begin
+                        y <= n0_y;
+                        x <= x;
+                    end
+                end
+
+                XDIM: begin
+                    dim <= WAIT;
+                    if(n0_x > i_M) begin
+                        //go to idle
+                    end
+                    else begin
+                        x <= n0_x;
+                    end
+                end
+            endcase
+        endcase
+        else begin
+
+        end
+    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     logic [31:0] left_val = 0;
     logic [31:0] right_val = 0;
