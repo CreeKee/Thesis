@@ -26,6 +26,20 @@ package data_packet_pkg;
         logic[31:0] val;
     } data_packet;
 
+    typedef struct packed {
+        logic [31:0] n0_x;
+        logic [31:0] n1_x;
+        logic [31:0] n2_x;
+
+        logic [31:0] n0_y;
+        logic [31:0] n1_y;
+        logic [31:0] n2_y;
+
+        logic [31:0] n0_z;
+        logic [31:0] n1_z;
+        logic [31:0] n2_z;
+    } mult_pack;
+
     typedef struct {
         logic [31:0] vec_len;
 

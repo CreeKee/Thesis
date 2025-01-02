@@ -4,10 +4,12 @@ sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" \
 "../../../../Thesis.srcs/sources_1/new/Accordian_segment.sv" \
 "../../../../Thesis.srcs/sources_1/new/Output_Buffer.sv" \
 "../../../../Thesis.srcs/sources_1/new/Simple_Adder.sv" \
+"../../../../Thesis.srcs/sources_1/new/Multiplier_Unit.sv" \
 "../../../../Thesis.srcs/sources_1/new/uart/uart_top.sv" \
 "../../../../Thesis.srcs/sources_1/new/impl_top.sv" \
 "../../../../Thesis.srcs/sources_1/new/Buffer_Port.sv" \
 "../../../../Thesis.srcs/sources_1/new/Test_Bench.sv" \
+"../../../../Thesis.srcs/sim_1/new/tb_mult.sv" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
