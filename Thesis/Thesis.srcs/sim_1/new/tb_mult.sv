@@ -19,6 +19,15 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+/*
+
+x = M
+y = P
+z = N
+
+*/
+
+import data_packet_pkg::mult_pack;
 
 module tb_mult#(
     parameter SEGMENTS = 8,
@@ -29,6 +38,22 @@ module tb_mult#(
 
     logic clk = 0;
     logic active = 0;
+    logic idx_rdy;
+    mult_pack indicies;
+
+    Indexer#(
+    .MULT_COUNT(2)
+    ) idxr(
+        .i_clk(clk),
+        .i_active(active),
+
+        .i_M(4),
+        .i_N(4),
+        .i_P(4),
+
+        .o_vals(indicies),
+        .o_ready(idx_rdy)
+    );
 
 
     Multiplier_Unit#(
@@ -36,10 +61,11 @@ module tb_mult#(
     .MULT_COUNT(2)
     ) mult0(
         .i_clk(clk),
-        .i_active(active),
+        .i_active(idx_rdy),
         .i_M(4),
         .i_N(4),
-        .i_P(4)
+        .i_P(4),
+        .i_idx(indicies)
     );
 
     Multiplier_Unit#(
@@ -50,7 +76,8 @@ module tb_mult#(
         .i_active(active),
         .i_M(4),
         .i_N(4),
-        .i_P(4)
+        .i_P(4),
+        .i_idx(indicies)
     );
 
     initial begin

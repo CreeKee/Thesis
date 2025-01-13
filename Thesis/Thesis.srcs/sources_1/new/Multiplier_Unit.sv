@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+import data_packet_pkg::mult_pack;
 
 module Multiplier_Unit#(
     parameter MULTIPLIER_INDEX,
@@ -28,13 +29,13 @@ module Multiplier_Unit#(
     input logic i_active,
     input logic [31:0] i_M,
     input logic [31:0] i_N,
-    input logic [31:0] i_P
-
+    input logic [31:0] i_P,
+    input mult_pack i_idx
 
     );
 
-    typedef enum {IDLE, STARTING, ACTIVE, ENDING} state_t;
-    typedef enum {ZDIM, YDIM, XDIM, WAIT} dim_t;
+    typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_t;
+    typedef enum bit [1:0] {ZDIM, YDIM,     XDIM,   WAIT}   dim_t;
 
     logic active = 0;
     state_t curr_state, next_state;
@@ -45,8 +46,8 @@ module Multiplier_Unit#(
     logic [31:0] n0_x, n1_x, n2_x;
     logic [31:0] n0_y, n1_y, n2_y;
     logic [31:0] n0_z, n1_z, n2_z;
-    logic [31:0] alpha_x=4, alpha_y=4, alpha_z=4;
-    logic [31:0] beta_x=1, beta_y=1, beta_z=1;
+    //logic [31:0] alpha_x=4, alpha_y=4, alpha_z=4;
+    //logic [31:0] beta_x=1, beta_y=1, beta_z=1;
 
     logic [31:0] Lr, LcRr, Rc;
 
@@ -58,14 +59,14 @@ module Multiplier_Unit#(
 
 
     assign n0_z = z    + MULT_COUNT;
-    assign n1_z = n0_z - alpha_z;
+    assign n1_z = n0_z - i_idx.alpha_z;
     assign n2_z = n1_z - i_N;
 
-    assign n0_y = y    + beta_y;
-    assign n1_y = n0_y - alpha_y;
+    assign n0_y = y    + i_idx.beta_y;
+    assign n1_y = n0_y - i_idx.alpha_y;
     assign n2_y = n1_y - 1;
 
-    assign n0_x = x    + beta_x;
+    assign n0_x = x    + i_idx.beta_x;
 
 
     always_comb begin
@@ -118,6 +119,7 @@ module Multiplier_Unit#(
             end
 
             STARTING: begin
+                
                 case(dim)
 
                     ZDIM: begin
