@@ -11,7 +11,7 @@ Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling package xil_defaultlib.data_packet_pkg
 Compiling module xil_defaultlib.Indexer(MULT_COUNT=2)
-Compiling module xil_defaultlib.Multiplier_Unit
+Compiling module xil_defaultlib.Multiplier_Unit(MULT_COUNT=2)
 Compiling module xil_defaultlib.tb_mult
 Compiling module xil_defaultlib.glbl
 Built simulation snapshot tb_mult_behav
