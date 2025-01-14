@@ -30,7 +30,11 @@ module Multiplier_Unit#(
     input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
-    input mult_pack i_idx
+    input mult_pack i_idx,
+
+    ref logic [31:0] data [16],
+
+    output logic [31:0] o_result=0
 
     );
 
@@ -51,6 +55,9 @@ module Multiplier_Unit#(
 
     logic [31:0] Lr, LcRr, Rc;
 
+    logic [31:0] L_dex, R_dex;
+    logic [31:0] L_val, R_val, result;
+
     logic [1:0] count = 0;
 
     assign Lr = x;
@@ -67,6 +74,10 @@ module Multiplier_Unit#(
     assign n2_y = n1_y - 1;
 
     assign n0_x = x    + i_idx.beta_x;
+
+    assign R_dex = x*i_N + z;
+    assign L_dex = z*i_N+y;
+
 
 
     always_comb begin
@@ -175,6 +186,10 @@ module Multiplier_Unit#(
             end
 
             ACTIVE: begin
+
+                L_val <= data[L_dex];
+                R_val <= data[R_dex];
+
                 case(dim)
 
                     ZDIM: begin
@@ -225,7 +240,7 @@ module Multiplier_Unit#(
 
                     WAIT: begin
                         count <= count+1;
-
+                        o_result <= L_val*R_val;
                         if(count == 2'b11) dim <= ZDIM;
                         else dim <= WAIT;
                         

@@ -1,0 +1,18 @@
+Exception at PC 0x00007FFD4A013E15
+Attemped to read address 0x000000000000000F
+Printing stacktrace...
+
+[0] (vlog_timingcheck_execute_0+0x1085) [0x00007FFD4A013E15]
+[1] (vlog_timingcheck_execute_0+0x1085) [0x00007FFD4A013E15]
+[2] (SystemCMgr::xsim_sc_init_elab+0x345e) [0x00007FFD4A0560AE]
+[3] (XSIM::OutputFileNames::setXSimDirLocation+0x2055) [0x00007FFD49EC0625]
+[4] (XSIM::OutputFileNames::setXSimDirLocation+0xcbf7) [0x00007FFD49ECB1C7]
+[5] (XSIM::OutputFileNames::setXSimDirLocation+0xfbcb) [0x00007FFD49ECE19B]
+[6] (XSIM::OutputFileNames::setXSimDirLocation+0xf093) [0x00007FFD49ECD663]
+[7] (iki_simulate_design+0x36) [0x00007FFD49F225C6]
+[8]  [0x000000000040661D]
+[9]  [0x00000000004013E8]
+[10]  [0x000000000040151B]
+[11] (BaseThreadInitThunk+0x14) [0x00007FFDA5AF7374]
+[12] (RtlUserThreadStart+0x21) [0x00007FFDA60BCC91]
+Done
