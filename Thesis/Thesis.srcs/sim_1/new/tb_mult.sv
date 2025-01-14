@@ -31,10 +31,14 @@ import data_packet_pkg::mult_pack;
 
 module tb_mult#(
     parameter SEGMENTS = 8,
-    parameter MULTIPLIERS = 8,
+    parameter MULT_COUNT = 2,
     parameter ADD_COUNT = SEGMENTS/2)(
 
     );
+
+    logic [31:0] data [16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+
+    logic [31:0] mult_res [MULT_COUNT];
 
     logic clk = 0;
     logic active = 0;
@@ -42,7 +46,7 @@ module tb_mult#(
     mult_pack indicies;
 
     Indexer#(
-    .MULT_COUNT(2)
+    .MULT_COUNT(MULT_COUNT)
     ) idxr(
         .i_clk(clk),
         .i_active(active),
@@ -53,23 +57,26 @@ module tb_mult#(
 
         .o_vals(indicies),
         .o_ready(idx_rdy)
+
     );
 
 
     Multiplier_Unit#(
     .MULTIPLIER_INDEX(0),
-    .MULT_COUNT(2)
+    .MULT_COUNT(MULT_COUNT)
     ) mult0(
         .i_clk(clk),
         .i_active(idx_rdy),
         .i_M(4),
         .i_N(4),
         .i_P(4),
-        .i_idx(indicies)
+        .i_idx(indicies),
+        .data(data),
+        .o_result(mult_res[0])
     );
 
     Multiplier_Unit#(
-    .MULTIPLIER_INDEX(1),
+    .MULTIPLIER_INDEX(MULT_COUNT),
     .MULT_COUNT(2)
     ) mult1(
         .i_clk(clk),
@@ -77,7 +84,9 @@ module tb_mult#(
         .i_M(4),
         .i_N(4),
         .i_P(4),
-        .i_idx(indicies)
+        .i_idx(indicies),
+        .data(data),
+        .o_result(mult_res[1])
     );
 
     initial begin
