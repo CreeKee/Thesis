@@ -32,7 +32,7 @@ module Multiplier_Unit#(
     input logic [31:0] i_P,
     input mult_pack i_idx,
 
-    ref logic [31:0] data [16],
+    input logic [31:0] data [16],
 
     output logic [31:0] o_result=0
 
@@ -114,7 +114,8 @@ module Multiplier_Unit#(
 
     always_ff @ ( posedge i_clk ) begin
         curr_state <= next_state;
-
+        o_result <= o_result;
+        
         case(curr_state)
 
             IDLE: begin

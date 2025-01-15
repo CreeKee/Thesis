@@ -76,11 +76,11 @@ module tb_mult#(
     );
 
     Multiplier_Unit#(
-    .MULTIPLIER_INDEX(MULT_COUNT),
-    .MULT_COUNT(2)
+    .MULTIPLIER_INDEX(1),
+    .MULT_COUNT(MULT_COUNT)
     ) mult1(
         .i_clk(clk),
-        .i_active(active),
+        .i_active(idx_rdy),
         .i_M(4),
         .i_N(4),
         .i_P(4),

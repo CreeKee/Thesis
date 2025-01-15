@@ -32,7 +32,7 @@ module Indexer#(
     input logic [31:0] i_P,
 
     output mult_pack o_vals,
-    output logic o_ready
+    output logic o_ready = 0
     );
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_t;
@@ -102,7 +102,7 @@ module Indexer#(
                 gamma_y <= 0;
                 gamma_z <= 0;
 
-                o_ready <= 1;
+                o_ready <= o_ready;
             end
 
             STARTING: begin
