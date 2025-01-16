@@ -34,7 +34,9 @@ module Multiplier_Unit#(
 
     input logic [31:0] data [16],
 
-    output logic [31:0] o_result=0
+    input logic i_pull,
+    output logic [31:0] o_result = 0,
+    output logic o_res_ready = 0
 
     );
 
@@ -47,7 +49,7 @@ module Multiplier_Unit#(
 
     logic [31:0] x = 0, y = 0, z = 0;
 
-    logic [31:0] n0_x, n1_x, n2_x;
+    logic [31:0] n0_x;
     logic [31:0] n0_y, n1_y, n2_y;
     logic [31:0] n0_z, n1_z, n2_z;
     //logic [31:0] alpha_x=4, alpha_y=4, alpha_z=4;
@@ -56,7 +58,7 @@ module Multiplier_Unit#(
     logic [31:0] Lr, LcRr, Rc;
 
     logic [31:0] L_dex, R_dex;
-    logic [31:0] L_val, R_val, result;
+    logic [31:0] L_val, R_val;
 
     logic [1:0] count = 0;
 
@@ -113,7 +115,13 @@ module Multiplier_Unit#(
     end
 
     always_ff @ ( posedge i_clk ) begin
+        
+        if(o_res_ready & i_pull) o_res_ready <= 0;
+        else o_res_ready <= o_res_ready;
+
+
         curr_state <= next_state;
+        
         o_result <= o_result;
         
         case(curr_state)
@@ -187,7 +195,7 @@ module Multiplier_Unit#(
             end
 
             ACTIVE: begin
-
+                
                 L_val <= data[L_dex];
                 R_val <= data[R_dex];
 
@@ -240,10 +248,25 @@ module Multiplier_Unit#(
                     end
 
                     WAIT: begin
-                        count <= count+1;
-                        o_result <= L_val*R_val;
-                        if(count == 2'b11) dim <= ZDIM;
-                        else dim <= WAIT;
+                        
+                        
+                        if(count == 2'b11) begin
+
+                            if(!o_res_ready | i_pull) begin
+                                dim <= ZDIM;
+                                o_result <= L_val*R_val;
+                                o_res_ready <= 1;
+                            end
+                            else begin
+                                dim <= WAIT;
+                                o_result <= o_result;
+                                o_res_ready <= o_res_ready;
+                            end
+                        end
+                        else begin
+                            count <= count+1;
+                            dim <= WAIT;
+                        end
                         
                     end
                 endcase

@@ -21,7 +21,7 @@
 
 
 
-import data_packet_pkg::*;
+
 
 module impl_top #(
     parameter SEGMENTS = 8,
@@ -32,7 +32,7 @@ module impl_top #(
     output logic o_TxD,
     output logic LED[2:0]
 );
-
+    import data_packet_pkg::*;
     assign LED[0] = ld;
     assign LED[1] = top_ready;
     assign LED[2] = out_buff_full;
