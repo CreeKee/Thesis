@@ -36,7 +36,7 @@ module Multiplication_Core#(
     output logic [31:0] o_mults   [MULT_COUNT]
     );
 
-    import data_packet_pkg::mult_pack;
+    import data_packet_pkg::*;
 
     logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
@@ -72,7 +72,7 @@ module Multiplication_Core#(
                 .i_N(dim_N),
                 .i_P(dim_P),
                 .i_idx(indicies),
-                .i_pull(i_pulls[mul]),
+                .i_pull(i_pulls[1]),
                 .data(data),
                 .o_result(o_mults[mul]),
                 .o_res_ready(o_dready[mul])

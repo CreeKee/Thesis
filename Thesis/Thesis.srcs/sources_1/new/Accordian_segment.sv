@@ -30,41 +30,52 @@ module Accordian_Segment #(
     input logic i_pull,
     input logic i_clear,
     input logic i_stall,
-    input logic i_override [ADD_COUNT],
+
+    input logic       i_override [ADD_COUNT],
+    input data_packet i_add      [ADD_COUNT],
 
     input data_packet i_mults [MULT_COUNT],
-    input data_packet i_add [ADD_COUNT],
-    input data_packet i_seg [MULT_COUNT],
+    input logic       i_m_rdy [MULT_COUNT],
+    input data_packet i_seg   [MULT_COUNT],
+    
     input logic [31:0] i_spacers,
     input logic [31:0] i_pops,
 
     input logic[31:0] i_curr,
     input logic[$clog2(MULT_COUNT)-1:0] i_op_cnt,
 
-    output data_packet o_val = 0,
-    output logic o_pulled,
+    output logic        o_stall,
+    output data_packet  o_val    = 0,
+    output logic        o_pulled,
     output logic [31:0] o_spaced
     );
 
     logic [$clog2(MULT_COUNT)-1:0] index;
-    logic [$clog2(ADD_COUNT):0] add_dex, seg_dex;
+    logic [$clog2(ADD_COUNT):0]    add_dex, seg_dex;
     
-    assign index = (SEGMENT_INDEX+i_op_cnt-i_curr);//&MULT_COUNT;
-    assign add_dex = SEGMENT_INDEX - (i_spacers>>1) - (i_spacers&1) + i_pops;
-    assign seg_dex = ((add_dex)<<1)+(i_spacers&1);
+    assign index   =  SEGMENT_INDEX  +  i_op_cnt-i_curr;
+    assign add_dex =  SEGMENT_INDEX  - (i_spacers >> 1) - (i_spacers & 1) + i_pops;
+    assign seg_dex =  (add_dex << 1) + (i_spacers &  1);
+
     
     always_comb begin : ComBlock
 
+        //determine if input is ready
+        if(i_curr <= SEGMENT_INDEX && i_m_rdy[index] == 0) o_stall = 1;
+        else o_stall = 0;
+
+        //handle stalling and clearing
         if(i_clear | i_stall) begin
             o_pulled = 0;
             o_spaced = i_spacers;
         end
 
         else begin
-
+            //prep for pulling in value
             if(i_curr <= SEGMENT_INDEX) o_pulled = 1;
             else o_pulled = 0;
 
+            //determine spacing
             if(i_curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
             else o_spaced = i_spacers;
 
@@ -73,10 +84,12 @@ module Accordian_Segment #(
 
     always_ff @( posedge i_clk ) begin : SeqBlock
 
+        //clear value
         if(i_clear) begin
             o_val <= 0;
         end
-
+        
+        //hold current value
         else if(i_stall) begin
             o_val <= o_val;
         end

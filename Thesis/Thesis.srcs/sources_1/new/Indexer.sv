@@ -55,9 +55,9 @@ module Indexer#(
     assign n_vals.beta_y = vals.beta_y + 1;
     assign n_vals.beta_z = vals.beta_z + 1;
 
-    assign n_gamma_x = gamma_x - MULT_COUNT;
-    assign n_gamma_y = gamma_y - MULT_COUNT;
-    assign n_gamma_z = gamma_z - MULT_COUNT;
+    assign n_gamma_x = gamma_x - i_P;
+    assign n_gamma_y = gamma_y - i_M;
+    assign n_gamma_z = gamma_z - i_N;
 
     assign c_x = $signed(gamma_x) > 0 & n_gamma_x != 0;
     assign c_y = $signed(gamma_y) > 0 & n_gamma_y != 0;
@@ -114,9 +114,9 @@ module Indexer#(
                 vals.beta_y <= 0;
                 vals.beta_z <= 0;
 
-                gamma_x <= i_P;
-                gamma_y <= i_M;
-                gamma_z <= i_N;
+                gamma_x <= MULT_COUNT;
+                gamma_y <= MULT_COUNT;
+                gamma_z <= MULT_COUNT;
 
                 o_ready <= 0;
             end

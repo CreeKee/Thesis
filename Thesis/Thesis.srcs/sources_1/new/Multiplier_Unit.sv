@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-import data_packet_pkg::mult_pack;
+import data_packet_pkg::*;
 
 module Multiplier_Unit#(
     parameter MULTIPLIER_INDEX,
@@ -35,7 +35,7 @@ module Multiplier_Unit#(
     input logic [31:0] data [16],
 
     input logic i_pull,
-    output logic [31:0] o_result = 0,
+    output data_packet [31:0] o_result = {0,0,0},
     output logic o_res_ready = 0
 
     );
@@ -249,15 +249,30 @@ module Multiplier_Unit#(
 
                     WAIT: begin
                         
-                        
                         if(count == 2'b11) begin
 
-                            if(!o_res_ready | i_pull) begin
+                            if(o_res_ready==1'b0 || i_pull == 1'b1) begin
+                                count <= 0;
                                 dim <= ZDIM;
-                                o_result <= L_val*R_val;
+
+                                o_result.val <= L_val*R_val;
+
+                                //determine whether current value is head or tail of accumulation chain
+                                if(z == 0) begin
+                                    o_result.is_head <= 1;
+                                    o_result.is_tail <= 0;
+                                end
+                                else begin 
+                                    o_result.is_head <= 0;
+
+                                    if(z == i_N-1) o_result.is_tail <= 1;
+                                    else           o_result.is_tail <= 0;
+                                end
+
                                 o_res_ready <= 1;
                             end
                             else begin
+                                count <= count;
                                 dim <= WAIT;
                                 o_result <= o_result;
                                 o_res_ready <= o_res_ready;

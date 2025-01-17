@@ -40,29 +40,45 @@ module tb_mult#(
 
     logic [31:0] mult_res [MULT_COUNT];
     logic        mult_rdy [MULT_COUNT];
+    logic        pulls    [MULT_COUNT] = {0,0};
 
-    logic pulls [MULT_COUNT];
+    logic [31:0] adds       [ADD_COUNT];
+    logic        adder_push [ADD_COUNT];
+    logic        acc_step;
 
-    logic clk = 0;
+    logic clk    = 0;
     logic active = 0;
     logic idx_rdy;
+    
     mult_pack indicies;
 
     Multiplication_Core#(
     .MULT_COUNT(MULT_COUNT)
     ) mult_core(
-    .i_clk(clk),
-    .i_start(active),
-    .i_M(4),
-    .i_N(4),
-    .i_P(4),
+        .i_clk(clk),
+        .i_start(active),
+        .i_M(4),
+        .i_N(4),
+        .i_P(4),
 
-    .data(data),
+        .data(data),
 
-    .i_pulls({0,0}),
-    .o_dready(mult_rdy),
-    .o_mults(mult_res)
+        .i_pulls(pulls),
+        .o_dready(mult_rdy),
+        .o_mults(mult_res)
     );
+
+    Accordian_Buffer acc_buff (
+        .i_clk(clk),
+        .i_mults(mult_res),
+        .i_stall(0),
+        .i_clear(0),
+
+        .o_adds(adds),
+        .o_pushs(adder_push),
+        .o_step_ready(acc_step)
+    );
+
 
     initial begin
         clk <= 0;
@@ -74,10 +90,6 @@ module tb_mult#(
         active <= 0;
         #4
         active <= 1;
-        forever begin
-            #8 pulls <= {1,1};
-            #1 pulls <= {0,0};
-        end
         #900
         $finish;
     end
