@@ -30,11 +30,16 @@ module Addition_Core#(
         input data_packet i_seg_vals[SEGMENTS],
 
         output data_packet o_adds     [ADD_COUNT],
-        output data_packet o_acc_fins [ADD_COUNT]
+        output logic o_acc_fins [ADD_COUNT],
+        output logic       o_spaces   [ADD_COUNT],
+
+        output logic o_ready
 
     );
     
     logic [3:0] count = 3;
+
+    assign o_ready = (count == 3);
 
     genvar seg;
     generate 
@@ -49,7 +54,7 @@ module Addition_Core#(
 
                 .o_res     (o_adds    [seg/2]),
                 .o_acc_fin (o_acc_fins[seg/2]),
-                .o_mismatch(spaces    [seg/2])
+                .o_mismatch(o_spaces    [seg/2])
             );
 
         end

@@ -35,7 +35,7 @@ module Multiplier_Unit#(
     input logic [31:0] data [16],
 
     input logic i_pull,
-    output data_packet [31:0] o_result = {0,0,0},
+    output data_packet o_result = {0,0,0},
     output logic o_res_ready = 0
 
     );

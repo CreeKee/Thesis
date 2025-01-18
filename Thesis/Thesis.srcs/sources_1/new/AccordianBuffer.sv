@@ -50,6 +50,7 @@ module Accordian_Buffer #(
     logic [31:0] spaced_values [SEGMENTS];
     logic        do_stall;
     
+    logic acc_step;
     
     logic [1:0] op_cycle = 2'b11;
     logic [$clog2(MULTIPLIERS)-1:0] op_count = 0;
@@ -124,16 +125,18 @@ module Accordian_Buffer #(
     
 
     Addition_Core#(
-    parameter SEGMENTS,
-    parameter ADD_COUNT = SEGMENTS/2
+    .SEGMENTS(SEGMENTS),
+    .ADD_COUNT(ADD_COUNT)
     ) add_core(
         .i_clk(clk),
         .i_stall(do_stall),
         .i_seg_vals(seg_vals),
 
         .o_adds(adds),
-        .o_acc_fins(o_pushs)
+        .o_acc_fins(o_pushs),
+        .o_spaces(spaces),
 
+        .o_ready(acc_step)
     );
 
     always_comb begin
@@ -141,7 +144,7 @@ module Accordian_Buffer #(
         //calculate how many new values have been pulled into the buffer
         //and cascade internal stall calls
         pull_sum = 0;
-        do_stall = 0;
+        do_stall = ~(acc_step) | i_stall;
         for (int idx = 0; idx < SEGMENTS; idx++) begin
             pull_sum += pulls[idx];
             do_stall |= seg_stalls[idx];
@@ -154,8 +157,6 @@ module Accordian_Buffer #(
             pop_sum += o_pushs[idx];
             space_sum += spaces[idx];
         end
-
-        
     end
 
     always_ff @ (posedge i_clk) begin

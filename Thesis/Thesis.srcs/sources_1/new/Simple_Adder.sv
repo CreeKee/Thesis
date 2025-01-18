@@ -38,6 +38,7 @@ module Simple_Adder(
     );
 
     data_packet A_val, B_val;
+    logic done = 0;
 
     // assign o_res.val = i_A.val+i_B.val;
     // assign o_res.is_head = i_A.is_head | i_B.is_head;

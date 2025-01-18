@@ -27,7 +27,7 @@ z = N
 
 */
 
-import data_packet_pkg::mult_pack;
+import data_packet_pkg::*;
 
 module tb_mult#(
     parameter SEGMENTS = 8,
@@ -38,7 +38,7 @@ module tb_mult#(
 
     logic [31:0] data [16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
 
-    logic [31:0] mult_res [MULT_COUNT];
+    data_packet  mult_res [MULT_COUNT];
     logic        mult_rdy [MULT_COUNT];
     logic        pulls    [MULT_COUNT] = {0,0};
 

@@ -18,7 +18,7 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
-
+import data_packet_pkg::*;
 
 module Multiplication_Core#(
     parameter MULT_COUNT
@@ -33,10 +33,10 @@ module Multiplication_Core#(
 
     input logic         i_pulls  [MULT_COUNT],
     output logic        o_dready [MULT_COUNT],
-    output logic [31:0] o_mults   [MULT_COUNT]
+    output data_packet o_mults   [MULT_COUNT]
     );
 
-    import data_packet_pkg::*;
+    
 
     logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
