@@ -74,6 +74,8 @@ module tb_mult#(
         .i_stall(0),
         .i_clear(0),
 
+        //.o_m_pull(pulls),
+
         .o_adds(adds),
         .o_pushs(adder_push),
         .o_step_ready(acc_step)
@@ -90,6 +92,13 @@ module tb_mult#(
         active <= 0;
         #4
         active <= 1;
+
+        #50
+        pulls <= {1,1};
+
+        #2
+        pulls <= {0,0};
+
         #900
         $finish;
     end

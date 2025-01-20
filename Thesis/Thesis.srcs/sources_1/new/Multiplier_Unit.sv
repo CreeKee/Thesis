@@ -62,6 +62,10 @@ module Multiplier_Unit#(
 
     logic [1:0] count = 0;
 
+    logic cont;
+
+    assign cont = i_pull;
+
     assign Lr = x;
     assign LcRr = z;
     assign Rc = y;
@@ -249,9 +253,9 @@ module Multiplier_Unit#(
 
                     WAIT: begin
                         
-                        if(count == 2'b11) begin
+                        if(count == 3) begin
 
-                            if(o_res_ready==1'b0 || i_pull == 1'b1) begin
+                            if(cont) begin
                                 count <= 0;
                                 dim <= ZDIM;
 

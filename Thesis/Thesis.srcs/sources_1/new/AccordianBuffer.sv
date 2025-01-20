@@ -35,8 +35,10 @@ module Accordian_Buffer #(
     input logic i_stall,
     input logic i_clear,
 
+    output logic o_m_pull [MULTIPLIERS],
+
     output logic [31:0] o_adds [ADD_COUNT],
-    output logic o_pushs [ADD_COUNT],
+    output logic        o_pushs [ADD_COUNT],
     output logic o_step_ready
     );
 
@@ -54,6 +56,8 @@ module Accordian_Buffer #(
     
     logic [1:0] op_cycle = 2'b11;
     logic [$clog2(MULTIPLIERS)-1:0] op_count = 0;
+    logic [$clog2(SEGMENTS)-1:0]    m_p_dex;
+    logic [$clog2(SEGMENTS)-1:0]    m_p_dex_reg = 0;
     logic do_step;
 
     assign o_step_ready = do_step;
@@ -145,9 +149,17 @@ module Accordian_Buffer #(
         //and cascade internal stall calls
         pull_sum = 0;
         do_stall = ~(acc_step) | i_stall;
+
+        o_m_pull = '{default: 0};
+        m_p_dex = m_p_dex_reg;
         for (int idx = 0; idx < SEGMENTS; idx++) begin
             pull_sum += pulls[idx];
             do_stall |= seg_stalls[idx];
+        end
+
+        for (int idx = 0; idx < pull_sum; idx++) begin
+            o_m_pull[m_p_dex] = do_step;
+            m_p_dex += 1;
         end
 
         //calculate how many finished values have been popped off the buffer
@@ -163,6 +175,7 @@ module Accordian_Buffer #(
 
         //reset registers
         if(i_clear) begin
+            m_p_dex_reg <= 0;
             curr <= 0;
             op_cycle <= 2'b11;
             op_count <= 0;
@@ -172,6 +185,7 @@ module Accordian_Buffer #(
         else if(i_stall) begin
             curr <= curr;
             op_cycle <= op_cycle;
+            m_p_dex_reg <= m_p_dex_reg;
             
             //continue calculating sums
             if(op_cycle != 0) op_cycle <= op_cycle+2'b01;
@@ -180,11 +194,13 @@ module Accordian_Buffer #(
 
         else begin
 
+
             if(do_step) begin
-                
+                m_p_dex_reg <= m_p_dex;
                 curr <= n_curr + pull_sum;
             end
             else begin
+                m_p_dex_reg <= m_p_dex_reg;
                 curr <= curr;
             end
             

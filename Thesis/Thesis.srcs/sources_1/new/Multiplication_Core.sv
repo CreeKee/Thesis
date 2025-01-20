@@ -72,7 +72,7 @@ module Multiplication_Core#(
                 .i_N(dim_N),
                 .i_P(dim_P),
                 .i_idx(indicies),
-                .i_pull(i_pulls[1]),
+                .i_pull(i_pulls[MULT_COUNT]),
                 .data(data),
                 .o_result(o_mults[mul]),
                 .o_res_ready(o_dready[mul])
