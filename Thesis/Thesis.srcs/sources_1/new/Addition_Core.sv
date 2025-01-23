@@ -23,14 +23,15 @@ import data_packet_pkg::data_packet;
 
 module Addition_Core#(
     parameter SEGMENTS,
-    parameter ADD_COUNT = SEGMENTS/2
+    parameter ADD_COUNT = SEGMENTS/2,
+    parameter DELAY = 4
     )(
         input logic i_clk,
         input logic i_stall,
         input data_packet i_seg_vals[SEGMENTS],
 
         output data_packet o_adds     [ADD_COUNT],
-        output logic o_acc_fins [ADD_COUNT],
+        output logic       o_acc_fins [ADD_COUNT],
         output logic       o_spaces   [ADD_COUNT],
 
         output logic o_ready
@@ -39,7 +40,7 @@ module Addition_Core#(
     
     logic [3:0] count = 3;
 
-    assign o_ready = (count == 3);
+    assign o_ready = (count == 4);
 
     genvar seg;
     generate 
@@ -62,8 +63,9 @@ module Addition_Core#(
 
 
     always_ff @ ( posedge i_clk ) begin
-        if(i_stall && count == 3) count <= count;
-        else count <= count+1;
+        if(i_stall && count == DELAY) count <= count;
+        else if(count < DELAY) count <= count+1;
+        else count <= 0;
     end
 
 endmodule

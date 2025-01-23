@@ -64,7 +64,7 @@ module Multiplier_Unit#(
 
     logic cont;
 
-    assign cont = i_pull;
+    assign cont = (i_pull == 1'b1) | (o_res_ready == 0);
 
     assign Lr = x;
     assign LcRr = z;

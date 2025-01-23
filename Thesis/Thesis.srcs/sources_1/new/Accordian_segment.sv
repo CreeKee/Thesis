@@ -23,6 +23,7 @@ import data_packet_pkg::*;
 
 module Accordian_Segment #(
     parameter SEGMENT_INDEX,
+    parameter SEG_COUNT,
     parameter MULT_COUNT,
     parameter ADD_COUNT
     )(
@@ -36,7 +37,7 @@ module Accordian_Segment #(
 
     input data_packet i_mults [MULT_COUNT],
     input logic       i_m_rdy [MULT_COUNT],
-    input data_packet i_seg   [MULT_COUNT],
+    input data_packet i_seg   [SEG_COUNT],
     
     input logic [31:0] i_spacers,
     input logic [31:0] i_pops,
@@ -51,7 +52,8 @@ module Accordian_Segment #(
     );
 
     logic [$clog2(MULT_COUNT)-1:0] index;
-    logic [$clog2(ADD_COUNT):0]    add_dex, seg_dex;
+    logic [$clog2(ADD_COUNT):0]    add_dex;
+    logic [$clog2(SEG_COUNT):0]    seg_dex;
     
     assign index   =  SEGMENT_INDEX  +  i_op_cnt-i_curr;
     assign add_dex =  SEGMENT_INDEX  - (i_spacers >> 1) - (i_spacers & 1) + i_pops;

@@ -30,7 +30,7 @@ z = N
 import data_packet_pkg::*;
 
 module tb_mult#(
-    parameter SEGMENTS = 8,
+    parameter SEGMENTS = 4,
     parameter MULT_COUNT = 2,
     parameter ADD_COUNT = SEGMENTS/2)(
 
@@ -40,7 +40,7 @@ module tb_mult#(
 
     data_packet  mult_res [MULT_COUNT];
     logic        mult_rdy [MULT_COUNT];
-    logic        pulls    [MULT_COUNT] = {0,0};
+    logic        pulls    [MULT_COUNT];
 
     logic [31:0] adds       [ADD_COUNT];
     logic        adder_push [ADD_COUNT];
@@ -49,6 +49,7 @@ module tb_mult#(
     logic clk    = 0;
     logic active = 0;
     logic idx_rdy;
+    logic acc_stall = 1;
     
     mult_pack indicies;
 
@@ -68,13 +69,17 @@ module tb_mult#(
         .o_mults(mult_res)
     );
 
-    Accordian_Buffer acc_buff (
+    Accordian_Buffer#(
+    .SEGMENTS(SEGMENTS),
+    .MULTIPLIERS(MULT_COUNT)
+    ) acc_buff (
         .i_clk(clk),
         .i_mults(mult_res),
-        .i_stall(0),
+        .i_stall(acc_stall),
         .i_clear(0),
 
-        //.o_m_pull(pulls),
+        .i_m_rdy(mult_rdy),
+        .o_m_pull(pulls),
 
         .o_adds(adds),
         .o_pushs(adder_push),
@@ -90,14 +95,15 @@ module tb_mult#(
 
     initial begin
         active <= 0;
+        acc_stall <= 1;
         #4
         active <= 1;
 
-        #50
-        pulls <= {1,1};
+        #100
+        acc_stall <= 0;
 
-        #2
-        pulls <= {0,0};
+        //#2
+        //pulls <= {0,0};
 
         #900
         $finish;

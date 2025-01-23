@@ -37,7 +37,7 @@ module Simple_Adder(
     output logic [31:0] o_dest_col = 0
     );
 
-    data_packet A_val, B_val;
+    data_packet A_val = {0,0,0}, B_val = {0,0,0};
     logic done = 0;
 
     // assign o_res.val = i_A.val+i_B.val;
@@ -49,18 +49,15 @@ module Simple_Adder(
 
     always_ff @ ( posedge i_clk ) begin
 
-        
-
-
         if(i_count == 3) begin
 
             if(done == 0) begin
-                o_res.val     <= A_val.val     + B_val.val;
-                o_res.is_head <= A_val.is_head | B_val.is_head;
-                o_res.is_tail <= A_val.is_tail | B_val.is_tail;
+                o_res.val     <= i_A.val     + i_B.val;
+                o_res.is_head <= i_A.is_head | i_B.is_head;
+                o_res.is_tail <= i_A.is_tail | i_B.is_tail;
 
-                o_acc_fin     <= A_val.is_head & B_val.is_tail;
-                o_mismatch    <= A_val.is_tail & B_val.is_head;
+                o_acc_fin     <= i_A.is_head & i_B.is_tail;
+                o_mismatch    <= i_A.is_tail;
             end
 
             done <= 1;
@@ -69,8 +66,6 @@ module Simple_Adder(
             B_val <= i_B;
         end
         else done <= 0;
-        
-
         
     end
 
