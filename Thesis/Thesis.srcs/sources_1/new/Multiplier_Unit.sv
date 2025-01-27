@@ -76,7 +76,7 @@ module Multiplier_Unit#(
     assign n2_z = n1_z - i_N;
 
     assign n0_y = y    + i_idx.beta_y;
-    assign n1_y = n0_y - i_idx.alpha_y;
+    assign n1_y = y - i_idx.alpha_y;
     assign n2_y = n1_y - 1;
 
     assign n0_x = x    + i_idx.beta_x;
@@ -243,7 +243,7 @@ module Multiplier_Unit#(
 
                     XDIM: begin
                         dim <= WAIT;
-                        if(n0_x >= i_M) begin
+                        if(x >= i_M) begin
                             //go to idle
                         end
                         else begin

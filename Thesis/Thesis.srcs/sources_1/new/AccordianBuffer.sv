@@ -84,6 +84,7 @@ module Accordian_Buffer #(
                     .i_clear(0),
                     .i_stall(do_stall),
                     .i_override(spaces),
+                    .i_m_rdy(i_m_rdy),
 
                     .i_mults(i_mults),
                     .i_add(adds),
@@ -114,6 +115,7 @@ module Accordian_Buffer #(
                     .i_clear(0),
                     .i_stall(do_stall),
                     .i_override(spaces),
+                    .i_m_rdy(i_m_rdy),
 
                     .i_mults(i_mults),
                     .i_add(adds),
