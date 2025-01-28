@@ -31,12 +31,15 @@ import data_packet_pkg::*;
 
 module tb_mult#(
     parameter SEGMENTS = 4,
-    parameter MULT_COUNT = 2,
+    parameter MULT_COUNT = 4,
     parameter ADD_COUNT = SEGMENTS/2)(
 
     );
 
     logic [31:0] data [16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+
+    typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
+    state_m curr_state = IDLE, next_state;
 
     data_packet  mult_res [MULT_COUNT];
     logic        mult_rdy [MULT_COUNT];
@@ -50,6 +53,8 @@ module tb_mult#(
     logic active = 0;
     logic idx_rdy;
     logic acc_stall = 1;
+    logic acc_done;
+    logic clear;
     
     mult_pack indicies;
 
@@ -76,15 +81,46 @@ module tb_mult#(
         .i_clk(clk),
         .i_mults(mult_res),
         .i_stall(acc_stall),
-        .i_clear(0),
+        .i_clear(clear),
 
         .i_m_rdy(mult_rdy),
         .o_m_pull(pulls),
 
         .o_adds(adds),
         .o_pushs(adder_push),
-        .o_step_ready(acc_step)
+        .o_step_ready(acc_step),
+        .o_done(acc_done)
     );
+
+    always_comb begin
+        case(curr_state)
+            IDLE: begin
+                clear = 1;
+                if(active) next_state = ACTIVE;
+                else next_state = IDLE;
+            end
+
+            ACTIVE: begin
+                clear = 0;
+                if(acc_done) begin
+                    next_state = IDLE;
+                end
+                else next_state = ACTIVE;
+            end
+
+        endcase
+    end
+
+    always_ff @ ( posedge clk ) begin
+
+        curr_state <= next_state;
+
+        case(curr_state) 
+
+
+        endcase
+
+    end
 
 
     initial begin
@@ -95,12 +131,12 @@ module tb_mult#(
 
     initial begin
         active <= 0;
-        acc_stall <= 1;
+        acc_stall <= 0;
         #4
         active <= 1;
 
-        #100
-        acc_stall <= 0;
+        #10
+        active <= 0;
 
         //#2
         //pulls <= {0,0};

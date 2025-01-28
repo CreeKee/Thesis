@@ -59,9 +59,9 @@ module Indexer#(
     assign n_gamma_y = gamma_y - i_M;
     assign n_gamma_z = gamma_z - i_N;
 
-    assign c_x = $signed(gamma_x) > 0 & n_gamma_x != 0;
-    assign c_y = $signed(gamma_y) > 0 & n_gamma_y != 0;
-    assign c_z = $signed(gamma_z) > 0 & n_gamma_z != 0;
+    assign c_x = $signed(gamma_x) > 0 | n_gamma_x == 0;
+    assign c_y = $signed(gamma_y) > 0 | n_gamma_y == 0;
+    assign c_z = $signed(gamma_z) > 0 | n_gamma_z == 0;
 
     always_comb begin
         case(curr_state)

@@ -55,6 +55,7 @@ module Simple_Adder(
                 o_res.val     <= i_A.val     + i_B.val;
                 o_res.is_head <= i_A.is_head | i_B.is_head;
                 o_res.is_tail <= i_A.is_tail | i_B.is_tail;
+                o_res.is_end  <= i_A.is_end  | i_B.is_end;
 
                 o_acc_fin     <= i_A.is_head & i_B.is_tail;
                 o_mismatch    <= i_A.is_tail;

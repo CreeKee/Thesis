@@ -36,7 +36,8 @@ module Multiplier_Unit#(
 
     input logic i_pull,
     output data_packet o_result = {0,0,0},
-    output logic o_res_ready = 0
+    output logic o_res_ready = 0,
+    output logic o_end
 
     );
 
@@ -148,7 +149,7 @@ module Multiplier_Unit#(
 
                     ZDIM: begin
                         dim <= YDIM;
-                        if(n0_z >= i_P) begin
+                        if(z >= i_P) begin
                             if(n1_z >= i_P) begin
                                 z <= n2_z;
                                 y <= n0_y + 1;
@@ -260,6 +261,7 @@ module Multiplier_Unit#(
                                 dim <= ZDIM;
 
                                 o_result.val <= L_val*R_val;
+                                o_result.is_end <= 0;
 
                                 //determine whether current value is head or tail of accumulation chain
                                 if(z == 0) begin
@@ -292,7 +294,13 @@ module Multiplier_Unit#(
             end
 
             ENDING: begin
-
+                if(cont) begin 
+                    o_result.val <= 0;
+                    o_result.is_head <= 0;
+                    o_result.is_tail <= 0;
+                    o_result.is_end <= 1;
+                    o_res_ready <= 1;
+                end
             end
         
         endcase

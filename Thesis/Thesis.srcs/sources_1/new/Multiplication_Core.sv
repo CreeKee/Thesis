@@ -33,7 +33,8 @@ module Multiplication_Core#(
 
     input logic         i_pulls  [MULT_COUNT],
     output logic        o_dready [MULT_COUNT],
-    output data_packet o_mults   [MULT_COUNT]
+    output data_packet o_mults   [MULT_COUNT],
+    output logic o_end
     );
 
     
@@ -41,6 +42,8 @@ module Multiplication_Core#(
     logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
     mult_pack indicies;
+    
+    logic end_sigs[MULT_COUNT];
 
     Indexer#(
     .MULT_COUNT(MULT_COUNT)
@@ -75,10 +78,18 @@ module Multiplication_Core#(
                 .i_pull(i_pulls[mul]),
                 .data(data),
                 .o_result(o_mults[mul]),
-                .o_res_ready(o_dready[mul])
+                .o_res_ready(o_dready[mul]),
+                .o_end(end_sigs[mul])
             );
         end
     endgenerate
+
+    always_comb begin
+        o_end = 1;
+        for(int idx = 0; idx < MULT_COUNT; idx++) begin
+            o_end &= end_sigs[idx];
+        end
+    end
 
     always_ff @ ( posedge i_clk ) begin
         if(i_start) begin
@@ -92,5 +103,6 @@ module Multiplication_Core#(
             dim_P <= dim_P;
         end
     end
+
 
 endmodule
