@@ -53,6 +53,8 @@ module Accordian_Buffer #(
     logic        pulls         [SEGMENTS];
     logic [31:0] spaced_values [SEGMENTS];
     logic        do_stall;
+    logic        soft_stall;
+    logic        seg_stall;
     
     logic add_clk;
     
@@ -63,7 +65,7 @@ module Accordian_Buffer #(
     logic do_step;
 
     assign o_step_ready = do_step;
-    assign do_step = add_clk;
+    assign do_step = add_clk&(~do_stall);
     assign spec_curr = (curr >> 1) - pop_sum + (space_sum);
     assign o_done = seg_vals[0].is_end;
     //generate components
@@ -84,7 +86,7 @@ module Accordian_Buffer #(
                     .i_clk(i_clk),
                     .i_pull(do_step),
                     .i_clear(i_clear),
-                    .i_stall(do_stall),
+                    .i_stall(i_stall),
                     .i_override(spaces),
                     .i_m_rdy(i_m_rdy),
 
@@ -115,7 +117,7 @@ module Accordian_Buffer #(
                     .i_clk(i_clk),
                     .i_pull(do_step),
                     .i_clear(i_clear),
-                    .i_stall(do_stall),
+                    .i_stall(i_stall),
                     .i_override(spaces),
                     .i_m_rdy(i_m_rdy),
 
@@ -170,17 +172,20 @@ module Accordian_Buffer #(
         //calculate how many new values have been pulled into the buffer
         //and cascade internal stall calls
         pull_sum = 0;
-        do_stall = ~(do_step) | i_stall;
+        seg_stall = 0;
         for (int idx = 0; idx < SEGMENTS; idx++) begin
             if(pull_sum < mult_sum) pull_sum += pulls[idx];
-            do_stall |= seg_stalls[idx];
+            seg_stall |= seg_stalls[idx];
         end
+
+        do_stall = seg_stall|i_stall;
+        //soft_stall = ~(do_step) | do_stall;
 
 
         m_p_dex = m_p_dex_reg+pull_sum;
         for (int idx = 0; idx < MULTIPLIERS; idx++) begin
 
-            if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)&3] = 1;
+            if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)&3] = do_step;
             else o_m_pull[(idx+m_p_dex_reg)&3] = 0;
 
             //if(idx >= m_p_dex_reg && idx < m_p_dex_reg+pull_sum) o_m_pull[idx] = 1;

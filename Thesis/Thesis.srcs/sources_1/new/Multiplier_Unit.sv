@@ -27,12 +27,13 @@ module Multiplier_Unit#(
     )(
     input logic i_clk,
     input logic i_active,
+    input logic i_done,
     input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
     input mult_pack i_idx,
 
-    input logic [31:0] data [16],
+    input logic [31:0] data [32],
 
     input logic i_pull,
     output data_packet o_result = {0,0,0},
@@ -82,8 +83,8 @@ module Multiplier_Unit#(
 
     assign n0_x = x    + i_idx.beta_x;
 
-    assign R_dex = x*i_N + z;
-    assign L_dex = z*i_N+y;
+    assign R_dex = z*i_P + y;
+    assign L_dex = x*i_N + z;
 
 
 
@@ -108,7 +109,7 @@ module Multiplier_Unit#(
             end
 
             ENDING: begin
-                if(~i_active) begin
+                if(i_done) begin
                     next_state = IDLE;
                 end
                 else begin
@@ -149,13 +150,13 @@ module Multiplier_Unit#(
 
                     ZDIM: begin
                         dim <= YDIM;
-                        if(z >= i_P) begin
-                            if(n1_z >= i_P) begin
-                                z <= n2_z;
+                        if(MULTIPLIER_INDEX >= i_N) begin
+                            if((MULTIPLIER_INDEX - i_idx.alpha_z) >= i_N) begin
+                                z <= (MULTIPLIER_INDEX - i_idx.alpha_z) - i_N;
                                 y <= n0_y + 1;
                             end
                             else begin
-                                z <= n1_z;
+                                z <= (MULTIPLIER_INDEX - i_idx.alpha_z);
                                 y <= n0_y;
                             end
                         end
@@ -167,8 +168,8 @@ module Multiplier_Unit#(
 
                     YDIM: begin
                         dim <= XDIM;
-                        if(y >= i_N) begin
-                            if(n1_y >= i_N) begin
+                        if(y >= i_P) begin
+                            if(n1_y >= i_P) begin
                                 y <= n2_y;
                                 x <= n0_x + 1;
                             end
@@ -208,8 +209,8 @@ module Multiplier_Unit#(
 
                     ZDIM: begin
                         dim <= YDIM;
-                        if(n0_z >= i_P) begin
-                            if(n1_z >= i_P) begin
+                        if(n0_z >= i_N) begin
+                            if(n1_z >= i_N) begin
                                 z <= n2_z;
                                 y <= n0_y + 1;
                             end
@@ -226,8 +227,8 @@ module Multiplier_Unit#(
 
                     YDIM: begin
                         dim <= XDIM;
-                        if(y >= i_N) begin
-                            if(n1_y >= i_N) begin
+                        if(y >= i_P) begin
+                            if(n1_y >= i_P) begin
                                 y <= n2_y;
                                 x <= n0_x + 1;
                             end

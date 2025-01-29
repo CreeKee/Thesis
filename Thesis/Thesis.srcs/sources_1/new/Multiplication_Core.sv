@@ -25,11 +25,12 @@ module Multiplication_Core#(
     )(
     input logic i_clk,
     input logic i_start,
+    input logic i_done,
     input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
 
-    input logic [31:0] data [16],
+    input logic [31:0] data [32],
 
     input logic         i_pulls  [MULT_COUNT],
     output logic        o_dready [MULT_COUNT],
@@ -71,6 +72,7 @@ module Multiplication_Core#(
             ) mult(
                 .i_clk(i_clk),
                 .i_active(idx_rdy),
+                .i_done(i_done),
                 .i_M(dim_M),
                 .i_N(dim_N),
                 .i_P(dim_P),

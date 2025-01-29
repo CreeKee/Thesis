@@ -36,7 +36,7 @@ module tb_mult#(
 
     );
 
-    logic [31:0] data [16] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    logic [31:0] data [32] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
     state_m curr_state = IDLE, next_state;
@@ -63,9 +63,10 @@ module tb_mult#(
     ) mult_core(
         .i_clk(clk),
         .i_start(active),
-        .i_M(4),
-        .i_N(4),
-        .i_P(4),
+        .i_done(acc_done),
+        .i_M(7),
+        .i_N(3),
+        .i_P(5),
 
         .data(data),
 

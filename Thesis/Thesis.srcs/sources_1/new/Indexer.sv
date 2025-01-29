@@ -47,21 +47,21 @@ module Indexer#(
     logic c_x, c_y, c_z;
 
 
-    assign n_vals.alpha_x = vals.alpha_x + i_P;
-    assign n_vals.alpha_y = vals.alpha_y + i_M;
+    assign n_vals.alpha_x = vals.alpha_x + i_M;
+    assign n_vals.alpha_y = vals.alpha_y + i_P;
     assign n_vals.alpha_z = vals.alpha_z + i_N;
 
     assign n_vals.beta_x = vals.beta_x + 1;
     assign n_vals.beta_y = vals.beta_y + 1;
     assign n_vals.beta_z = vals.beta_z + 1;
 
-    assign n_gamma_x = gamma_x - i_P;
-    assign n_gamma_y = gamma_y - i_M;
+    assign n_gamma_x = gamma_x - i_M;
+    assign n_gamma_y = gamma_y - i_P;
     assign n_gamma_z = gamma_z - i_N;
 
-    assign c_x = $signed(gamma_x) > 0 | n_gamma_x == 0;
-    assign c_y = $signed(gamma_y) > 0 | n_gamma_y == 0;
-    assign c_z = $signed(gamma_z) > 0 | n_gamma_z == 0;
+    assign c_x = $signed(n_gamma_x) > 0;
+    assign c_y = $signed(n_gamma_y) > 0;
+    assign c_z = $signed(n_gamma_z) > 0;
 
     always_comb begin
         case(curr_state)
@@ -80,6 +80,10 @@ module Indexer#(
                 end
                 else next_state = ACTIVE;
             end
+
+            ENDING: begin
+                next_state = IDLE;
+            end
         endcase
     end
 
@@ -90,33 +94,21 @@ module Indexer#(
 
         case(curr_state)
             IDLE: begin
-                vals.alpha_x <= 0;
-                vals.alpha_y <= 0;
-                vals.alpha_z <= 0;
-
-                vals.beta_x <= 0;
-                vals.beta_y <= 0;
-                vals.beta_z <= 0;
-
-                gamma_x <= 0;
-                gamma_y <= 0;
-                gamma_z <= 0;
-
-                o_ready <= o_ready;
-            end
-
-            STARTING: begin
-                vals.alpha_x <= 0;
-                vals.alpha_y <= 0;
-                vals.alpha_z <= 0;
-
-                vals.beta_x <= 0;
-                vals.beta_y <= 0;
-                vals.beta_z <= 0;
+                vals <= {0, 0, 0, 0, 0, 0};
 
                 gamma_x <= MULT_COUNT;
                 gamma_y <= MULT_COUNT;
                 gamma_z <= MULT_COUNT;
+
+                o_ready <= 0;
+            end
+
+            STARTING: begin
+                vals <= n_vals;
+
+                gamma_x <= n_gamma_x;
+                gamma_y <= n_gamma_y;
+                gamma_z <= n_gamma_z;
 
                 o_ready <= 0;
             end
