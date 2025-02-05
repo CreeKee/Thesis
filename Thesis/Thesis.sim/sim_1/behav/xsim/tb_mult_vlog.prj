@@ -1,4 +1,7 @@
 # compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
+
 sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
 "../../../../Thesis.srcs/sources_1/new/AccordianBuffer.sv" \
 "../../../../Thesis.srcs/sources_1/new/Accordian_segment.sv" \

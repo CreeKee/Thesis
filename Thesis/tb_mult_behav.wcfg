@@ -13,27 +13,37 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="704.501 ns"></ZoomEndTime>
-      <Cursor1Time time="472.000 ns"></Cursor1Time>
+      <ZoomEndTime time="138.401 ns"></ZoomEndTime>
+      <Cursor1Time time="415.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="301"></NameColumnWidth>
       <ValueColumnWidth column_width="148"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="38" />
+   <WVObjectSize size="44" />
    <wvobject fp_name="/tb_mult/data" type="array">
-      <obj_property name="ElementShortName">data[0:15][31:0]</obj_property>
-      <obj_property name="ObjectShortName">data[0:15][31:0]</obj_property>
+      <obj_property name="ElementShortName">data[0:31][31:0]</obj_property>
+      <obj_property name="ObjectShortName">data[0:31][31:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/mult_res" type="array">
-      <obj_property name="ElementShortName">mult_res[0:1]</obj_property>
-      <obj_property name="ObjectShortName">mult_res[0:1]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+      <obj_property name="ElementShortName">mult_res[0:3]</obj_property>
+      <obj_property name="ObjectShortName">mult_res[0:3]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_mult/acc_done" type="logic">
+      <obj_property name="ElementShortName">acc_done</obj_property>
+      <obj_property name="ObjectShortName">acc_done</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_mult/curr_state" type="array">
+      <obj_property name="ElementShortName">curr_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">curr_state[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_mult/next_state" type="array">
+      <obj_property name="ElementShortName">next_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="group524" type="group">
       <obj_property name="label">Mult Core</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_mult/mult_core/i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -55,20 +65,20 @@
          <obj_property name="ObjectShortName">i_P[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/data" type="array">
-         <obj_property name="ElementShortName">data[0:15][31:0]</obj_property>
-         <obj_property name="ObjectShortName">data[0:15][31:0]</obj_property>
+         <obj_property name="ElementShortName">data[0:31][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data[0:31][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/i_pulls" type="array">
-         <obj_property name="ElementShortName">i_pulls[0:1]</obj_property>
-         <obj_property name="ObjectShortName">i_pulls[0:1]</obj_property>
+         <obj_property name="ElementShortName">i_pulls[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_pulls[0:3]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/o_dready" type="array">
-         <obj_property name="ElementShortName">o_dready[0:1]</obj_property>
-         <obj_property name="ObjectShortName">o_dready[0:1]</obj_property>
+         <obj_property name="ElementShortName">o_dready[0:3]</obj_property>
+         <obj_property name="ObjectShortName">o_dready[0:3]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/o_mults" type="array">
-         <obj_property name="ElementShortName">o_mults[0:1]</obj_property>
-         <obj_property name="ObjectShortName">o_mults[0:1]</obj_property>
+         <obj_property name="ElementShortName">o_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">o_mults[0:3]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/idx_rdy" type="logic">
          <obj_property name="ElementShortName">idx_rdy</obj_property>
@@ -98,6 +108,7 @@
    <wvobject fp_name="group176" type="group">
       <obj_property name="label">Indexer</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_mult/mult_core/idxr/i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -137,6 +148,7 @@
       <wvobject fp_name="/tb_mult/mult_core/idxr/vals" type="array">
          <obj_property name="ElementShortName">vals</obj_property>
          <obj_property name="ObjectShortName">vals</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/idxr/n_vals" type="array">
          <obj_property name="ElementShortName">n_vals</obj_property>
@@ -186,7 +198,6 @@
    <wvobject fp_name="group2223" type="group">
       <obj_property name="label">Mult0</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -194,6 +205,7 @@
       <wvobject fp_name="group2575" type="group">
          <obj_property name="label">dim stuff</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /n0_x" type="array">
             <obj_property name="ElementShortName">n0_x[31:0]</obj_property>
             <obj_property name="ObjectShortName">n0_x[31:0]</obj_property>
@@ -270,10 +282,11 @@
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /i_idx" type="array">
          <obj_property name="ElementShortName">i_idx</obj_property>
          <obj_property name="ObjectShortName">i_idx</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /data" type="array">
-         <obj_property name="ElementShortName">data[0:15][31:0]</obj_property>
-         <obj_property name="ObjectShortName">data[0:15][31:0]</obj_property>
+         <obj_property name="ElementShortName">data[0:31][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data[0:31][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /i_pull" type="logic">
          <obj_property name="ElementShortName">i_pull</obj_property>
@@ -314,6 +327,7 @@
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /y" type="array">
          <obj_property name="ElementShortName">y[31:0]</obj_property>
          <obj_property name="ObjectShortName">y[31:0]</obj_property>
+         <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /z" type="array">
          <obj_property name="ElementShortName">z[31:0]</obj_property>
@@ -360,8 +374,8 @@
          <obj_property name="ObjectShortName">i_idx</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[1].mult /data" type="array">
-         <obj_property name="ElementShortName">data[0:15][31:0]</obj_property>
-         <obj_property name="ObjectShortName">data[0:15][31:0]</obj_property>
+         <obj_property name="ElementShortName">data[0:31][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data[0:31][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[1].mult /i_pull" type="logic">
          <obj_property name="ElementShortName">i_pull</obj_property>
@@ -398,14 +412,20 @@
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[1].mult /x" type="array">
          <obj_property name="ElementShortName">x[31:0]</obj_property>
          <obj_property name="ObjectShortName">x[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[1].mult /y" type="array">
          <obj_property name="ElementShortName">y[31:0]</obj_property>
          <obj_property name="ObjectShortName">y[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[1].mult /z" type="array">
          <obj_property name="ElementShortName">z[31:0]</obj_property>
          <obj_property name="ObjectShortName">z[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/mult_core/\mul_gen[1].mult /n0_x" type="array">
          <obj_property name="ElementShortName">n0_x[31:0]</obj_property>
@@ -476,14 +496,172 @@
          <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
       </wvobject>
    </wvobject>
+   <wvobject fp_name="group1961" type="group">
+      <obj_property name="label">Mult3</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_active" type="logic">
+         <obj_property name="ElementShortName">i_active</obj_property>
+         <obj_property name="ObjectShortName">i_active</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_M" type="array">
+         <obj_property name="ElementShortName">i_M[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_M[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_N" type="array">
+         <obj_property name="ElementShortName">i_N[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_N[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_P" type="array">
+         <obj_property name="ElementShortName">i_P[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_P[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_idx" type="array">
+         <obj_property name="ElementShortName">i_idx</obj_property>
+         <obj_property name="ObjectShortName">i_idx</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /data" type="array">
+         <obj_property name="ElementShortName">data[0:31][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data[0:31][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /i_pull" type="logic">
+         <obj_property name="ElementShortName">i_pull</obj_property>
+         <obj_property name="ObjectShortName">i_pull</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /o_result" type="array">
+         <obj_property name="ElementShortName">o_result</obj_property>
+         <obj_property name="ObjectShortName">o_result</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /o_res_ready" type="logic">
+         <obj_property name="ElementShortName">o_res_ready</obj_property>
+         <obj_property name="ObjectShortName">o_res_ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /o_end" type="logic">
+         <obj_property name="ElementShortName">o_end</obj_property>
+         <obj_property name="ObjectShortName">o_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /active" type="logic">
+         <obj_property name="ElementShortName">active</obj_property>
+         <obj_property name="ObjectShortName">active</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /curr_state" type="array">
+         <obj_property name="ElementShortName">curr_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_state[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /next_state" type="array">
+         <obj_property name="ElementShortName">next_state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">next_state[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /dim" type="array">
+         <obj_property name="ElementShortName">dim[1:0]</obj_property>
+         <obj_property name="ObjectShortName">dim[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /x" type="array">
+         <obj_property name="ElementShortName">x[31:0]</obj_property>
+         <obj_property name="ObjectShortName">x[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /y" type="array">
+         <obj_property name="ElementShortName">y[31:0]</obj_property>
+         <obj_property name="ObjectShortName">y[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /z" type="array">
+         <obj_property name="ElementShortName">z[31:0]</obj_property>
+         <obj_property name="ObjectShortName">z[31:0]</obj_property>
+         <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n0_x" type="array">
+         <obj_property name="ElementShortName">n0_x[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n0_x[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n0_y" type="array">
+         <obj_property name="ElementShortName">n0_y[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n0_y[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n1_y" type="array">
+         <obj_property name="ElementShortName">n1_y[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n1_y[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n2_y" type="array">
+         <obj_property name="ElementShortName">n2_y[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n2_y[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n0_z" type="array">
+         <obj_property name="ElementShortName">n0_z[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n0_z[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n1_z" type="array">
+         <obj_property name="ElementShortName">n1_z[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n1_z[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /n2_z" type="array">
+         <obj_property name="ElementShortName">n2_z[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n2_z[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /Lr" type="array">
+         <obj_property name="ElementShortName">Lr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">Lr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /LcRr" type="array">
+         <obj_property name="ElementShortName">LcRr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">LcRr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /Rc" type="array">
+         <obj_property name="ElementShortName">Rc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">Rc[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /L_dex" type="array">
+         <obj_property name="ElementShortName">L_dex[31:0]</obj_property>
+         <obj_property name="ObjectShortName">L_dex[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /R_dex" type="array">
+         <obj_property name="ElementShortName">R_dex[31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_dex[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /L_val" type="array">
+         <obj_property name="ElementShortName">L_val[31:0]</obj_property>
+         <obj_property name="ObjectShortName">L_val[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /R_val" type="array">
+         <obj_property name="ElementShortName">R_val[31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_val[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /count" type="array">
+         <obj_property name="ElementShortName">count[1:0]</obj_property>
+         <obj_property name="ObjectShortName">count[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /cont" type="logic">
+         <obj_property name="ElementShortName">cont</obj_property>
+         <obj_property name="ObjectShortName">cont</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /MULTIPLIER_INDEX" type="array">
+         <obj_property name="ElementShortName">MULTIPLIER_INDEX[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULTIPLIER_INDEX[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/tb_mult/acc_buff/i_m_rdy" type="array">
+      <obj_property name="ElementShortName">i_m_rdy[0:3]</obj_property>
+      <obj_property name="ObjectShortName">i_m_rdy[0:3]</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/i_clk" type="logic">
       <obj_property name="ElementShortName">i_clk</obj_property>
       <obj_property name="ObjectShortName">i_clk</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/i_m_rdy" type="array">
-      <obj_property name="ElementShortName">i_m_rdy[0:1]</obj_property>
-      <obj_property name="ObjectShortName">i_m_rdy[0:1]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
+   <wvobject fp_name="/tb_mult/acc_buff/o_done" type="logic">
+      <obj_property name="ElementShortName">o_done</obj_property>
+      <obj_property name="ObjectShortName">o_done</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/i_stall" type="logic">
       <obj_property name="ElementShortName">i_stall</obj_property>
@@ -494,8 +672,9 @@
       <obj_property name="ObjectShortName">i_clear</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/o_m_pull" type="array">
-      <obj_property name="ElementShortName">o_m_pull[0:1]</obj_property>
-      <obj_property name="ObjectShortName">o_m_pull[0:1]</obj_property>
+      <obj_property name="ElementShortName">o_m_pull[0:3]</obj_property>
+      <obj_property name="ObjectShortName">o_m_pull[0:3]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/o_adds" type="array">
       <obj_property name="ElementShortName">o_adds[0:1][31:0]</obj_property>
@@ -538,23 +717,11 @@
       <obj_property name="ObjectShortName">spaces[0:1]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/i_mults" type="array">
-      <obj_property name="ElementShortName">i_mults[0:1]</obj_property>
-      <obj_property name="ObjectShortName">i_mults[0:1]</obj_property>
+      <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+      <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
       <obj_property name="CustomSignalColor">#D2691E</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject fp_name="/tb_mult/acc_buff/i_mults[0]" type="array">
-         <obj_property name="ElementShortName">[0]</obj_property>
-         <obj_property name="ObjectShortName">[0]</obj_property>
-         <obj_property name="CustomSignalColor">#D2691E</obj_property>
-         <obj_property name="UseCustomSignalColor">true</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_mult/acc_buff/i_mults[1]" type="array">
-         <obj_property name="ElementShortName">[1]</obj_property>
-         <obj_property name="ObjectShortName">[1]</obj_property>
-         <obj_property name="CustomSignalColor">#D2691E</obj_property>
-         <obj_property name="UseCustomSignalColor">true</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/adds" type="array">
       <obj_property name="ElementShortName">adds[0:1]</obj_property>
@@ -622,17 +789,21 @@
       <obj_property name="ElementShortName">do_stall</obj_property>
       <obj_property name="ObjectShortName">do_stall</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_mult/acc_buff/soft_stall" type="logic">
+      <obj_property name="ElementShortName">soft_stall</obj_property>
+      <obj_property name="ObjectShortName">soft_stall</obj_property>
+   </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/op_count" type="array">
-      <obj_property name="ElementShortName">op_count[0:0]</obj_property>
-      <obj_property name="ObjectShortName">op_count[0:0]</obj_property>
+      <obj_property name="ElementShortName">op_count[1:0]</obj_property>
+      <obj_property name="ObjectShortName">op_count[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/m_p_dex" type="array">
-      <obj_property name="ElementShortName">m_p_dex[0:0]</obj_property>
-      <obj_property name="ObjectShortName">m_p_dex[0:0]</obj_property>
+      <obj_property name="ElementShortName">m_p_dex[1:0]</obj_property>
+      <obj_property name="ObjectShortName">m_p_dex[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/m_p_dex_reg" type="array">
-      <obj_property name="ElementShortName">m_p_dex_reg[0:0]</obj_property>
-      <obj_property name="ObjectShortName">m_p_dex_reg[0:0]</obj_property>
+      <obj_property name="ElementShortName">m_p_dex_reg[1:0]</obj_property>
+      <obj_property name="ObjectShortName">m_p_dex_reg[1:0]</obj_property>
    </wvobject>
    <wvobject fp_name="/tb_mult/acc_buff/do_step" type="logic">
       <obj_property name="ElementShortName">do_step</obj_property>
@@ -755,7 +926,6 @@
    <wvobject fp_name="group1899" type="group">
       <obj_property name="label">Acc Seg 0</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /ADD_COUNT" type="array">
          <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
          <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
@@ -786,12 +956,12 @@
          <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /i_mults" type="array">
-         <obj_property name="ElementShortName">i_mults[0:1]</obj_property>
-         <obj_property name="ObjectShortName">i_mults[0:1]</obj_property>
+         <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /i_m_rdy" type="array">
-         <obj_property name="ElementShortName">i_m_rdy[0:1]</obj_property>
-         <obj_property name="ObjectShortName">i_m_rdy[0:1]</obj_property>
+         <obj_property name="ElementShortName">i_m_rdy[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_m_rdy[0:3]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /i_seg" type="array">
          <obj_property name="ElementShortName">i_seg[0:3]</obj_property>
@@ -837,8 +1007,8 @@
          <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /i_op_cnt" type="array">
-         <obj_property name="ElementShortName">i_op_cnt[0:0]</obj_property>
-         <obj_property name="ObjectShortName">i_op_cnt[0:0]</obj_property>
+         <obj_property name="ElementShortName">i_op_cnt[1:0]</obj_property>
+         <obj_property name="ObjectShortName">i_op_cnt[1:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /o_stall" type="logic">
          <obj_property name="ElementShortName">o_stall</obj_property>
@@ -857,8 +1027,8 @@
          <obj_property name="ObjectShortName">o_spaced[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /index" type="array">
-         <obj_property name="ElementShortName">index[0:0]</obj_property>
-         <obj_property name="ObjectShortName">index[0:0]</obj_property>
+         <obj_property name="ElementShortName">index[1:0]</obj_property>
+         <obj_property name="ObjectShortName">index[1:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/\seg_gen[0].genblk1.acc_seg /add_dex" type="array">
          <obj_property name="ElementShortName">add_dex[1:0]</obj_property>

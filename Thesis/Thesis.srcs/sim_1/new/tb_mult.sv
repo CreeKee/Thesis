@@ -58,6 +58,8 @@ module tb_mult#(
     
     mult_pack indicies;
 
+
+
     Multiplication_Core#(
     .MULT_COUNT(MULT_COUNT)
     ) mult_core(
@@ -133,11 +135,25 @@ module tb_mult#(
     initial begin
         active <= 0;
         acc_stall <= 0;
+        mem_addr_a <= 0;
         #4
         active <= 1;
 
         #10
         active <= 0;
+        mem_addr_a <= 1;
+
+        #8
+        mem_addr_a <= 2;
+
+        #8
+        mem_addr_a <= 3;
+
+        #8
+        mem_addr_a <= 4;
+
+        #8
+        mem_addr_a <= 5;
 
         //#2
         //pulls <= {0,0};
