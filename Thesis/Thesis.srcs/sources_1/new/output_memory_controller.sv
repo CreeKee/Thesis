@@ -22,40 +22,52 @@
 
 module output_memory_controller#(
     parameter ADD_COUNT = 4,
-    parameter PAGE_SIZE = 512,
+    parameter PAGE_SIZE = 16,
     parameter WB_THRESH = 16,
     parameter MEM_ADDR_WIDTH = 10
     )(
     input logic i_clk,
+    input logic i_end,
     input logic [31:0] i_vals [ADD_COUNT],
-    input logic i_push [ADD_COUNT]    
+    input logic i_push [ADD_COUNT],
+    input logic i_step,
+
+    input logic  [15:0] i_read_addr,
+    output logic [31:0] read_data
     );
 
-    typedef enum bit [0:0] {ABSORB, EXPUNGE} state_o;
-
-    state_o curr_state, next_state;
 
     logic [MEM_ADDR_WIDTH-1:0] mem_addr=0;
     logic [31:0][31:0] page;
-    logic [15:0][31:0] wb_page;
-    logic [31:0] next_fill, push_sum;
-    logic [ $clog2(32)-1:0] fill = 0;
+    logic [15:0][31:0] wb_page, read_page;
+    logic [$clog2(ADD_COUNT)-1:0] push_sum;
+    logic [$clog2(32)-1:0] fill = 0, next_fill;
     logic page_sel = 0;
+    logic toggle, stall;
 
     logic [1:0] write_timer = 0;
     logic       do_write;
 
     assign do_write = write_timer != 0;
 
+    assign next_fill = fill+push_sum;
+    assign toggle = (!stall)&(next_fill >= (WB_THRESH) & page_sel == 0) | (next_fill <= (fill) & page_sel == 1);
+    assign stall  = (!i_step)|((next_fill >= (WB_THRESH) & page_sel == 1 & fill < WB_THRESH) | (next_fill <= (fill) & page_sel == 0));
+
+    assign read_data = read_page[i_read_addr[3:0]];
+
     blk_mem_gen_0 bram(
         .clka(i_clk), 
         .wea(do_write), 
         .addra(mem_addr), 
         .dina(wb_page), 
+        
         .clkb(i_clk), 
         .web(0), 
-        .addrb(0), 
-        .dinb(0)
+        .enb(1),
+        .addrb(i_read_addr[15:4]), 
+        .dinb(0),
+        .doutb(read_page)
     );
 
     always_comb begin
@@ -65,65 +77,36 @@ module output_memory_controller#(
             push_sum += i_push[i]; 
         end
 
-        if(fill > WB_THRESH) begin
-            next_fill = 0;
-            next_state = EXPUNGE;
-        end
-        else begin
-            next_fill = fill;
-            next_state = ABSORB;
-        end
-
         if(page_sel == 0) wb_page = page[15:0];
         else wb_page = page[31:16];
-
     end
 
     always_ff @ ( posedge i_clk ) begin
 
-        
-        curr_state <= next_state;
-        fill <= fill+push_sum;
+        if(!stall) begin
 
-        for(int i = 0; i < PAGE_SIZE; i++) begin
+            fill <= next_fill;
 
-            if(i < push_sum) begin
-                page[i+fill] <= i_vals[i];
+            for(int i = 0; i < PAGE_SIZE*2; i++) begin
+
+                if(i < push_sum) begin
+                    page[i+fill] <= i_vals[i];
+                end
+
             end
-
         end
-        
-        if(toggle) begin
 
-            page_sel <= ~page_sel;
-            mem_addr <= mem_addr+1;
+        if(toggle|i_end) begin
             write_timer <= 2'b10;
-
         end
         else begin
-            page_sel <= page_sel;
-            mem_addr <= mem_addr;
             write_timer <= write_timer >> 1;
         end
 
-        case(curr_state)
-
-            ABSORB: begin
-                
-                if(next_state == EXPUNGE) begin
-                    do_write <= 1;
-                end
-                else begin
-                    do_write <= 0;
-                end
-            end
-
-            EXPUNGE: begin
-                do_write <= 1;
-                
-            end
-
-        endcase
+        if(write_timer == 1) begin
+            page_sel <= ~page_sel;
+            mem_addr <= mem_addr+1;
+        end
 
     end
 endmodule

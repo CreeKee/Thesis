@@ -70,6 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 3
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -103,6 +105,7 @@ read_verilog -library xil_defaultlib -sv {
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv}
 }
 read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
 set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]

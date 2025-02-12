@@ -30,13 +30,14 @@ module impl_top #(
     )(
     input logic i_clk,
     input logic i_btn,
+    input logic [15:0] sw,
     output logic o_TxD,
-    output logic LED[2:0]
+    output logic [15:0] LED
 );
     import data_packet_pkg::*;
-    assign LED[0] = ld;
-    assign LED[1] = top_ready;
-    assign LED[2] = out_buff_full;
+    // assign LED[0] = ld;
+    // assign LED[1] = top_ready;
+    // assign LED[2] = out_buff_full;
 
     logic [31:0] cnt = 0;
     logic [31:0] uart_val;
@@ -64,10 +65,10 @@ module impl_top #(
     logic        acc_step;
 
     logic clk    = 0;
-    logic active = 0;
+    logic active = 1;
     logic prep   = 0;
     logic idx_rdy;
-    logic acc_stall = 1;
+    logic acc_stall = 0;
     logic acc_done;
     logic clear;
     
@@ -106,6 +107,19 @@ module impl_top #(
         .o_pushs(adder_push),
         .o_step_ready(acc_step),
         .o_done(acc_done)
+    );
+
+    output_memory_controller#(
+    .ADD_COUNT(ADD_COUNT)    
+    ) output_controller(
+        .i_clk(i_clk),
+        .i_end(acc_done),
+        .i_vals(adds),
+        .i_push(adder_push),
+        .i_step(acc_step),
+
+        .i_read_addr(sw),
+        .read_data(LED)
     );
 
     Output_Buffer#(
@@ -156,10 +170,10 @@ module impl_top #(
         if(cnt <= 100000000) begin
             cnt <= cnt + 1;
             ld <= ld;
+            active <= prep&i_btn;
         end
         else begin 
             prep <= i_btn;
-            active <= prep&i_btn;
             cnt <= 0;
             ld <= ~ ld;
         end

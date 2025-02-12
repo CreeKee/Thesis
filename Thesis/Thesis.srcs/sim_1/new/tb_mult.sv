@@ -58,6 +58,14 @@ module tb_mult#(
     
     mult_pack indicies;
 
+    logic out_buff_empty, out_buff_full;
+    logic [31:0] output_topval;
+    logic uart_read_in;
+    logic [31:0] uart_val;
+
+    assign top_ready = ~out_buff_empty;
+    assign uart_val = 65+output_topval;
+
     Multiplication_Core#(
     .MULT_COUNT(MULT_COUNT)
     ) mult_core(
@@ -97,9 +105,35 @@ module tb_mult#(
     .ADD_COUNT(ADD_COUNT)    
     ) output_controller(
         .i_clk(clk),
+        .i_end(acc_done),
         .i_vals(adds),
-        .i_push(adder_push)
+        .i_push(adder_push),
+        .i_step(acc_step),
+
+        .i_read_addr(0)
     );
+
+    // Output_Buffer#(
+    // .ADD_COUNT(ADD_COUNT),
+    // .BUFF_SIZE(32)
+    // ) out_buff(
+    //     .i_clk(clk),
+    //     .i_vals(adds),
+    //     .i_step(acc_step),
+    //     .i_push(adder_push),
+    //     .i_pull(uart_read_in),
+    //     .o_top_val(output_topval),
+    //     .o_empty(out_buff_empty),
+    //     .o_full(out_buff_full)
+    // );
+
+    // Uart_Top_Mod uart(
+    //     .i_clk(clk),
+    //     .i_top_val(uart_val),
+    //     .i_top_ready(top_ready),
+    //     .TxD(o_TxD),
+    //     .o_read_in(uart_read_in)
+    // );
 
     always_comb begin
         case(curr_state)
