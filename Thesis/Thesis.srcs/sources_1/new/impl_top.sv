@@ -24,11 +24,12 @@
 
 
 module impl_top #(
-    parameter SEGMENTS = 8,
-    parameter MULTIPLIERS = 8,
+    parameter SEGMENTS = 4,
+    parameter MULT_COUNT = 4,
     parameter ADD_COUNT = SEGMENTS/2
     )(
     input logic i_clk,
+    input logic i_btn,
     output logic o_TxD,
     output logic LED[2:0]
 );
@@ -41,38 +42,76 @@ module impl_top #(
     logic [31:0] uart_val;
     logic top_ready;
     logic ld = 0;
-    logic [31:0] adds [ADD_COUNT];
     logic [31:0] output_topval;
     logic uart_read_in;
-    logic out_buff_empty, out_buff_full, acc_step;
-    logic adder_push [ADD_COUNT];
+    logic out_buff_empty, out_buff_full;
 
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
 
-    data_packet mults [8] = {
-        '{0,1,0,0},
-        '{0,0,0,1},
-        '{0,0,0,2},
-        '{0,0,1,3},
-        '{0,1,0,4},
-        '{0,0,0,5},
-        '{0,0,0,6},
-        '{0,0,1,7}
-    };
 
-    Accordian_Buffer acc_buff (
+    logic [31:0] data [32] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
+
+    typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
+    state_m curr_state = IDLE, next_state;
+
+    data_packet  mult_res [MULT_COUNT];
+    logic        mult_rdy [MULT_COUNT];
+    logic        pulls    [MULT_COUNT];
+
+    logic [31:0] adds       [ADD_COUNT];
+    logic        adder_push [ADD_COUNT];
+    logic        acc_step;
+
+    logic clk    = 0;
+    logic active = 0;
+    logic prep   = 0;
+    logic idx_rdy;
+    logic acc_stall = 1;
+    logic acc_done;
+    logic clear;
+    
+    mult_pack indicies;
+
+    Multiplication_Core#(
+    .MULT_COUNT(MULT_COUNT)
+    ) mult_core(
         .i_clk(i_clk),
-        .i_mults(mults),
-        .i_stall(out_buff_full),
-        .i_clear(0),
+        .i_start(active),
+        .i_done(acc_done),
+        .i_M(7),
+        .i_N(3),
+        .i_P(5),
+
+        .data(data),
+
+        .i_pulls(pulls),
+        .o_dready(mult_rdy),
+        .o_mults(mult_res)
+    );
+
+    Accordian_Buffer#(
+    .SEGMENTS(SEGMENTS),
+    .MULTIPLIERS(MULT_COUNT)
+    ) acc_buff (
+        .i_clk(i_clk),
+        .i_mults(mult_res),
+        .i_stall(acc_stall),
+        .i_clear(clear),
+
+        .i_m_rdy(mult_rdy),
+        .o_m_pull(pulls),
 
         .o_adds(adds),
         .o_pushs(adder_push),
-        .o_step_ready(acc_step)
+        .o_step_ready(acc_step),
+        .o_done(acc_done)
     );
 
-    Output_Buffer out_buff(
+    Output_Buffer#(
+    .ADD_COUNT(ADD_COUNT),
+    .BUFF_SIZE(32)
+    ) out_buff(
         .i_clk(i_clk),
         .i_vals(adds),
         .i_step(acc_step),
@@ -91,6 +130,55 @@ module impl_top #(
         .o_read_in(uart_read_in)
     );
 
+    always_comb begin
+        case(curr_state)
+            IDLE: begin
+                clear = 1;
+                if(active) next_state = ACTIVE;
+                else next_state = IDLE;
+            end
+
+            ACTIVE: begin
+                clear = 0;
+                if(acc_done) begin
+                    next_state = IDLE;
+                end
+                else next_state = ACTIVE;
+            end
+
+        endcase
+    end
+
+    always_ff @ ( posedge i_clk ) begin
+
+        curr_state <= next_state;
+
+        if(cnt <= 100000000) begin
+            cnt <= cnt + 1;
+            ld <= ld;
+        end
+        else begin 
+            prep <= i_btn;
+            active <= prep&i_btn;
+            cnt <= 0;
+            ld <= ~ ld;
+        end
+
+    end
+
+    // Accordian_Buffer acc_buff (
+    //     .i_clk(i_clk),
+    //     .i_mults(mults),
+    //     .i_stall(out_buff_full),
+    //     .i_clear(0),
+
+    //     .o_adds(adds),
+    //     .o_pushs(adder_push),
+    //     .o_step_ready(acc_step)
+    // );
+
+
+
     // Uart_Top_Mod uart(
     //     .i_clk(i_clk),
     //     .i_top_val(test_val),
@@ -99,14 +187,5 @@ module impl_top #(
     //     .o_read_in(uart_read_in)
     // );
 
-    always_ff @ ( posedge i_clk ) begin
-        if(cnt <= 100000000) begin
-            cnt <= cnt + 1;
-            ld <= ld;
-        end
-        else begin 
-            cnt <= 0;
-            ld <= ~ ld;
-        end
-    end
+
 endmodule

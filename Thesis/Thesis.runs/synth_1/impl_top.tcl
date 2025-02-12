@@ -70,17 +70,16 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
+set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir {E:/Seth stuff/Thesis/Thesis/Thesis.cache/wt} [current_project]
 set_property parent.project_path {E:/Seth stuff/Thesis/Thesis/Thesis.xpr} [current_project]
+set_property XPM_LIBRARIES XPM_MEMORY [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part_repo_paths {C:/Users/David/AppData/Roaming/Xilinx/Vivado/2023.2/xhub/board_store/xilinx_board_store} [current_project]
@@ -89,6 +88,7 @@ set_property ip_output_repo {e:/Seth stuff/Thesis/Thesis/Thesis.cache/ip} [curre
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
+add_files {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/bram_load.coe}}
 read_verilog {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh}}
 set_property file_type "Verilog Header" [get_files {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh}}]
 read_verilog -library xil_defaultlib -sv {
@@ -96,10 +96,17 @@ read_verilog -library xil_defaultlib -sv {
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Output_Buffer.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/uart/uart_top.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Buffer_Port.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv}
 }
+read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
+set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]
+
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

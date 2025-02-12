@@ -19,12 +19,43 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+module mem_port#(
+    parameter MEM_WIDTH = 512,
+    parameter MEM_ADDR_WIDTH = 10,
+    parameter IDX_WIDTH = $clog2(MEM_WIDTH)
+    )(
+    input  logic i_clk,
+    input  logic [31:0] i_addr,
+    output logic o_dta_rdy,
+    output logic [MEM_WIDTH-1:0] o_data
+    );
+
+    logic [MEM_ADDR_WIDTH-1:0]    line_addr, prev_line;
+    logic [IDX_WIDTH-1:0]         data_addr;
+
+    assign line_addr = i_addr[+:IDX_WIDTH];
+    assign data_addr = i_addr[IDX_WIDTH-:];
+
+    always_comb begin
+        if(line_addr == prev_line) begin
+            o_dta_rdy = 1;
+        end
+        else
+    end
+
+    always_ff @ ( posedge i_clk ) begin
+
+    end
+
+
+endmodule
+
 
 module mem_controller#(
     parameter MEM_A_WIDTH = 512,
-    parameter MEM_A_ADDR_WIDTH = 10,
+    parameter MEM_A_ADDR_WIDTH = 10
     )(
-    output logic [31:0] mem_bus_a
+    output logic [MEM_A_WIDTH-1:0] mem_bus_a
     );
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
@@ -47,17 +78,17 @@ module mem_controller#(
 
 
 
-    always_ff @ ( posedge i_clk ) begin
+    // always_ff @ ( posedge i_clk ) begin
 
-        curr_state <= next_state;
+    //     curr_state <= next_state;
 
-        case(curr_state)
+    //     case(curr_state)
 
-            IDLE:
+    //         IDLE:
 
-            READING:
+    //         READING:
 
-        endcase
-    end
+    //     endcase
+    // end
 
 endmodule
