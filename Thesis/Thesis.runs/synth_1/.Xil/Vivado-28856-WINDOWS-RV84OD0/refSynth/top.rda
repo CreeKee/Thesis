@@ -1,198 +1,0 @@
-Data_For_RDAFlowver5.0
-	top levelÕu
-impl_top@
-LinkDesign_Blackboxes'
-output_controller/bramblk_mem_gen_0ô%
-synthFileNamesX
-10RE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/BRAM_SINGLE_MACRO.vhdU
-11OE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/BRAM_TDP_MACRO.vhdY
-12SE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/COUNTER_LOAD_MACRO.vhdW
-13QE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/COUNTER_TC_MACRO.vhdW
-14QE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/EQ_COMPARE_MACRO.vhdT
-20NE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/ADDSUB_MACRO.v[
-15UE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/FIFO_DUALCLOCK_MACRO.vhdV
-21PE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/BRAM_SDP_MACRO.vV
-16PE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/FIFO_SYNC_MACRO.vhdY
-22SE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/BRAM_SINGLE_MACRO.vQ
-17KE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/MACC_MACRO.vhdQ
-18KE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/MULT_MACRO.vhdV
-23PE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/BRAM_TDP_MACRO.vU
-19OE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/ADDMACC_MACRO.vZ
-24TE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/COUNTER_LOAD_MACRO.vX
-25RE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/COUNTER_TC_MACRO.vR
-30LE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/MULT_MACRO.v
-NumFileNames59X
-26RE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/EQ_COMPARE_MACRO.vX
-31RE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unisims/retarget/MULT18X18.vhdK
-1FE:/Xilinx/Vivado/2023.2/Vivado/2023.2/scripts/rt/data/unisim_VCOMP.vhd\
-27VE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/FIFO_DUALCLOCK_MACRO.vY
-32SE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unisims/retarget/MULT18X18S.vhdJ
-2EE:/Xilinx/Vivado/2023.2/Vivado/2023.2/scripts/rt/data/unisim_VPKG.vhdW
-28QE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/FIFO_SYNC_MACRO.vT
-33NE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/ip/xpm/xpm_memory/hdl/xpm_memory.svH
-3CE:/Xilinx/Vivado/2023.2/Vivado/2023.2/scripts/rt/data/unisim_comp.vR
-29LE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/verilog/src/unimacro/MACC_MACRO.vN
-34HE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.svK
-4FE:/Xilinx/Vivado/2023.2/Vivado/2023.2/scripts/rt/data/internal_cells.vG
-35AE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vhL
-40FE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/uart/uart_top.svA
-5<E:/Xilinx/Vivado/2023.2/Vivado/2023.2/scripts/rt/data/BUFT.vP
-36JE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.svG
-41AE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.svT
-6OE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/unimacro_VCOMP.vhdL
-37FE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Output_Buffer.svJ
-42DE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Buffer_Port.svS
-7NE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/ADDMACC_MACRO.vhdK
-38EE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.svF
-43@E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.svR
-8ME:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/ADDSUB_MACRO.vhdN
-39HE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.svR
-44LE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.svK
-50EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/standard.vhdT
-9OE:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/vhdl/src/unimacro/BRAM_SDP_MACRO.vhdL
-45FE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.svN
-51HE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/numeric_std.vhdW
-46QE:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.svI
-52CE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/textio.vhdu
-47oE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-38888-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.vK
-53EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/timing_p.vhdE
-48?E:/Xilinx/Vivado/2023.2/Vivado/2023.2/data/ip/xpm/xpm_VCOMP.vhdK
-54EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/timing_b.vhdK
-49EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/std_1164.vhdK
-55EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/prmtvs_p.vhdK
-56EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/prmtvs_b.vhdK
-57EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/syn_arit.vhdK
-58EE:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/1993/src/syn_unsi.vhdÿ
-
-synthStatsH
-caseNotFullNoDefault
-L48
-Mnullname
-F40
-O
-curr_stateH
-caseNotFullNoDefault
-L85
-Mnullname
-F40
-O
-curr_stateI
-caseNotFullNoDefault
-L147
-Mnullname
-F41
-O
-curr_stateT
-dspWideMultUnderpipelined
-L264
-Mnullname
-F39
-Omul_gen[0].mult/T
-dspWideMultUnderpipelined
-L264
-Mnullname
-F39
-Omul_gen[1].mult/T
-dspWideMultUnderpipelined
-L264
-Mnullname
-F39
-Omul_gen[2].mult/T
-dspWideMultUnderpipelined
-L264
-Mnullname
-F39
-Omul_gen[3].mult/¹
-fwd_retimable_ffs_A'
-1"mult_core/mul_gen[0].mult/x_reg[0]'
-2"mult_core/mul_gen[1].mult/x_reg[0]'
-3"mult_core/mul_gen[2].mult/x_reg[0]'
-4"mult_core/mul_gen[3].mult/x_reg[0]†D
-ElaboratedNamesForRQSìC
-DSP_RAMâ
-376841× {output_controller/page_reg[0]_i} {output_controller/page_reg[10]_i} {output_controller/page_reg[11]_i} {output_controller/page_reg[12]_i} {output_controller/page_reg[13]_i} {output_controller/page_reg[14]_i} {output_controller/page_reg[15]_i} {output_controller/page_reg[16]_i} {output_controller/page_reg[17]_i} {output_controller/page_reg[18]_i} {output_controller/page_reg[19]_i} {output_controller/page_reg[1]_i} {output_controller/page_reg[20]_i} {output_controller/page_reg[21]_i} {output_controller/page_reg[22]_i} {output_controller/page_reg[23]_i} {output_controller/page_reg[24]_i} {output_controller/page_reg[25]_i} {output_controller/page_reg[26]_i} {output_controller/page_reg[27]_i} {output_controller/page_reg[28]_i} {output_controller/page_reg[29]_i} {output_controller/page_reg[2]_i} {output_controller/page_reg[30]_i} {output_controller/page_reg[31]_i} {output_controller/page_reg[3]_i} {output_controller/page_reg[4]_i} {output_controller/page_reg[5]_i} {output_controller/page_reg[6]_i} {output_controller/page_reg[7]_i} {output_controller/page_reg[8]_i} {output_controller/page_reg[9]_i} 
-471051 {out_buff/delta0_i} &
-376843 {out_buff/act_push_sum2_i} â
-
-180236×
- {out_buff/port_gen[0].buff_port/r_zero_i} {out_buff/port_gen[10].buff_port/r_zero_i} {out_buff/port_gen[11].buff_port/r_zero_i} {out_buff/port_gen[12].buff_port/r_zero_i} {out_buff/port_gen[13].buff_port/r_zero_i} {out_buff/port_gen[14].buff_port/r_zero_i} {out_buff/port_gen[15].buff_port/r_zero_i} {out_buff/port_gen[16].buff_port/r_zero_i} {out_buff/port_gen[17].buff_port/r_zero_i} {out_buff/port_gen[18].buff_port/r_zero_i} {out_buff/port_gen[19].buff_port/r_zero_i} {out_buff/port_gen[1].buff_port/r_zero_i} {out_buff/port_gen[20].buff_port/r_zero_i} {out_buff/port_gen[21].buff_port/r_zero_i} {out_buff/port_gen[22].buff_port/r_zero_i} {out_buff/port_gen[23].buff_port/r_zero_i} {out_buff/port_gen[24].buff_port/r_zero_i} {out_buff/port_gen[25].buff_port/r_zero_i} {out_buff/port_gen[26].buff_port/r_zero_i} {out_buff/port_gen[27].buff_port/r_zero_i} {out_buff/port_gen[28].buff_port/r_zero_i} {out_buff/port_gen[29].buff_port/r_zero_i} {out_buff/port_gen[2].buff_port/r_zero_i} {out_buff/port_gen[30].buff_port/r_zero_i} {out_buff/port_gen[31].buff_port/r_zero_i} {out_buff/port_gen[3].buff_port/r_zero_i} {out_buff/port_gen[4].buff_port/r_zero_i} {out_buff/port_gen[5].buff_port/r_zero_i} {out_buff/port_gen[6].buff_port/r_zero_i} {out_buff/port_gen[7].buff_port/r_zero_i} {out_buff/port_gen[8].buff_port/r_zero_i} {out_buff/port_gen[9].buff_port/r_zero_i} 
-638978… {mult_core/mul_gen[0].mult/y0_i} {mult_core/mul_gen[1].mult/y0_i} {mult_core/mul_gen[2].mult/y0_i} {mult_core/mul_gen[3].mult/y0_i} ˜
-319490 {mult_core/mul_gen[0].mult/n2_z_i} {mult_core/mul_gen[1].mult/n2_z_i} {mult_core/mul_gen[2].mult/n2_z_i} {mult_core/mul_gen[3].mult/n2_z_i} "
-929797 {acc_buff/op_count0_i} "
-475147 {out_buff/delta0_i__0} -
-221188# {mult_core/idxr/n_vals[beta_x]_i} 
-712706… {mult_core/mul_gen[0].mult/x0_i} {mult_core/mul_gen[1].mult/x0_i} {mult_core/mul_gen[2].mult/x0_i} {mult_core/mul_gen[3].mult/x0_i} :
-2826290 {acc_buff/spec_curr0_i} {acc_buff/spec_curr_i} -
-225284# {mult_core/idxr/n_vals[beta_y]_i} "
-225291 {out_buff/next_curr_i} k
-225288a {acc_buff/add_core/add_gen[0].add_unit/RTL_ADD} {acc_buff/add_core/add_gen[2].add_unit/RTL_ADD} °
-352258¥ {mult_core/mul_gen[0].mult/R_dex0_i} {mult_core/mul_gen[0].mult/R_dex_i} {mult_core/mul_gen[1].mult/R_dex0_i} {mult_core/mul_gen[1].mult/R_dex_i} {mult_core/mul_gen[2].mult/R_dex0_i} {mult_core/mul_gen[2].mult/R_dex_i} {mult_core/mul_gen[3].mult/R_dex0_i} {mult_core/mul_gen[3].mult/R_dex_i} ¡
-1081346• {mult_core/mul_gen[0].mult/RTL_MULT} {mult_core/mul_gen[1].mult/RTL_MULT} {mult_core/mul_gen[2].mult/RTL_MULT} {mult_core/mul_gen[3].mult/RTL_MULT} 
-1126402‘ {mult_core/mul_gen[0].mult/RTL_SUB} {mult_core/mul_gen[1].mult/RTL_SUB} {mult_core/mul_gen[2].mult/RTL_SUB} {mult_core/mul_gen[3].mult/RTL_SUB} -
-229380# {mult_core/idxr/n_vals[beta_z]_i} Ë
-770053À {acc_buff/RTL_ADD} {acc_buff/RTL_ADD__0} {acc_buff/RTL_ADD__1} {acc_buff/o_m_pull_reg[0]_i__5} {acc_buff/o_m_pull_reg[0]_i__6} {acc_buff/o_m_pull_reg[1]_i__5} {acc_buff/o_m_pull_reg[1]_i__6} {acc_buff/o_m_pull_reg[2]_i__5} {acc_buff/o_m_pull_reg[2]_i__6} {acc_buff/o_m_pull_reg[3]_i__5} {acc_buff/o_m_pull_reg[3]_i__6} .
-204804$ {mult_core/idxr/n_vals[alpha_x]_i} °
-356354¥ {mult_core/mul_gen[0].mult/L_dex0_i} {mult_core/mul_gen[0].mult/L_dex_i} {mult_core/mul_gen[1].mult/L_dex0_i} {mult_core/mul_gen[1].mult/L_dex_i} {mult_core/mul_gen[2].mult/L_dex0_i} {mult_core/mul_gen[2].mult/L_dex_i} {mult_core/mul_gen[3].mult/L_dex0_i} {mult_core/mul_gen[3].mult/L_dex_i} "
-229387 {out_buff/next_tail_i}  
-815109 {acc_buff/i_pops0_i} ˜
-327682 {mult_core/mul_gen[0].mult/n0_y_i} {mult_core/mul_gen[1].mult/n0_y_i} {mult_core/mul_gen[2].mult/n0_y_i} {mult_core/mul_gen[3].mult/n0_y_i} .
-208900$ {mult_core/idxr/n_vals[alpha_y]_i} &
-819205 {acc_buff/spec_curr0_i__0} ¡
-1183746• {mult_core/mul_gen[0].mult/count0_i} {mult_core/mul_gen[1].mult/count0_i} {mult_core/mul_gen[2].mult/count0_i} {mult_core/mul_gen[3].mult/count0_i} y
-196621o {uart/TxD_i__0} {uart/bitcounter_i__0} {uart/next_state_i__2} {uart/o_read_in_i__0} {uart/rightshiftreg_i__1} 8
-233483. {out_buff/calc_val0_i} {out_buff/calc_val_i} ´
-331782© {acc_buff/seg_gen[0].acc_seg/o_spaced0_i} {acc_buff/seg_gen[1].acc_seg/o_spaced0_i} {acc_buff/seg_gen[2].acc_seg/o_spaced0_i} {acc_buff/seg_gen[3].acc_seg/o_spaced0_i} ˜
-331778 {mult_core/mul_gen[0].mult/n1_y_i} {mult_core/mul_gen[1].mult/n1_y_i} {mult_core/mul_gen[2].mult/n1_y_i} {mult_core/mul_gen[3].mult/n1_y_i} (
-237572 {mult_core/idxr/n_gamma_x_i} ™
-237574Ž {acc_buff/seg_gen[0].acc_seg/index_i} {acc_buff/seg_gen[1].acc_seg/index0_i} {acc_buff/seg_gen[1].acc_seg/index_i} {acc_buff/seg_gen[2].acc_seg/index0_i} {acc_buff/seg_gen[2].acc_seg/index_i} {acc_buff/seg_gen[3].acc_seg/index0_i} {acc_buff/seg_gen[3].acc_seg/index_i} 
-208896 {uart_val_i}  
-405517 {uart/bitcounter0_i} i
-213000_ {acc_buff/add_core/add_gen[0].add_unit/done_i} {acc_buff/add_core/add_gen[2].add_unit/done_i} ˜
-335874 {mult_core/mul_gen[0].mult/n2_y_i} {mult_core/mul_gen[1].mult/n2_y_i} {mult_core/mul_gen[2].mult/n2_y_i} {mult_core/mul_gen[3].mult/n2_y_i} +
-213001! {output_controller/next_fill_i} 
-921605 {acc_buff/curr0_i} µ
-1097730© {mult_core/mul_gen[0].mult/o_result_i__3} {mult_core/mul_gen[1].mult/o_result_i__3} {mult_core/mul_gen[2].mult/o_result_i__3} {mult_core/mul_gen[3].mult/o_result_i__3} ,
-311305" {output_controller/next_fill0_i} V
-724997L {acc_buff/pull_sum0_i} {acc_buff/pull_sum0_i__0} {acc_buff/pull_sum0_i__1} ô
-241670é {acc_buff/seg_gen[0].acc_seg/add_dex0_i} {acc_buff/seg_gen[0].acc_seg/add_dex1_i} {acc_buff/seg_gen[0].acc_seg/add_dex_i} {acc_buff/seg_gen[1].acc_seg/add_dex0_i} {acc_buff/seg_gen[1].acc_seg/add_dex1_i} {acc_buff/seg_gen[1].acc_seg/add_dex_i} {acc_buff/seg_gen[2].acc_seg/add_dex0_i} {acc_buff/seg_gen[2].acc_seg/add_dex1_i} {acc_buff/seg_gen[2].acc_seg/add_dex_i} {acc_buff/seg_gen[3].acc_seg/add_dex0_i} {acc_buff/seg_gen[3].acc_seg/add_dex1_i} {acc_buff/seg_gen[3].acc_seg/add_dex_i} %
-757765 {acc_buff/m_p_dex_reg0_i} 
-434189 {uart/counter0_i} (
-241668 {mult_core/idxr/n_gamma_y_i} .
-212996$ {mult_core/idxr/n_vals[alpha_z]_i} +
-438281! {output_controller/mem_addr0_i}  
-499723 {out_buff/o_full1_i} 
-630786… {mult_core/mul_gen[0].mult/y2_i} {mult_core/mul_gen[1].mult/y2_i} {mult_core/mul_gen[2].mult/y2_i} {mult_core/mul_gen[3].mult/y2_i} (
-245764 {mult_core/idxr/n_gamma_z_i} (
-274439 {acc_buff/add_core/count0_i} ¬
-245766¡ {acc_buff/seg_gen[0].acc_seg/seg_dex_i} {acc_buff/seg_gen[1].acc_seg/seg_dex_i} {acc_buff/seg_gen[2].acc_seg/seg_dex_i} {acc_buff/seg_gen[3].acc_seg/seg_dex_i} ˜
-311298 {mult_core/mul_gen[0].mult/n0_z_i} {mult_core/mul_gen[1].mult/n0_z_i} {mult_core/mul_gen[2].mult/n0_z_i} {mult_core/mul_gen[3].mult/n0_z_i} V
-692229L {acc_buff/mult_sum0_i} {acc_buff/mult_sum0_i__0} {acc_buff/mult_sum0_i__1} 
-634882… {mult_core/mul_gen[0].mult/z0_i} {mult_core/mul_gen[1].mult/z0_i} {mult_core/mul_gen[2].mult/z0_i} {mult_core/mul_gen[3].mult/z0_i} 
-696320
- {cnt0_i} ˜
-344066 {mult_core/mul_gen[0].mult/n0_x_i} {mult_core/mul_gen[1].mult/n0_x_i} {mult_core/mul_gen[2].mult/n0_x_i} {mult_core/mul_gen[3].mult/n0_x_i} ˜
-315394 {mult_core/mul_gen[0].mult/n1_z_i} {mult_core/mul_gen[1].mult/n1_z_i} {mult_core/mul_gen[2].mult/n1_z_i} {mult_core/mul_gen[3].mult/n1_z_i} 7
-blackBoxInfo'
-output_controller/bramblk_mem_gen_0Ë
-synth_design
-isIncremental0
-Runtime1
-Threads used2Ÿ
-args–-define default::[not_specified] -verilog_define default::[not_specified] -vhdl_define default::[not_specified] -top  impl_top -part  xc7a35tcpg236-1 
-resynthPerc0.00
-Cputime1
-blackBoxPercinf
-	directive œ
-synth_design_metrics$
-mismatchedAddSubOperatorWidths-1
-lowMaxFanout-1
-NumUnregisteredPorts0
-caseNotFullNoDefault3
-	smallSrls-1
-srlsWithResetLogic-1
-shallowRAMWithAttribute-1
-hierMFO0
-bigRAMs-1
-NetsWithMixedFanouts-1
-DSPsWithKeep0
-RQS_Results

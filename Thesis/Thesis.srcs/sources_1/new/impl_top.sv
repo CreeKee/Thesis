@@ -122,27 +122,27 @@ module impl_top #(
         .read_data(LED)
     );
 
-    Output_Buffer#(
-    .ADD_COUNT(ADD_COUNT),
-    .BUFF_SIZE(32)
-    ) out_buff(
-        .i_clk(i_clk),
-        .i_vals(adds),
-        .i_step(acc_step),
-        .i_push(adder_push),
-        .i_pull(uart_read_in),
-        .o_top_val(output_topval),
-        .o_empty(out_buff_empty),
-        .o_full(out_buff_full)
-    );
+    // Output_Buffer#(
+    // .ADD_COUNT(ADD_COUNT),
+    // .BUFF_SIZE(32)
+    // ) out_buff(
+    //     .i_clk(i_clk),
+    //     .i_vals(adds),
+    //     .i_step(acc_step),
+    //     .i_push(adder_push),
+    //     .i_pull(uart_read_in),
+    //     .o_top_val(output_topval),
+    //     .o_empty(out_buff_empty),
+    //     .o_full(out_buff_full)
+    // );
 
-    Uart_Top_Mod uart(
-        .i_clk(i_clk),
-        .i_top_val(uart_val),
-        .i_top_ready(top_ready),
-        .TxD(o_TxD),
-        .o_read_in(uart_read_in)
-    );
+    // Uart_Top_Mod uart(
+    //     .i_clk(i_clk),
+    //     .i_top_val(uart_val),
+    //     .i_top_ready(top_ready),
+    //     .TxD(o_TxD),
+    //     .o_read_in(uart_read_in)
+    // );
 
     always_comb begin
         case(curr_state)

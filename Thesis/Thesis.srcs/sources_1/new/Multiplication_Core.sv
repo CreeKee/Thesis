@@ -29,11 +29,15 @@ module Multiplication_Core#(
     input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
+    input logic i_L_ready [MULT_COUNT],
 
     input logic [31:0] data [32],
 
-    input logic         i_pulls  [MULT_COUNT],
-    output logic        o_dready [MULT_COUNT],
+    input logic        i_pulls  [MULT_COUNT],
+
+    output logic [31:0] o_l_mem_addrs [MULT_COUNT],
+
+    output logic       o_dready [MULT_COUNT],
     output data_packet o_mults   [MULT_COUNT],
     output logic o_end
     );
@@ -77,8 +81,12 @@ module Multiplication_Core#(
                 .i_N(dim_N),
                 .i_P(dim_P),
                 .i_idx(indicies),
+                .i_L_ready(i_L_ready[mul]),
                 .i_pull(i_pulls[mul]),
+
                 .data(data),
+                
+                .o_l_mem_addr(o_l_mem_addrs[mul]),
                 .o_result(o_mults[mul]),
                 .o_res_ready(o_dready[mul]),
                 .o_end(end_sigs[mul])

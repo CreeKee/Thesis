@@ -1,0 +1,40 @@
++====================+===================+===================================================+
+| Launch Setup Clock | Launch Hold Clock | Pin                                               |
++====================+===================+===================================================+
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[3].mult/o_result_reg[is_end]/D  |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/count_reg[1]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/o_result_reg[is_end]/D  |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/dim_reg[1]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/count_reg[0]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/dim_reg[1]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[3].mult/dim_reg[1]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/o_result_reg[is_tail]/D |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/o_result_reg[is_head]/D |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[3].mult/dim_reg[0]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/count_reg[1]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/count_reg[0]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/dim_reg[0]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/dim_reg[0]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/o_result_reg[is_end]/D  |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/o_result_reg[is_end]/D  |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/o_result_reg[is_tail]/D |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/o_result_reg[is_head]/D |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/o_result_reg[is_head]/D |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/o_result_reg[is_tail]/D |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/dim_reg[0]/D            |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[3].mult/o_res_ready_reg/D       |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[3].mult/count_reg[1]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[1].mult/o_res_ready_reg/D       |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[2].mult/o_res_ready_reg/D       |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/count_reg[1]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/count_reg[0]/D          |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[0].mult/o_res_ready_reg/D       |
+| sys_clk_pin        | sys_clk_pin       | acc_buff/seg_gen[2].acc_seg/o_val_reg[val][15]/D  |
+| sys_clk_pin        | sys_clk_pin       | mult_core/mul_gen[3].mult/count_reg[0]/D          |
+| sys_clk_pin        | sys_clk_pin       | acc_buff/seg_gen[2].acc_seg/o_val_reg[val][10]/D  |
+| sys_clk_pin        | sys_clk_pin       | acc_buff/seg_gen[2].acc_seg/o_val_reg[val][19]/D  |
+| sys_clk_pin        | sys_clk_pin       | acc_buff/seg_gen[2].acc_seg/o_val_reg[val][30]/D  |
+| sys_clk_pin        | sys_clk_pin       | acc_buff/seg_gen[2].acc_seg/o_val_reg[val][14]/D  |
+| sys_clk_pin        | sys_clk_pin       | out_buff/tail_reg[3]/D                            |
+| sys_clk_pin        | sys_clk_pin       | out_buff/tail_reg[1]/D                            |
++--------------------+-------------------+---------------------------------------------------+

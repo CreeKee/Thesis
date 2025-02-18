@@ -12,15 +12,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="340.100 ns"></ZoomStartTime>
-      <ZoomEndTime time="550.001 ns"></ZoomEndTime>
-      <Cursor1Time time="421.000 ns"></Cursor1Time>
+      <ZoomStartTime time="826.041 ns"></ZoomStartTime>
+      <ZoomEndTime time="931.592 ns"></ZoomEndTime>
+      <Cursor1Time time="914.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="301"></NameColumnWidth>
-      <ValueColumnWidth column_width="136"></ValueColumnWidth>
+      <ValueColumnWidth column_width="124"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="46" />
+   <WVObjectSize size="19" />
    <wvobject fp_name="/tb_mult/data" type="array">
       <obj_property name="ElementShortName">data[0:31][31:0]</obj_property>
       <obj_property name="ObjectShortName">data[0:31][31:0]</obj_property>
@@ -41,9 +41,18 @@
       <obj_property name="ElementShortName">next_state[1:0]</obj_property>
       <obj_property name="ObjectShortName">next_state[1:0]</obj_property>
    </wvobject>
+   <wvobject fp_name="/tb_mult/left_mem_addrs" type="array">
+      <obj_property name="ElementShortName">left_mem_addrs[0:3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">left_mem_addrs[0:3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_mult/L_data_rdy" type="array">
+      <obj_property name="ElementShortName">L_data_rdy[0:3]</obj_property>
+      <obj_property name="ObjectShortName">L_data_rdy[0:3]</obj_property>
+   </wvobject>
    <wvobject fp_name="group524" type="group">
       <obj_property name="label">Mult Core</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_mult/mult_core/i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -653,135 +662,139 @@
       <obj_property name="ElementShortName">i_m_rdy[0:3]</obj_property>
       <obj_property name="ObjectShortName">i_m_rdy[0:3]</obj_property>
    </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/i_clk" type="logic">
-      <obj_property name="ElementShortName">i_clk</obj_property>
-      <obj_property name="ObjectShortName">i_clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/o_done" type="logic">
-      <obj_property name="ElementShortName">o_done</obj_property>
-      <obj_property name="ObjectShortName">o_done</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/i_stall" type="logic">
-      <obj_property name="ElementShortName">i_stall</obj_property>
-      <obj_property name="ObjectShortName">i_stall</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/i_clear" type="logic">
-      <obj_property name="ElementShortName">i_clear</obj_property>
-      <obj_property name="ObjectShortName">i_clear</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/o_m_pull" type="array">
-      <obj_property name="ElementShortName">o_m_pull[0:3]</obj_property>
-      <obj_property name="ObjectShortName">o_m_pull[0:3]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/o_adds" type="array">
-      <obj_property name="ElementShortName">o_adds[0:1][31:0]</obj_property>
-      <obj_property name="ObjectShortName">o_adds[0:1][31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/o_pushs" type="array">
-      <obj_property name="ElementShortName">o_pushs[0:1]</obj_property>
-      <obj_property name="ObjectShortName">o_pushs[0:1]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/o_step_ready" type="logic">
-      <obj_property name="ElementShortName">o_step_ready</obj_property>
-      <obj_property name="ObjectShortName">o_step_ready</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/curr" type="array">
-      <obj_property name="ElementShortName">curr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">curr[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/n_curr" type="array">
-      <obj_property name="ElementShortName">n_curr[31:0]</obj_property>
-      <obj_property name="ObjectShortName">n_curr[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/pull_sum" type="array">
-      <obj_property name="ElementShortName">pull_sum[31:0]</obj_property>
-      <obj_property name="ObjectShortName">pull_sum[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/pop_sum" type="array">
-      <obj_property name="ElementShortName">pop_sum[31:0]</obj_property>
-      <obj_property name="ObjectShortName">pop_sum[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/space_sum" type="array">
-      <obj_property name="ElementShortName">space_sum[31:0]</obj_property>
-      <obj_property name="ObjectShortName">space_sum[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/mult_sum" type="array">
-      <obj_property name="ElementShortName">mult_sum[31:0]</obj_property>
-      <obj_property name="ObjectShortName">mult_sum[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/spaces" type="array">
-      <obj_property name="ElementShortName">spaces[0:1]</obj_property>
-      <obj_property name="ObjectShortName">spaces[0:1]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/i_mults" type="array">
-      <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
-      <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
-      <obj_property name="CustomSignalColor">#D2691E</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/adds" type="array">
-      <obj_property name="ElementShortName">adds[0:1]</obj_property>
-      <obj_property name="ObjectShortName">adds[0:1]</obj_property>
-      <obj_property name="CustomSignalColor">#0000FF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/seg_vals" type="array">
-      <obj_property name="ElementShortName">seg_vals[0:3]</obj_property>
-      <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
-      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/seg_stalls" type="array">
-      <obj_property name="ElementShortName">seg_stalls[0:3]</obj_property>
-      <obj_property name="ObjectShortName">seg_stalls[0:3]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/pulls" type="array">
-      <obj_property name="ElementShortName">pulls[0:3]</obj_property>
-      <obj_property name="ObjectShortName">pulls[0:3]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/spaced_values" type="array">
-      <obj_property name="ElementShortName">spaced_values[0:3][31:0]</obj_property>
-      <obj_property name="ObjectShortName">spaced_values[0:3][31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/do_stall" type="logic">
-      <obj_property name="ElementShortName">do_stall</obj_property>
-      <obj_property name="ObjectShortName">do_stall</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/soft_stall" type="logic">
-      <obj_property name="ElementShortName">soft_stall</obj_property>
-      <obj_property name="ObjectShortName">soft_stall</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/op_count" type="array">
-      <obj_property name="ElementShortName">op_count[1:0]</obj_property>
-      <obj_property name="ObjectShortName">op_count[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/m_p_dex" type="array">
-      <obj_property name="ElementShortName">m_p_dex[1:0]</obj_property>
-      <obj_property name="ObjectShortName">m_p_dex[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/m_p_dex_reg" type="array">
-      <obj_property name="ElementShortName">m_p_dex_reg[1:0]</obj_property>
-      <obj_property name="ObjectShortName">m_p_dex_reg[1:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/do_step" type="logic">
-      <obj_property name="ElementShortName">do_step</obj_property>
-      <obj_property name="ObjectShortName">do_step</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/add_clk" type="logic">
-      <obj_property name="ElementShortName">add_clk</obj_property>
-      <obj_property name="ObjectShortName">add_clk</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/SEGMENTS" type="array">
-      <obj_property name="ElementShortName">SEGMENTS[31:0]</obj_property>
-      <obj_property name="ObjectShortName">SEGMENTS[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/MULTIPLIERS" type="array">
-      <obj_property name="ElementShortName">MULTIPLIERS[31:0]</obj_property>
-      <obj_property name="ObjectShortName">MULTIPLIERS[31:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/tb_mult/acc_buff/ADD_COUNT" type="array">
-      <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
-      <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+   <wvobject fp_name="group783" type="group">
+      <obj_property name="label">Accord Buff</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_mult/acc_buff/i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/o_done" type="logic">
+         <obj_property name="ElementShortName">o_done</obj_property>
+         <obj_property name="ObjectShortName">o_done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/i_stall" type="logic">
+         <obj_property name="ElementShortName">i_stall</obj_property>
+         <obj_property name="ObjectShortName">i_stall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/i_clear" type="logic">
+         <obj_property name="ElementShortName">i_clear</obj_property>
+         <obj_property name="ObjectShortName">i_clear</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/o_m_pull" type="array">
+         <obj_property name="ElementShortName">o_m_pull[0:3]</obj_property>
+         <obj_property name="ObjectShortName">o_m_pull[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/o_adds" type="array">
+         <obj_property name="ElementShortName">o_adds[0:1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_adds[0:1][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/o_pushs" type="array">
+         <obj_property name="ElementShortName">o_pushs[0:1]</obj_property>
+         <obj_property name="ObjectShortName">o_pushs[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/o_step_ready" type="logic">
+         <obj_property name="ElementShortName">o_step_ready</obj_property>
+         <obj_property name="ObjectShortName">o_step_ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/curr" type="array">
+         <obj_property name="ElementShortName">curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/n_curr" type="array">
+         <obj_property name="ElementShortName">n_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/pull_sum" type="array">
+         <obj_property name="ElementShortName">pull_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pull_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/pop_sum" type="array">
+         <obj_property name="ElementShortName">pop_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pop_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/space_sum" type="array">
+         <obj_property name="ElementShortName">space_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">space_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/mult_sum" type="array">
+         <obj_property name="ElementShortName">mult_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mult_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/spaces" type="array">
+         <obj_property name="ElementShortName">spaces[0:1]</obj_property>
+         <obj_property name="ObjectShortName">spaces[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/i_mults" type="array">
+         <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
+         <obj_property name="CustomSignalColor">#D2691E</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/adds" type="array">
+         <obj_property name="ElementShortName">adds[0:1]</obj_property>
+         <obj_property name="ObjectShortName">adds[0:1]</obj_property>
+         <obj_property name="CustomSignalColor">#0000FF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/seg_vals" type="array">
+         <obj_property name="ElementShortName">seg_vals[0:3]</obj_property>
+         <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
+         <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+         <obj_property name="UseCustomSignalColor">true</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/seg_stalls" type="array">
+         <obj_property name="ElementShortName">seg_stalls[0:3]</obj_property>
+         <obj_property name="ObjectShortName">seg_stalls[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/pulls" type="array">
+         <obj_property name="ElementShortName">pulls[0:3]</obj_property>
+         <obj_property name="ObjectShortName">pulls[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/spaced_values" type="array">
+         <obj_property name="ElementShortName">spaced_values[0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">spaced_values[0:3][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/do_stall" type="logic">
+         <obj_property name="ElementShortName">do_stall</obj_property>
+         <obj_property name="ObjectShortName">do_stall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/soft_stall" type="logic">
+         <obj_property name="ElementShortName">soft_stall</obj_property>
+         <obj_property name="ObjectShortName">soft_stall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/op_count" type="array">
+         <obj_property name="ElementShortName">op_count[1:0]</obj_property>
+         <obj_property name="ObjectShortName">op_count[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/m_p_dex" type="array">
+         <obj_property name="ElementShortName">m_p_dex[1:0]</obj_property>
+         <obj_property name="ObjectShortName">m_p_dex[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/m_p_dex_reg" type="array">
+         <obj_property name="ElementShortName">m_p_dex_reg[1:0]</obj_property>
+         <obj_property name="ObjectShortName">m_p_dex_reg[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/do_step" type="logic">
+         <obj_property name="ElementShortName">do_step</obj_property>
+         <obj_property name="ObjectShortName">do_step</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/add_clk" type="logic">
+         <obj_property name="ElementShortName">add_clk</obj_property>
+         <obj_property name="ObjectShortName">add_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/SEGMENTS" type="array">
+         <obj_property name="ElementShortName">SEGMENTS[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEGMENTS[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/MULTIPLIERS" type="array">
+         <obj_property name="ElementShortName">MULTIPLIERS[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULTIPLIERS[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/acc_buff/ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject fp_name="group1830" type="group">
       <obj_property name="label">Addition Core</obj_property>
@@ -1014,16 +1027,16 @@
          <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/mem_addr" type="array">
-         <obj_property name="ElementShortName">mem_addr[9:0]</obj_property>
-         <obj_property name="ObjectShortName">mem_addr[9:0]</obj_property>
+         <obj_property name="ElementShortName">mem_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_addr[11:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/page" type="array">
          <obj_property name="ElementShortName">page[31:0][31:0]</obj_property>
          <obj_property name="ObjectShortName">page[31:0][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/wb_page" type="array">
-         <obj_property name="ElementShortName">wb_page[15:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">wb_page[15:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">wb_page[3:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_page[3:0][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/push_sum" type="array">
          <obj_property name="ElementShortName">push_sum[0:0]</obj_property>
@@ -1086,16 +1099,16 @@
          <obj_property name="ObjectShortName">wea[0:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/addra" type="array">
-         <obj_property name="ElementShortName">addra[9:0]</obj_property>
-         <obj_property name="ObjectShortName">addra[9:0]</obj_property>
+         <obj_property name="ElementShortName">addra[11:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[11:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/dina" type="array">
-         <obj_property name="ElementShortName">dina[511:0]</obj_property>
-         <obj_property name="ObjectShortName">dina[511:0]</obj_property>
+         <obj_property name="ElementShortName">dina[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dina[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/douta" type="array">
-         <obj_property name="ElementShortName">douta[511:0]</obj_property>
-         <obj_property name="ObjectShortName">douta[511:0]</obj_property>
+         <obj_property name="ElementShortName">douta[127:0]</obj_property>
+         <obj_property name="ObjectShortName">douta[127:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/clkb" type="logic">
          <obj_property name="ElementShortName">clkb</obj_property>
@@ -1110,21 +1123,87 @@
          <obj_property name="ObjectShortName">web[0:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/addrb" type="array">
-         <obj_property name="ElementShortName">addrb[9:0]</obj_property>
-         <obj_property name="ObjectShortName">addrb[9:0]</obj_property>
+         <obj_property name="ElementShortName">addrb[11:0]</obj_property>
+         <obj_property name="ObjectShortName">addrb[11:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/dinb" type="array">
-         <obj_property name="ElementShortName">dinb[511:0]</obj_property>
-         <obj_property name="ObjectShortName">dinb[511:0]</obj_property>
+         <obj_property name="ElementShortName">dinb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dinb[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/bram/doutb" type="array">
-         <obj_property name="ElementShortName">doutb[511:0]</obj_property>
-         <obj_property name="ObjectShortName">doutb[511:0]</obj_property>
+         <obj_property name="ElementShortName">doutb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group1472" type="group">
       <obj_property name="label">Uart</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="group790" type="group">
+      <obj_property name="label">input controller</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_mult/input_mem/i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/i_addrs" type="array">
+         <obj_property name="ElementShortName">i_addrs[0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_addrs[0:3][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/o_L_data_rdy" type="array">
+         <obj_property name="ElementShortName">o_L_data_rdy[0:3]</obj_property>
+         <obj_property name="ObjectShortName">o_L_data_rdy[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/mem_bus_a" type="array">
+         <obj_property name="ElementShortName">mem_bus_a[3:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_bus_a[3:0][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/mem_addr_a" type="array">
+         <obj_property name="ElementShortName">mem_addr_a[11:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_addr_a[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/mem_out_a" type="array">
+         <obj_property name="ElementShortName">mem_out_a[3:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_out_a[3:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/addr_updated" type="logic">
+         <obj_property name="ElementShortName">addr_updated</obj_property>
+         <obj_property name="ObjectShortName">addr_updated</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/data_pending" type="logic">
+         <obj_property name="ElementShortName">data_pending</obj_property>
+         <obj_property name="ObjectShortName">data_pending</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/addr_sel" type="array">
+         <obj_property name="ElementShortName">addr_sel[1:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_sel[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/curr_addr" type="array">
+         <obj_property name="ElementShortName">curr_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_addr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/PAGE_SIZE" type="array">
+         <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/MEM_A_ADDR_WIDTH" type="array">
+         <obj_property name="ElementShortName">MEM_A_ADDR_WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MEM_A_ADDR_WIDTH[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/bram/douta" type="array">
+         <obj_property name="ElementShortName">douta[127:0]</obj_property>
+         <obj_property name="ObjectShortName">douta[127:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_mult/input_mem/bram/addra" type="array">
+         <obj_property name="ElementShortName">addra[11:0]</obj_property>
+         <obj_property name="ObjectShortName">addra[11:0]</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

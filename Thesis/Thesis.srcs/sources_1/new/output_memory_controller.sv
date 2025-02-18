@@ -22,9 +22,9 @@
 
 module output_memory_controller#(
     parameter ADD_COUNT = 4,
-    parameter PAGE_SIZE = 16,
+    parameter PAGE_SIZE = 4,
     parameter WB_THRESH = 16,
-    parameter MEM_ADDR_WIDTH = 10
+    parameter MEM_ADDR_WIDTH = 12
     )(
     input logic i_clk,
     input logic i_end,
@@ -39,7 +39,7 @@ module output_memory_controller#(
 
     logic [MEM_ADDR_WIDTH-1:0] mem_addr=0;
     logic [31:0][31:0] page;
-    logic [15:0][31:0] wb_page, read_page;
+    logic [PAGE_SIZE-1:0][31:0] wb_page, read_page;
     logic [$clog2(ADD_COUNT)-1:0] push_sum;
     logic [$clog2(32)-1:0] fill = 0, next_fill;
     logic page_sel = 0;

@@ -63,8 +63,19 @@ module tb_mult#(
     logic uart_read_in;
     logic [31:0] uart_val;
 
+    logic [31:0] left_mem_addrs [MULT_COUNT];
+    logic        L_data_rdy     [MULT_COUNT];
+
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
+
+    mem_controller#(
+    .MULT_COUNT(MULT_COUNT)
+    ) input_mem(
+        .i_clk(clk),
+        .i_addrs(left_mem_addrs),
+        .o_L_data_rdy(L_data_rdy)
+    );
 
     Multiplication_Core#(
     .MULT_COUNT(MULT_COUNT)
@@ -75,10 +86,13 @@ module tb_mult#(
         .i_M(7),
         .i_N(3),
         .i_P(5),
+        .i_L_ready(L_data_rdy),
 
         .data(data),
 
         .i_pulls(pulls),
+
+        .o_l_mem_addrs(left_mem_addrs),
         .o_dready(mult_rdy),
         .o_mults(mult_res)
     );
