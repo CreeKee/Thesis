@@ -60,7 +60,6 @@ module blk_mem_gen_0 (
   dina,
   douta,
   clkb,
-  enb,
   web,
   addrb,
   dinb,
@@ -80,8 +79,6 @@ input wire [31 : 0] dina;
 output wire [127 : 0] douta;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB CLK" *)
 input wire clkb;
-(* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB EN" *)
-input wire enb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB WE" *)
 input wire [0 : 0] web;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB ADDR" *)
@@ -90,7 +87,7 @@ input wire [11 : 0] addrb;
 input wire [31 : 0] dinb;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_LATENCY 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB DOUT" *)
-output wire [31 : 0] doutb;
+output wire [127 : 0] doutb;
 
   blk_mem_gen_v8_4_7 #(
     .C_FAMILY("artix7"),
@@ -131,15 +128,15 @@ output wire [31 : 0] doutb;
     .C_RST_PRIORITY_B("CE"),
     .C_RSTRAM_B(0),
     .C_INITB_VAL("0"),
-    .C_HAS_ENB(1),
+    .C_HAS_ENB(0),
     .C_HAS_REGCEB(0),
     .C_USE_BYTE_WEB(0),
     .C_WEB_WIDTH(1),
     .C_WRITE_MODE_B("WRITE_FIRST"),
     .C_WRITE_WIDTH_B(32),
-    .C_READ_WIDTH_B(32),
+    .C_READ_WIDTH_B(128),
     .C_WRITE_DEPTH_B(4096),
-    .C_READ_DEPTH_B(4096),
+    .C_READ_DEPTH_B(1024),
     .C_ADDRB_WIDTH(12),
     .C_HAS_MEM_OUTPUT_REGS_A(1),
     .C_HAS_MEM_OUTPUT_REGS_B(1),
@@ -167,7 +164,7 @@ output wire [31 : 0] doutb;
     .C_DISABLE_WARN_BHV_RANGE(0),
     .C_COUNT_36K_BRAM("4"),
     .C_COUNT_18K_BRAM("0"),
-    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     21.568 mW")
+    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     22.850402 mW")
   ) inst (
     .clka(clka),
     .rsta(1'D0),
@@ -179,7 +176,7 @@ output wire [31 : 0] doutb;
     .douta(douta),
     .clkb(clkb),
     .rstb(1'D0),
-    .enb(enb),
+    .enb(1'D0),
     .regceb(1'D0),
     .web(web),
     .addrb(addrb),

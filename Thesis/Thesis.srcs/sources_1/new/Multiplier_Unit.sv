@@ -22,6 +22,7 @@
 import data_packet_pkg::*;
 
 module Multiplier_Unit#(
+    parameter PAGE_SIZE,
     parameter MULTIPLIER_INDEX,
     parameter MULT_COUNT
     )(
@@ -37,8 +38,9 @@ module Multiplier_Unit#(
     input logic i_pull,
 
     input logic [31:0] data [32],
+    input logic [PAGE_SIZE-1:0][31:0] i_L_data,
+    input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 
-    
     output logic [31:0] o_L_mem_addr,
     output logic [31:0] o_R_mem_addr,
     output logic        o_R_request,
@@ -98,14 +100,15 @@ module Multiplier_Unit#(
     assign next_R_dex = z*i_P + y;
     assign next_L_dex = x*i_N + z;
 
-    assign o_l_mem_addr = L_dex;
+    assign o_L_mem_addr = L_dex;
+    assign o_R_mem_addr = R_dex;
     assign o_res_ready = (res_check == 2'b11);
 
     Mult_Comp_Unit multiplier(
         .i_clk(i_clk),
         .i_L_val(curr_L_val),
         .i_R_val(curr_R_val),
-        .i_pull(),
+        .i_pull(get_mul_res),
 
         .o_result(M_res),
         .o_ready(r_ready)
@@ -248,12 +251,12 @@ module Multiplier_Unit#(
                 //wait for input values
                 if(i_R_ready & o_R_request) begin
                     o_R_request <= 0;
-                    R_val <= data[R_dex];
+                    R_val <= i_R_data[R_dex[$clog2(PAGE_SIZE)-1:0]];
                 end
                 
                 if(i_L_ready && o_L_request) begin
                     o_L_request <= 0;
-                    L_val <= data[L_dex];
+                    L_val <= i_L_data[L_dex[$clog2(PAGE_SIZE)-1:0]];
                 end
 
 
@@ -305,9 +308,9 @@ module Multiplier_Unit#(
 
                             o_L_request <= 1;
                             o_R_request <= 1;
-                            
+
                             R_dex <= next_R_dex;
-                            L_dex <= next_R_dex;
+                            L_dex <= next_L_dex;
                         end    
 
                         //determine whether next value is head or tail of accumulation chain

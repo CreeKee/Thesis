@@ -21,6 +21,7 @@
 import data_packet_pkg::*;
 
 module Multiplication_Core#(
+    parameter PAGE_SIZE,
     parameter MULT_COUNT
     )(
     input logic i_clk,
@@ -30,19 +31,24 @@ module Multiplication_Core#(
     input logic [31:0] i_N,
     input logic [31:0] i_P,
     input logic i_L_ready [MULT_COUNT],
+    input logic i_R_ready [MULT_COUNT],
 
     input logic [31:0] data [32],
+    input logic [PAGE_SIZE-1:0][31:0] i_L_data,
+    input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 
     input logic        i_pulls  [MULT_COUNT],
 
-    output logic [31:0] o_l_mem_addrs [MULT_COUNT],
+    output logic [31:0] o_L_mem_addrs [MULT_COUNT],
+    output logic [31:0] o_R_mem_addrs [MULT_COUNT],
+
+    output logic o_L_request [MULT_COUNT],
+    output logic o_R_request [MULT_COUNT],
 
     output logic       o_dready [MULT_COUNT],
     output data_packet o_mults   [MULT_COUNT],
     output logic o_end
     );
-
-    
 
     logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
@@ -71,6 +77,7 @@ module Multiplication_Core#(
         for (mul=0; mul < MULT_COUNT; mul++) begin : mul_gen
 
             Multiplier_Unit#(
+            .PAGE_SIZE(PAGE_SIZE),
             .MULTIPLIER_INDEX(mul),
             .MULT_COUNT(MULT_COUNT)
             ) mult(
@@ -82,11 +89,19 @@ module Multiplication_Core#(
                 .i_P(dim_P),
                 .i_idx(indicies),
                 .i_L_ready(i_L_ready[mul]),
+                .i_R_ready(i_R_ready[mul]),
                 .i_pull(i_pulls[mul]),
 
                 .data(data),
+                .i_L_data(i_L_data),
+                .i_R_data(i_R_data),
                 
-                .o_l_mem_addr(o_l_mem_addrs[mul]),
+                .o_L_mem_addr(o_L_mem_addrs[mul]),
+                .o_R_mem_addr(o_R_mem_addrs[mul]),
+
+                .o_L_request(o_L_request[mul]),
+                .o_R_request(o_R_request[mul]),
+
                 .o_result(o_mults[mul]),
                 .o_res_ready(o_dready[mul]),
                 .o_end(end_sigs[mul])

@@ -6,7 +6,7 @@ Memory Type                :     True_Dual_Port_RAM
 Port A Read Width          :     [128]
 Port A Write Width         :     [32]
 Memory Depth               :     [4096]
-Port B Read Width          :     [32]
+Port B Read Width          :     [128]
 Port B Write Width         :     [32]
 
 ----------------------------------------------------------------------------------
@@ -18,5 +18,5 @@ Clock A Frequency          :         [100]
 Port A Enable Rate         :         [100]
 Port A Write Rate          :         [50]
 ----------------------------------------------------------------------------------
-Estimated Power for IP     :     21.568 mW
+Estimated Power for IP     :     22.850402 mW
 ----------------------------------------------------------------------------------

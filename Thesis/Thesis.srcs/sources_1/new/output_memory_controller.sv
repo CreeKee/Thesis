@@ -64,7 +64,6 @@ module output_memory_controller#(
         
         .clkb(i_clk), 
         .web(0), 
-        .enb(1),
         .addrb(i_read_addr[15:4]), 
         .dinb(0),
         .doutb(read_page)

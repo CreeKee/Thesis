@@ -50,6 +50,8 @@
 
 // endmodule
 
+`define L_check i_L_addrs[i][31:$clog2(PAGE_SIZE)] == L_curr_addr && i_L_reqs[i]
+`define R_check i_R_addrs[i[1:0]][31:$clog2(PAGE_SIZE)] == R_curr_addr && i_R_reqs[i[1:0]]
 
 module mem_controller#(
     parameter PAGE_SIZE = 4,
@@ -67,79 +69,98 @@ module mem_controller#(
     output logic o_L_data_rdy [MULT_COUNT],
     output logic o_R_data_rdy [MULT_COUNT],
 
-    output logic [PAGE_SIZE-1:0][31:0] mem_bus_a
+    output logic [PAGE_SIZE-1:0][31:0] mem_bus_a,
     output logic [PAGE_SIZE-1:0][31:0] mem_bus_b
     );
 
-    logic [MEM_A_ADDR_WIDTH-1:0] mem_addr_a = 0;
-    logic [PAGE_SIZE-1:0][31:0] mem_out_a;
+    logic [MEM_A_ADDR_WIDTH-1:0] mem_addr_a = 0, mem_addr_b = 0;
+    logic [PAGE_SIZE-1:0][31:0] mem_out_a, mem_out_b;
     
-    logic addr_updated, data_pending;
-    logic [$clog2(MULT_COUNT)-1:0] addr_sel;
-    logic [MEM_A_ADDR_WIDTH-1:0] curr_addr = 0;
+    logic R_data_pending = 0, L_data_pending = 0;
+    logic [$clog2(MULT_COUNT)-1:0] R_addr_sel = 0, L_addr_sel = 0, next_R_addr_sel = 0, next_L_addr_sel = 0;
+    logic [MEM_A_ADDR_WIDTH-1:0] R_curr_addr = 0, L_curr_addr = 0;
 
     blk_mem_gen_0 bram(
         .clka(i_clk), 
         .wea(0), 
-        .addra(mem_addr_a), 
+        .addra(mem_addr_a<<2), 
         .dina(0), 
         .douta(mem_out_a), 
+        
         .clkb(i_clk), 
-        .enb(0),
         .web(0), 
-        .addrb(0), 
-        .dinb(0)
+        .addrb(mem_addr_b << 2), 
+        .dinb(0),
+        .doutb(mem_out_b)
     );
 
     assign mem_bus_a = mem_out_a;
+    assign mem_bus_b = mem_out_b;
 
     always_comb begin
 
-        L_toggle = 0;
         for(int i = 0; i < MULT_COUNT; i++) begin
-        
-            if(i_L_addrs[i][31-:MEM_A_ADDR_WIDTH] == curr_addr && i_L_reqs[i]) begin
-                L_toggle = 1;
+            if(`L_check) begin
                 o_L_data_rdy[i] = 1;
-                data_pending = 1;
-            end
-            else begin 
-                if()
-                if(L_toggle) begin
-                    L_toggle = 0;
-                    addr_sel = i;
-                end
-            end
-        
-        end
-
-        for(int i = 0; i < MULT_COUNT; i++) begin
-
-            addr_updated = 0;
-            data_pending = 0;
-            addr_sel = 0;
-            if(i_addrs[i][31-:MEM_A_ADDR_WIDTH] == curr_addr) begin
-                o_L_data_rdy[i] = 1;
-                data_pending |= 1;
             end
             else begin
-                o_L_data_rdy[i] = 0;
-                if(data_pending && !addr_updated) begin
-                    addr_sel = i;
-                    addr_updated = 1;
-                end
+                o_L_data_rdy [i]= 0;
             end
         end
+
+        for(int i = 0; i < MULT_COUNT; i++) begin
+            if(`R_check) begin
+                o_R_data_rdy[i] = 1;
+            end
+            else begin
+                o_R_data_rdy[i] = 0;
+            end
+        end
+
 
     end
 
     always_ff @ ( posedge i_clk ) begin
-        curr_addr <= mem_addr_a;
-        if(!data_pending) begin
-            mem_addr_a <= i_addrs[addr_sel];
+
+        L_curr_addr <= mem_addr_a;
+        if(L_data_pending == 0 && i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)] != L_curr_addr) begin
+
+            if(i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)] != mem_addr_a) begin
+                L_data_pending <= 1'b11;
+                mem_addr_a <= i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)];
+                L_addr_sel <= next_L_addr_sel;
+            end
+           
+        end
+        else L_data_pending <= L_data_pending>>1;
+
+
+        for(int i = 0; i < MULT_COUNT; i++) begin
+            if((i_L_addrs[(i + next_L_addr_sel)%(MULT_COUNT)][31:$clog2(PAGE_SIZE)] != L_curr_addr & i_L_reqs[(i + next_L_addr_sel)%(MULT_COUNT)]) |
+               (i_L_addrs[(i + next_L_addr_sel)%(MULT_COUNT)][31:$clog2(PAGE_SIZE)] != mem_addr_a  & i_L_reqs[(i + next_L_addr_sel)%(MULT_COUNT)])) begin
+                next_L_addr_sel <= (i+next_L_addr_sel)%(MULT_COUNT);
+                break; 
+            end
         end
 
 
+
+        R_curr_addr <= mem_addr_b;
+        if(R_data_pending == 0 && i_R_addrs[next_R_addr_sel][31:$clog2(PAGE_SIZE)] != R_curr_addr) begin
+            R_data_pending <= 1;
+            R_addr_sel <= next_R_addr_sel;
+            mem_addr_b <= i_R_addrs[next_R_addr_sel][31:$clog2(PAGE_SIZE)];
+        end
+        else R_data_pending <= 0;
+
+
+        for(int i = 0; i < MULT_COUNT; i++) begin
+            if((i_R_addrs[(i + next_R_addr_sel)%(MULT_COUNT)][31:$clog2(PAGE_SIZE)] != R_curr_addr & i_R_reqs[(i + next_R_addr_sel)%(MULT_COUNT)]) |
+               (i_R_addrs[(i + next_R_addr_sel)%(MULT_COUNT)][31:$clog2(PAGE_SIZE)] != mem_addr_b  & i_R_reqs[(i + next_R_addr_sel)%(MULT_COUNT)])) begin
+                next_R_addr_sel <= (i+next_R_addr_sel)%(MULT_COUNT);
+                break; 
+            end
+        end
 
     end
 
