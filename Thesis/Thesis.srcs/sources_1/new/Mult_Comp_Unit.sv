@@ -29,30 +29,33 @@ module Mult_Comp_Unit#(
     input logic i_pull,
 
     output logic [31:0] o_result,
-    output logic o_ready
+    output logic o_ready = 0
     );
 
     logic [31:0] L_val, R_val;
     logic done = 0;
-    logic [3:0] count = 0; 
-    logic running = 0;
+    logic [3:0] count = DELAY; 
+    
 
     always_ff @ ( posedge i_clk ) begin
+        
+        if(count == DELAY-1) begin
+            o_result <= L_val*R_val;
+            o_ready <= 1;
+        end
 
         if(count == DELAY) begin
-            o_result <= i_L_val*i_R_val;
-            o_ready  <= running;
     
             if(i_pull) begin
-                running <= 1;
                 count <= 0;
                 L_val <= i_L_val;
                 R_val <= i_R_val;
+
+                o_ready  <= 0;
             end
         end
         else begin
             count <= count+1;
-            o_ready <= 0;
         end
         
     end

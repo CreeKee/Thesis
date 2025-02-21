@@ -76,7 +76,7 @@ module mem_controller#(
     logic [MEM_A_ADDR_WIDTH-1:0] mem_addr_a = 0, mem_addr_b = 0;
     logic [PAGE_SIZE-1:0][31:0] mem_out_a, mem_out_b;
     
-    logic R_data_pending = 0, L_data_pending = 0;
+    logic [1:0] R_data_pending = 0, L_data_pending = 0;
     logic [$clog2(MULT_COUNT)-1:0] R_addr_sel = 0, L_addr_sel = 0, next_R_addr_sel = 0, next_L_addr_sel = 0;
     logic [MEM_A_ADDR_WIDTH-1:0] R_curr_addr = 0, L_curr_addr = 0;
 
@@ -122,14 +122,12 @@ module mem_controller#(
 
     always_ff @ ( posedge i_clk ) begin
 
-        L_curr_addr <= mem_addr_a;
+        if(L_data_pending == 2'b01) L_curr_addr <= mem_addr_a;
         if(L_data_pending == 0 && i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)] != L_curr_addr) begin
 
-            if(i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)] != mem_addr_a) begin
-                L_data_pending <= 1'b11;
-                mem_addr_a <= i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)];
-                L_addr_sel <= next_L_addr_sel;
-            end
+            L_data_pending <= 2'b11;
+            mem_addr_a <= i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)];
+            L_addr_sel <= next_L_addr_sel;
            
         end
         else L_data_pending <= L_data_pending>>1;
@@ -145,13 +143,15 @@ module mem_controller#(
 
 
 
-        R_curr_addr <= mem_addr_b;
+        if(R_data_pending == 2'b01) R_curr_addr <= mem_addr_b;
         if(R_data_pending == 0 && i_R_addrs[next_R_addr_sel][31:$clog2(PAGE_SIZE)] != R_curr_addr) begin
-            R_data_pending <= 1;
+
+            R_data_pending <= 2'b11;
             R_addr_sel <= next_R_addr_sel;
             mem_addr_b <= i_R_addrs[next_R_addr_sel][31:$clog2(PAGE_SIZE)];
+            
         end
-        else R_data_pending <= 0;
+        else R_data_pending <= R_data_pending >> 1;
 
 
         for(int i = 0; i < MULT_COUNT; i++) begin

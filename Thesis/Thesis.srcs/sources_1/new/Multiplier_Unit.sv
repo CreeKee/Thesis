@@ -46,7 +46,7 @@ module Multiplier_Unit#(
     output logic        o_R_request,
     output logic        o_L_request,
     output data_packet o_result = {0,0,0},
-    output logic o_res_ready,
+    output logic o_res_ready = 0,
     output logic o_end
 
     );
@@ -76,9 +76,10 @@ module Multiplier_Unit#(
 
     logic cont, data_old = 1;
 
-    logic next_tail, next_head;
+    logic next_tail, next_head, curr_head, curr_tail;
     logic r_ready, get_mul_res = 0;
     data_packet next_result;
+    logic m_pull, mul_stale = 1, res_stale = 1;
 
     assign cont = (i_pull == 1'b1) | (o_res_ready == 0);
 
@@ -102,13 +103,12 @@ module Multiplier_Unit#(
 
     assign o_L_mem_addr = L_dex;
     assign o_R_mem_addr = R_dex;
-    assign o_res_ready = (res_check == 2'b11);
 
     Mult_Comp_Unit multiplier(
         .i_clk(i_clk),
-        .i_L_val(curr_L_val),
-        .i_R_val(curr_R_val),
-        .i_pull(get_mul_res),
+        .i_L_val(L_val),
+        .i_R_val(R_val),
+        .i_pull(m_pull),
 
         .o_result(M_res),
         .o_ready(r_ready)
@@ -123,11 +123,14 @@ module Multiplier_Unit#(
             end
 
             STARTING: begin
-                if(dim == XDIM) next_state = ACTIVE;
+                m_pull = (dim == WAIT & !o_L_request & !o_R_request);
+
+                if(dim == WAIT && !o_L_request && !o_R_request) next_state = ACTIVE;
                 else next_state = STARTING;
             end
 
             ACTIVE: begin
+                m_pull = (!o_L_request & !o_R_request & mul_stale);
                 if(n0_x > i_M & dim == XDIM) begin
                     next_state = ENDING;
                 end
@@ -167,6 +170,17 @@ module Multiplier_Unit#(
             end
 
             STARTING: begin
+
+                //wait for input values
+                if(i_R_ready & o_R_request) begin
+                    o_R_request <= 0;
+                    R_val <= i_R_data[R_dex[$clog2(PAGE_SIZE)-1:0]];
+                end
+                
+                if(i_L_ready & o_L_request) begin
+                    o_L_request <= 0;
+                    L_val <= i_L_data[L_dex[$clog2(PAGE_SIZE)-1:0]];
+                end
                 
                 case(dim)
 
@@ -234,18 +248,43 @@ module Multiplier_Unit#(
                     end
 
                     WAIT: begin
+                        if(!o_L_request & !o_R_request) begin
+                            curr_L_val <= L_val;
+                            curr_R_val <= R_val;
+
+                            curr_head <= next_head;
+                            curr_tail <= next_tail;
+                            
+                            dim <= ZDIM;
+                        end
+                        else begin
+                            dim <= WAIT;
+                        end
                     end
                 endcase
             end
 
             ACTIVE: begin
                 
-                if(o_res_ready & i_pull) res_check <= 0;
+                if(o_res_ready & i_pull) begin 
+                    res_stale <= 1;
+                    o_res_ready <= 0;
+                end
 
-                if(get_mul_res & r_ready) begin
-                    get_mul_res <= 0;
+                if(m_pull) mul_stale <= 0;
+
+                if(r_ready & res_stale & !mul_stale) begin
+
+                    o_res_ready <= 1;
+
                     o_result.val <= M_res;
-                    res_check[1] <= 1;
+
+                    o_result.is_head <= curr_head;
+                    o_result.is_tail <= curr_tail;
+                    o_result.is_end  <= 0;
+
+                    res_stale <= 0;
+                    mul_stale <= 1;
                 end
 
                 //wait for input values
@@ -328,54 +367,16 @@ module Multiplier_Unit#(
 
                     WAIT: begin
 
-                        if(!o_L_request && !o_R_request && !res_check[0]) begin
-                            curr_L_val <= L_val;
-                            curr_R_val <= R_val;
+                        if(!o_L_request & !o_R_request & mul_stale) begin
 
-                            get_mul_res <= 1;
-
-                            o_result.is_head <= next_head;
-                            o_result.is_tail <= next_tail;
-                            o_result.is_end  <= 0;
-                            res_check[0] <= 1;
+                            curr_head <= next_head;
+                            curr_tail <= next_tail;
 
                             dim <= ZDIM;
                         end
                         else begin
                             dim <= WAIT;
-                        end
-
-                        // if(count == 3) begin
-                            
-                        //     if(cont) begin
-                                
-                        //         count <= 0;
-                        //         dim <= ZDIM;
-
-                        //         data_old <= 1;
-                                
-                        //         R_dex <= next_R_dex;
-                        //         L_dex <= next_R_dex;
-
-                        //         o_result.val <= L_val*R_val;
-                        //         o_result.is_end <= 0;
-
-                        //         o_result.is_head <= next_head;
-                        //         o_result.is_tail <= next_tail;
-
-                        //         o_res_ready <= 1;
-                        //     end
-                        //     else begin
-                        //         count <= count;
-                        //         dim <= WAIT;
-                        //         o_result <= o_result;
-                        //         o_res_ready <= o_res_ready;
-                        //     end
-                        // end
-                        // else begin
-                        //     count <= count+1;
-                        //     dim <= WAIT;
-                        // end   
+                        end  
                     end
                 endcase
             end

@@ -12,9 +12,9 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="756.833 ns"></ZoomStartTime>
-      <ZoomEndTime time="945.434 ns"></ZoomEndTime>
-      <Cursor1Time time="914.000 ns"></Cursor1Time>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="188.601 ns"></ZoomEndTime>
+      <Cursor1Time time="39.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="362"></NameColumnWidth>
@@ -324,7 +324,6 @@
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /i_L_data" type="array">
             <obj_property name="ElementShortName">i_L_data[3:0][31:0]</obj_property>
             <obj_property name="ObjectShortName">i_L_data[3:0][31:0]</obj_property>
-            <obj_property name="isExpanded"></obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /i_R_data" type="array">
             <obj_property name="ElementShortName">i_R_data[3:0][31:0]</obj_property>
@@ -346,13 +345,17 @@
             <obj_property name="ElementShortName">o_L_request</obj_property>
             <obj_property name="ObjectShortName">o_L_request</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /o_result" type="array">
-            <obj_property name="ElementShortName">o_result</obj_property>
-            <obj_property name="ObjectShortName">o_result</obj_property>
-         </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /o_res_ready" type="logic">
             <obj_property name="ElementShortName">o_res_ready</obj_property>
             <obj_property name="ObjectShortName">o_res_ready</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /o_result" type="array">
+            <obj_property name="ElementShortName">o_result</obj_property>
+            <obj_property name="ObjectShortName">o_result</obj_property>
+            <obj_property name="CustomSignalColor">#FF00FF</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /o_end" type="logic">
             <obj_property name="ElementShortName">o_end</obj_property>
@@ -430,54 +433,74 @@
                <obj_property name="ElementShortName">n2_z[31:0]</obj_property>
                <obj_property name="ObjectShortName">n2_z[31:0]</obj_property>
             </wvobject>
-         </wvobject>
-         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /Lr" type="array">
-            <obj_property name="ElementShortName">Lr[31:0]</obj_property>
-            <obj_property name="ObjectShortName">Lr[31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /LcRr" type="array">
-            <obj_property name="ElementShortName">LcRr[31:0]</obj_property>
-            <obj_property name="ObjectShortName">LcRr[31:0]</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /Rc" type="array">
-            <obj_property name="ElementShortName">Rc[31:0]</obj_property>
-            <obj_property name="ObjectShortName">Rc[31:0]</obj_property>
+            <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /Lr" type="array">
+               <obj_property name="ElementShortName">Lr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">Lr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /LcRr" type="array">
+               <obj_property name="ElementShortName">LcRr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">LcRr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /Rc" type="array">
+               <obj_property name="ElementShortName">Rc[31:0]</obj_property>
+               <obj_property name="ObjectShortName">Rc[31:0]</obj_property>
+            </wvobject>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /L_dex" type="array">
             <obj_property name="ElementShortName">L_dex[31:0]</obj_property>
             <obj_property name="ObjectShortName">L_dex[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /R_dex" type="array">
             <obj_property name="ElementShortName">R_dex[31:0]</obj_property>
             <obj_property name="ObjectShortName">R_dex[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#F0E68C</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /next_L_dex" type="array">
             <obj_property name="ElementShortName">next_L_dex[31:0]</obj_property>
             <obj_property name="ObjectShortName">next_L_dex[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /next_R_dex" type="array">
             <obj_property name="ElementShortName">next_R_dex[31:0]</obj_property>
             <obj_property name="ObjectShortName">next_R_dex[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FFFF00</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /L_val" type="array">
             <obj_property name="ElementShortName">L_val[31:0]</obj_property>
             <obj_property name="ObjectShortName">L_val[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#A52A2A</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /R_val" type="array">
             <obj_property name="ElementShortName">R_val[31:0]</obj_property>
             <obj_property name="ObjectShortName">R_val[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#A52A2A</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /curr_L_val" type="array">
             <obj_property name="ElementShortName">curr_L_val[31:0]</obj_property>
             <obj_property name="ObjectShortName">curr_L_val[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FFA500</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /curr_R_val" type="array">
             <obj_property name="ElementShortName">curr_R_val[31:0]</obj_property>
             <obj_property name="ObjectShortName">curr_R_val[31:0]</obj_property>
+            <obj_property name="CustomSignalColor">#FFA500</obj_property>
+            <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /M_res" type="array">
             <obj_property name="ElementShortName">M_res[31:0]</obj_property>
             <obj_property name="ObjectShortName">M_res[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /r_ready" type="logic">
+            <obj_property name="ElementShortName">r_ready</obj_property>
+            <obj_property name="ObjectShortName">r_ready</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /count" type="array">
             <obj_property name="ElementShortName">count[1:0]</obj_property>
@@ -498,10 +521,6 @@
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /next_head" type="logic">
             <obj_property name="ElementShortName">next_head</obj_property>
             <obj_property name="ObjectShortName">next_head</obj_property>
-         </wvobject>
-         <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /r_ready" type="logic">
-            <obj_property name="ElementShortName">r_ready</obj_property>
-            <obj_property name="ObjectShortName">r_ready</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /get_mul_res" type="logic">
             <obj_property name="ElementShortName">get_mul_res</obj_property>
@@ -543,10 +562,6 @@
                <obj_property name="ElementShortName">i_pull</obj_property>
                <obj_property name="ObjectShortName">i_pull</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /multiplier/o_result" type="array">
-               <obj_property name="ElementShortName">o_result[31:0]</obj_property>
-               <obj_property name="ObjectShortName">o_result[31:0]</obj_property>
-            </wvobject>
             <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /multiplier/o_ready" type="logic">
                <obj_property name="ElementShortName">o_ready</obj_property>
                <obj_property name="ObjectShortName">o_ready</obj_property>
@@ -562,6 +577,10 @@
             <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /multiplier/done" type="logic">
                <obj_property name="ElementShortName">done</obj_property>
                <obj_property name="ObjectShortName">done</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /multiplier/o_result" type="array">
+               <obj_property name="ElementShortName">o_result[31:0]</obj_property>
+               <obj_property name="ObjectShortName">o_result[31:0]</obj_property>
             </wvobject>
             <wvobject fp_name="/tb_mult/mult_core/\mul_gen[0].mult /multiplier/count" type="array">
                <obj_property name="ElementShortName">count[3:0]</obj_property>
@@ -1088,10 +1107,6 @@
                <obj_property name="ElementShortName">count[3:0]</obj_property>
                <obj_property name="ObjectShortName">count[3:0]</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_mult/mult_core/\mul_gen[3].mult /multiplier/running" type="logic">
-               <obj_property name="ElementShortName">running</obj_property>
-               <obj_property name="ObjectShortName">running</obj_property>
-            </wvobject>
          </wvobject>
       </wvobject>
    </wvobject>
@@ -1191,6 +1206,7 @@
    <wvobject fp_name="group783" type="group">
       <obj_property name="label">Accord Buff</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_mult/acc_buff/i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -1270,6 +1286,7 @@
          <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
          <obj_property name="CustomSignalColor">#00FFFF</obj_property>
          <obj_property name="UseCustomSignalColor">true</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/seg_stalls" type="array">
          <obj_property name="ElementShortName">seg_stalls[0:3]</obj_property>
@@ -1338,12 +1355,10 @@
       <wvobject fp_name="/tb_mult/acc_buff/add_core/i_seg_vals" type="array">
          <obj_property name="ElementShortName">i_seg_vals[0:3]</obj_property>
          <obj_property name="ObjectShortName">i_seg_vals[0:3]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/add_core/o_adds" type="array">
          <obj_property name="ElementShortName">o_adds[0:1]</obj_property>
          <obj_property name="ObjectShortName">o_adds[0:1]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/acc_buff/add_core/o_acc_fins" type="array">
          <obj_property name="ElementShortName">o_acc_fins[0:1]</obj_property>
@@ -1564,6 +1579,7 @@
       <wvobject fp_name="/tb_mult/output_controller/wb_page" type="array">
          <obj_property name="ElementShortName">wb_page[3:0][31:0]</obj_property>
          <obj_property name="ObjectShortName">wb_page[3:0][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_mult/output_controller/push_sum" type="array">
          <obj_property name="ElementShortName">push_sum[0:0]</obj_property>
@@ -1699,9 +1715,9 @@
             <obj_property name="CustomSignalColor">#0000FF</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_mult/input_mem/L_data_pending" type="logic">
-            <obj_property name="ElementShortName">L_data_pending</obj_property>
-            <obj_property name="ObjectShortName">L_data_pending</obj_property>
+         <wvobject fp_name="/tb_mult/input_mem/L_data_pending" type="array">
+            <obj_property name="ElementShortName">L_data_pending[1:0]</obj_property>
+            <obj_property name="ObjectShortName">L_data_pending[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/input_mem/L_curr_addr" type="array">
             <obj_property name="ElementShortName">L_curr_addr[11:0]</obj_property>
@@ -1756,9 +1772,9 @@
             <obj_property name="CustomSignalColor">#0000FF</obj_property>
             <obj_property name="UseCustomSignalColor">true</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_mult/input_mem/R_data_pending" type="logic">
-            <obj_property name="ElementShortName">R_data_pending</obj_property>
-            <obj_property name="ObjectShortName">R_data_pending</obj_property>
+         <wvobject fp_name="/tb_mult/input_mem/R_data_pending" type="array">
+            <obj_property name="ElementShortName">R_data_pending[1:0]</obj_property>
+            <obj_property name="ObjectShortName">R_data_pending[1:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_mult/input_mem/R_addr_sel" type="array">
             <obj_property name="ElementShortName">R_addr_sel[1:0]</obj_property>

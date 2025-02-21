@@ -185,8 +185,8 @@ module Accordian_Buffer #(
         m_p_dex = m_p_dex_reg+pull_sum;
         for (int idx = 0; idx < MULTIPLIERS; idx++) begin
 
-            if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)&3] = do_step;
-            else o_m_pull[(idx+m_p_dex_reg)&3] = 0;
+            if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] = do_step;
+            else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] = 0;
 
             //if(idx >= m_p_dex_reg && idx < m_p_dex_reg+pull_sum) o_m_pull[idx] = 1;
             //else o_m_pull[idx] = 0;
