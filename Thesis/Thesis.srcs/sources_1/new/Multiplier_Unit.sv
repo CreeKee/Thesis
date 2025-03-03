@@ -59,6 +59,7 @@ module Multiplier_Unit#(
     dim_t dim;
 
     logic [31:0] x = 0, y = 0, z = 0;
+    logic [31:0] c_z = 0;
 
     logic [31:0] n0_x;
     logic [31:0] n0_y, n1_y, n2_y;
@@ -87,7 +88,6 @@ module Multiplier_Unit#(
     assign LcRr = z;
     assign Rc = y;
 
-
     assign n0_z = z    + MULT_COUNT;
     assign n1_z = n0_z - i_idx.alpha_z;
     assign n2_z = n1_z - i_N;
@@ -98,8 +98,8 @@ module Multiplier_Unit#(
 
     assign n0_x = x    + i_idx.beta_x;
 
-    assign next_R_dex = z*i_P + y;
-    assign next_L_dex = x*i_N + z;
+    assign next_R_dex = c_z*i_P + y;
+    assign next_L_dex = x*i_N + c_z;
 
     assign o_L_mem_addr = L_dex;
     assign o_R_mem_addr = R_dex;
@@ -204,6 +204,7 @@ module Multiplier_Unit#(
 
                     YDIM: begin
                         dim <= XDIM;
+                        c_z <= z;
                         if(y >= i_P) begin
                             if(n1_y >= i_P) begin
                                 y <= n2_y;
@@ -231,6 +232,7 @@ module Multiplier_Unit#(
                         end
                         else begin
                             x <= x;
+                            c_z <= z;
                             o_L_request <= 1;
                             o_R_request <= 1;
                         end
@@ -321,6 +323,7 @@ module Multiplier_Unit#(
 
                     YDIM: begin
                         dim <= XDIM;
+                        c_z <= z;
                         if(y >= i_P) begin
                             if(n1_y >= i_P) begin
                                 y <= n2_y;
@@ -343,7 +346,10 @@ module Multiplier_Unit#(
                             //go to idle
                         end
                         else begin
-                            x <= x;
+                            x   <= x;
+                            
+                            //start multiplication operation
+                            
 
                             o_L_request <= 1;
                             o_R_request <= 1;
@@ -382,13 +388,38 @@ module Multiplier_Unit#(
             end
 
             ENDING: begin
-                if(cont) begin 
+                
+
+                if(res_stale & mul_stale) begin
                     o_result.val <= 0;
                     o_result.is_head <= 0;
                     o_result.is_tail <= 0;
                     o_result.is_end <= 1;
                     res_check <= 2'b11;
+
+                    o_res_ready <= 1;
                 end
+                else begin
+                    if(o_res_ready & i_pull) begin 
+                        res_stale <= 1;
+                        o_res_ready <= 0;
+                    end
+
+                    if(r_ready & res_stale & !mul_stale) begin
+
+                        o_res_ready <= 1;
+
+                        o_result.val <= M_res;
+
+                        o_result.is_head <= curr_head;
+                        o_result.is_tail <= curr_tail;
+                        o_result.is_end  <= 0;
+
+                        res_stale <= 0;
+                        mul_stale <= 1;
+                    end
+                end
+                
             end
         
         endcase

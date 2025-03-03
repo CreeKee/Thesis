@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date             : Thu Feb 13 11:06:52 2025
+| Date             : Thu Feb 27 08:49:40 2025
 | Host             : WINDOWS-RV84OD0 running 64-bit major release  (build 9200)
 | Command          : report_power -file impl_top_power_routed.rpt -pb impl_top_power_summary_routed.pb -rpx impl_top_power_routed.rpx
 | Design           : impl_top
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.214        |
+| Total On-Chip Power (W)  | 0.226        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.141        |
+| Dynamic (W)              | 0.153        |
 | Device Static (W)        | 0.073        |
 | Effective TJA (C/W)      | 5.0          |
 | Max Ambient (C)          | 83.9         |
@@ -53,18 +53,18 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.007 |        3 |       --- |             --- |
-| Slice Logic    |     0.019 |     8771 |       --- |             --- |
-|   LUT as Logic |     0.016 |     4237 |     20800 |           20.37 |
-|   CARRY4       |     0.003 |      735 |      8150 |            9.02 |
-|   Register     |    <0.001 |     2558 |     41600 |            6.15 |
-|   F7/F8 Muxes  |    <0.001 |      185 |     32600 |            0.57 |
-|   Others       |     0.000 |      112 |       --- |             --- |
-| Signals        |     0.025 |     6981 |       --- |             --- |
-| Block RAM      |     0.047 |     14.5 |        50 |           29.00 |
-| DSPs           |     0.003 |       12 |        90 |           13.33 |
+| Slice Logic    |     0.022 |     8410 |       --- |             --- |
+|   LUT as Logic |     0.019 |     4471 |     20800 |           21.50 |
+|   CARRY4       |     0.003 |      790 |      8150 |            9.69 |
+|   Register     |    <0.001 |     2021 |     41600 |            4.86 |
+|   F7/F8 Muxes  |    <0.001 |      105 |     32600 |            0.32 |
+|   Others       |     0.000 |      103 |       --- |             --- |
+| Signals        |     0.029 |     7320 |       --- |             --- |
+| Block RAM      |     0.028 |     13.5 |        50 |           27.00 |
+| DSPs           |     0.027 |       36 |        90 |           40.00 |
 | I/O            |     0.040 |       33 |       106 |           31.13 |
 | Static Power   |     0.073 |          |           |                 |
-| Total          |     0.214 |          |           |                 |
+| Total          |     0.226 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.108 |       0.098 |      0.010 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.122 |       0.112 |      0.010 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.014 |       0.001 |      0.013 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.012 |       0.011 |      0.001 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -83,7 +83,7 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
-| Vccbram   |       1.000 |     0.004 |       0.004 |      0.001 |       NA    | Unspecified | NA         |
+| Vccbram   |       1.000 |     0.003 |       0.002 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |       NA    | Unspecified | NA         |
@@ -140,23 +140,29 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+---------------------------+-----------+
-| Name                      | Power (W) |
-+---------------------------+-----------+
-| impl_top                  |     0.141 |
-|   acc_buff                |     0.009 |
-|     add_core              |     0.008 |
-|       add_gen[0].add_unit |     0.007 |
-|   mult_core               |     0.037 |
-|     idxr                  |     0.005 |
-|     mul_gen[0].mult       |     0.007 |
-|     mul_gen[1].mult       |     0.008 |
-|     mul_gen[2].mult       |     0.009 |
-|     mul_gen[3].mult       |     0.008 |
-|   out_buff                |     0.001 |
-|   output_controller       |     0.054 |
-|     bram                  |     0.049 |
-|       U0                  |     0.049 |
-+---------------------------+-----------+
++------------------------+-----------+
+| Name                   | Power (W) |
++------------------------+-----------+
+| impl_top               |     0.153 |
+|   acc_buff             |     0.006 |
+|     add_core           |     0.001 |
+|     seg_gen[1].acc_seg |     0.003 |
+|   input_mem            |     0.008 |
+|     bram               |     0.005 |
+|       U0               |     0.005 |
+|   mult_core            |     0.073 |
+|     idxr               |     0.005 |
+|     mul_gen[0].mult    |     0.018 |
+|       multiplier       |     0.004 |
+|     mul_gen[1].mult    |     0.017 |
+|       multiplier       |     0.004 |
+|     mul_gen[2].mult    |     0.016 |
+|       multiplier       |     0.004 |
+|     mul_gen[3].mult    |     0.017 |
+|       multiplier       |     0.004 |
+|   output_controller    |     0.026 |
+|     bram               |     0.024 |
+|       U0               |     0.024 |
++------------------------+-----------+
 
 

@@ -76,8 +76,6 @@ module tb_mult#(
     logic [PAGE_SIZE-1:0][31:0] mem_bus_a;
     logic [PAGE_SIZE-1:0][31:0] mem_bus_b;
 
-
-
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
 
@@ -108,8 +106,8 @@ module tb_mult#(
         .i_start(active),
         .i_done(acc_done),
         .i_M(7),
-        .i_N(3),
-        .i_P(5),
+        .i_N(9),
+        .i_P(9),
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
 

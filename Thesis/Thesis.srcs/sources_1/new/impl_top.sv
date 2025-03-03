@@ -24,6 +24,7 @@
 
 
 module impl_top #(
+    parameter PAGE_SIZE = 4,
     parameter SEGMENTS = 4,
     parameter MULT_COUNT = 4,
     parameter ADD_COUNT = SEGMENTS/2
@@ -72,9 +73,41 @@ module impl_top #(
     logic acc_done;
     logic clear;
     
+    logic [31:0] L_mem_addrs [MULT_COUNT];
+    logic [31:0] R_mem_addrs [MULT_COUNT];
+
+    logic L_data_rdy [MULT_COUNT];
+    logic R_data_rdy [MULT_COUNT];
+
+    logic L_reqs     [MULT_COUNT];
+    logic R_reqs     [MULT_COUNT];
+
+    logic [PAGE_SIZE-1:0][31:0] mem_bus_a;
+    logic [PAGE_SIZE-1:0][31:0] mem_bus_b;
+
     mult_pack indicies;
 
+    mem_controller#(
+    .PAGE_SIZE(PAGE_SIZE),
+    .MULT_COUNT(MULT_COUNT)
+    ) input_mem(
+        .i_clk(i_clk),
+
+        .i_L_addrs(L_mem_addrs),
+        .i_L_reqs(L_reqs),
+
+        .i_R_addrs(R_mem_addrs),
+        .i_R_reqs(R_reqs),
+
+        .o_L_data_rdy(L_data_rdy),
+        .o_R_data_rdy(R_data_rdy),
+
+        .mem_bus_a(mem_bus_a),
+        .mem_bus_b(mem_bus_b)
+    );
+
     Multiplication_Core#(
+    .PAGE_SIZE(PAGE_SIZE),
     .MULT_COUNT(MULT_COUNT)
     ) mult_core(
         .i_clk(i_clk),
@@ -83,10 +116,21 @@ module impl_top #(
         .i_M(7),
         .i_N(3),
         .i_P(5),
+        .i_L_ready(L_data_rdy),
+        .i_R_ready(R_data_rdy),
 
         .data(data),
+        .i_L_data(mem_bus_a),
+        .i_R_data(mem_bus_b),
 
         .i_pulls(pulls),
+
+        .o_L_mem_addrs(L_mem_addrs),
+        .o_R_mem_addrs(R_mem_addrs),
+
+        .o_L_request(L_reqs),
+        .o_R_request(R_reqs),
+
         .o_dready(mult_rdy),
         .o_mults(mult_res)
     );
@@ -110,6 +154,7 @@ module impl_top #(
     );
 
     output_memory_controller#(
+    .PAGE_SIZE(PAGE_SIZE),
     .ADD_COUNT(ADD_COUNT)    
     ) output_controller(
         .i_clk(i_clk),

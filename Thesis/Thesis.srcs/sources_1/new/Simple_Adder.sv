@@ -30,8 +30,8 @@ module Simple_Adder(
     output data_packet o_res = 0,
 
     output logic o_val_rdy  = 0,
-    output logic o_acc_fin  = 0,
-    output logic o_mismatch = 0,
+    output logic o_acc_fin,
+    output logic o_mismatch,
 
     output logic [31:0] o_dest_row = 0,
     output logic [31:0] o_dest_col = 0
@@ -46,6 +46,9 @@ module Simple_Adder(
 
     // assign o_pop = o_res.is_head & o_res.is_tail;
 
+    assign o_acc_fin     = i_A.is_head & i_B.is_tail;
+    assign o_mismatch    = i_A.is_tail;
+
 
     always_ff @ ( posedge i_clk ) begin
 
@@ -57,8 +60,8 @@ module Simple_Adder(
                 o_res.is_tail <= i_A.is_tail | i_B.is_tail;
                 o_res.is_end  <= i_A.is_end  | i_B.is_end;
 
-                o_acc_fin     <= i_A.is_head & i_B.is_tail;
-                o_mismatch    <= i_A.is_tail;
+                //o_acc_fin     <= i_A.is_head & i_B.is_tail;
+                //o_mismatch    <= i_A.is_tail;
             end
 
             done <= 1;

@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Thu Feb 13 11:05:47 2025
+| Date         : Thu Feb 27 08:48:50 2025
 | Host         : WINDOWS-RV84OD0 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file impl_top_control_sets_placed.rpt
 | Design       : impl_top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |    93 |
-|    Minimum number of control sets                        |    93 |
+| Total control sets                                       |    60 |
+|    Minimum number of control sets                        |    60 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    36 |
+| Unused register locations in slices containing registers |   139 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,15 +39,15 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |    93 |
-| >= 0 to < 4        |     1 |
-| >= 4 to < 6        |     1 |
+| Total control sets |    60 |
+| >= 0 to < 4        |     5 |
+| >= 4 to < 6        |     5 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |    32 |
-| >= 10 to < 12      |     1 |
-| >= 12 to < 14      |     0 |
-| >= 14 to < 16      |     1 |
-| >= 16              |    57 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     0 |
+| >= 12 to < 14      |     5 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    45 |
 +--------------------+-------+
 * Control sets can be remapped at either synth_design or opt_design
 
@@ -58,114 +58,81 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |             107 |           51 |
+| No           | No                    | No                     |              92 |           53 |
 | No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |              37 |           10 |
-| Yes          | No                    | No                     |            1599 |          522 |
+| No           | Yes                   | No                     |              27 |            7 |
+| Yes          | No                    | No                     |            1026 |          312 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |             813 |          300 |
+| Yes          | Yes                   | No                     |             876 |          362 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+------------------+----------------------------------------------------------------+-----------------------------------------------------+------------------+----------------+--------------+
-|   Clock Signal   |                          Enable Signal                         |                   Set/Reset Signal                  | Slice Load Count | Bel Load Count | Bels / Slice |
-+------------------+----------------------------------------------------------------+-----------------------------------------------------+------------------+----------------+--------------+
-|  i_clk_IBUF_BUFG | clear__1                                                       |                                                     |                1 |              1 |         1.00 |
-|  i_clk_IBUF_BUFG | output_controller/fill[4]_i_1_n_0                              |                                                     |                2 |              5 |         2.50 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[27].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/do_push[31]_31                                        |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[18].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[17].buff_port/E[0]                           |                                                     |                4 |              8 |         2.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[16].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[28].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[29].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[30].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[5].buff_port/E[0]                            |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[4].buff_port/E[0]                            |                                                     |                4 |              8 |         2.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[6].buff_port/E[0]                            |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[7].buff_port/E[0]                            |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[8].buff_port/E[0]                            |                                                     |                4 |              8 |         2.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[9].buff_port/E[0]                            |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[10].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[3].buff_port/E[0]                            |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[0].buff_port/E[0]                            |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[1].buff_port/E[0]                            |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[2].buff_port/E[0]                            |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[15].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[14].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[13].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[12].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[21].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[22].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[23].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[24].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[25].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[26].buff_port/E[0]                           |                                                     |                3 |              8 |         2.67 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[19].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[20].buff_port/E[0]                           |                                                     |                1 |              8 |         8.00 |
-|  i_clk_IBUF_BUFG | out_buff/port_gen[11].buff_port/E[0]                           |                                                     |                2 |              8 |         4.00 |
-|  i_clk_IBUF_BUFG |                                                                | uart/baude                                          |                3 |             10 |         3.33 |
-|  i_clk_IBUF_BUFG | uart/baude                                                     |                                                     |                4 |             15 |         3.75 |
-|  i_clk_IBUF_BUFG |                                                                | clear__1                                            |                7 |             27 |         3.86 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[3].mult/o_result[val][31]_i_2_n_0            | mult_core/mul_gen[3].mult/o_result[val][31]_i_1_n_0 |                6 |             32 |         5.33 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[3].mult/x[31]_i_1_n_0                        | mult_core/mul_gen[3].mult/y[31]_i_1__1_n_0          |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[3].mult/y[31]_i_2__0_n_0                     | mult_core/mul_gen[3].mult/y[31]_i_1__1_n_0          |               16 |             32 |         2.00 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[2].mult/y[31]_i_2__1_n_0                     | mult_core/mul_gen[2].mult/y[31]_i_1__0_n_0          |               15 |             32 |         2.13 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[2].mult/z                                    |                                                     |               15 |             32 |         2.13 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[2].mult/o_result[val][31]_i_2__0_n_0         | mult_core/mul_gen[2].mult/o_result[val][31]_i_1_n_0 |                6 |             32 |         5.33 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[2].mult/x[31]_i_1__0_n_0                     | mult_core/mul_gen[2].mult/y[31]_i_1__0_n_0          |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[1].mult/y[31]_i_2__2_n_0                     | mult_core/mul_gen[1].mult/y[31]_i_1_n_0             |               18 |             32 |         1.78 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[1].mult/z                                    |                                                     |               18 |             32 |         1.78 |
-|  i_clk_IBUF_BUFG | output_controller/page[2][31]_i_1_n_0                          |                                                     |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[0].mult/CEA2                                 | mult_core/mul_gen[0].mult/RSTA                      |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[1].mult/x[31]_i_1__1_n_0                     | mult_core/mul_gen[1].mult/y[31]_i_1_n_0             |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[3].mult/z                                    |                                                     |               16 |             32 |         2.00 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[1].mult/o_result[val][31]_i_2__1_n_0         | mult_core/mul_gen[1].mult/o_result[val][31]_i_1_n_0 |                7 |             32 |         4.57 |
-|  i_clk_IBUF_BUFG | output_controller/page[14][31]_i_1_n_0                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | output_controller/page[3][31]_i_1_n_0                          |                                                     |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | output_controller/page[16][31]_i_1_n_0                         |                                                     |                7 |             32 |         4.57 |
-|  i_clk_IBUF_BUFG | output_controller/page[15][31]_i_1_n_0                         |                                                     |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | output_controller/page[5][31]_i_1_n_0                          |                                                     |                9 |             32 |         3.56 |
-|  i_clk_IBUF_BUFG | output_controller/page                                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | output_controller/page[0][31]_i_1_n_0                          |                                                     |                7 |             32 |         4.57 |
-|  i_clk_IBUF_BUFG | output_controller/page[4][31]_i_1_n_0                          |                                                     |                9 |             32 |         3.56 |
-|  i_clk_IBUF_BUFG | output_controller/page[8][31]_i_1_n_0                          |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | output_controller/page[9][31]_i_1_n_0                          |                                                     |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | output_controller/page[28][31]_i_1_n_0                         |                                                     |               14 |             32 |         2.29 |
-|  i_clk_IBUF_BUFG | output_controller/page[21][31]_i_1_n_0                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[0].mult/z                                    | mult_core/mul_gen[0].mult/RSTA                      |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | output_controller/page[6][31]_i_1_n_0                          |                                                     |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | output_controller/page[1][31]_i_1_n_0                          |                                                     |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | output_controller/page[20][31]_i_1_n_0                         |                                                     |                9 |             32 |         3.56 |
-|  i_clk_IBUF_BUFG | output_controller/page[10][31]_i_1_n_0                         |                                                     |               12 |             32 |         2.67 |
-|  i_clk_IBUF_BUFG | output_controller/page[13][31]_i_1_n_0                         |                                                     |                9 |             32 |         3.56 |
-|  i_clk_IBUF_BUFG | output_controller/page[17][31]_i_1_n_0                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | output_controller/page[18][31]_i_1_n_0                         |                                                     |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | output_controller/page[22][31]_i_1_n_0                         |                                                     |               12 |             32 |         2.67 |
-|  i_clk_IBUF_BUFG | output_controller/page[26][31]_i_1_n_0                         |                                                     |               13 |             32 |         2.46 |
-|  i_clk_IBUF_BUFG | output_controller/page[24][31]_i_1_n_0                         |                                                     |               12 |             32 |         2.67 |
-|  i_clk_IBUF_BUFG | output_controller/page[12][31]_i_1_n_0                         |                                                     |               16 |             32 |         2.00 |
-|  i_clk_IBUF_BUFG | output_controller/page[11][31]_i_1_n_0                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | output_controller/page[7][31]_i_1_n_0                          |                                                     |               12 |             32 |         2.67 |
-|  i_clk_IBUF_BUFG | output_controller/page[25][31]_i_1_n_0                         |                                                     |                9 |             32 |         3.56 |
-|  i_clk_IBUF_BUFG | output_controller/page[19][31]_i_1_n_0                         |                                                     |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | output_controller/page[23][31]_i_1_n_0                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | output_controller/page[27][31]_i_1_n_0                         |                                                     |               11 |             32 |         2.91 |
-|  i_clk_IBUF_BUFG | output_controller/page[30][31]_i_1_n_0                         |                                                     |               10 |             32 |         3.20 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[0].mult/o_res_ready                          | mult_core/mul_gen[0].mult/o_result[val][31]_i_1_n_0 |                6 |             32 |         5.33 |
-|  i_clk_IBUF_BUFG | mult_core/mul_gen[0].mult/CEC                                  | mult_core/mul_gen[0].mult/RSTA                      |               13 |             32 |         2.46 |
-|  i_clk_IBUF_BUFG | output_controller/page[29][31]_i_1_n_0                         |                                                     |                8 |             32 |         4.00 |
-|  i_clk_IBUF_BUFG | acc_buff/add_core/add_gen[2].add_unit/o_res[is_end]_i_1__0_n_0 |                                                     |               10 |             37 |         3.70 |
-|  i_clk_IBUF_BUFG | acc_buff/add_core/add_gen[0].add_unit/o_mismatch               |                                                     |               11 |             37 |         3.36 |
-|  i_clk_IBUF_BUFG | mult_core/idxr/gamma_z[31]_i_1_n_0                             | mult_core/idxr/gamma_x0                             |               16 |             64 |         4.00 |
-|  i_clk_IBUF_BUFG | mult_core/idxr/vals                                            | mult_core/idxr/gamma_x0                             |               16 |             64 |         4.00 |
-|  i_clk_IBUF_BUFG | mult_core/idxr/gamma_y[31]_i_1_n_0                             | mult_core/idxr/gamma_x0                             |               24 |             96 |         4.00 |
-|  i_clk_IBUF_BUFG |                                                                |                                                     |               51 |            107 |         2.10 |
-|  i_clk_IBUF_BUFG | mult_core/idxr/o_vals                                          |                                                     |               35 |            128 |         3.66 |
-|  i_clk_IBUF_BUFG | acc_buff/add_core/add_gen[0].add_unit/count_reg[1]             | acc_buff/seg_gen[3].acc_seg/SR[0]                   |              114 |            173 |         1.52 |
-+------------------+----------------------------------------------------------------+-----------------------------------------------------+------------------+----------------+--------------+
++--------------------------------------------------+--------------------------------------------------------------+-----------------------------------------------------------+------------------+----------------+--------------+
+|                   Clock Signal                   |                         Enable Signal                        |                      Set/Reset Signal                     | Slice Load Count | Bel Load Count | Bels / Slice |
++--------------------------------------------------+--------------------------------------------------------------+-----------------------------------------------------------+------------------+----------------+--------------+
+|  mult_core/mul_gen[3].mult/m_pull_reg_i_2_n_0    |                                                              |                                                           |                1 |              1 |         1.00 |
+|  mult_core/mul_gen[2].mult/m_pull_reg_i_2__0_n_0 |                                                              |                                                           |                1 |              1 |         1.00 |
+|  mult_core/mul_gen[1].mult/m_pull_reg_i_2__1_n_0 |                                                              |                                                           |                1 |              1 |         1.00 |
+|  i_clk_IBUF_BUFG                                 | clear__1                                                     |                                                           |                1 |              1 |         1.00 |
+|  mult_core/mul_gen[0].mult/m_pull_reg_i_2__2_n_0 |                                                              |                                                           |                1 |              1 |         1.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/multiplier/count[3]_i_2__1_n_0     | mult_core/mul_gen[2].mult/multiplier/count[3]_i_1__1_n_0  |                1 |              4 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/multiplier/count[3]_i_2__2_n_0     | mult_core/mul_gen[3].mult/multiplier/count[3]_i_1__2_n_0  |                1 |              4 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/multiplier/count[3]_i_2_n_0        | mult_core/mul_gen[0].mult/multiplier/count[3]_i_1_n_0     |                1 |              4 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | FSM_sequential_curr_state_reg_n_0                            |                                                           |                4 |              4 |         1.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/multiplier/count[3]_i_2__0_n_0     | mult_core/mul_gen[1].mult/multiplier/count[3]_i_1__0_n_0  |                1 |              4 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | input_mem/L_data_pending0                                    |                                                           |               12 |             12 |         1.00 |
+|  i_clk_IBUF_BUFG                                 | input_mem/R_curr_addr[11]_i_1_n_0                            |                                                           |                5 |             12 |         2.40 |
+|  i_clk_IBUF_BUFG                                 | input_mem/L_curr_addr[11]_i_1_n_0                            |                                                           |                3 |             12 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | input_mem/R_data_pending0                                    |                                                           |               10 |             12 |         1.20 |
+|  i_clk_IBUF_BUFG                                 | output_controller/mem_addr                                   |                                                           |                4 |             13 |         3.25 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[3][31]_i_1_n_0                        |                                                           |                7 |             16 |         2.29 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page                                       |                                                           |                7 |             16 |         2.29 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/multiplier/o_result_reg_i_4_n_0    |                                                           |                5 |             17 |         3.40 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/multiplier/o_result_reg_i_4__2_n_0 |                                                           |                6 |             17 |         2.83 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/multiplier/o_result_reg_i_4__1_n_0 |                                                           |                6 |             17 |         2.83 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/multiplier/o_result_reg_i_4__0_n_0 |                                                           |                5 |             17 |         3.40 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[1][31]_i_1_n_0                        |                                                           |                7 |             23 |         3.29 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[6][31]_i_1_n_0                        |                                                           |                9 |             23 |         2.56 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[5][31]_i_1_n_0                        |                                                           |                7 |             23 |         3.29 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[4][31]_i_1_n_0                        |                                                           |                9 |             23 |         2.56 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[2][31]_i_1_n_0                        |                                                           |               10 |             23 |         2.30 |
+|  i_clk_IBUF_BUFG                                 | output_controller/page[0][31]_i_1_n_0                        |                                                           |                7 |             23 |         3.29 |
+|  i_clk_IBUF_BUFG                                 |                                                              | clear__1                                                  |                7 |             27 |         3.86 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/y[31]_i_1_n_0                      | mult_core/mul_gen[0].mult/z                               |               16 |             32 |         2.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/c_z[31]_i_1__0_n_0                 |                                                           |                8 |             32 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/x[31]_i_1__2_n_0                   | mult_core/mul_gen[3].mult/z[31]_i_1__2_n_0                |                8 |             32 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/z                                  | mult_core/mul_gen[2].mult/z[31]_i_1__1_n_0                |               13 |             32 |         2.46 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/c_z[31]_i_1__2_n_0                 |                                                           |                9 |             32 |         3.56 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/z                                  | mult_core/mul_gen[3].mult/z[31]_i_1__2_n_0                |               16 |             32 |         2.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/y[31]_i_1__2_n_0                   | mult_core/mul_gen[3].mult/z[31]_i_1__2_n_0                |               17 |             32 |         1.88 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/CEA2                               | mult_core/mul_gen[0].mult/z                               |                8 |             32 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/c_z[31]_i_1_n_0                    |                                                           |                9 |             32 |         3.56 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/y[31]_i_1__1_n_0                   | mult_core/mul_gen[2].mult/z[31]_i_1__1_n_0                |               11 |             32 |         2.91 |
+|  i_clk_IBUF_BUFG                                 | acc_buff/seg_gen[1].acc_seg/curr[2]_i_2_n_0                  | acc_buff/seg_gen[0].acc_seg/FSM_sequential_curr_state_reg |                8 |             32 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/c_z[31]_i_1__1_n_0                 |                                                           |               12 |             32 |         2.67 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/y[31]_i_1__0_n_0                   | mult_core/mul_gen[1].mult/RSTA                            |               18 |             32 |         1.78 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/z                                  | mult_core/mul_gen[1].mult/RSTA                            |               16 |             32 |         2.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/x[31]_i_1__1_n_0                   | mult_core/mul_gen[2].mult/z[31]_i_1__1_n_0                |                8 |             32 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/multiplier/curr_state_reg[0]       |                                                           |                8 |             35 |         4.38 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/multiplier/curr_state_reg[0]       |                                                           |                7 |             35 |         5.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/multiplier/curr_state_reg[0]       |                                                           |                7 |             35 |         5.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/multiplier/curr_state_reg[0]       |                                                           |                7 |             35 |         5.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/x[31]_i_1__0_n_0                   | mult_core/mul_gen[1].mult/RSTA                            |               13 |             47 |         3.62 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/z_1                                | mult_core/mul_gen[0].mult/z                               |               30 |             64 |         2.13 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[1].mult/L_dex[31]_i_1__0_n_0               |                                                           |               16 |             64 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/idxr/gamma_z[31]_i_1_n_0                           | mult_core/idxr/gamma_x0                                   |               16 |             64 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/idxr/vals                                          | mult_core/idxr/gamma_x0                                   |               16 |             64 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[3].mult/L_dex[31]_i_1__2_n_0               |                                                           |               16 |             64 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[2].mult/L_dex[31]_i_1__1_n_0               |                                                           |               16 |             64 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/mul_gen[0].mult/L_dex                              |                                                           |               16 |             64 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | acc_buff/add_core/add_gen[0].add_unit/E[0]                   |                                                           |               20 |             70 |         3.50 |
+|  i_clk_IBUF_BUFG                                 |                                                              |                                                           |               49 |             88 |         1.80 |
+|  i_clk_IBUF_BUFG                                 | mult_core/idxr/gamma_y[31]_i_1_n_0                           | mult_core/idxr/gamma_x0                                   |               24 |             96 |         4.00 |
+|  i_clk_IBUF_BUFG                                 | mult_core/idxr/o_vals                                        |                                                           |               37 |            128 |         3.46 |
+|  i_clk_IBUF_BUFG                                 | acc_buff/seg_gen[1].acc_seg/E[0]                             | acc_buff/seg_gen[3].acc_seg/SR[0]                         |              120 |            173 |         1.44 |
++--------------------------------------------------+--------------------------------------------------------------+-----------------------------------------------------------+------------------+----------------+--------------+
 
 

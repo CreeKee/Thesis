@@ -83,7 +83,7 @@ module mem_controller#(
     blk_mem_gen_0 bram(
         .clka(i_clk), 
         .wea(0), 
-        .addra(mem_addr_a<<2), 
+        .addra(mem_addr_a << 2), 
         .dina(0), 
         .douta(mem_out_a), 
         
@@ -126,8 +126,8 @@ module mem_controller#(
         if(L_data_pending == 0 && i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)] != L_curr_addr) begin
 
             L_data_pending <= 2'b11;
-            mem_addr_a <= i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)];
             L_addr_sel <= next_L_addr_sel;
+            mem_addr_a <= i_L_addrs[next_L_addr_sel][31:$clog2(PAGE_SIZE)];
            
         end
         else L_data_pending <= L_data_pending>>1;
@@ -149,7 +149,7 @@ module mem_controller#(
             R_data_pending <= 2'b11;
             R_addr_sel <= next_R_addr_sel;
             mem_addr_b <= i_R_addrs[next_R_addr_sel][31:$clog2(PAGE_SIZE)];
-            
+
         end
         else R_data_pending <= R_data_pending >> 1;
 

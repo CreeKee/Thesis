@@ -54,8 +54,10 @@ module Accordian_Segment #(
     logic [$clog2(MULT_COUNT)-1:0] index;
     logic [$clog2(ADD_COUNT):0]    add_dex;
     logic [$clog2(SEG_COUNT):0]    seg_dex;
+    logic [31:0] curr = 0;
+    logic [1:0] update = 0;
     
-    assign index   =  SEGMENT_INDEX  +  i_op_cnt-i_curr;
+    assign index   =  SEGMENT_INDEX  +  i_op_cnt-curr;
     assign add_dex =  SEGMENT_INDEX  - (i_spacers >> 1) - (i_spacers & 1) + i_pops;
     assign seg_dex =  (add_dex << 1) + (i_spacers &  1);
 
@@ -63,7 +65,7 @@ module Accordian_Segment #(
     always_comb begin : ComBlock
 
         //determine if input is ready
-        if(i_curr <= SEGMENT_INDEX && i_m_rdy[index] == 0) o_stall = 1;
+        if(curr <= SEGMENT_INDEX && i_m_rdy[index] == 0) o_stall = 1;
         else o_stall = 0;
 
         //handle stalling and clearing
@@ -74,17 +76,19 @@ module Accordian_Segment #(
 
         else begin
             //prep for pulling in value
-            if(i_curr <= SEGMENT_INDEX) o_pulled = 1;
+            if(curr <= SEGMENT_INDEX) o_pulled = 1;
             else o_pulled = 0;
 
             //determine spacing
-            if(i_curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
+            if(curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
             else o_spaced = i_spacers;
 
         end
     end
+    //assign curr = i_curr;
 
     always_ff @( posedge i_clk ) begin : SeqBlock
+
 
         //clear value
         if(i_clear) begin
@@ -96,27 +100,38 @@ module Accordian_Segment #(
             o_val <= o_val;
         end
 
-        else if(i_pull) begin
+        else begin 
+            
 
-            //pull next value from multipliers
-            if(i_curr <= SEGMENT_INDEX) begin
-                o_val <= i_mults[index];
+            if(update == 2'b01) begin
+                curr   <= i_curr;
             end
-
-            else begin
-
-                //check if desired adder is skipping
-                if(i_override[add_dex]) begin
-
-                    //pull in value from a later segment
-                    o_val <= i_seg[seg_dex];
+            
+            if(i_pull) begin
+                update <= 2'b11;
+                
+                
+                //pull next value from multipliers
+                if(curr <= SEGMENT_INDEX) begin
+                    o_val <= i_mults[index];
                 end
+
                 else begin
 
-                    //pull in value from adder
-                    o_val <= i_add[add_dex];
+                    //check if desired adder is skipping
+                    if(i_override[add_dex]) begin
+
+                        //pull in value from a later segment
+                        o_val <= i_seg[seg_dex];
+                    end
+                    else begin
+
+                        //pull in value from adder
+                        o_val <= i_add[add_dex];
+                    end
                 end
             end
+            else update <= update>>1;
         end
     end
 endmodule

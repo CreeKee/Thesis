@@ -44,7 +44,7 @@ module Accordian_Buffer #(
     output logic o_done
     );
 
-    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum, pop_sum, space_sum;
+    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum, pop_sum = 0, pop_sum_p, space_sum = 0, space_sum_p;
     data_packet adds   [ADD_COUNT];
     logic       spaces [ADD_COUNT];
 
@@ -182,27 +182,29 @@ module Accordian_Buffer #(
         //soft_stall = ~(do_step) | do_stall;
 
 
-        m_p_dex = m_p_dex_reg+pull_sum;
-        for (int idx = 0; idx < MULTIPLIERS; idx++) begin
+        // m_p_dex = m_p_dex_reg+pull_sum;
+        // for (int idx = 0; idx < MULTIPLIERS; idx++) begin
 
-            if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] = do_step;
-            else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] = 0;
+        //     if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] = do_step;
+        //     else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] = 0;
 
-            //if(idx >= m_p_dex_reg && idx < m_p_dex_reg+pull_sum) o_m_pull[idx] = 1;
-            //else o_m_pull[idx] = 0;
-        end
+        //     //if(idx >= m_p_dex_reg && idx < m_p_dex_reg+pull_sum) o_m_pull[idx] = 1;
+        //     //else o_m_pull[idx] = 0;
+        // end
 
         //calculate how many finished values have been popped off the buffer
-        pop_sum = 0;
-        space_sum = 0;
+        pop_sum_p = 0;
+        space_sum_p = 0;
         for (int idx = 0; idx < ADD_COUNT; idx++) begin
-            pop_sum += o_pushs[idx];
-            space_sum += spaces[idx];
+            pop_sum_p   = pop_sum_p   + o_pushs[idx];
+            space_sum_p = space_sum_p + spaces[idx];
         end
+
+        
     end
 
     always_ff @ (posedge i_clk) begin
-
+        //pop_sum <= pop_sum_p;
         //reset registers
         if(i_clear) begin
             m_p_dex_reg <= 0;
@@ -220,14 +222,29 @@ module Accordian_Buffer #(
 
         else begin
 
+            pop_sum <= pop_sum_p;
+            space_sum <= space_sum_p;
+
             if(do_step) begin
-                m_p_dex_reg <= m_p_dex;
+
+                
+                
+
+                m_p_dex_reg <= m_p_dex_reg+pull_sum;
+                for (int idx = 0; idx < MULTIPLIERS; idx++) begin
+                    if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 1;
+                    else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 0;
+                end
+
                 curr <= n_curr + pull_sum;
 
                 op_count <= op_count + pull_sum;
             end
             else begin
                 m_p_dex_reg <= m_p_dex_reg;
+                for (int idx = 0; idx < MULTIPLIERS; idx++) begin
+                    o_m_pull[idx] <= 0;
+                end
                 curr <= curr;
 
                 op_count <= op_count;
