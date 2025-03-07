@@ -37,6 +37,9 @@ module Indexer#(
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_t;
 
+    typedef enum bit [1:0] {ZDIM, YDIM,     XDIM,   WAIT}   dim_t;
+    dim_t dim;
+
     state_t curr_state, next_state;
 
     mult_pack vals, n_vals;
@@ -75,7 +78,7 @@ module Indexer#(
             end
 
             ACTIVE: begin
-                if(!c_x & !c_y & !c_z) begin
+                if(dim == WAIT) begin
                     next_state = ENDING;
                 end
                 else next_state = ACTIVE;
@@ -94,10 +97,11 @@ module Indexer#(
 
         case(curr_state)
             IDLE: begin
+                //reset internal values
                 vals <= {0, 0, 0, 0, 0, 0};
 
-                gamma_x <= MULT_COUNT;
-                gamma_y <= MULT_COUNT;
+                gamma_x <= 0;
+                gamma_y <= 0;
                 gamma_z <= MULT_COUNT;
 
                 o_ready <= 0;
@@ -106,55 +110,121 @@ module Indexer#(
             STARTING: begin
                 vals <= n_vals;
 
-                gamma_x <= n_gamma_x;
-                gamma_y <= n_gamma_y;
-                gamma_z <= n_gamma_z;
+                gamma_x <= 0;
+                gamma_y <= 0;
+                gamma_z <= MULT_COUNT;
 
                 o_ready <= 0;
+
+                dim <= ZDIM;
             end
 
             ACTIVE: begin
 
                 o_ready <= 0;
 
-                //update x dimension
-                if(c_x) begin
-                    gamma_x      <= n_gamma_x;
-                    vals.alpha_x <= n_vals.alpha_x;
-                    vals.beta_x  <= n_vals.beta_x;
-                end
-                else begin
-                    gamma_x      <= gamma_x;
-                    vals.alpha_x <= vals.alpha_x;
-                    vals.beta_x  <= vals.beta_x;
-                end
 
-                //update y dimension
-                if(c_y) begin
-                    gamma_y      <= n_gamma_y;
-                    vals.alpha_y <= n_vals.alpha_y;
-                    vals.beta_y  <= n_vals.beta_y;
-                end
-                else begin
-                    gamma_y      <= gamma_y;
-                    vals.alpha_y <= vals.alpha_y;
-                    vals.beta_y  <= vals.beta_y;
-                end
+                //gamma  = MULT_COUNT
+                //alpha += D
+                //beta  += 1
 
-                //update z dimension
-                if(c_z) begin
-                    gamma_z      <= n_gamma_z;
-                    vals.alpha_z <= n_vals.alpha_z;
-                    vals.beta_z  <= n_vals.beta_z;
-                end
-                else begin
-                    gamma_z      <= gamma_z;
-                    vals.alpha_z <= vals.alpha_z;
-                    vals.beta_z  <= vals.beta_z;
-                end
+                case(dim)
+                    ZDIM: begin
+                        if($signed(n_gamma_z) >= $signed(i_N)) begin
+                            dim = YDIM;
+                            gamma_z <= n_gamma_z;
+                            vals.alpha_z <= n_vals.alpha_z;
+                            vals.beta_z  <= n_vals.beta_z;
+
+                            gamma_y <= gamma_y + 1;
+                        end
+                        else dim = WAIT;
+                    end
+                    YDIM: begin
+                        
+                        vals.beta_y  <= n_vals.beta_y;
+                        
+                        if(gamma_y >= i_P) begin
+                            dim = XDIM;
+                            vals.alpha_y <= n_vals.alpha_y;
+                            gamma_y      <= n_gamma_y;
+
+                            gamma_x <= gamma_x + 1;
+                        end
+                        else dim = ZDIM;
+                    end
+
+                    XDIM: begin
+                        dim = ZDIM;
+
+                        vals.beta_x  <= n_vals.beta_x;
+                        if(gamma_y >= i_M) begin
+                            vals.alpha_x <= n_vals.alpha_x;
+                            gamma_x      <= n_gamma_x;
+                            
+                        end
+                    end
+
+                    WAIT: begin
+                        if(vals.beta_x == 0) begin
+                            vals.alpha_x <= n_vals.alpha_x;
+                            vals.beta_x  <= n_vals.beta_x;
+                        end
+
+                        if(vals.beta_y == 0) begin
+                            vals.alpha_y <= n_vals.alpha_y;
+                            vals.beta_y  <= n_vals.beta_y;
+                        end
+
+                        if(vals.beta_z == 0) begin
+                            vals.alpha_z <= n_vals.alpha_z;
+                            vals.beta_z  <= n_vals.beta_z;
+                        end
+
+                        o_ready <= 1;
+                    end
+                endcase
+
+
+                // //update x dimension
+                // if(c_x) begin
+                //     gamma_x      <= n_gamma_x;
+                //     vals.alpha_x <= n_vals.alpha_x;
+                //     vals.beta_x  <= n_vals.beta_x;
+                // end
+                // else begin
+                //     gamma_x      <= gamma_x;
+                //     vals.alpha_x <= vals.alpha_x;
+                //     vals.beta_x  <= vals.beta_x;
+                // end
+
+                // //update y dimension
+                // if(c_y) begin
+                //     gamma_y      <= n_gamma_y;
+                //     vals.alpha_y <= n_vals.alpha_y;
+                //     vals.beta_y  <= n_vals.beta_y;
+                // end
+                // else begin
+                //     gamma_y      <= gamma_y;
+                //     vals.alpha_y <= vals.alpha_y;
+                //     vals.beta_y  <= vals.beta_y;
+                // end
+
+                // //update z dimension
+                // if(c_z) begin
+                //     gamma_z      <= n_gamma_z;
+                //     vals.alpha_z <= n_vals.alpha_z;
+                //     vals.beta_z  <= n_vals.beta_z;
+                // end
+                // else begin
+                //     gamma_z      <= gamma_z;
+                //     vals.alpha_z <= vals.alpha_z;
+                //     vals.beta_z  <= vals.beta_z;
+                // end
             end
 
             ENDING: begin
+                //hold values for an extra cycle
                 gamma_x <= gamma_x;
                 gamma_y <= gamma_y;
                 gamma_z <= gamma_z;

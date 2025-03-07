@@ -73,7 +73,7 @@ module Multiplication_Core#(
     genvar mul;
     generate 
 
-        // create buffer segments
+        // create multiplier units
         for (mul=0; mul < MULT_COUNT; mul++) begin : mul_gen
 
             Multiplier_Unit#(
@@ -110,6 +110,8 @@ module Multiplication_Core#(
     endgenerate
 
     always_comb begin
+
+        //check if all multipliers have finished
         o_end = 1;
         for(int idx = 0; idx < MULT_COUNT; idx++) begin
             o_end &= end_sigs[idx];
@@ -117,6 +119,8 @@ module Multiplication_Core#(
     end
 
     always_ff @ ( posedge i_clk ) begin
+
+        //on start: read in matrix dimensions
         if(i_start) begin
             dim_M <= i_M;
             dim_N <= i_N;

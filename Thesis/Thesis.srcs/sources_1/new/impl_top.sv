@@ -36,20 +36,19 @@ module impl_top #(
     output logic [15:0] LED
 );
     import data_packet_pkg::*;
-    // assign LED[0] = ld;
+    // assign LED[0] = 0;
     // assign LED[1] = top_ready;
     // assign LED[2] = out_buff_full;
 
     logic [31:0] cnt = 0;
-    logic [31:0] uart_val;
-    logic top_ready;
-    logic ld = 0;
+    //logic [31:0] uart_val;
+    //logic top_ready;
     logic [31:0] output_topval;
     logic uart_read_in;
     logic out_buff_empty, out_buff_full;
 
-    assign top_ready = ~out_buff_empty;
-    assign uart_val = 65+output_topval;
+    //assign top_ready = ~out_buff_empty;
+    //assign uart_val = 65+output_topval;
 
 
     logic [31:0] data [32] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
@@ -65,10 +64,8 @@ module impl_top #(
     logic        adder_push [ADD_COUNT];
     logic        acc_step;
 
-    logic clk    = 0;
     logic active = 1;
     logic prep   = 0;
-    logic idx_rdy;
     logic acc_stall = 0;
     logic acc_done;
     logic clear;
@@ -214,13 +211,11 @@ module impl_top #(
 
         if(cnt <= 100000000) begin
             cnt <= cnt + 1;
-            ld <= ld;
             active <= prep&i_btn;
         end
         else begin 
             prep <= i_btn;
             cnt <= 0;
-            ld <= ~ ld;
         end
 
     end

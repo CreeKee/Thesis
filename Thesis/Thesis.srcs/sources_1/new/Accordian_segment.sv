@@ -85,7 +85,6 @@ module Accordian_Segment #(
 
         end
     end
-    //assign curr = i_curr;
 
     always_ff @( posedge i_clk ) begin : SeqBlock
 
@@ -102,18 +101,18 @@ module Accordian_Segment #(
 
         else begin 
             
-
+            //delay to let curr value propogate
             if(update == 2'b01) begin
-                curr   <= i_curr;
+                curr <= i_curr;
             end
             
             if(i_pull) begin
                 update <= 2'b11;
                 
-                
                 //pull next value from multipliers
-                if(curr <= SEGMENT_INDEX) begin
-                    o_val <= i_mults[index];
+                if(SEGMENT_INDEX >= curr ) begin
+                    if(SEGMENT_INDEX < curr+MULT_COUNT) o_val <= i_mults[index];
+                    else o_val <= {0,0,0};
                 end
 
                 else begin

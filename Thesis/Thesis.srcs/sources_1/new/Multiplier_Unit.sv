@@ -64,8 +64,7 @@ module Multiplier_Unit#(
     logic [31:0] n0_x;
     logic [31:0] n0_y, n1_y, n2_y;
     logic [31:0] n0_z, n1_z, n2_z;
-    //logic [31:0] alpha_x=4, alpha_y=4, alpha_z=4;
-    //logic [31:0] beta_x=1, beta_y=1, beta_z=1;
+
 
     logic [31:0] Lr, LcRr, Rc;
 
@@ -80,7 +79,7 @@ module Multiplier_Unit#(
     logic next_tail, next_head, curr_head, curr_tail;
     logic r_ready, get_mul_res = 0;
     data_packet next_result;
-    logic m_pull, mul_stale = 1, res_stale = 1;
+    logic m_pull, mul_stale = 1, res_stale = 1, m_pend = 0;
 
     assign cont = (i_pull == 1'b1) | (o_res_ready == 0);
 
@@ -93,7 +92,7 @@ module Multiplier_Unit#(
     assign n2_z = n1_z - i_N;
 
     assign n0_y = y    + i_idx.beta_y;
-    assign n1_y = y - i_idx.alpha_y;
+    assign n1_y = y    - i_idx.alpha_y;
     assign n2_y = n1_y - 1;
 
     assign n0_x = x    + i_idx.beta_x;
@@ -125,13 +124,14 @@ module Multiplier_Unit#(
             STARTING: begin
                 m_pull = (dim == WAIT & !o_L_request & !o_R_request);
 
-                if(dim == WAIT && !o_L_request && !o_R_request) next_state = ACTIVE;
+                if(x >= i_M & dim == XDIM) next_state = ENDING;
+                else if(dim == WAIT & !o_L_request & !o_R_request) next_state = ACTIVE;
                 else next_state = STARTING;
             end
 
             ACTIVE: begin
                 m_pull = (!o_L_request & !o_R_request & mul_stale);
-                if(n0_x > i_M & dim == XDIM) begin
+                if(x >= i_M & dim == XDIM) begin
                     next_state = ENDING;
                 end
                 else next_state = ACTIVE;
@@ -155,9 +155,11 @@ module Multiplier_Unit#(
         
         o_result <= o_result;
         
+        //God have mercy on he who dares to peruse the following code
         case(curr_state)
 
             IDLE: begin
+                //reset values
                 res_check <= 0;
                 get_mul_res <= 0;
 
@@ -166,6 +168,9 @@ module Multiplier_Unit#(
 
                 dim <= ZDIM;      
                 z <= MULTIPLIER_INDEX;
+
+                o_L_request <= 0;
+                o_R_request <= 0;
 
             end
 
@@ -184,59 +189,66 @@ module Multiplier_Unit#(
                 
                 case(dim)
 
+                    //update Z-dimension
                     ZDIM: begin
-                        dim <= YDIM;
-                        if(MULTIPLIER_INDEX >= i_N) begin
-                            if((MULTIPLIER_INDEX - i_idx.alpha_z) >= i_N) begin
-                                z <= (MULTIPLIER_INDEX - i_idx.alpha_z) - i_N;
-                                y <= n0_y + 1;
-                            end
-                            else begin
-                                z <= (MULTIPLIER_INDEX - i_idx.alpha_z);
-                                y <= n0_y;
-                            end
+                        
+
+                        //initial Z-value == this units ID number
+                        if(z >= i_N) begin
+                            
+                            //set Z-dimension
+                            z <= z - i_N;
+                            y <= y+1;
+
                         end
                         else begin
+                            dim <= YDIM;
                             z <= z;
                             y <= y;
                         end
                     end
 
+                    //update Y-dimension
                     YDIM: begin
-                        dim <= XDIM;
+
+                        //break up logic to reduce prop-delay
                         c_z <= z;
+
+                        //check if Y-dimension has exceeded bounds
                         if(y >= i_P) begin
-                            if(n1_y >= i_P) begin
-                                y <= n2_y;
-                                x <= n0_x + 1;
-                            end
-                            else begin
-                                y <= n1_y;
-                                x <= n0_x;
-                            end
+
+                            y <= y-i_P;
+                            x <= x+1;
+
                         end
                         else begin
+                            dim <= XDIM;
                             y <= y;
                             x <= x;
                         end
                     end
 
+                    //update X-dimension
                     XDIM: begin
                         dim <= WAIT;
                         
+                        //set left and right memory addresses
                         R_dex <= next_R_dex;
                         L_dex <= next_L_dex;
 
-                        if(n0_x >= i_M) begin
+                        //check if X-dimension
+                        if(x >= i_M) begin
                             //go to idle
                         end
                         else begin
                             x <= x;
-                            c_z <= z;
+
+                            //dispatch memory requests
                             o_L_request <= 1;
                             o_R_request <= 1;
                         end
 
+                        //determine if the next multiplication value is the head/tail of an accumulation chain
                         if(z == 0) begin
                             next_head <= 1;
                             next_tail <= 0;
@@ -250,9 +262,14 @@ module Multiplier_Unit#(
                     end
 
                     WAIT: begin
+
+                        //wait until left and right values have been read in from memory
                         if(!o_L_request & !o_R_request) begin
-                            curr_L_val <= L_val;
-                            curr_R_val <= R_val;
+
+                            //move buffered values to current values
+                            L_val <= curr_L_val;
+                            R_val <= curr_R_val;
+                            m_pend <= 1;
 
                             curr_head <= next_head;
                             curr_tail <= next_tail;
@@ -268,23 +285,34 @@ module Multiplier_Unit#(
 
             ACTIVE: begin
                 
+                //wait for current value to be requested by acc buff
                 if(o_res_ready & i_pull) begin 
+                    
+                    //mark current value as stale
                     res_stale <= 1;
                     o_res_ready <= 0;
                 end
 
-                if(m_pull) mul_stale <= 0;
+                //signal that a multiplication result is ready
+                if(m_pull) begin 
+                    mul_stale <= 0;
+                    m_pend <= 0;
+                end
 
+                //check if everything is ready
                 if(r_ready & res_stale & !mul_stale) begin
 
+                    //signal that output is ready
                     o_res_ready <= 1;
 
+                    //update current output
                     o_result.val <= M_res;
 
                     o_result.is_head <= curr_head;
                     o_result.is_tail <= curr_tail;
                     o_result.is_end  <= 0;
 
+                    //mark result as fresh, and multiplication result as stale
                     res_stale <= 0;
                     mul_stale <= 1;
                 end
@@ -295,7 +323,7 @@ module Multiplier_Unit#(
                     R_val <= i_R_data[R_dex[$clog2(PAGE_SIZE)-1:0]];
                 end
                 
-                if(i_L_ready && o_L_request) begin
+                if(i_L_ready & o_L_request) begin
                     o_L_request <= 0;
                     L_val <= i_L_data[L_dex[$clog2(PAGE_SIZE)-1:0]];
                 end
@@ -349,8 +377,6 @@ module Multiplier_Unit#(
                             x   <= x;
                             
                             //start multiplication operation
-                            
-
                             o_L_request <= 1;
                             o_R_request <= 1;
 
@@ -373,10 +399,15 @@ module Multiplier_Unit#(
 
                     WAIT: begin
 
+                        //wait until left and right values have been read in from memory and multiplication result is old
                         if(!o_L_request & !o_R_request & mul_stale) begin
 
                             curr_head <= next_head;
                             curr_tail <= next_tail;
+
+                            curr_L_val <= L_val;
+                            curr_R_val <= R_val;
+                            m_pend <= 1;
 
                             dim <= ZDIM;
                         end
@@ -390,7 +421,7 @@ module Multiplier_Unit#(
             ENDING: begin
                 
 
-                if(res_stale & mul_stale) begin
+                if(res_stale & mul_stale & ! m_pend) begin
                     o_result.val <= 0;
                     o_result.is_head <= 0;
                     o_result.is_tail <= 0;
@@ -417,6 +448,7 @@ module Multiplier_Unit#(
 
                         res_stale <= 0;
                         mul_stale <= 1;
+                        m_pend <= 0;
                     end
                 end
                 

@@ -50,6 +50,8 @@ module output_memory_controller#(
     logic [1:0] write_timer = 0;
     logic       do_write;
 
+    
+
     assign do_write = write_timer != 0;
 
     assign next_fill = fill+push_sum;

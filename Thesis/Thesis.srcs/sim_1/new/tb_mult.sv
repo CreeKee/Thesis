@@ -30,8 +30,8 @@ z = N
 import data_packet_pkg::*;
 
 module tb_mult#(
-    parameter PAGE_SIZE = 4,
-    parameter SEGMENTS = 4,
+    parameter PAGE_SIZE = 32,
+    parameter SEGMENTS = 32,
     parameter MULT_COUNT = 4,
     parameter ADD_COUNT = SEGMENTS/2)(
 
@@ -105,9 +105,9 @@ module tb_mult#(
         .i_clk(clk),
         .i_start(active),
         .i_done(acc_done),
-        .i_M(7),
-        .i_N(9),
-        .i_P(9),
+        .i_M(52),
+        .i_N(33),
+        .i_P(47),
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
 
@@ -157,6 +157,9 @@ module tb_mult#(
         .i_read_addr(0)
     );
 
+
+
+    
     // Output_Buffer#(
     // .ADD_COUNT(ADD_COUNT),
     // .BUFF_SIZE(32)
@@ -179,36 +182,22 @@ module tb_mult#(
     //     .o_read_in(uart_read_in)
     // );
 
-    always_comb begin
-        case(curr_state)
-            IDLE: begin
-                clear = 1;
-                if(active) next_state = ACTIVE;
-                else next_state = IDLE;
-            end
+    int file = $fopen("./matmul_output.txt", "w");
 
-            ACTIVE: begin
-                clear = 0;
-                if(acc_done) begin
-                    next_state = IDLE;
-                end
-                else next_state = ACTIVE;
-            end
-
-        endcase
-    end
-
+    logic tick;
     always_ff @ ( posedge clk ) begin
+        if(acc_step) begin
+            for(int i = 0; i < ADD_COUNT; i++) begin
+                if(adder_push[i]) $fdisplay(file, "%0d ", adds[i]);
+            end
+        end
 
-        curr_state <= next_state;
+        if(acc_done) begin
+            $fclose(file); 
 
-        case(curr_state) 
-
-
-        endcase
-
+            $finish;
+        end
     end
-
 
     initial begin
         clk <= 0;
@@ -230,7 +219,59 @@ module tb_mult#(
         //#2
         //pulls <= {0,0};
 
-        #900
-        $finish;
+
     end
+
+    //interview_prep prep(.i_clk(clk), .i_rst(0));
+endmodule
+
+
+module interview_prep(
+    input logic i_clk,
+    input logic i_rst,
+    output logic [2:0] o_count = 0
+);
+
+    typedef enum bit[1:0] {UP_COUNT, DOWN_COUNT, REPEAT_DOWN} state;
+
+    state curr_state, next_state;
+
+    always_comb begin
+        case(curr_state)
+            UP_COUNT: if(o_count+1 == 7) next_state = DOWN_COUNT;
+
+            DOWN_COUNT: begin
+                if(o_count-1 == 0) next_state = UP_COUNT;
+                else if(o_count-1 == 4) next_state = REPEAT_DOWN;
+            end
+
+            REPEAT_DOWN: next_state = DOWN_COUNT;
+
+            default: next_state = UP_COUNT;
+        endcase
+    end
+
+    always_ff @ ( posedge i_clk ) begin
+
+        if(i_rst) begin 
+            o_count <= 3'd0;
+            curr_state <= UP_COUNT;
+        end
+        else begin
+            curr_state <= next_state;
+
+            case(curr_state)
+
+            UP_COUNT: o_count <= o_count + 1;
+
+            DOWN_COUNT: o_count <= o_count - 1;
+
+            REPEAT_DOWN: o_count <= o_count;
+
+            default: o_count <= 0;
+
+            endcase
+        end
+    end
+    
 endmodule
