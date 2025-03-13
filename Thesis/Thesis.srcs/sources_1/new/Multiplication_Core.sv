@@ -20,12 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 import data_packet_pkg::*;
 
-`define M_IDX (idx+m_curr)%MULT_COUNT
-
 module Multiplication_Core#(
     parameter PAGE_SIZE,
-    parameter MULT_COUNT,
-    parameter SEG_COUNT
+    parameter MULT_COUNT
     )(
     input logic i_clk,
     input logic i_start,
@@ -40,9 +37,7 @@ module Multiplication_Core#(
     input logic [PAGE_SIZE-1:0][31:0] i_L_data,
     input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 
-
-    input logic [31:0] i_curr,
-    input logic        i_step,
+    input logic        i_pulls  [MULT_COUNT],
 
     output logic [31:0] o_L_mem_addrs [MULT_COUNT],
     output logic [31:0] o_R_mem_addrs [MULT_COUNT],
@@ -51,18 +46,16 @@ module Multiplication_Core#(
     output logic o_R_request [MULT_COUNT],
 
     output logic       o_dready [MULT_COUNT],
-    output data_packet o_mults   [MULT_COUNT]
+    output data_packet o_mults   [MULT_COUNT],
+    output logic o_end
     );
 
     logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
     mult_pack indicies;
-
-    logic m_pull[MULT_COUNT];
-    logic [31:0] pull_sum, m_curr = 0, diff;
-
-    assign diff = SEG_COUNT - i_curr;
     
+    logic end_sigs[MULT_COUNT];
+
     Indexer#(
     .MULT_COUNT(MULT_COUNT)
     ) idxr(
@@ -97,7 +90,7 @@ module Multiplication_Core#(
                 .i_idx(indicies),
                 .i_L_ready(i_L_ready[mul]),
                 .i_R_ready(i_R_ready[mul]),
-                .i_pull(m_pull[mul]),
+                .i_pull(i_pulls[mul]),
 
                 .data(data),
                 .i_L_data(i_L_data),
@@ -110,10 +103,20 @@ module Multiplication_Core#(
                 .o_R_request(o_R_request[mul]),
 
                 .o_result(o_mults[mul]),
-                .o_res_ready(o_dready[mul])
-                );
+                .o_res_ready(o_dready[mul]),
+                .o_end(end_sigs[mul])
+            );
         end
     endgenerate
+
+    always_comb begin
+
+        //check if all multipliers have finished
+        o_end = 1;
+        for(int idx = 0; idx < MULT_COUNT; idx++) begin
+            o_end &= end_sigs[idx];
+        end
+    end
 
     always_ff @ ( posedge i_clk ) begin
 
@@ -128,33 +131,6 @@ module Multiplication_Core#(
             dim_N <= dim_N;
             dim_P <= dim_P;
         end
-
-        if(i_step) m_curr <= m_curr+pull_sum;
-
-    end
-
-    always_comb begin
-        
-        for (int idx = 0; idx < MULT_COUNT; idx++) begin
-            m_pull[idx] = 0;
-        end
-
-        pull_sum = 0;
-        if(i_step) begin
-
-            for (int idx = 0; (idx < MULT_COUNT) & (idx < diff); idx++) begin
-
-                //signal multipliers that their value has been pulled
-
-                if(o_dready[`M_IDX]) begin 
-                    m_pull[`M_IDX] = 1;
-                    pull_sum += 1;
-                end
-                else break;
-                
-            end
-
-        end 
     end
 
 

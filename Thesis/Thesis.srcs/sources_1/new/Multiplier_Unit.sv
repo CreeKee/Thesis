@@ -46,7 +46,9 @@ module Multiplier_Unit#(
     output logic        o_R_request,
     output logic        o_L_request,
     output data_packet o_result = {0,0,0},
-    output logic o_res_ready = 0
+    output logic o_res_ready = 0,
+    output logic o_end
+
     );
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_t;
@@ -91,7 +93,7 @@ module Multiplier_Unit#(
 
     assign n0_y = y    + i_idx.beta_y;
     assign n1_y = y    - i_idx.alpha_y;
-    assign n2_y = n1_y - i_P;
+    assign n2_y = n1_y - 1;
 
     assign n0_x = x    + i_idx.beta_x;
 
@@ -247,11 +249,16 @@ module Multiplier_Unit#(
                         end
 
                         //determine if the next multiplication value is the head/tail of an accumulation chain
-                        if(z == 0) next_head <= 1;
-                        else       next_head <= 0;
+                        if(z == 0) begin
+                            next_head <= 1;
+                            next_tail <= 0;
+                        end
+                        else begin 
+                            next_head <= 0;
 
-                        if(z == i_N-1) next_tail <= 1;
-                        else           next_tail <= 0;
+                            if(z == i_N-1) next_tail <= 1;
+                            else           next_tail <= 0;
+                        end
                     end
 
                     WAIT: begin
@@ -260,6 +267,8 @@ module Multiplier_Unit#(
                         if(!o_L_request & !o_R_request) begin
 
                             //move buffered values to current values
+                            L_val <= curr_L_val;
+                            R_val <= curr_R_val;
                             m_pend <= 1;
 
                             curr_head <= next_head;
@@ -287,7 +296,7 @@ module Multiplier_Unit#(
                 //signal that a multiplication result is ready
                 if(m_pull) begin 
                     mul_stale <= 0;
-                    
+                    m_pend <= 0;
                 end
 
                 //check if everything is ready
@@ -306,7 +315,6 @@ module Multiplier_Unit#(
                     //mark result as fresh, and multiplication result as stale
                     res_stale <= 0;
                     mul_stale <= 1;
-                    m_pend <= 0;
                 end
 
                 //wait for input values
@@ -377,11 +385,16 @@ module Multiplier_Unit#(
                         end    
 
                         //determine whether next value is head or tail of accumulation chain
-                        if(z == 0) next_head <= 1;
-                        else       next_head <= 0;
+                        if(z == 0) begin
+                            next_head <= 1;
+                            next_tail <= 0;
+                        end
+                        else begin 
+                            next_head <= 0;
 
-                        if(z == i_N-1) next_tail <= 1;
-                        else           next_tail <= 0;
+                            if(z == i_N-1) next_tail <= 1;
+                            else           next_tail <= 0;
+                        end
                     end
 
                     WAIT: begin
@@ -392,6 +405,8 @@ module Multiplier_Unit#(
                             curr_head <= next_head;
                             curr_tail <= next_tail;
 
+                            curr_L_val <= L_val;
+                            curr_R_val <= R_val;
                             m_pend <= 1;
 
                             dim <= ZDIM;
@@ -406,7 +421,7 @@ module Multiplier_Unit#(
             ENDING: begin
                 
 
-                if(res_stale & mul_stale & !m_pend) begin
+                if(res_stale & mul_stale & ! m_pend) begin
                     o_result.val <= 0;
                     o_result.is_head <= 0;
                     o_result.is_tail <= 0;

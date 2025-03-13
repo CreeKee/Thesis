@@ -52,22 +52,20 @@ module Accordian_Segment #(
     );
 
     logic [$clog2(MULT_COUNT)-1:0] index;
-    logic [$clog2(ADD_COUNT):0]    add_dex, add_dex_scan;
+    logic [$clog2(ADD_COUNT):0]    add_dex;
     logic [$clog2(SEG_COUNT):0]    seg_dex;
     logic [31:0] curr = 0;
-    logic [31:0] spacers, valid_adds;
-    logic [2:0] update = 0;
+    logic [1:0] update = 0;
     
     assign index   =  SEGMENT_INDEX  +  i_op_cnt-curr;
-    assign add_dex =  SEGMENT_INDEX  - (spacers >> 1) - (spacers & 1) + i_pops;
-    assign seg_dex =  (add_dex << 1) + (spacers &  1);
+    assign add_dex =  SEGMENT_INDEX  - (i_spacers >> 1) - (i_spacers & 1) + i_pops;
+    assign seg_dex =  (add_dex << 1) + (i_spacers &  1);
 
     
     always_comb begin : ComBlock
-        o_pulled = 0;
 
         //determine if input is ready
-        if(curr <= SEGMENT_INDEX & !i_m_rdy[index]) o_stall = 1;
+        if(curr <= SEGMENT_INDEX && i_m_rdy[index] == 0) o_stall = 1;
         else o_stall = 0;
 
         //handle stalling and clearing
@@ -78,38 +76,18 @@ module Accordian_Segment #(
 
         else begin
             //prep for pulling in value
-            // if(curr <= SEGMENT_INDEX & i_m_rdy[index]) o_pulled = 1;
-            // else o_pulled = 0;
-            
+            if(curr <= SEGMENT_INDEX) o_pulled = 1;
+            else o_pulled = 0;
 
             //determine spacing
-            // if(curr > SEGMENT_INDEX & i_override[add_dex]) o_spaced = i_spacers + 1;
-            // else o_spaced = i_spacers;
-
-            spacers = 0;
-            valid_adds = 0;
-            add_dex_scan = 0;
-            if(curr > SEGMENT_INDEX) begin
-                for(int idx = 0; idx < SEGMENT_INDEX; idx++) begin
-                    add_dex_scan = idx  - (spacers >> 1) - (spacers & 1) + i_pops;
-                    if(i_override[add_dex_scan]) spacers = spacers + 1;
-                end
-            end
-
-            o_spaced = spacers;
+            if(curr > SEGMENT_INDEX && i_override[add_dex]) o_spaced = i_spacers + 1;
+            else o_spaced = i_spacers;
 
         end
     end
 
     always_ff @( posedge i_clk ) begin : SeqBlock
 
-        //prep for pulling in value
-        // if(curr <= SEGMENT_INDEX & i_m_rdy[index]) o_pulled <= 1;
-        // else o_pulled <= 0;
-
-        //determine if input is ready
-        // if(curr <= SEGMENT_INDEX & !i_m_rdy[index]) o_stall <= 1;
-        // else o_stall <= 0;
 
         //clear value
         if(i_clear) begin
@@ -123,39 +101,32 @@ module Accordian_Segment #(
 
         else begin 
             
-            
             //delay to let curr value propogate
-            if(update == 3'b001) begin
+            if(update == 2'b01) begin
                 curr <= i_curr;
             end
             
             if(i_pull) begin
-
+                update <= 2'b11;
                 
+                //pull next value from multipliers
+                if(SEGMENT_INDEX >= curr ) begin
+                    if(SEGMENT_INDEX < curr+MULT_COUNT) o_val <= i_mults[index];
+                    else o_val <= {0,0,0};
+                end
 
-                update <= 3'b111;
-                
+                else begin
 
-                if(!o_stall) begin
-                    //pull next value from multipliers
-                    if(curr <= SEGMENT_INDEX ) begin
-                        if(SEGMENT_INDEX < curr+MULT_COUNT) o_val <= i_mults[index];
-                        else o_val <= {0,0,0};
+                    //check if desired adder is skipping
+                    if(i_override[add_dex]) begin
+
+                        //pull in value from a later segment
+                        o_val <= i_seg[seg_dex];
                     end
-
                     else begin
 
-                        //check if desired adder is skipping
-                        if(i_override[add_dex]) begin
-
-                            //pull in value from a later segment
-                            o_val <= i_seg[seg_dex];
-                        end
-                        else begin
-
-                            //pull in value from adder
-                            o_val <= i_add[add_dex];
-                        end
+                        //pull in value from adder
+                        o_val <= i_add[add_dex];
                     end
                 end
             end

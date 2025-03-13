@@ -31,8 +31,8 @@ import data_packet_pkg::*;
 
 module tb_mult#(
     parameter PAGE_SIZE = 32,
-    parameter SEGMENTS = 64,
-    parameter MULT_COUNT = 32,
+    parameter SEGMENTS = 32,
+    parameter MULT_COUNT = 4,
     parameter ADD_COUNT = SEGMENTS/2)(
 
     );
@@ -44,6 +44,7 @@ module tb_mult#(
 
     data_packet  mult_res [MULT_COUNT];
     logic        mult_rdy [MULT_COUNT];
+    logic        pulls    [MULT_COUNT];
 
     logic [31:0] adds       [ADD_COUNT];
     logic        adder_push [ADD_COUNT];
@@ -54,7 +55,7 @@ module tb_mult#(
     logic idx_rdy;
     logic acc_stall = 1;
     logic acc_done;
-    logic clear = 0;
+    logic clear;
     
     mult_pack indicies;
 
@@ -74,8 +75,6 @@ module tb_mult#(
 
     logic [PAGE_SIZE-1:0][31:0] mem_bus_a;
     logic [PAGE_SIZE-1:0][31:0] mem_bus_b;
-
-    logic [31:0] curr;
 
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
@@ -101,15 +100,14 @@ module tb_mult#(
 
     Multiplication_Core#(
     .PAGE_SIZE(PAGE_SIZE),
-    .MULT_COUNT(MULT_COUNT),
-    .SEG_COUNT(SEGMENTS)
+    .MULT_COUNT(MULT_COUNT)
     ) mult_core(
         .i_clk(clk),
         .i_start(active),
         .i_done(acc_done),
-        .i_M(7),
-        .i_N(3),
-        .i_P(5),
+        .i_M(52),
+        .i_N(33),
+        .i_P(47),
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
 
@@ -117,8 +115,7 @@ module tb_mult#(
         .i_L_data(mem_bus_a),
         .i_R_data(mem_bus_b),
 
-        .i_curr(curr),
-        .i_step(acc_step),
+        .i_pulls(pulls),
 
         .o_L_mem_addrs(L_mem_addrs),
         .o_R_mem_addrs(R_mem_addrs),
@@ -140,7 +137,7 @@ module tb_mult#(
         .i_clear(clear),
 
         .i_m_rdy(mult_rdy),
-        .o_curr(curr),
+        .o_m_pull(pulls),
 
         .o_adds(adds),
         .o_pushs(adder_push),
@@ -216,6 +213,12 @@ module tb_mult#(
 
         #10
         active <= 0;
+
+
+
+        //#2
+        //pulls <= {0,0};
+
 
     end
 
