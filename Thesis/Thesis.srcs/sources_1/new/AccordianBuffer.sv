@@ -36,7 +36,7 @@ module Accordian_Buffer #(
     input logic i_clear,
     input logic i_end,
 
-    output logic o_m_pull [MULTIPLIERS],
+    output logic [31:0] o_curr,
 
     output logic [31:0] o_adds [ADD_COUNT],
     output logic        o_pushs [ADD_COUNT],
@@ -44,7 +44,7 @@ module Accordian_Buffer #(
     output logic o_done
     );
 
-    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum, pop_sum = 0, pop_sum_p, space_sum = 0, space_sum_p;
+    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum, pull_sum_r = 0, pop_sum = 0, pop_sum_p, space_sum = 0, space_sum_p;
     data_packet adds   [ADD_COUNT];
     logic       spaces [ADD_COUNT];
 
@@ -54,8 +54,10 @@ module Accordian_Buffer #(
     logic [31:0] spaced_values [SEGMENTS];
     logic        do_stall;
     logic        seg_stall;
+
+    logic m_rdy [MULTIPLIERS];
     
-    logic add_clk;
+    logic add_clk, delay = 0;
     
     logic [$clog2(MULTIPLIERS)-1:0] op_count = 0;
     logic [$clog2(MULTIPLIERS)-1:0] m_p_dex_reg = 0;
@@ -66,6 +68,8 @@ module Accordian_Buffer #(
     assign do_step = add_clk&(~do_stall);
     assign spec_curr = (curr >> 1) - pop_sum + (space_sum) + (curr&1);
     assign o_done = seg_vals[0].is_end;
+    assign o_curr = curr;
+
     //generate components
     genvar seg;
     generate 
@@ -86,7 +90,7 @@ module Accordian_Buffer #(
                     .i_clear(i_clear),
                     .i_stall(i_stall),
                     .i_override(spaces),
-                    .i_m_rdy(i_m_rdy),
+                    .i_m_rdy(m_rdy),
 
                     .i_mults(i_mults),
                     .i_add(adds),
@@ -117,7 +121,7 @@ module Accordian_Buffer #(
                     .i_clear(i_clear),
                     .i_stall(i_stall),
                     .i_override(spaces),
-                    .i_m_rdy(i_m_rdy),
+                    .i_m_rdy(m_rdy),
 
                     .i_mults(i_mults),
                     .i_add(adds),
@@ -164,7 +168,7 @@ module Accordian_Buffer #(
 
         mult_sum = 0;
         for(int idx = 0; idx < MULTIPLIERS; idx++) begin
-            if(i_m_rdy[idx]) mult_sum += 1;
+            if(m_rdy[idx]) mult_sum += 1;
         end
 
         //calculate how many new values have been pulled into the buffer
@@ -172,7 +176,10 @@ module Accordian_Buffer #(
         pull_sum = 0;
         seg_stall = 0;
         for (int idx = 0; idx < SEGMENTS; idx++) begin
-            if(pull_sum < mult_sum) pull_sum += pulls[idx];
+            if(pull_sum < mult_sum & pulls[idx]) begin
+                if(!seg_stalls[idx]) pull_sum += 1;
+                else break;
+            end
             seg_stall |= seg_stalls[idx];
         end
 
@@ -184,12 +191,13 @@ module Accordian_Buffer #(
         for (int idx = 0; idx < ADD_COUNT; idx++) begin
             pop_sum_p   = pop_sum_p   + o_pushs[idx];
             space_sum_p = space_sum_p + spaces[idx];
-        end
-
-        
+        end 
     end
 
     always_ff @ (posedge i_clk) begin
+
+        m_rdy <= i_m_rdy;
+
         //reset registers
         if(i_clear) begin
             m_p_dex_reg <= 0;
@@ -212,30 +220,49 @@ module Accordian_Buffer #(
 
             if(do_step) begin
 
+                //wait for adder values to buffer
+                delay <= 2'b01;
+
                 //update multiplication index
-                m_p_dex_reg <= m_p_dex_reg+pull_sum;
-                for (int idx = 0; idx < MULTIPLIERS; idx++) begin
+                pull_sum_r <= pull_sum;
+                
 
-                    //signal multipliers that their value has been pulled
-                    if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 1;
-                    else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 0;
-                end
-
-                //update current fill of the buffer
-                curr <= n_curr + pull_sum;
-
-
-                op_count <= op_count + pull_sum;
+                
             end
             else begin
-                //hold values, wait for addition step
-                m_p_dex_reg <= m_p_dex_reg;
-                for (int idx = 0; idx < MULTIPLIERS; idx++) begin
-                    o_m_pull[idx] <= 0;
-                end
-                curr <= curr;
 
-                op_count <= op_count;
+                if(delay != 0) begin
+
+                    // m_p_dex_reg <= m_p_dex_reg+pull_sum_r;
+                    // for (int idx = 0; idx < MULTIPLIERS; idx++) begin
+
+                    //     //signal multipliers that their value has been pulled
+                    //     if(idx < pull_sum_r) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 1;
+                    //     else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 0;
+                    // end
+
+                    delay <= delay >> 1;
+                    
+                    
+                    
+
+                    //update current fill of the buffer
+                    curr <= n_curr + pull_sum;
+
+
+                    op_count <= op_count + pull_sum;
+                end
+
+                else begin
+                    //hold values, wait for addition step
+                    // m_p_dex_reg <= m_p_dex_reg;
+                    // for (int idx = 0; idx < MULTIPLIERS; idx++) begin
+                    //     o_m_pull[idx] <= 0;
+                    // end
+                    curr <= curr;
+
+                    op_count <= op_count;
+                end
             end
             
         end
