@@ -46,11 +46,14 @@ module Simple_Adder(
 
     // assign o_pop = o_res.is_head & o_res.is_tail;
 
-    assign o_acc_fin     = i_A.is_head & i_B.is_tail;
-    assign o_mismatch    = i_A.is_tail;
+    //assign o_acc_fin     = i_A.is_head & i_B.is_tail;
+    //assign o_mismatch    = i_A.is_tail;
 
 
     always_ff @ ( posedge i_clk ) begin
+
+        o_acc_fin <= i_A.is_head & i_B.is_tail;
+        o_mismatch    <= i_A.is_tail;
 
         if(i_count == 3) begin
 
@@ -68,6 +71,7 @@ module Simple_Adder(
 
             A_val <= i_A;
             B_val <= i_B;
+            
         end
         else done <= 0;
         

@@ -36,6 +36,8 @@ module Accordian_Buffer #(
     input logic i_clear,
     input logic i_end,
 
+    output logic [31:0] o_curr,
+
     output logic o_m_pull [MULTIPLIERS],
 
     output logic [31:0] o_adds [ADD_COUNT],
@@ -66,6 +68,7 @@ module Accordian_Buffer #(
     assign do_step = add_clk&(~do_stall);
     assign spec_curr = (curr >> 1) - pop_sum + (space_sum) + (curr&1);
     assign o_done = seg_vals[0].is_end;
+    assign o_curr = n_curr;
     //generate components
     genvar seg;
     generate 
@@ -237,8 +240,6 @@ module Accordian_Buffer #(
 
                 op_count <= op_count;
             end
-            
         end
     end
-
 endmodule

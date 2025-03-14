@@ -24,9 +24,9 @@
 
 
 module impl_top #(
-    parameter PAGE_SIZE = 4,
-    parameter SEGMENTS = 4,
-    parameter MULT_COUNT = 4,
+    parameter PAGE_SIZE = 32,
+    parameter SEGMENTS = 32,
+    parameter MULT_COUNT = 32,
     parameter ADD_COUNT = SEGMENTS/2
     )(
     input logic i_clk,
@@ -82,6 +82,8 @@ module impl_top #(
     logic [PAGE_SIZE-1:0][31:0] mem_bus_a;
     logic [PAGE_SIZE-1:0][31:0] mem_bus_b;
 
+    logic [31:0] curr;
+
     mult_pack indicies;
 
     mem_controller#(
@@ -105,7 +107,8 @@ module impl_top #(
 
     Multiplication_Core#(
     .PAGE_SIZE(PAGE_SIZE),
-    .MULT_COUNT(MULT_COUNT)
+    .MULT_COUNT(MULT_COUNT),
+    .SEG_COUNT(SEGMENTS)
     ) mult_core(
         .i_clk(i_clk),
         .i_start(active),
@@ -120,7 +123,8 @@ module impl_top #(
         .i_L_data(mem_bus_a),
         .i_R_data(mem_bus_b),
 
-        .i_pulls(pulls),
+        .i_curr(curr),
+        .i_step(acc_step),
 
         .o_L_mem_addrs(L_mem_addrs),
         .o_R_mem_addrs(R_mem_addrs),
@@ -142,7 +146,7 @@ module impl_top #(
         .i_clear(clear),
 
         .i_m_rdy(mult_rdy),
-        .o_m_pull(pulls),
+        .o_curr(curr),
 
         .o_adds(adds),
         .o_pushs(adder_push),
@@ -151,7 +155,6 @@ module impl_top #(
     );
 
     output_memory_controller#(
-    .PAGE_SIZE(PAGE_SIZE),
     .ADD_COUNT(ADD_COUNT)    
     ) output_controller(
         .i_clk(i_clk),
@@ -160,21 +163,8 @@ module impl_top #(
         .i_push(adder_push),
         .i_step(acc_step),
 
-        .i_read_addr(sw),
-        .read_data(LED)
+        .i_read_addr(0)
     );
-
-    // Output_Buffer#(
-    // .ADD_COUNT(ADD_COUNT),
-    // .BUFF_SIZE(32)
-    // ) out_buff(
-    //     .i_clk(i_clk),
-    //     .i_vals(adds),
-    //     .i_step(acc_step),
-    //     .i_push(adder_push),
-    //     .i_pull(uart_read_in),
-    //     .o_top_val(output_topval),
-    //     .o_empty(out_buff_empty),
     //     .o_full(out_buff_full)
     // );
 
@@ -186,39 +176,39 @@ module impl_top #(
     //     .o_read_in(uart_read_in)
     // );
 
-    always_comb begin
-        case(curr_state)
-            IDLE: begin
-                clear = 1;
-                if(active) next_state = ACTIVE;
-                else next_state = IDLE;
-            end
+    // always_comb begin
+    //     case(curr_state)
+    //         IDLE: begin
+    //             clear = 1;
+    //             if(active) next_state = ACTIVE;
+    //             else next_state = IDLE;
+    //         end
 
-            ACTIVE: begin
-                clear = 0;
-                if(acc_done) begin
-                    next_state = IDLE;
-                end
-                else next_state = ACTIVE;
-            end
+    //         ACTIVE: begin
+    //             clear = 0;
+    //             if(acc_done) begin
+    //                 next_state = IDLE;
+    //             end
+    //             else next_state = ACTIVE;
+    //         end
 
-        endcase
-    end
+    //     endcase
+    // end
 
-    always_ff @ ( posedge i_clk ) begin
+    // always_ff @ ( posedge i_clk ) begin
 
-        curr_state <= next_state;
+    //     curr_state <= next_state;
 
-        if(cnt <= 100000000) begin
-            cnt <= cnt + 1;
-            active <= prep&i_btn;
-        end
-        else begin 
-            prep <= i_btn;
-            cnt <= 0;
-        end
+    //     if(cnt <= 100000000) begin
+    //         cnt <= cnt + 1;
+    //         active <= prep&i_btn;
+    //     end
+    //     else begin 
+    //         prep <= i_btn;
+    //         cnt <= 0;
+    //     end
 
-    end
+    // end
 
     // Accordian_Buffer acc_buff (
     //     .i_clk(i_clk),
