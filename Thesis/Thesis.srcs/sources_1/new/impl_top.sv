@@ -25,7 +25,7 @@
 
 module impl_top #(
     parameter PAGE_SIZE = 32,
-    parameter SEGMENTS = 32,
+    parameter SEGMENTS = 16,
     parameter MULT_COUNT = 32,
     parameter ADD_COUNT = SEGMENTS/2
     )(
@@ -51,7 +51,6 @@ module impl_top #(
     //assign uart_val = 65+output_topval;
 
 
-    logic [31:0] data [32] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
     state_m curr_state = IDLE, next_state;
@@ -119,7 +118,6 @@ module impl_top #(
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
 
-        .data(data),
         .i_L_data(mem_bus_a),
         .i_R_data(mem_bus_b),
 

@@ -33,11 +33,12 @@ module tb_mult#(
     parameter PAGE_SIZE = 32,
     parameter SEGMENTS = 64,
     parameter MULT_COUNT = 32,
-    parameter ADD_COUNT = SEGMENTS/2)(
+    parameter ADD_COUNT = SEGMENTS/2,
+    parameter PIPE_COUNT = 4
+    )(
 
     );
 
-    logic [31:0] data [32] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31};
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
     state_m curr_state = IDLE, next_state;
@@ -77,8 +78,30 @@ module tb_mult#(
 
     logic [31:0] curr;
 
+    logic [31:0] split_vals [PIPE_COUNT];
+    logic [31:0] offsets    [PIPE_COUNT];
+
+    logic [31:0] m_val=7, n_val=3, p_val=5;
+    //logic [31:0] m_val=52, n_val=33, p_val=47;
+
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
+
+    Splitter#(
+    .PIPE_COUNT(PIPE_COUNT)
+    ) pipe_splitter(
+        .i_clk(clk),
+        .start(active),
+
+        .i_M(m_val),
+        .i_N(n_val),
+        .i_P(p_val),
+
+        .o_ready(),
+        .o_split_vals(split_vals),
+        .o_mem_offset(offsets)
+
+    );
 
     mem_controller#(
     .PAGE_SIZE(PAGE_SIZE),
@@ -107,13 +130,12 @@ module tb_mult#(
         .i_clk(clk),
         .i_start(active),
         .i_done(acc_done),
-        .i_M(7),
-        .i_N(3),
-        .i_P(5),
+        .i_M(m_val),
+        .i_N(n_val),
+        .i_P(p_val),
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
 
-        .data(data),
         .i_L_data(mem_bus_a),
         .i_R_data(mem_bus_b),
 

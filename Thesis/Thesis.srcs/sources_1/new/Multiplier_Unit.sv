@@ -37,7 +37,6 @@ module Multiplier_Unit#(
     input logic i_R_ready,
     input logic i_pull,
 
-    input logic [31:0] data [32],
     input logic [PAGE_SIZE-1:0][31:0] i_L_data,
     input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 

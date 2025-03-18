@@ -36,7 +36,6 @@ module Multiplication_Core#(
     input logic i_L_ready [MULT_COUNT],
     input logic i_R_ready [MULT_COUNT],
 
-    input logic [31:0] data [32],
     input logic [PAGE_SIZE-1:0][31:0] i_L_data,
     input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 
@@ -99,7 +98,6 @@ module Multiplication_Core#(
                 .i_R_ready(i_R_ready[mul]),
                 .i_pull(m_pull[mul]),
 
-                .data(data),
                 .i_L_data(i_L_data),
                 .i_R_data(i_R_data),
                 

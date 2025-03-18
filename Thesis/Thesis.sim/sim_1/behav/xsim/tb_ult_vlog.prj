@@ -22,9 +22,12 @@ verilog xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --incl
 "../../../../Thesis.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
 
 sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.srcs/sources_1/new/Splitter.sv" \
+"../../../../Thesis.srcs/sources_1/new/Computation_Pipeline.sv" \
 "../../../../Thesis.srcs/sources_1/new/Test_Bench.sv" \
 "../../../../Thesis.srcs/sim_1/new/tb_mult.sv" \
 "../../../../Thesis.srcs/sim_1/new/UVM_testbench.sv" \
+"../../../../Thesis.srcs/sim_1/new/tb_ult.sv" \
 
 # compile glbl module
 verilog xil_defaultlib "glbl.v"
