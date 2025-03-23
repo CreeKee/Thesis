@@ -40,7 +40,7 @@ module Splitter#(
     typedef enum bit {IDLE, ACTIVE} state_s;
     state_s curr_state = IDLE, next_state;
 
-    logic [31:0] M_val = 0, P_val = 0;
+    logic [31:0] M_val = 0, P_val = 0, N_val = 0;
     logic [31:0] next_M_val;
 
     logic [31:0] next_split_vals [PIPE_COUNT];
@@ -56,7 +56,7 @@ module Splitter#(
                 else next_state = IDLE;
 
                 next_M_val = 0;
-                for(int idx = 0; idx < PIPE_COUNT & M_val != 0; idx++) begin
+                for(int idx = 0; idx < PIPE_COUNT; idx++) begin
                     next_split_vals[idx] = 0;
                     next_mem_offset[idx] = 0;
                 end
@@ -74,8 +74,8 @@ module Splitter#(
 
                     next_split_vals[idx] = o_split_vals[idx]+1;
 
-                    for(int odx = 0; odx < idx; odx++) begin
-                        next_mem_offset[idx] += P_val;
+                    for(int odx = idx+1; odx < PIPE_COUNT; odx++) begin
+                        next_mem_offset[odx] += N_val;
                     end
                 end
 
@@ -100,10 +100,12 @@ module Splitter#(
                 if(start) begin
                     M_val <= i_M;
                     P_val <= i_P;
+                    N_val <= i_N;
                 end
                 else begin
                     M_val <= 0;
                     P_val <= 0;
+                    N_val <= 0;
                 end
             end
 

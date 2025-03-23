@@ -43,6 +43,9 @@ module Computation_Pipeline#(
     input logic i_L_data_rdy [MULT_COUNT],
     input logic i_R_data_rdy [MULT_COUNT],
 
+    input logic [31:0] i_L_offset,
+    input logic [31:0] i_R_offset,
+
     output logic [31:0] o_L_mem_addrs [MULT_COUNT],
     output logic [31:0] o_R_mem_addrs [MULT_COUNT],
 
@@ -68,6 +71,7 @@ module Computation_Pipeline#(
 
     //Mult core signals
     
+    
 
     assign o_done = acc_done;
 
@@ -89,6 +93,9 @@ module Computation_Pipeline#(
 
         .i_L_data(i_L_mem_bus),
         .i_R_data(i_R_mem_bus),
+
+        .i_L_offset(i_L_offset),
+        .i_R_offset(i_R_offset),
 
         .i_curr(curr),
         .i_step(o_acc_step),
@@ -118,6 +125,6 @@ module Computation_Pipeline#(
         .o_adds(o_adds),
         .o_pushs(o_adder_push),
         .o_step_ready(o_acc_step),
-        .o_done(o_acc_done)
+        .o_done(acc_done)
     );
 endmodule

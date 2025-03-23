@@ -36,9 +36,9 @@ module Accordian_Buffer #(
     input logic i_clear,
     input logic i_end,
 
-    output logic [31:0] o_curr,
-
     output logic o_m_pull [MULTIPLIERS],
+
+    output logic [31:0] o_curr,
 
     output logic [31:0] o_adds [ADD_COUNT],
     output logic        o_pushs [ADD_COUNT],
@@ -53,22 +53,21 @@ module Accordian_Buffer #(
     data_packet  seg_vals      [SEGMENTS];
     logic        seg_stalls    [SEGMENTS];
     logic        pulls         [SEGMENTS];
-    logic [31:0] spaced_values [SEGMENTS];
     logic        do_stall;
     logic        seg_stall;
     
-    logic add_clk;
+    logic add_clk, add_clk_reg = 0;
     
     logic [$clog2(MULTIPLIERS)-1:0] op_count = 0;
     logic [$clog2(MULTIPLIERS)-1:0] m_p_dex_reg = 0;
-    logic [31:0] mult_sum = 0;
     logic do_step;
 
     assign o_step_ready = do_step;
-    assign do_step = add_clk&(~do_stall);
+    assign do_step = add_clk_reg&(~do_stall);
     assign spec_curr = (curr >> 1) - pop_sum + (space_sum) + (curr&1);
     assign o_done = seg_vals[0].is_end;
     assign o_curr = n_curr;
+
     //generate components
     genvar seg;
     generate 
@@ -76,72 +75,37 @@ module Accordian_Buffer #(
         // create buffer segments
         for (seg=0; seg < SEGMENTS; seg++) begin : seg_gen
 
-            if(seg != 0) begin
+            Accordian_Segment #(
+            .SEGMENT_INDEX(seg), 
+            .SEG_COUNT(SEGMENTS),
+            .ADD_COUNT(ADD_COUNT), 
+            .MULT_COUNT(MULTIPLIERS)) 
+            acc_seg(
+                .i_clk(i_clk),
+                .i_pull(do_step),
+                .i_clear(i_clear),
+                .i_stall(i_stall),
+                .i_override(spaces),
+                .i_m_rdy(i_m_rdy),
 
-                Accordian_Segment #(
-                .SEGMENT_INDEX(seg), 
-                .SEG_COUNT(SEGMENTS),
-                .ADD_COUNT(ADD_COUNT), 
-                .MULT_COUNT(MULTIPLIERS)) 
-                acc_seg(
-                    .i_clk(i_clk),
-                    .i_pull(do_step),
-                    .i_clear(i_clear),
-                    .i_stall(i_stall),
-                    .i_override(spaces),
-                    .i_m_rdy(i_m_rdy),
+                .i_mults(i_mults),
+                .i_add(adds),
+                .i_seg(seg_vals),
+                .i_pops(pop_sum),
 
-                    .i_mults(i_mults),
-                    .i_add(adds),
-                    .i_seg(seg_vals),
-                    .i_spacers(spaced_values[seg-1]),
-                    .i_pops(pop_sum),
+                .i_curr(n_curr),
+                .i_op_cnt(op_count),
 
-                    .i_curr(n_curr),
-                    .i_op_cnt(op_count),
+                .o_val(seg_vals[seg]),
+                .o_pulled(pulls[seg]),
+                .o_stall(seg_stalls[seg])
+            );
 
-                    .o_val(seg_vals[seg]),
-                    .o_pulled(pulls[seg]),
-                    .o_spaced(spaced_values[seg]),
-                    .o_stall(seg_stalls[seg])
-                );
-            end
-
-            else begin
-
-                Accordian_Segment #(
-                .SEGMENT_INDEX(seg), 
-                .SEG_COUNT(SEGMENTS),
-                .ADD_COUNT(ADD_COUNT), 
-                .MULT_COUNT(MULTIPLIERS))
-                acc_seg(
-                    .i_clk(i_clk),
-                    .i_pull(do_step),
-                    .i_clear(i_clear),
-                    .i_stall(i_stall),
-                    .i_override(spaces),
-                    .i_m_rdy(i_m_rdy),
-
-                    .i_mults(i_mults),
-                    .i_add(adds),
-                    .i_seg(seg_vals),
-                    .i_spacers(0),
-                    .i_pops(pop_sum),
-
-                    .i_curr(n_curr),
-                    .i_op_cnt(op_count),
-
-                    .o_val(seg_vals[seg]),
-                    .o_pulled(pulls[seg]),
-                    .o_spaced(spaced_values[seg]),
-                    .o_stall(seg_stalls[seg])
-                );
-            end
         end
 
         // create adder units
-        for (seg = 0; seg < SEGMENTS; seg += 2) begin : add_gen
-            assign o_adds[seg/2] = adds[seg/2].val;
+        for (seg = 0; seg < ADD_COUNT; seg++) begin : add_gen
+            assign o_adds[seg] = adds[seg].val;
         end
     endgenerate
     
@@ -165,18 +129,13 @@ module Accordian_Buffer #(
         if($signed(spec_curr) > 0) n_curr = spec_curr;
         else n_curr = 0;
 
-        mult_sum = 0;
-        for(int idx = 0; idx < MULTIPLIERS; idx++) begin
-            if(i_m_rdy[idx]) mult_sum += 1;
-        end
-
         //calculate how many new values have been pulled into the buffer
         //and cascade internal stall calls
         pull_sum = 0;
-        seg_stall = 0;
+        seg_stall = 1;
         for (int idx = 0; idx < SEGMENTS; idx++) begin
-            if(pull_sum < mult_sum) pull_sum += pulls[idx];
-            seg_stall |= seg_stalls[idx];
+            if(pulls[idx]) pull_sum += 1;
+            seg_stall &= seg_stalls[idx];
         end
 
         do_stall = seg_stall|i_stall;
@@ -193,6 +152,8 @@ module Accordian_Buffer #(
     end
 
     always_ff @ (posedge i_clk) begin
+        add_clk_reg <= add_clk_reg;
+
         //reset registers
         if(i_clear) begin
             m_p_dex_reg <= 0;
@@ -203,13 +164,13 @@ module Accordian_Buffer #(
         //stall
         else if(i_stall) begin
             curr <= curr;
-
+            
             m_p_dex_reg <= m_p_dex_reg;
 
         end
 
         else begin
-
+            add_clk_reg <= add_clk;
             pop_sum <= pop_sum_p;
             space_sum <= space_sum_p;
 

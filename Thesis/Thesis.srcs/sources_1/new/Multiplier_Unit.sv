@@ -37,6 +37,9 @@ module Multiplier_Unit#(
     input logic i_R_ready,
     input logic i_pull,
 
+    input logic [31:0] i_L_offset,
+    input logic [31:0] i_R_offset,
+
     input logic [PAGE_SIZE-1:0][31:0] i_L_data,
     input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 
@@ -230,8 +233,8 @@ module Multiplier_Unit#(
                         dim <= WAIT;
                         
                         //set left and right memory addresses
-                        R_dex <= next_R_dex;
-                        L_dex <= next_L_dex;
+                        R_dex <= next_R_dex + i_R_offset;
+                        L_dex <= next_L_dex + i_L_offset;
 
                         //check if X-dimension
                         if(x >= i_M) begin
@@ -371,8 +374,8 @@ module Multiplier_Unit#(
                             o_L_request <= 1;
                             o_R_request <= 1;
 
-                            R_dex <= next_R_dex;
-                            L_dex <= next_L_dex;
+                            R_dex <= next_R_dex + i_R_offset;
+                            L_dex <= next_L_dex + i_L_offset;
                         end    
 
                         //determine whether next value is head or tail of accumulation chain

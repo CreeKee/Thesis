@@ -20,22 +20,33 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+
+
+import data_packet_pkg::*;
+
 module tb_ult#(
-    parameter PIPE_COUNT = 4,
+    parameter PIPE_COUNT = 8,
     parameter PAGE_SIZE = 32,
     parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
     parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
-    parameter SEGS_PER_PIPE=16,
+    parameter SEGS_PER_PIPE=8,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=32
+    parameter MULT_PER_PIPE=8
     )(
 
     );
 
     logic i_clk  = 0;
     logic active = 0;
-    logic [31:0] m_val=7, n_val=3, p_val=5;
+    //logic [31:0] m_val=7, n_val=3, p_val=5;
+    logic [31:0] m_val=52, n_val=33, p_val=47;
+
+    logic [31:0] stored_offsets [PIPE_COUNT];
+    
+
+    logic donedone;
+
 
     //Splitter signals
     logic [31:0] split_vals [PIPE_COUNT];
@@ -58,10 +69,12 @@ module tb_ult#(
     logic        mult_rdy [MULT_COUNT];
 
     //Pipe Signals
-    logic [31:0] adds       [ADD_COUNT];
-    logic        adder_push [ADD_COUNT];
+    logic [31:0] adds       [PIPE_COUNT][ADDS_PER_PIPE];
+    logic        adder_push [PIPE_COUNT][ADDS_PER_PIPE];
     logic        acc_step   [PIPE_COUNT];
     logic        done       [PIPE_COUNT];
+
+    logic start_mult;
 
     Splitter#(
     .PIPE_COUNT(PIPE_COUNT)
@@ -73,7 +86,7 @@ module tb_ult#(
         .i_N(n_val),
         .i_P(p_val),
 
-        .o_ready(),
+        .o_ready(start_mult),
         .o_split_vals(split_vals),
         .o_mem_offset(offsets)
 
@@ -94,8 +107,8 @@ module tb_ult#(
         .o_L_data_rdy(L_data_rdy),
         .o_R_data_rdy(R_data_rdy),
 
-        .mem_bus_a(mem_bus_a),
-        .mem_bus_b(mem_bus_b)
+        .mem_bus_a(L_mem_bus),
+        .mem_bus_b(R_mem_bus)
     );
 
     genvar pipe;
@@ -109,7 +122,7 @@ module tb_ult#(
             ) Pipeline(
 
             .i_clk(i_clk),
-            .i_start(active),
+            .i_start(start_mult),
             .i_stall(0),
 
             .i_M(split_vals[pipe]),
@@ -122,6 +135,9 @@ module tb_ult#(
             .i_L_data_rdy(L_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
             .i_R_data_rdy(R_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
 
+            .i_L_offset(offsets[pipe]),
+            .i_R_offset(0),
+
             .o_L_mem_addrs(L_mem_addrs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
             .o_R_mem_addrs(R_mem_addrs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
 
@@ -131,8 +147,8 @@ module tb_ult#(
             .o_mult_res(mult_res[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
             .o_mult_rdy(mult_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
 
-            .o_adds(adds[ADDS_PER_PIPE*pipe +: ADDS_PER_PIPE]),
-            .o_adder_push(adder_push[ADDS_PER_PIPE*pipe +: ADDS_PER_PIPE]),
+            .o_adds(adds[pipe]),
+            .o_adder_push(adder_push[pipe]),
             .o_acc_step(acc_step[pipe]),
             
             .o_done(done[pipe])
@@ -141,6 +157,68 @@ module tb_ult#(
         end
     endgenerate
 
+    always_comb begin
+        donedone = 1;
+        for(int p = 0; p<PIPE_COUNT; p++) begin
+
+            donedone &= done[p];
+
+        end
+    end
+
+    int file = $fopen("./matmul_output.txt", "w");
+    
+    logic tick;
+
+
+    function write_file(int file, int addr, logic [31:0] data);
+
+
+        //rewind the file ptr
+        if($fseek(file,0,0)== -1)$display("fseek failed...");
+
+        //reposition the file ptr
+        if($fseek(file,addr,0)== -1)$display("fseek failed...");
+
+        $fdisplay(file,"%4d",data);
+
+    endfunction
+
+    function do_updates();
+        static int addrs [PIPE_COUNT] = '{default:0};
+
+        for(int p = 0; p < PIPE_COUNT; p++) begin
+            if(acc_step[p]) begin
+                for(int i = 0; i < ADDS_PER_PIPE; i++) begin
+                    if(adder_push[p][i]) begin
+                        write_file(file, (addrs[p]+stored_offsets[p])*16,adds[p][i]);
+                        //$display("%0d %0d %0d", addrs[p], stored_offsets[p], addrs[p]+stored_offsets[p]);
+                        addrs[p]++;
+                    end
+                    //$fdisplay(file, "%0d ", adds[i]);
+                end
+            end
+        end
+
+    endfunction
+
+
+    always_ff @ ( posedge i_clk ) begin
+
+        if(start_mult) begin
+            for(int p = 0; p < PIPE_COUNT; p++) begin
+                stored_offsets[p] <= (offsets[p]/n_val)*p_val;
+            end 
+        end
+
+        do_updates();
+        
+        if(donedone) begin
+            $fclose(file); 
+
+            $finish;
+        end
+    end
 
     initial begin
         i_clk <= 0;

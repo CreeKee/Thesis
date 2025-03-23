@@ -39,7 +39,6 @@ module Accordian_Segment #(
     input logic       i_m_rdy [MULT_COUNT],
     input data_packet i_seg   [SEG_COUNT],
     
-    input logic [31:0] i_spacers,
     input logic [31:0] i_pops,
 
     input logic[31:0] i_curr,
@@ -47,45 +46,48 @@ module Accordian_Segment #(
 
     output logic        o_stall,
     output data_packet  o_val    = 0,
-    output logic        o_pulled,
-    output logic [31:0] o_spaced
+    output logic        o_pulled
     );
 
+    logic m_rdy [MULT_COUNT];
     logic [$clog2(MULT_COUNT)-1:0] index;
+    logic [$clog2(MULT_COUNT)-1:0] index_scan;
     logic [$clog2(ADD_COUNT):0]    add_dex, add_dex_scan;
     logic [$clog2(SEG_COUNT):0]    seg_dex;
     logic [31:0] curr = 0;
     logic [31:0] spacers, valid_adds;
     logic [2:0] update = 0;
     
-    assign index   =  SEGMENT_INDEX  +  i_op_cnt-curr;
-    assign add_dex =  SEGMENT_INDEX  - (spacers >> 1) - (spacers & 1) + i_pops;
-    assign seg_dex =  (add_dex << 1) + (spacers &  1);
+    assign index   = SEGMENT_INDEX  +  i_op_cnt-curr;
+    assign add_dex = SEGMENT_INDEX  - (spacers >> 1) - (spacers & 1) + i_pops;
+    assign seg_dex = (add_dex << 1) + (spacers &  1);
 
     
     always_comb begin : ComBlock
-        o_pulled = 0;
 
-        //determine if input is ready
-        if(curr <= SEGMENT_INDEX & !i_m_rdy[index]) o_stall = 1;
-        else o_stall = 0;
+        o_stall = 0;
+        index_scan = 0;
+        for(int idx = 0; idx <= SEGMENT_INDEX; idx++) begin
+            index_scan = idx  +  i_op_cnt-curr;
+
+            if(curr <= idx & !i_m_rdy[index_scan%MULT_COUNT]) begin 
+                o_stall = 1;
+                break;
+            end
+        end
 
         //handle stalling and clearing
         if(i_clear | i_stall) begin
-            o_pulled = 0;
-            o_spaced = i_spacers;
+            //o_pulled = 0;
         end
 
         else begin
             //prep for pulling in value
-            if(curr <= SEGMENT_INDEX & i_m_rdy[index]) o_pulled = 1;
+            if(curr <= SEGMENT_INDEX & !o_stall) o_pulled = 1;
             else o_pulled = 0;
             
 
             //determine spacing
-            // if(curr > SEGMENT_INDEX & i_override[add_dex]) o_spaced = i_spacers + 1;
-            // else o_spaced = i_spacers;
-
             spacers = 0;
             valid_adds = 0;
             add_dex_scan = 0;
@@ -96,20 +98,10 @@ module Accordian_Segment #(
                 end
             end
 
-            o_spaced = spacers;
-
         end
     end
 
     always_ff @( posedge i_clk ) begin : SeqBlock
-
-        //prep for pulling in value
-        // if(curr <= SEGMENT_INDEX & i_m_rdy[index]) o_pulled <= 1;
-        // else o_pulled <= 0;
-
-        //determine if input is ready
-        // if(curr <= SEGMENT_INDEX & !i_m_rdy[index]) o_stall <= 1;
-        // else o_stall <= 0;
 
         //clear value
         if(i_clear) begin
@@ -122,7 +114,6 @@ module Accordian_Segment #(
         end
 
         else begin 
-            
             
             //delay to let curr value propogate
             if(update == 3'b001) begin
@@ -137,7 +128,10 @@ module Accordian_Segment #(
                     //pull next value from multipliers
                     if(curr <= SEGMENT_INDEX ) begin
                         if(SEGMENT_INDEX < curr+MULT_COUNT) o_val <= i_mults[index];
-                        else o_val <= {0,0,0};
+                        else begin 
+                            o_val <= {0,0,0,0};
+                            o_val.is_end <= 1;
+                        end
                     end
 
                     else begin
@@ -156,6 +150,10 @@ module Accordian_Segment #(
                         //er
                         //o_val <= i_add[add_dex];
                     end
+                end
+                else begin 
+                    o_val <= {0,0,0,0};
+                    o_val.is_end <= 1;
                 end
             end
             else update <= update>>1;

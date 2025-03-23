@@ -39,6 +39,8 @@ module Multiplication_Core#(
     input logic [PAGE_SIZE-1:0][31:0] i_L_data,
     input logic [PAGE_SIZE-1:0][31:0] i_R_data,
 
+    input logic [31:0] i_L_offset,
+    input logic [31:0] i_R_offset,
 
     input logic [31:0] i_curr,
     input logic        i_step,
@@ -58,9 +60,9 @@ module Multiplication_Core#(
     mult_pack indicies;
 
     logic m_pull[MULT_COUNT];
-    logic [31:0] pull_sum, m_curr = 0, diff;
+    logic [31:0] pull_sum, m_curr = 0, diff, L_offset, R_offset, curr;
 
-    assign diff = SEG_COUNT - i_curr;
+    assign diff = SEG_COUNT - curr;
     
     Indexer#(
     .MULT_COUNT(MULT_COUNT)
@@ -98,6 +100,9 @@ module Multiplication_Core#(
                 .i_R_ready(i_R_ready[mul]),
                 .i_pull(m_pull[mul]),
 
+                .i_L_offset(L_offset),
+                .i_R_offset(R_offset),
+
                 .i_L_data(i_L_data),
                 .i_R_data(i_R_data),
                 
@@ -115,16 +120,24 @@ module Multiplication_Core#(
 
     always_ff @ ( posedge i_clk ) begin
 
+        curr <= i_curr;
+
         //on start: read in matrix dimensions
         if(i_start) begin
             dim_M <= i_M;
             dim_N <= i_N;
             dim_P <= i_P;
+
+            L_offset <= i_L_offset;
+            R_offset <= i_R_offset;
         end
         else begin
             dim_M <= dim_M;
             dim_N <= dim_N;
             dim_P <= dim_P;
+
+            L_offset <= L_offset;
+            R_offset <= R_offset;
         end
 
         if(i_step) m_curr <= m_curr+pull_sum;
@@ -140,7 +153,7 @@ module Multiplication_Core#(
         pull_sum = 0;
         if(i_step) begin
 
-            for (int idx = 0; (idx < MULT_COUNT) & (idx < diff); idx++) begin
+            for (int idx = 0; (idx < SEG_COUNT) & (idx < diff); idx++) begin
 
                 //signal multipliers that their value has been pulled
 

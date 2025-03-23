@@ -25,8 +25,8 @@
 
 module impl_top #(
     parameter PAGE_SIZE = 32,
-    parameter SEGMENTS = 16,
-    parameter MULT_COUNT = 32,
+    parameter SEGMENTS = 8,
+    parameter MULT_COUNT = 8,
     parameter ADD_COUNT = SEGMENTS/2
     )(
     input logic i_clk,

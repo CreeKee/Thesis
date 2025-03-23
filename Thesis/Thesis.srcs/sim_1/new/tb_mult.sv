@@ -31,8 +31,8 @@ import data_packet_pkg::*;
 
 module tb_mult#(
     parameter PAGE_SIZE = 32,
-    parameter SEGMENTS = 64,
-    parameter MULT_COUNT = 32,
+    parameter SEGMENTS = 16,
+    parameter MULT_COUNT = 16,
     parameter ADD_COUNT = SEGMENTS/2,
     parameter PIPE_COUNT = 4
     )(
@@ -130,14 +130,19 @@ module tb_mult#(
         .i_clk(clk),
         .i_start(active),
         .i_done(acc_done),
+
         .i_M(m_val),
         .i_N(n_val),
         .i_P(p_val),
+
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
 
         .i_L_data(mem_bus_a),
         .i_R_data(mem_bus_b),
+
+        .i_L_offset(0),
+        .i_R_offset(0),
 
         .i_curr(curr),
         .i_step(acc_step),
