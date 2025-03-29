@@ -56,6 +56,114 @@
 module mem_controller#(
     parameter PAGE_SIZE = 4,
     parameter MEM_A_ADDR_WIDTH = 12,
+    parameter PIPE_COUNT
+    )(
+    input  logic i_clk,
+
+    input  logic [31:0] i_L_addrs [PIPE_COUNT],
+    input  logic        i_L_reqs  [PIPE_COUNT],
+
+    input  logic [31:0] i_R_addrs [PIPE_COUNT],
+    input  logic        i_R_reqs  [PIPE_COUNT],
+
+    output logic [31-$clog2(PAGE_SIZE):0] o_curr_L_addr,
+    output logic [31-$clog2(PAGE_SIZE):0] o_next_L_addr,
+
+    output logic [31-$clog2(PAGE_SIZE):0] o_curr_R_addr,
+    output logic [31-$clog2(PAGE_SIZE):0] o_next_R_addr,
+
+
+    output logic [PAGE_SIZE-1:0][31:0] mem_bus_a,
+    output logic [PAGE_SIZE-1:0][31:0] mem_bus_b
+    );
+
+    assign o_curr_L_addr = curr_L_addr;
+    assign o_next_L_addr = next_L_addr;
+    
+    assign o_curr_R_addr = curr_R_addr;
+    assign o_next_R_addr = next_R_addr;
+
+    logic [31-$clog2(PAGE_SIZE):0] curr_L_addr = 0, next_L_addr = 0, pend_L_addr;
+    logic [31-$clog2(PAGE_SIZE):0] curr_R_addr = 0, next_R_addr = 0, pend_R_addr;
+    
+    logic [1:0] R_data_pending = 0, L_data_pending = 0;
+
+    blk_mem_gen_0 bram(
+        .clka(i_clk), 
+        .wea(0), 
+        .addra(curr_L_addr << $clog2(PAGE_SIZE)), 
+        .dina(0), 
+        .douta(mem_bus_a), 
+        
+        .clkb(i_clk), 
+        .web(0), 
+        .addrb(curr_R_addr << $clog2(PAGE_SIZE)), 
+        .dinb(0),
+        .doutb(mem_bus_b)
+    );
+
+
+    Address_Selector #(
+        .PAGE_SIZE(PAGE_SIZE),
+        .INPUT_COUNT(PIPE_COUNT)
+    ) L_addr_manager(
+        .i_clk(i_clk),
+        .i_curr_m_addr(curr_L_addr),
+        .i_next_m_addr(next_L_addr),
+
+        .i_addrs(i_L_addrs),
+        .i_reqs(i_L_reqs),
+
+        .o_sel_addr(pend_L_addr)
+    );
+
+    Address_Selector #(
+        .PAGE_SIZE(PAGE_SIZE),
+        .INPUT_COUNT(PIPE_COUNT)
+    ) R_addr_manager(
+        .i_clk(i_clk),
+        .i_curr_m_addr(curr_R_addr),
+        .i_next_m_addr(next_R_addr),
+
+        .i_addrs(i_R_addrs),
+        .i_reqs(i_R_reqs),
+
+        .o_sel_addr(pend_L_addr)
+    );
+
+    always_ff @ ( posedge i_clk ) begin
+
+        if(L_data_pending == 0) begin
+            
+            //signal that a memory read is happening
+            L_data_pending <= 2'b11;
+
+            //update address to start the read request
+            curr_L_addr <= next_L_addr;
+            next_L_addr <= pend_L_addr
+
+        end
+        else L_data_pending <= L_data_pending>>1;
+
+        if(R_data_pending == 0) begin
+            
+            //signal that a memory read is happening
+            R_data_pending <= 2'b11;
+
+            //update address to start the read request
+            curr_R_addr <= next_R_addr;
+            next_R_addr <= pend_R_addr
+
+        end
+        else R_data_pending <= R_data_pending>>1;
+
+    end
+endmodule
+
+/*
+module mem_controller#(
+    parameter PAGE_SIZE = 4,
+    parameter MEM_A_ADDR_WIDTH = 12,
     parameter MULT_COUNT
     )(
     input  logic i_clk,
@@ -175,3 +283,4 @@ module mem_controller#(
     end
 
 endmodule
+*/

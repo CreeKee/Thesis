@@ -31,13 +31,14 @@ import data_packet_pkg::*;
 
 module tb_mult#(
     parameter PAGE_SIZE = 32,
-    parameter SEGMENTS = 16,
-    parameter MULT_COUNT = 16,
+    parameter SEGMENTS = 8,
+    parameter MULT_COUNT = 8,
     parameter ADD_COUNT = SEGMENTS/2,
     parameter PIPE_COUNT = 4
     )(
 
     );
+    
 
 
     typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_m;
@@ -57,8 +58,6 @@ module tb_mult#(
     logic acc_done;
     logic clear = 0;
     
-    mult_pack indicies;
-
     logic out_buff_empty, out_buff_full;
     logic [31:0] output_topval;
     logic uart_read_in;
@@ -81,11 +80,18 @@ module tb_mult#(
     logic [31:0] split_vals [PIPE_COUNT];
     logic [31:0] offsets    [PIPE_COUNT];
 
+    logic [31:0] op_cnt;
+
     logic [31:0] m_val=7, n_val=3, p_val=5;
     //logic [31:0] m_val=52, n_val=33, p_val=47;
 
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
+
+    mult_pack indicies;
+    logic start_pipe;
+    logic split_fin, split_rdy = 0;
+    logic index_fin, index_rdy = 0;
 
     Splitter#(
     .PIPE_COUNT(PIPE_COUNT)
@@ -100,7 +106,19 @@ module tb_mult#(
         .o_ready(),
         .o_split_vals(split_vals),
         .o_mem_offset(offsets)
+    );
 
+    Indexer#(
+    .MULT_COUNT(MULT_COUNT)
+    ) idxr(
+        .i_clk(clk),
+        .i_active(active),
+
+        .i_N(n_val),
+        .i_P(p_val),
+
+        .o_vals(indicies),
+        .o_ready(index_fin)
     );
 
     mem_controller#(
@@ -128,12 +146,14 @@ module tb_mult#(
     .SEG_COUNT(SEGMENTS)
     ) mult_core(
         .i_clk(clk),
-        .i_start(active),
+        .i_start(index_fin),
         .i_done(acc_done),
 
         .i_M(m_val),
         .i_N(n_val),
         .i_P(p_val),
+
+        .i_indicies(indicies),
 
         .i_L_ready(L_data_rdy),
         .i_R_ready(R_data_rdy),
@@ -145,6 +165,7 @@ module tb_mult#(
         .i_R_offset(0),
 
         .i_curr(curr),
+        .i_op_cnt(op_cnt),
         .i_step(acc_step),
 
         .o_L_mem_addrs(L_mem_addrs),
@@ -168,6 +189,7 @@ module tb_mult#(
 
         .i_m_rdy(mult_rdy),
         .o_curr(curr),
+        .o_op_cnt(op_cnt),
 
         .o_adds(adds),
         .o_pushs(adder_push),

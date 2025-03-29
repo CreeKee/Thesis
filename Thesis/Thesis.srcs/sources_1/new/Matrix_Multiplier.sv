@@ -19,117 +19,182 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
-
 import data_packet_pkg::*;
 
-module Matrix_Multiplier(
-    parameter MULT_COUNT
+module Matrix_Multiplier#(
+    parameter PIPE_COUNT = 8,
+    parameter PAGE_SIZE = 32,
+    parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
+    parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
+
+    parameter SEGS_PER_PIPE=8,
+    parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
+    parameter MULT_PER_PIPE=8
     )(
-    //dut_if _dut,
     input logic i_clk,
-    input logic i_start
+    input logic i_btn,
+    input logic [15:0] sw,
+    output logic o_TxD,
+    output logic [15:0] LED
+);
+
+    logic active;
+    logic [31:0] m_val=7, n_val=3, p_val=5;
+    //logic [31:0] m_val=52, n_val=33, p_val=47;
+
+    logic [31:0] stored_offsets [PIPE_COUNT];
+    
+
+    logic donedone;
+
+    mult_pack indicies;
+
+    //Splitter signals
+    logic [31:0] split_vals [PIPE_COUNT];
+    logic [31:0] offsets    [PIPE_COUNT];
+
+    //Input mem signals
+    logic [31:0] L_mem_addrs [MULT_COUNT];
+    logic [31:0] R_mem_addrs [MULT_COUNT];
+
+    logic L_data_rdy [MULT_COUNT];
+    logic R_data_rdy [MULT_COUNT];
+
+    logic L_reqs     [MULT_COUNT];
+    logic R_reqs     [MULT_COUNT];
+
+    logic [PAGE_SIZE-1:0][31:0] L_mem_bus;
+    logic [PAGE_SIZE-1:0][31:0] R_mem_bus;
+
+    data_packet  mult_res [MULT_COUNT];
+    logic        mult_rdy [MULT_COUNT];
+
+    //Pipe Signals
+    logic [31:0] adds       [PIPE_COUNT][ADDS_PER_PIPE];
+    logic        adder_push [PIPE_COUNT][ADDS_PER_PIPE];
+    logic        acc_step   [PIPE_COUNT];
+    logic        done       [PIPE_COUNT];
+
+    logic start_pipe;
+    logic split_fin, split_rdy = 0;
+    logic index_fin, index_rdy = 0;
+
+    assign active = i_btn;
+    assign LED[PIPE_COUNT] = donedone;
+    
+
+    Splitter#(
+    .PIPE_COUNT(PIPE_COUNT)
+    ) pipe_splitter(
+        .i_clk(i_clk),
+        .start(active),
+
+        .i_M(m_val),
+        .i_N(n_val),
+        .i_P(p_val),
+
+        .o_ready(split_fin),
+        .o_split_vals(split_vals),
+        .o_mem_offset(offsets)
+
     );
 
-    typedef enum {IDLE, STARTING, CALCULATING, ACTIVE} state_t;
+    Indexer#(
+    .MULT_COUNT(MULT_PER_PIPE)
+    ) idxr(
+        .i_clk(i_clk),
+        .i_active(active),
 
-    logic active = 0;
-    state_t curr_state, next_state;
-    logic [ 1:0] done = 0;
-    logic [31:0] cnt = 0, vec_len, delay_calc_val, jump_calc_val, mult_update_delay, mult_jump_val;
+        .i_N(n_val),
+        .i_P(p_val),
 
-    assign vec_len = 4;
+        .o_vals(indicies),
+        .o_ready(index_fin)
+    );
 
+    mem_controller#(
+    .PAGE_SIZE(PAGE_SIZE),
+    .MULT_COUNT(MULT_COUNT)
+    ) input_mem(
+        .i_clk(i_clk),
 
-    data_packet mults [8] = {
-        '{1,0,0},
-        '{0,0,1},
-        '{0,0,2},
-        '{0,1,3},
-        '{1,0,4},
-        '{0,0,5},
-        '{0,0,6},
-        '{0,1,7}
-    };
+        .i_L_addrs(L_mem_addrs),
+        .i_L_reqs(L_reqs),
 
-    Accordian_Buffer acc_buff (
-    .i_clk(i_clk),
-    .i_mults(mults)
+        .i_R_addrs(R_mem_addrs),
+        .i_R_reqs(R_reqs),
+
+        .o_L_data_rdy(L_data_rdy),
+        .o_R_data_rdy(R_data_rdy),
+
+        .mem_bus_a(L_mem_bus),
+        .mem_bus_b(R_mem_bus)
     );
 
 
-    always_comb begin
+    genvar pipe;
+    generate
+        for (pipe=0; pipe < PIPE_COUNT; pipe++) begin : pipe_gen
 
-        active = 0;
+            assign LED[pipe] = done[pipe];
 
-        case(curr_state) 
+            Computation_Pipeline#(
+            .PAGE_SIZE(PAGE_SIZE),
+            .SEG_COUNT(SEGS_PER_PIPE),
+            .MULT_COUNT(MULT_PER_PIPE),
+            .ADD_COUNT(ADDS_PER_PIPE)
+            ) Pipeline(
 
-            IDLE: begin
-                if(i_start) begin
-                    next_state = STARTING;
-                end
-            end
+            .i_clk(i_clk),
+            .i_start(start_pipe),
+            .i_stall(0),
 
-            STARTING: next_state = CALCULATING;
+            .i_indicies(indicies),
 
-            CALCULATING: begin
-                if(done[0]&done[1]) begin
-                    next_state = ACTIVE;
-                end
-                else begin
-                    next_state = CALCULATING;
-                end
-            end
+            .i_M(split_vals[pipe]),
+            .i_N(n_val),
+            .i_P(p_val),
 
-            ACTIVE: begin
-                active = 1;
-            end
+            .i_L_mem_bus(L_mem_bus),
+            .i_R_mem_bus(R_mem_bus),
 
-        endcase
-    end
+            .i_L_data_rdy(L_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            .i_R_data_rdy(R_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
 
-    //just here to only allow 1 set of data in, eventually should be moved to the testbench
+            .i_L_offset(offsets[pipe]),
+            .i_R_offset(0),
+
+            .o_L_mem_addrs(L_mem_addrs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            .o_R_mem_addrs(R_mem_addrs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+
+            .o_L_reqs(L_reqs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            .o_R_reqs(R_reqs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+
+            .o_mult_res(mult_res[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            .o_mult_rdy(mult_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+
+            .o_adds(adds[pipe]),
+            .o_adder_push(adder_push[pipe]),
+            .o_acc_step(acc_step[pipe]),
+            
+            .o_done(done[pipe])
+
+            );
+        end
+    endgenerate
+
     always_ff @ ( posedge i_clk ) begin
 
-        case(curr_state)
-            IDLE: begin
-                done <= 2'b00;
-
-                delay_calc_val <= 0;
-                mult_update_delay <= 0;
-
-                jump_calc_val <= 0;
-                mult_jump_val <= 0;
-            end
-
-            STARTING: begin
-                done <= 2'b00;
-
-                delay_calc_val <= 0;
-                mult_update_delay <= 0;
-
-                jump_calc_val <= MULT_COUNT;
-                mult_jump_val <= vec_len;
-            end
-
-            CALCULATING: begin
-                if(~(done[0]&done[1])) begin
-                    if($signed(delay_calc_val) >= MULT_COUNT) begin
-                        delay_calc_val      <= delay_calc_val - MULT_COUNT;
-                        mult_update_delay   <= mult_update_delay+1;
-                    end
-                    else done[0] <= 1'b1;
-
-                    if($signed(jump_calc_val) > 0) begin
-                        jump_calc_val <= jump_calc_val - vec_len;
-                        mult_jump_val <= mult_jump_val + 1;
-                    end
-                    else done[1] <= 1'b1;
-                end
-            end
-        endcase
-        
-        curr_state <= next_state;
+        if(start_pipe) begin
+            start_pipe <= 0;
+            split_rdy <= 0;
+            index_rdy <= 0;
+        end
+        else begin
+            start_pipe <= (split_fin|split_rdy)&(index_fin|index_rdy);
+            split_rdy <= split_fin|split_rdy;
+            index_rdy <= index_fin|index_rdy;
+        end
 
     end
 endmodule

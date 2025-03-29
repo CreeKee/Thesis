@@ -9,11 +9,11 @@ WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 fo
 WARNING: [VRFC 10-3091] actual bit length 27 differs from formal bit length 12 for port 'addra' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:85]
 WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'web' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:90]
 WARNING: [VRFC 10-3091] actual bit length 27 differs from formal bit length 12 for port 'addrb' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:91]
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'i_stall' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sim_1/new/tb_ult.sv:126]
-WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'i_clear' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:120]
-WARNING: [VRFC 10-3597] non-void function 'write_file' called as a task without void casting [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sim_1/new/tb_ult.sv:194]
-WARNING: [VRFC 10-3597] non-void function 'do_updates' called as a task without void casting [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sim_1/new/tb_ult.sv:214]
-WARNING: [VRFC 10-5021] port 'i_end' is not connected on this instance [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:113]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'i_stall' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sim_1/new/tb_ult.sv:145]
+WARNING: [VRFC 10-3091] actual bit length 32 differs from formal bit length 1 for port 'i_clear' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:124]
+WARNING: [VRFC 10-3597] non-void function 'write_file' called as a task without void casting [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sim_1/new/tb_ult.sv:234]
+WARNING: [VRFC 10-3597] non-void function 'do_updates' called as a task without void casting [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sim_1/new/tb_ult.sv:254]
+WARNING: [VRFC 10-5021] port 'i_end' is not connected on this instance [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:117]
 WARNING: [VRFC 10-8864] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:40]
 WARNING: [VRFC 10-8864] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:132]
 WARNING: [VRFC 10-8864] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:155]
@@ -23,6 +23,7 @@ Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling package xil_defaultlib.data_packet_pkg
 Compiling module xil_defaultlib.Splitter(PIPE_COUNT=8)
+Compiling module xil_defaultlib.Indexer(MULT_COUNT=8)
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_output_stage(...
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_softecc_outpu...
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7_mem_module(C_...
@@ -30,7 +31,6 @@ Compiling module blk_mem_gen_v8_4_7.blk_mem_axi_regs_fwd_v8_4(C_DATA...
 Compiling module blk_mem_gen_v8_4_7.blk_mem_gen_v8_4_7(C_FAMILY="art...
 Compiling module xil_defaultlib.blk_mem_gen_0
 Compiling module xil_defaultlib.mem_controller(PAGE_SIZE=32,MULT...
-Compiling module xil_defaultlib.Indexer(MULT_COUNT=8)
 Compiling module xil_defaultlib.Mult_Comp_Unit
 Compiling module xil_defaultlib.Multiplier_Unit(PAGE_SIZE=32,MUL...
 Compiling module xil_defaultlib.Multiplier_Unit(PAGE_SIZE=32,MUL...

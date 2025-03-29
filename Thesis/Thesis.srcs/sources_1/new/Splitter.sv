@@ -43,8 +43,17 @@ module Splitter#(
     logic [31:0] M_val = 0, P_val = 0, N_val = 0;
     logic [31:0] next_M_val;
 
+    logic wait_reset = 0;
+
     logic [31:0] next_split_vals [PIPE_COUNT];
     logic [31:0] next_mem_offset [PIPE_COUNT];
+
+    initial begin
+        for(int idx = 0; idx < PIPE_COUNT; idx++) begin
+            o_split_vals[idx] <= 0;
+            o_mem_offset[idx] <= 0;
+        end
+    end
 
     always_comb begin
         o_ready = 0;
@@ -52,7 +61,7 @@ module Splitter#(
         case(curr_state)
 
             IDLE: begin
-                if(start) next_state = ACTIVE;
+                if(start & !wait_reset) next_state = ACTIVE;
                 else next_state = IDLE;
 
                 next_M_val = 0;
@@ -78,7 +87,6 @@ module Splitter#(
                         next_mem_offset[odx] += N_val;
                     end
                 end
-
             end
 
         endcase
@@ -91,18 +99,18 @@ module Splitter#(
         case(curr_state)
 
             IDLE: begin
-                for(int idx = 0; idx < PIPE_COUNT; idx++) begin
-                    o_split_vals[idx] <= 0;
-                    o_mem_offset[idx] <= 0;
-                    
-                end
 
-                if(start) begin
+
+                if(next_state == ACTIVE) begin
                     M_val <= i_M;
                     P_val <= i_P;
                     N_val <= i_N;
                 end
                 else begin
+  
+                   if(start) wait_reset <= wait_reset;
+                   else wait_reset <= 0;
+
                     M_val <= 0;
                     P_val <= 0;
                     N_val <= 0;
@@ -110,6 +118,7 @@ module Splitter#(
             end
 
             ACTIVE: begin
+                wait_reset <= 1;
                 M_val <= next_M_val;
                 o_split_vals <= next_split_vals;
                 o_mem_offset <= next_mem_offset;

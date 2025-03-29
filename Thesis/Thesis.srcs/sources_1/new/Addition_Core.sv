@@ -38,6 +38,7 @@ module Addition_Core#(
 
     );
     
+    
     logic [3:0] count = 3;
 
     assign o_ready = (count == DELAY-1);

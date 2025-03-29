@@ -31,9 +31,7 @@
 
 // endpackage
 
-`include "includes.vh"
 
-import data_packet_pkg::*;
 
 // interface dut_if();
 

@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 import data_packet_pkg::*;
 
-`define M_IDX (idx+m_curr)%MULT_COUNT
+`define M_IDX (idx+i_op_cnt)%MULT_COUNT
 
 module Multiplication_Core#(
     parameter PAGE_SIZE,
@@ -33,6 +33,9 @@ module Multiplication_Core#(
     input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
+
+    input mult_pack i_indicies,
+
     input logic i_L_ready [MULT_COUNT],
     input logic i_R_ready [MULT_COUNT],
 
@@ -43,6 +46,7 @@ module Multiplication_Core#(
     input logic [31:0] i_R_offset,
 
     input logic [31:0] i_curr,
+    input logic [$clog2(MULT_COUNT)-1:0] i_op_cnt,
     input logic        i_step,
 
     output logic [31:0] o_L_mem_addrs [MULT_COUNT],
@@ -55,28 +59,28 @@ module Multiplication_Core#(
     output data_packet o_mults   [MULT_COUNT]
     );
 
-    logic idx_rdy;
+    // logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
-    mult_pack indicies;
+    // mult_pack indicies;
 
     logic m_pull[MULT_COUNT];
-    logic [31:0] pull_sum, m_curr = 0, diff, L_offset, R_offset, curr;
+    logic [31:0] diff, L_offset, R_offset, curr;
 
     assign diff = SEG_COUNT - curr;
     
-    Indexer#(
-    .MULT_COUNT(MULT_COUNT)
-    ) idxr(
-        .i_clk(i_clk),
-        .i_active(i_start),
+    // Indexer#(
+    // .MULT_COUNT(MULT_COUNT)
+    // ) idxr(
+    //     .i_clk(i_clk),
+    //     .i_active(i_start),
 
-        .i_M(dim_M),
-        .i_N(dim_N),
-        .i_P(dim_P),
+    //     .i_M(dim_M),
+    //     .i_N(dim_N),
+    //     .i_P(dim_P),
 
-        .o_vals(indicies),
-        .o_ready(idx_rdy)
-    );
+    //     .o_vals(indicies),
+    //     .o_ready(idx_rdy)
+    // );
 
     genvar mul;
     generate 
@@ -90,12 +94,12 @@ module Multiplication_Core#(
             .MULT_COUNT(MULT_COUNT)
             ) mult(
                 .i_clk(i_clk),
-                .i_active(idx_rdy),
+                .i_active(i_start),
                 .i_done(i_done),
                 .i_M(dim_M),
                 .i_N(dim_N),
                 .i_P(dim_P),
-                .i_idx(indicies),
+                .i_idx(i_indicies),
                 .i_L_ready(i_L_ready[mul]),
                 .i_R_ready(i_R_ready[mul]),
                 .i_pull(m_pull[mul]),
@@ -140,8 +144,6 @@ module Multiplication_Core#(
             R_offset <= R_offset;
         end
 
-        if(i_step) m_curr <= m_curr+pull_sum;
-
     end
 
     always_comb begin
@@ -150,16 +152,14 @@ module Multiplication_Core#(
             m_pull[idx] = 0;
         end
 
-        pull_sum = 0;
         if(i_step) begin
 
-            for (int idx = 0; (idx < SEG_COUNT) & (idx < diff); idx++) begin
+            for (int idx = 0; (idx < SEG_COUNT) & (idx < diff) & idx < MULT_COUNT; idx++) begin
 
                 //signal multipliers that their value has been pulled
 
                 if(o_dready[`M_IDX]) begin 
                     m_pull[`M_IDX] = 1;
-                    pull_sum += 1;
                 end
                 else break;
                 

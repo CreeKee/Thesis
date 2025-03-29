@@ -70,6 +70,7 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 3
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -92,6 +93,7 @@ add_files {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/bram_load.coe}}
 read_verilog {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh}}
 set_property file_type "Verilog Header" [get_files {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh}}]
 read_verilog -library xil_defaultlib -sv {
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Output_Buffer.sv}
@@ -108,6 +110,7 @@ read_verilog -library xil_defaultlib -sv {
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Signal_defs.sv}
 }
 read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
 set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]

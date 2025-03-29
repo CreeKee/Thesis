@@ -59,18 +59,27 @@ module Multiplier_Unit#(
     dim_t dim;
 
     logic [31:0] x = 0, y = 0, z = 0;
-    logic [31:0] c_z = 0;
 
     logic [31:0] n0_x;
     logic [31:0] n0_y, n1_y, n2_y;
     logic [31:0] n0_z, n1_z, n2_z;
 
+    logic z_path0, z_path1;
+
+    logic [31:0] n0_part_L, n1_part_L;
+    logic [31:0] part_L = 0;
+
+    logic [31:0] n0_part_R, n1_part_R, n2_part_R;
+    logic [31:0] part_R = 0;
+
+    logic [31:0] full_R, full_L;
+
+    logic [31:0] start_count;
 
     logic [31:0] Lr, LcRr, Rc;
 
     logic [31:0] L_dex = 0, R_dex = 0;
-    logic [31:0] next_L_dex, next_R_dex;
-    logic [31:0] L_val = 0, R_val = 0, curr_L_val = 0, curr_R_val = 0, M_res;
+    logic [31:0] L_val = 0, R_val = 0, M_res;
 
     logic [1:0] count = 0, res_check = 0;
 
@@ -87,9 +96,13 @@ module Multiplier_Unit#(
     assign LcRr = z;
     assign Rc = y;
 
-    assign n0_z = z    + MULT_COUNT;
-    assign n1_z = n0_z - i_idx.alpha_z;
-    assign n2_z = n1_z - i_N;
+    assign n0_z = (z + MULT_COUNT);
+    assign n1_z = (z + MULT_COUNT) - i_idx.alpha_z;
+    assign n2_z = (z + MULT_COUNT - i_idx.alpha_z) - i_N;
+
+    assign n0_part_R = part_R + i_idx.z_step;
+    assign n1_part_R = part_R + i_idx.z_step - i_idx.z_fall;
+    assign n2_part_R = part_R + i_idx.z_step - i_idx.z_xtra;
 
     assign n0_y = y    + i_idx.beta_y;
     assign n1_y = y    - i_idx.alpha_y;
@@ -97,11 +110,14 @@ module Multiplier_Unit#(
 
     assign n0_x = x    + i_idx.beta_x;
 
-    assign next_R_dex = c_z*i_P + y;
-    assign next_L_dex = x*i_N + c_z;
+    assign n0_part_L = part_L + i_idx.x_step;
+    assign n1_part_L = part_L + i_idx.x_step + i_N;
 
     assign o_L_mem_addr = L_dex;
     assign o_R_mem_addr = R_dex;
+
+    assign full_R = part_R + y + i_R_offset;
+    assign full_L = part_L + z + i_L_offset;
 
     Mult_Comp_Unit multiplier(
         .i_clk(i_clk),
@@ -150,6 +166,9 @@ module Multiplier_Unit#(
     end
 
     always_ff @ ( posedge i_clk ) begin
+
+        z_path0 <= n0_z >= i_N;
+        z_path1 <= n1_z >= i_N;
         
         curr_state <= next_state;
         
@@ -171,6 +190,11 @@ module Multiplier_Unit#(
 
                 o_L_request <= 0;
                 o_R_request <= 0;
+
+                start_count <= 0;
+
+                part_R <= 0;
+                part_L <= 0;
 
             end
 
@@ -211,18 +235,24 @@ module Multiplier_Unit#(
                     //update Y-dimension
                     YDIM: begin
 
-                        //break up logic to reduce prop-delay
-                        c_z <= z;
+                        if(start_count != z) begin
+                            start_count <= start_count+1;
+                            part_R <= part_R + i_P;
+                        end
 
                         //check if Y-dimension has exceeded bounds
                         if(y >= i_P) begin
 
                             y <= y-i_P;
                             x <= x+1;
+                            part_L <= part_L + i_N;
 
                         end
                         else begin
-                            dim <= XDIM;
+                            if(start_count == z) dim <= XDIM;
+                            else dim <= YDIM;
+                            //dim <= XDIM;
+                            
                             y <= y;
                             x <= x;
                         end
@@ -233,8 +263,8 @@ module Multiplier_Unit#(
                         dim <= WAIT;
                         
                         //set left and right memory addresses
-                        R_dex <= next_R_dex + i_R_offset;
-                        L_dex <= next_L_dex + i_L_offset;
+                        R_dex <= full_R;
+                        L_dex <= full_L;
 
                         //check if X-dimension
                         if(x >= i_M) begin
@@ -327,33 +357,40 @@ module Multiplier_Unit#(
 
                     ZDIM: begin
                         dim <= YDIM;
-                        if(n0_z >= i_N) begin
-                            if(n1_z >= i_N) begin
+                        if(z_path0) begin
+                            if(z_path1) begin
                                 z <= n2_z;
+                                part_R <= n2_part_R;
+
                                 y <= n0_y + 1;
                             end
                             else begin
                                 z <= n1_z;
+                                part_R <= n1_part_R;
+
                                 y <= n0_y;
                             end
                         end
                         else begin
                             z <= n0_z;
+                            part_R <= n0_part_R;
+
                             y <= y;
                         end
                     end
 
                     YDIM: begin
                         dim <= XDIM;
-                        c_z <= z;
                         if(y >= i_P) begin
                             if(n1_y >= i_P) begin
                                 y <= n2_y;
                                 x <= n0_x + 1;
+                                part_L <= n1_part_L;
                             end
                             else begin
                                 y <= n1_y;
                                 x <= n0_x;
+                                part_L <= n0_part_L;
                             end
                         end
                         else begin
@@ -374,8 +411,8 @@ module Multiplier_Unit#(
                             o_L_request <= 1;
                             o_R_request <= 1;
 
-                            R_dex <= next_R_dex + i_R_offset;
-                            L_dex <= next_L_dex + i_L_offset;
+                            R_dex <= full_R;
+                            L_dex <= full_L;
                         end    
 
                         //determine whether next value is head or tail of accumulation chain

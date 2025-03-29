@@ -27,15 +27,14 @@ module Indexer#(
     input logic i_clk,
     input logic i_active,
 
-    input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
 
-    output mult_pack o_vals,
+    output mult_pack o_vals = '{default:0},
     output logic o_ready = 0
     );
 
-    typedef enum bit [1:0] {IDLE, STARTING, ACTIVE, ENDING} state_t;
+    typedef enum bit [2:0] {IDLE, STARTING, ACTIVE, SWITCH, ENDING} state_t;
 
     typedef enum bit [1:0] {ZDIM, YDIM,     XDIM,   WAIT}   dim_t;
     dim_t dim;
@@ -47,10 +46,13 @@ module Indexer#(
     logic [31:0] gamma_x, gamma_y, gamma_z;
     logic [31:0] n_gamma_x, n_gamma_y, n_gamma_z;
 
-    logic c_x, c_y, c_z;
+    logic [31:0] step_count;
 
 
-    assign n_vals.alpha_x = vals.alpha_x + i_M;
+    logic all_set = 0, fresh = 1;
+
+
+    assign n_vals.alpha_x = 0;
     assign n_vals.alpha_y = vals.alpha_y + i_P;
     assign n_vals.alpha_z = vals.alpha_z + i_N;
 
@@ -58,13 +60,14 @@ module Indexer#(
     assign n_vals.beta_y = vals.beta_y + 1;
     assign n_vals.beta_z = vals.beta_z + 1;
 
-    assign n_gamma_x = gamma_x - i_M;
+    assign n_vals.z_step = vals.z_step + i_P;
+    assign n_vals.x_step = vals.x_step + i_N;
+
+    assign n_vals.z_fall = vals.z_fall + i_N*i_P;
+    assign n_vals.z_xtra = n_vals.z_fall;
+
     assign n_gamma_y = gamma_y - i_P;
     assign n_gamma_z = gamma_z - i_N;
-
-    assign c_x = $signed(n_gamma_x) > 0;
-    assign c_y = $signed(n_gamma_y) > 0;
-    assign c_z = $signed(n_gamma_z) > 0;
 
     always_comb begin
         case(curr_state)
@@ -78,43 +81,53 @@ module Indexer#(
             end
 
             ACTIVE: begin
-                if(dim == WAIT) begin
-                    next_state = ENDING;
+                if(dim == WAIT & all_set & step_count == 0) begin
+                    next_state = SWITCH;
                 end
                 else next_state = ACTIVE;
             end
 
+            SWITCH: next_state = ENDING;
+
             ENDING: begin
                 next_state = IDLE;
             end
+
+            default: next_state = IDLE;
         endcase
     end
 
 
     always_ff @ ( posedge i_clk ) begin
 
+        all_set <= all_set | i_active;
         curr_state <= next_state;
 
         case(curr_state)
             IDLE: begin
                 //reset internal values
-                vals <= {0, 0, 0, 0, 0, 0};
+                vals <= '{default:0};
 
-                gamma_x <= 0;
+                //gamma_x <= 0;
                 gamma_y <= 0;
                 gamma_z <= MULT_COUNT;
+                step_count <= MULT_COUNT;
 
                 o_ready <= 0;
             end
 
             STARTING: begin
                 vals <= n_vals;
+                o_vals <= '{default:0};
 
-                gamma_x <= 0;
+                //gamma_x <= 0;
                 gamma_y <= 0;
                 gamma_z <= MULT_COUNT;
+                step_count <= MULT_COUNT-1;
 
                 o_ready <= 0;
+
+                fresh <= 1;
 
                 dim <= ZDIM;
             end
@@ -123,10 +136,10 @@ module Indexer#(
 
                 o_ready <= 0;
 
-
-                //gamma  = MULT_COUNT
-                //alpha += D
-                //beta  += 1
+                if(step_count > 0) begin
+                    vals.z_step  <= n_vals.z_step;
+                    step_count <= step_count-1;
+                end
 
                 case(dim)
                     ZDIM: begin
@@ -134,6 +147,7 @@ module Indexer#(
                             dim = YDIM;
                             gamma_z <= n_gamma_z;
                             vals.alpha_z <= n_vals.alpha_z;
+                            vals.z_fall  <= n_vals.z_fall;
                             vals.beta_z  <= n_vals.beta_z;
 
                             gamma_y <= gamma_y + 1;
@@ -149,7 +163,6 @@ module Indexer#(
                             vals.alpha_y <= n_vals.alpha_y;
                             gamma_y      <= n_gamma_y;
 
-                            gamma_x <= gamma_x + 1;
                         end
                         else dim = ZDIM;
                     end
@@ -158,69 +171,38 @@ module Indexer#(
                         dim = ZDIM;
 
                         vals.beta_x  <= n_vals.beta_x;
-                        if(gamma_y >= i_M) begin
-                            vals.alpha_x <= n_vals.alpha_x;
-                            gamma_x      <= n_gamma_x;
-                            
-                        end
+                        vals.x_step  <= n_vals.x_step;
+                        
+
                     end
 
                     WAIT: begin
-                        if(vals.beta_x == 0) begin
-                            vals.alpha_x <= n_vals.alpha_x;
-                            vals.beta_x  <= n_vals.beta_x;
+                        
+                        if(fresh) begin
+                            fresh <= 0;
+                            if(vals.beta_x == 0) begin
+                                vals.beta_x  <= n_vals.beta_x;
+                                vals.x_step  <= n_vals.x_step;
+                            end
+
+                            if(vals.beta_y == 0) begin
+                                vals.alpha_y <= n_vals.alpha_y;
+                                vals.beta_y  <= n_vals.beta_y;
+                            end
+
+                            if(vals.beta_y == 0) begin
+                                vals.alpha_z <= n_vals.alpha_z;
+                                vals.z_fall  <= n_vals.z_fall;
+                            end
                         end
 
-                        if(vals.beta_y == 0) begin
-                            vals.alpha_y <= n_vals.alpha_y;
-                            vals.beta_y  <= n_vals.beta_y;
-                        end
-
-                        if(vals.beta_z == 0) begin
-                            vals.alpha_z <= n_vals.alpha_z;
-                            vals.beta_z  <= n_vals.beta_z;
-                        end
-
-                        o_ready <= 1;
+                        o_ready <= 0;
                     end
                 endcase
+            end
 
-
-                // //update x dimension
-                // if(c_x) begin
-                //     gamma_x      <= n_gamma_x;
-                //     vals.alpha_x <= n_vals.alpha_x;
-                //     vals.beta_x  <= n_vals.beta_x;
-                // end
-                // else begin
-                //     gamma_x      <= gamma_x;
-                //     vals.alpha_x <= vals.alpha_x;
-                //     vals.beta_x  <= vals.beta_x;
-                // end
-
-                // //update y dimension
-                // if(c_y) begin
-                //     gamma_y      <= n_gamma_y;
-                //     vals.alpha_y <= n_vals.alpha_y;
-                //     vals.beta_y  <= n_vals.beta_y;
-                // end
-                // else begin
-                //     gamma_y      <= gamma_y;
-                //     vals.alpha_y <= vals.alpha_y;
-                //     vals.beta_y  <= vals.beta_y;
-                // end
-
-                // //update z dimension
-                // if(c_z) begin
-                //     gamma_z      <= n_gamma_z;
-                //     vals.alpha_z <= n_vals.alpha_z;
-                //     vals.beta_z  <= n_vals.beta_z;
-                // end
-                // else begin
-                //     gamma_z      <= gamma_z;
-                //     vals.alpha_z <= vals.alpha_z;
-                //     vals.beta_z  <= vals.beta_z;
-                // end
+            SWITCH: begin
+                vals.z_xtra <= n_vals.z_fall;
             end
 
             ENDING: begin
@@ -233,6 +215,8 @@ module Indexer#(
 
                 o_vals <= vals;
                 o_ready <= 1;
+
+                all_set <= 0;
             end
 
         endcase

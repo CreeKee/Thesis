@@ -140,8 +140,8 @@ OPTRACE "set parameters" START { }
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
   add_files -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/impl_top.dcp}}
-  read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci}}
   read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
+  read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci}}
 OPTRACE "read constraints: implementation" START { }
   read_xdc {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/constrs_1/new/Basys3_Master.xdc}}
 OPTRACE "read constraints: implementation" END { }

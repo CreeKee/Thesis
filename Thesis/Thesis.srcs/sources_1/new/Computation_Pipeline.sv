@@ -37,20 +37,25 @@ module Computation_Pipeline#(
     input logic [31:0] i_P,
 
     //mult signals
+    input data_packet_pkg::mult_pack i_indicies,
+
     input logic [PAGE_SIZE-1:0][31:0] i_L_mem_bus,
     input logic [PAGE_SIZE-1:0][31:0] i_R_mem_bus,
 
-    input logic i_L_data_rdy [MULT_COUNT],
-    input logic i_R_data_rdy [MULT_COUNT],
+    //input logic i_L_data_rdy [MULT_COUNT],
+    //input logic i_R_data_rdy [MULT_COUNT],
 
     input logic [31:0] i_L_offset,
     input logic [31:0] i_R_offset,
 
-    output logic [31:0] o_L_mem_addrs [MULT_COUNT],
-    output logic [31:0] o_R_mem_addrs [MULT_COUNT],
+    // output logic [31:0] o_L_mem_addrs [MULT_COUNT],
+    // output logic [31:0] o_R_mem_addrs [MULT_COUNT],
 
-    output logic o_L_reqs [MULT_COUNT],
-    output logic o_R_reqs [MULT_COUNT],
+    output logic [31-$clog2(PAGE_SIZE):0] o_L_mem_addr,
+    output logic [31-$clog2(PAGE_SIZE):0] o_R_mem_addr,
+
+    output logic o_L_req,
+    output logic o_R_req,
 
     output data_packet  o_mult_res [MULT_COUNT],
     output logic        o_mult_rdy [MULT_COUNT],
@@ -68,12 +73,34 @@ module Computation_Pipeline#(
     //Accumulation buffer signals
     logic [31:0] curr;
     logic acc_done;
+    logic [$clog2(MULT_COUNT)-1:0] op_cnt;
 
     //Mult core signals
-    
-    
+    logic [31-$clog2(PAGE_SIZE):0] L_mem_addrs [MULT_COUNT];
+    logic                          L_reqs [MULT_COUNT];
+    logic                          L_data_rdy [MULT_COUNT];
+
+    logic [31-$clog2(PAGE_SIZE):0] R_mem_addrs [MULT_COUNT];
+    logic                          R_reqs [MULT_COUNT];
 
     assign o_done = acc_done;
+
+
+    Address_Selector #(
+        .PAGE_SIZE(PAGE_SIZE),
+        .INPUT_COUNT(MULT_COUNT)
+    ) L_addr_manager(
+        .i_clk(i_clk),
+        .i_curr_m_addr(curr_L_addr),
+        .i_next_m_addr(next_L_addr),
+
+        .i_addrs(L_mem_addrs),
+        .i_reqs(L_reqs),
+
+        .o_data_rdy(L_data_rdy),
+        .o_sel_addr(pend_L_addr)
+        output logic o_sel_req
+    );
 
     Multiplication_Core#(
     .PAGE_SIZE(PAGE_SIZE),
@@ -88,6 +115,8 @@ module Computation_Pipeline#(
         .i_N(i_N),
         .i_P(i_P),
 
+        .i_indicies(i_indicies),
+
         .i_L_ready(i_L_data_rdy),
         .i_R_ready(i_R_data_rdy),
 
@@ -98,6 +127,7 @@ module Computation_Pipeline#(
         .i_R_offset(i_R_offset),
 
         .i_curr(curr),
+        .i_op_cnt(op_cnt),
         .i_step(o_acc_step),
 
         .o_L_mem_addrs(o_L_mem_addrs),
@@ -121,6 +151,7 @@ module Computation_Pipeline#(
 
         .i_m_rdy(o_mult_rdy),
         .o_curr(curr),
+        .o_op_cnt(op_cnt),
 
         .o_adds(o_adds),
         .o_pushs(o_adder_push),

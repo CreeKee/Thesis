@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-import data_packet_pkg::*;
+import data_packet_pkg::data_packet;
 
 module Accordian_Segment #(
     parameter SEGMENT_INDEX,
@@ -127,7 +127,7 @@ module Accordian_Segment #(
                 if(!o_stall) begin
                     //pull next value from multipliers
                     if(curr <= SEGMENT_INDEX ) begin
-                        if(SEGMENT_INDEX < curr+MULT_COUNT) o_val <= i_mults[index];
+                        if(SEGMENT_INDEX < curr+MULT_COUNT & o_pulled) o_val <= i_mults[index];
                         else begin 
                             o_val <= {0,0,0,0};
                             o_val.is_end <= 1;

@@ -21,8 +21,7 @@
 
 //assumptions:
 //all accumulations will be of the same length (vector multiplications)
-`include "includes.vh"
-import data_packet_pkg::*;
+import data_packet_pkg::data_packet;
 
 module Accordian_Buffer #(
     parameter SEGMENTS = 8,
@@ -39,6 +38,7 @@ module Accordian_Buffer #(
     output logic o_m_pull [MULTIPLIERS],
 
     output logic [31:0] o_curr,
+    output logic [$clog2(MULTIPLIERS)-1:0] o_op_cnt,
 
     output logic [31:0] o_adds [ADD_COUNT],
     output logic        o_pushs [ADD_COUNT],
@@ -66,7 +66,7 @@ module Accordian_Buffer #(
     assign do_step = add_clk_reg&(~do_stall);
     assign spec_curr = (curr >> 1) - pop_sum + (space_sum) + (curr&1);
     assign o_done = seg_vals[0].is_end;
-    assign o_curr = n_curr;
+    assign o_op_cnt = op_count;
 
     //generate components
     genvar seg;
@@ -133,7 +133,7 @@ module Accordian_Buffer #(
         //and cascade internal stall calls
         pull_sum = 0;
         seg_stall = 1;
-        for (int idx = 0; idx < SEGMENTS; idx++) begin
+        for (int idx = 0; idx < SEGMENTS & pull_sum < MULTIPLIERS; idx++) begin
             if(pulls[idx]) pull_sum += 1;
             seg_stall &= seg_stalls[idx];
         end
@@ -153,6 +153,7 @@ module Accordian_Buffer #(
 
     always_ff @ (posedge i_clk) begin
         add_clk_reg <= add_clk_reg;
+        o_curr <= n_curr;
 
         //reset registers
         if(i_clear) begin

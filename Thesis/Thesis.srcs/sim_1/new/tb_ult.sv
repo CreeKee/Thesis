@@ -22,7 +22,7 @@
 
 
 
-import data_packet_pkg::*;
+
 
 module tb_ult#(
     parameter PIPE_COUNT = 8,
@@ -36,6 +36,7 @@ module tb_ult#(
     )(
 
     );
+    import data_packet_pkg::data_packet;
 
     logic i_clk  = 0;
     logic active = 0;
@@ -76,6 +77,12 @@ module tb_ult#(
 
     logic start_mult;
 
+
+    mult_pack indicies;
+    logic start_pipe;
+    logic split_fin, split_rdy = 0;
+    logic index_fin, index_rdy = 0;
+
     Splitter#(
     .PIPE_COUNT(PIPE_COUNT)
     ) pipe_splitter(
@@ -86,10 +93,22 @@ module tb_ult#(
         .i_N(n_val),
         .i_P(p_val),
 
-        .o_ready(start_mult),
+        .o_ready(split_fin),
         .o_split_vals(split_vals),
         .o_mem_offset(offsets)
+    );
 
+    Indexer#(
+    .MULT_COUNT(MULT_PER_PIPE)
+    ) idxr(
+        .i_clk(i_clk),
+        .i_active(active),
+
+        .i_N(n_val),
+        .i_P(p_val),
+
+        .o_vals(indicies),
+        .o_ready(index_fin)
     );
 
     mem_controller#(
@@ -122,8 +141,10 @@ module tb_ult#(
             ) Pipeline(
 
             .i_clk(i_clk),
-            .i_start(start_mult),
+            .i_start(start_pipe),
             .i_stall(0),
+
+            .i_indicies(indicies),
 
             .i_M(split_vals[pipe]),
             .i_N(n_val),
@@ -156,6 +177,25 @@ module tb_ult#(
             );
         end
     endgenerate
+
+    always_ff @ ( posedge i_clk ) begin
+
+        if(start_pipe) begin
+            start_pipe <= 0;
+            split_rdy <= 0;
+            index_rdy <= 0;
+        end
+        else begin
+            start_pipe <= (split_fin|split_rdy)&(index_fin|index_rdy);
+            split_rdy <= split_fin|split_rdy;
+            index_rdy <= index_fin|index_rdy;
+        end
+
+    end
+
+
+    /**********************************************************************************/
+
 
     always_comb begin
         donedone = 1;
@@ -205,7 +245,7 @@ module tb_ult#(
 
     always_ff @ ( posedge i_clk ) begin
 
-        if(start_mult) begin
+        if(split_fin) begin
             for(int p = 0; p < PIPE_COUNT; p++) begin
                 stored_offsets[p] <= (offsets[p]/n_val)*p_val;
             end 
