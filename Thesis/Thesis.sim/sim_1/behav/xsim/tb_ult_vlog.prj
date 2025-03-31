@@ -26,6 +26,7 @@ sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "
 "../../../../Thesis.srcs/sources_1/new/Splitter.sv" \
 "../../../../Thesis.srcs/sources_1/new/Computation_Pipeline.sv" \
 "../../../../Thesis.srcs/sources_1/new/Signal_defs.sv" \
+"../../../../Thesis.srcs/sources_1/new/Address_Selector.sv" \
 "../../../../Thesis.srcs/sources_1/new/Test_Bench.sv" \
 "../../../../Thesis.srcs/sim_1/new/tb_mult.sv" \
 "../../../../Thesis.srcs/sim_1/new/UVM_testbench.sv" \

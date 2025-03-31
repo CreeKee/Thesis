@@ -64,7 +64,7 @@ module Multiplier_Unit#(
     logic [31:0] n0_y, n1_y, n2_y;
     logic [31:0] n0_z, n1_z, n2_z;
 
-    logic z_path0, z_path1;
+    logic z_path0, z_path1, y_path0, y_path1;
 
     logic [31:0] n0_part_L, n1_part_L;
     logic [31:0] part_L = 0;
@@ -363,12 +363,17 @@ module Multiplier_Unit#(
                                 part_R <= n2_part_R;
 
                                 y <= n0_y + 1;
+
+                                y_path0 <= ((n0_y + 1) >= i_P);
+                                y_path1 <= ((n0_y + 1) - i_idx.alpha_y >= i_P);
                             end
                             else begin
                                 z <= n1_z;
                                 part_R <= n1_part_R;
 
                                 y <= n0_y;
+                                y_path0 <= ((n0_y) >= i_P);
+                                y_path1 <= ((n0_y) - i_idx.alpha_y >= i_P);
                             end
                         end
                         else begin
@@ -376,13 +381,15 @@ module Multiplier_Unit#(
                             part_R <= n0_part_R;
 
                             y <= y;
+                            y_path0 <= ((y) >= i_P);
+                            y_path1 <= ((y) - i_idx.alpha_y >= i_P);
                         end
                     end
 
                     YDIM: begin
                         dim <= XDIM;
-                        if(y >= i_P) begin
-                            if(n1_y >= i_P) begin
+                        if(y_path0) begin
+                            if(y_path1) begin
                                 y <= n2_y;
                                 x <= n0_x + 1;
                                 part_L <= n1_part_L;

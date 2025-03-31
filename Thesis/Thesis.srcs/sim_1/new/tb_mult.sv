@@ -82,8 +82,8 @@ module tb_mult#(
 
     logic [31:0] op_cnt;
 
-    logic [31:0] m_val=7, n_val=3, p_val=5;
-    //logic [31:0] m_val=52, n_val=33, p_val=47;
+    //logic [31:0] m_val=7, n_val=3, p_val=5;
+    logic [31:0] m_val=52, n_val=33, p_val=47;
 
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;

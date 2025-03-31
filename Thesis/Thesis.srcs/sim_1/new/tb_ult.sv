@@ -40,7 +40,7 @@ module tb_ult#(
 
     logic i_clk  = 0;
     logic active = 0;
-    //logic [31:0] m_val=7, n_val=3, p_val=5;
+    // logic [31:0] m_val=7, n_val=3, p_val=5;
     logic [31:0] m_val=52, n_val=33, p_val=47;
 
     logic [31:0] stored_offsets [PIPE_COUNT];
@@ -54,20 +54,23 @@ module tb_ult#(
     logic [31:0] offsets    [PIPE_COUNT];
 
     //Input mem signals
-    logic [31:0] L_mem_addrs [MULT_COUNT];
-    logic [31:0] R_mem_addrs [MULT_COUNT];
+    logic [31-$clog2(PAGE_SIZE):0] L_mem_addrs [PIPE_COUNT];
+    logic [31-$clog2(PAGE_SIZE):0] R_mem_addrs [PIPE_COUNT];
 
     logic L_data_rdy [MULT_COUNT];
     logic R_data_rdy [MULT_COUNT];
 
-    logic L_reqs     [MULT_COUNT];
-    logic R_reqs     [MULT_COUNT];
+    logic L_reqs     [PIPE_COUNT];
+    logic R_reqs     [PIPE_COUNT];
 
     logic [PAGE_SIZE-1:0][31:0] L_mem_bus;
     logic [PAGE_SIZE-1:0][31:0] R_mem_bus;
 
     data_packet  mult_res [MULT_COUNT];
     logic        mult_rdy [MULT_COUNT];
+
+    logic [31-$clog2(PAGE_SIZE):0] curr_L_addr, next_L_addr;
+    logic [31-$clog2(PAGE_SIZE):0] curr_R_addr, next_R_addr;
 
     //Pipe Signals
     logic [31:0] adds       [PIPE_COUNT][ADDS_PER_PIPE];
@@ -83,7 +86,7 @@ module tb_ult#(
     logic split_fin, split_rdy = 0;
     logic index_fin, index_rdy = 0;
 
-    Splitter#(
+        Splitter#(
     .PIPE_COUNT(PIPE_COUNT)
     ) pipe_splitter(
         .i_clk(i_clk),
@@ -96,6 +99,7 @@ module tb_ult#(
         .o_ready(split_fin),
         .o_split_vals(split_vals),
         .o_mem_offset(offsets)
+
     );
 
     Indexer#(
@@ -113,7 +117,7 @@ module tb_ult#(
 
     mem_controller#(
     .PAGE_SIZE(PAGE_SIZE),
-    .MULT_COUNT(MULT_COUNT)
+    .PIPE_COUNT(PIPE_COUNT)
     ) input_mem(
         .i_clk(i_clk),
 
@@ -123,16 +127,21 @@ module tb_ult#(
         .i_R_addrs(R_mem_addrs),
         .i_R_reqs(R_reqs),
 
-        .o_L_data_rdy(L_data_rdy),
-        .o_R_data_rdy(R_data_rdy),
+        .o_curr_L_addr(curr_L_addr),
+        .o_next_L_addr(next_L_addr),
+
+        .o_curr_R_addr(curr_R_addr),
+        .o_next_R_addr(next_R_addr),
 
         .mem_bus_a(L_mem_bus),
         .mem_bus_b(R_mem_bus)
     );
 
+
     genvar pipe;
     generate
         for (pipe=0; pipe < PIPE_COUNT; pipe++) begin : pipe_gen
+
             Computation_Pipeline#(
             .PAGE_SIZE(PAGE_SIZE),
             .SEG_COUNT(SEGS_PER_PIPE),
@@ -153,17 +162,23 @@ module tb_ult#(
             .i_L_mem_bus(L_mem_bus),
             .i_R_mem_bus(R_mem_bus),
 
-            .i_L_data_rdy(L_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
-            .i_R_data_rdy(R_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            // .i_L_data_rdy(L_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            // .i_R_data_rdy(R_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+
+            .i_curr_L_addr(curr_L_addr),
+            .i_next_L_addr(next_L_addr),
+
+            .i_curr_R_addr(curr_R_addr),
+            .i_next_R_addr(next_R_addr),
 
             .i_L_offset(offsets[pipe]),
             .i_R_offset(0),
 
-            .o_L_mem_addrs(L_mem_addrs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
-            .o_R_mem_addrs(R_mem_addrs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            .o_L_mem_addr(L_mem_addrs[pipe]),
+            .o_R_mem_addr(R_mem_addrs[pipe]),
 
-            .o_L_reqs(L_reqs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
-            .o_R_reqs(R_reqs[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
+            .o_L_req(L_reqs[pipe]),
+            .o_R_req(R_reqs[pipe]),
 
             .o_mult_res(mult_res[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
             .o_mult_rdy(mult_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),

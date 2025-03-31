@@ -111,6 +111,7 @@ read_verilog -library xil_defaultlib -sv {
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Signal_defs.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv}
 }
 read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
 set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]

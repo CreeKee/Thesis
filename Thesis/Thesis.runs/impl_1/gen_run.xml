@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743183102">
+<GenRun Id="impl_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743371493">
   <File Type="ROUTE-PWR" Name="impl_top_power_routed.rpt"/>
   <File Type="PA-TCL" Name="impl_top.tcl"/>
   <File Type="ROUTE-PWR-SUM" Name="impl_top_power_summary_routed.pb"/>
@@ -250,6 +250,13 @@
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/Signal_defs.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/Address_Selector.sv">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>

@@ -36,11 +36,14 @@ module Multiplication_Core#(
 
     input mult_pack i_indicies,
 
-    input logic i_L_ready [MULT_COUNT],
-    input logic i_R_ready [MULT_COUNT],
-
     input logic [PAGE_SIZE-1:0][31:0] i_L_data,
     input logic [PAGE_SIZE-1:0][31:0] i_R_data,
+
+    input logic [31-$clog2(PAGE_SIZE):0] i_curr_L_addr,
+    input logic [31-$clog2(PAGE_SIZE):0] i_next_L_addr,
+
+    input logic [31-$clog2(PAGE_SIZE):0] i_curr_R_addr,
+    input logic [31-$clog2(PAGE_SIZE):0] i_next_R_addr,
 
     input logic [31:0] i_L_offset,
     input logic [31:0] i_R_offset,
@@ -49,11 +52,11 @@ module Multiplication_Core#(
     input logic [$clog2(MULT_COUNT)-1:0] i_op_cnt,
     input logic        i_step,
 
-    output logic [31:0] o_L_mem_addrs [MULT_COUNT],
-    output logic [31:0] o_R_mem_addrs [MULT_COUNT],
+    output logic [31-$clog2(PAGE_SIZE):0] o_L_mem_addr,
+    output logic [31-$clog2(PAGE_SIZE):0] o_R_mem_addr,
 
-    output logic o_L_request [MULT_COUNT],
-    output logic o_R_request [MULT_COUNT],
+    output logic o_L_request,
+    output logic o_R_request,
 
     output logic       o_dready [MULT_COUNT],
     output data_packet o_mults   [MULT_COUNT]
@@ -68,19 +71,48 @@ module Multiplication_Core#(
 
     assign diff = SEG_COUNT - curr;
     
-    // Indexer#(
-    // .MULT_COUNT(MULT_COUNT)
-    // ) idxr(
-    //     .i_clk(i_clk),
-    //     .i_active(i_start),
 
-    //     .i_M(dim_M),
-    //     .i_N(dim_N),
-    //     .i_P(dim_P),
+    logic [31:0]                   L_raw_addrs [MULT_COUNT];
+    logic [31-$clog2(PAGE_SIZE):0] L_mem_addrs [MULT_COUNT];
+    logic                          L_reqs      [MULT_COUNT];
+    logic                          L_data_rdy  [MULT_COUNT];
 
-    //     .o_vals(indicies),
-    //     .o_ready(idx_rdy)
-    // );
+    logic [31:0]                   R_raw_addrs [MULT_COUNT];
+    logic [31-$clog2(PAGE_SIZE):0] R_mem_addrs [MULT_COUNT];
+    logic                          R_reqs      [MULT_COUNT];
+    logic                          R_data_rdy  [MULT_COUNT];
+
+    Address_Selector #(
+        .PAGE_SIZE(PAGE_SIZE),
+        .INPUT_COUNT(MULT_COUNT)
+    ) L_addr_manager(
+        .i_clk(i_clk),
+        .i_curr_m_addr(i_curr_L_addr),
+        .i_next_m_addr(i_next_L_addr),
+
+        .i_addrs(L_mem_addrs),
+        .i_reqs(L_reqs),
+
+        .o_data_rdy(L_data_rdy),
+        .o_sel_addr(o_L_mem_addr),
+        .o_sel_req(o_L_request)
+    );
+
+    Address_Selector #(
+        .PAGE_SIZE(PAGE_SIZE),
+        .INPUT_COUNT(MULT_COUNT)
+    ) R_addr_manager(
+        .i_clk(i_clk),
+        .i_curr_m_addr(i_curr_R_addr),
+        .i_next_m_addr(i_next_R_addr),
+
+        .i_addrs(R_mem_addrs),
+        .i_reqs(R_reqs),
+
+        .o_data_rdy(R_data_rdy),
+        .o_sel_addr(o_R_mem_addr),
+        .o_sel_req(o_R_request)
+    );
 
     genvar mul;
     generate 
@@ -96,12 +128,14 @@ module Multiplication_Core#(
                 .i_clk(i_clk),
                 .i_active(i_start),
                 .i_done(i_done),
+
                 .i_M(dim_M),
                 .i_N(dim_N),
                 .i_P(dim_P),
+
                 .i_idx(i_indicies),
-                .i_L_ready(i_L_ready[mul]),
-                .i_R_ready(i_R_ready[mul]),
+                .i_L_ready(L_data_rdy[mul]),
+                .i_R_ready(R_data_rdy[mul]),
                 .i_pull(m_pull[mul]),
 
                 .i_L_offset(L_offset),
@@ -110,11 +144,11 @@ module Multiplication_Core#(
                 .i_L_data(i_L_data),
                 .i_R_data(i_R_data),
                 
-                .o_L_mem_addr(o_L_mem_addrs[mul]),
-                .o_R_mem_addr(o_R_mem_addrs[mul]),
+                .o_L_mem_addr(L_raw_addrs[mul]),
+                .o_R_mem_addr(R_raw_addrs[mul]),
 
-                .o_L_request(o_L_request[mul]),
-                .o_R_request(o_R_request[mul]),
+                .o_L_request(L_reqs[mul]),
+                .o_R_request(R_reqs[mul]),
 
                 .o_result(o_mults[mul]),
                 .o_res_ready(o_dready[mul])
@@ -150,6 +184,9 @@ module Multiplication_Core#(
         
         for (int idx = 0; idx < MULT_COUNT; idx++) begin
             m_pull[idx] = 0;
+
+            L_mem_addrs[idx] = L_raw_addrs[idx][31:$clog2(PAGE_SIZE)];
+            R_mem_addrs[idx] = R_raw_addrs[idx][31:$clog2(PAGE_SIZE)];
         end
 
         if(i_step) begin

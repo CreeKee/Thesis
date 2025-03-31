@@ -14,7 +14,7 @@ ECHO is off.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source impl_top.tcl -notrace
-create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 503.137 ; gain = 222.129
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 502.535 ; gain = 221.281
 Command: read_checkpoint -auto_incremental -incremental {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/utils_1/imports/synth_1/impl_top.dcp}
 INFO: [Vivado 12-5825] Read reference checkpoint from E:/Seth stuff/Thesis/Thesis/Thesis.srcs/utils_1/imports/synth_1/impl_top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -23,11 +23,13 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t'
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 42500
+INFO: [Synth 8-7075] Helper process launched with PID 43716
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1346.637 ; gain = 439.883
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1347.367 ; gain = 440.469
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-6901] identifier 'MULT_PER_PIPE' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:27]
 WARNING: [Synth 8-6901] identifier 'ADDS_PER_PIPE' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:28]
@@ -72,17 +74,23 @@ WARNING: [Synth 8-9661] initial value of parameter 'PAGE_SIZE' is omitted [E:/Se
 WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:27]
 WARNING: [Synth 8-9661] initial value of parameter 'SEG_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:28]
 WARNING: [Synth 8-9661] initial value of parameter 'SEGMENTS' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv:25]
-WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:59]
+WARNING: [Synth 8-9661] initial value of parameter 'PIPE_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:59]
+WARNING: [Synth 8-6901] identifier 'curr_L_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:80]
+WARNING: [Synth 8-6901] identifier 'next_L_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:81]
+WARNING: [Synth 8-6901] identifier 'curr_R_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:83]
+WARNING: [Synth 8-6901] identifier 'next_R_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:84]
 WARNING: [Synth 8-9661] initial value of parameter 'PAGE_SIZE' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:25]
 WARNING: [Synth 8-9661] initial value of parameter 'SEG_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:26]
 WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:27]
 WARNING: [Synth 8-9661] initial value of parameter 'ADD_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:28]
+WARNING: [Synth 8-9661] initial value of parameter 'PAGE_SIZE' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:25]
+WARNING: [Synth 8-9661] initial value of parameter 'INPUT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:26]
 INFO: [Synth 8-6157] synthesizing module 'impl_top' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:26]
 INFO: [Synth 8-6157] synthesizing module 'Matrix_Multiplier' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:24]
-	Parameter PIPE_COUNT bound to: 2 - type: integer 
+	Parameter PIPE_COUNT bound to: 4 - type: integer 
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULT_COUNT bound to: 16 - type: integer 
-	Parameter ADD_COUNT bound to: 8 - type: integer 
+	Parameter MULT_COUNT bound to: 32 - type: integer 
+	Parameter ADD_COUNT bound to: 16 - type: integer 
 	Parameter SEGS_PER_PIPE bound to: 8 - type: integer 
 	Parameter ADDS_PER_PIPE bound to: 4 - type: integer 
 	Parameter MULT_PER_PIPE bound to: 8 - type: integer 
@@ -137,6 +145,10 @@ INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized6' [E:/S
 	Parameter MULTIPLIER_INDEX bound to: 7 - type: integer 
 	Parameter MULT_COUNT bound to: 8 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized6' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
+INFO: [Synth 8-6157] synthesizing module 'Address_Selector' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
+	Parameter PAGE_SIZE bound to: 32 - type: integer 
+	Parameter INPUT_COUNT bound to: 8 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'Address_Selector' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'Multiplication_Core' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:25]
 INFO: [Synth 8-6157] synthesizing module 'Accordian_Buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.sv:26]
 	Parameter SEGMENTS bound to: 8 - type: integer 
@@ -196,12 +208,14 @@ INFO: [Synth 8-6157] synthesizing module 'Simple_Adder' [E:/Seth stuff/Thesis/Th
 INFO: [Synth 8-6155] done synthesizing module 'Simple_Adder' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:23]
 INFO: [Synth 8-6155] done synthesizing module 'Addition_Core' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'Accordian_Buffer' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.sv:26]
-WARNING: [Synth 8-689] width (32) of port connection 'i_clear' does not match port width (1) of module 'Accordian_Buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:124]
+WARNING: [Synth 8-689] width (32) of port connection 'i_clear' does not match port width (1) of module 'Accordian_Buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:139]
 INFO: [Synth 8-6155] done synthesizing module 'Computation_Pipeline' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:24]
-WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:150]
-WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:150]
+WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:156]
+WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:156]
+WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:156]
+WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:156]
 INFO: [Synth 8-6157] synthesizing module 'Splitter' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:23]
-	Parameter PIPE_COUNT bound to: 2 - type: integer 
+	Parameter PIPE_COUNT bound to: 4 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Splitter' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:23]
 INFO: [Synth 8-6157] synthesizing module 'Indexer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:24]
 	Parameter MULT_COUNT bound to: 8 - type: integer 
@@ -209,11 +223,15 @@ INFO: [Synth 8-155] case statement is not full and has no default [E:/Seth stuff
 INFO: [Synth 8-6155] done synthesizing module 'Indexer' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'mem_controller' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:56]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULT_COUNT bound to: 16 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-27552-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-27552-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
-WARNING: [Synth 8-689] width (27) of port connection 'addra' does not match port width (12) of module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:85]
-WARNING: [Synth 8-689] width (27) of port connection 'addrb' does not match port width (12) of module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:91]
+	Parameter PIPE_COUNT bound to: 4 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-12932-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-12932-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
+WARNING: [Synth 8-689] width (27) of port connection 'addra' does not match port width (12) of module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:94]
+WARNING: [Synth 8-689] width (27) of port connection 'addrb' does not match port width (12) of module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:100]
+INFO: [Synth 8-6157] synthesizing module 'Address_Selector__parameterized0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
+	Parameter PAGE_SIZE bound to: 32 - type: integer 
+	Parameter INPUT_COUNT bound to: 4 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'Address_Selector__parameterized0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'mem_controller' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:56]
 INFO: [Synth 8-6155] done synthesizing module 'Matrix_Multiplier' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'impl_top' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:26]
@@ -269,9 +287,9 @@ WARNING: [Synth 8-6014] Unused sequential element P_val_reg was removed.  [E:/Se
 WARNING: [Synth 8-87] always_comb on 'next_state_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:64]
 WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[0]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
 WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[1]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
+WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[2]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
+WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[3]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
 WARNING: [Synth 8-6014] Unused sequential element gamma_x_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:210]
-WARNING: [Synth 8-6014] Unused sequential element L_addr_sel_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:132]
-WARNING: [Synth 8-6014] Unused sequential element R_addr_sel_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:160]
 WARNING: [Synth 8-3848] Net o_TxD in module/entity Matrix_Multiplier does not have driver. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:37]
 WARNING: [Synth 8-3848] Net donedone in module/entity Matrix_Multiplier does not have driver. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:48]
 WARNING: [Synth 8-7129] Port i_P[31] in module Splitter is either unconnected or has no load
@@ -376,18 +394,18 @@ WARNING: [Synth 8-7129] Port i_pops[23] in module Accordian_Segment__parameteriz
 WARNING: [Synth 8-7129] Port i_pops[22] in module Accordian_Segment__parameterized4 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1569.184 ; gain = 662.430
+Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1565.047 ; gain = 658.148
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1569.184 ; gain = 662.430
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1565.047 ; gain = 658.148
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1569.184 ; gain = 662.430
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:12 ; elapsed = 00:00:12 . Memory (MB): peak = 1565.047 ; gain = 658.148
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.691 . Memory (MB): peak = 1569.184 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:01 . Memory (MB): peak = 1565.047 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -402,40 +420,31 @@ Parsing XDC File [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/dont_touch.xdc
 Finished Parsing XDC File [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1678.562 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1721.266 ; gain = 0.148
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
 The system cannot find the path specified.
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.087 . Memory (MB): peak = 1678.562 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.171 . Memory (MB): peak = 1721.359 ; gain = 0.094
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'Complete_Mat_Mul/input_mem/bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1684.801 ; gain = 778.047
+Finished Constraint Validation : Time (s): cpu = 00:00:34 ; elapsed = 00:00:33 . Memory (MB): peak = 1748.031 ; gain = 841.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1684.801 ; gain = 778.047
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:34 ; elapsed = 00:00:33 . Memory (MB): peak = 1748.031 ; gain = 841.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for Complete_Mat_Mul/input_mem/bram. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1684.801 ; gain = 778.047
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Preparing Guide Design
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1684.801 ; gain = 778.047
----------------------------------------------------------------------------------
-WARNING: [Synth 8-6702] IncrSynth : Over 50% of partitions are impacted by design changes. Reverting to default synthesis
-WARNING: [Synth 8-6702] IncrSynth : Reverting to default synthesis
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:30 ; elapsed = 00:00:30 . Memory (MB): peak = 1684.801 ; gain = 778.047
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:34 ; elapsed = 00:00:33 . Memory (MB): peak = 1748.031 ; gain = 841.133
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit'
 INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized0'
@@ -455,7 +464,7 @@ INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module '
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -465,7 +474,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized0'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -475,7 +484,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized1'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -485,7 +494,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized2'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -495,7 +504,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized3'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -505,7 +514,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized4'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -515,7 +524,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized5'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -525,26 +534,28 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized6'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:126]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:86]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/includes.vh:62]
-WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:64]
-WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[0]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:69]
-WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[1]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:69]
+WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:86]
+WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:62]
+WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:64]
+WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[0]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
+WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[1]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
+WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[2]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
+WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[3]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -556,67 +567,56 @@ WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[1]' [E:
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'one-hot' in module 'Indexer'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:35 ; elapsed = 00:00:36 . Memory (MB): peak = 1684.801 ; gain = 778.047
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:41 ; elapsed = 00:00:40 . Memory (MB): peak = 1748.031 ; gain = 841.133
 ---------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : Change is too high
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 114   
-	   3 Input   32 Bit       Adders := 146   
-	   4 Input   32 Bit       Adders := 48    
-	   5 Input   32 Bit       Adders := 2     
-	   2 Input    4 Bit       Adders := 48    
-	   3 Input    3 Bit       Adders := 80    
-	   4 Input    3 Bit       Adders := 26    
-	   2 Input    3 Bit       Adders := 14    
-	   5 Input    3 Bit       Adders := 4     
-	   4 Input    2 Bit       Adders := 42    
-	   2 Input    2 Bit       Adders := 14    
-	   3 Input    2 Bit       Adders := 12    
+	   2 Input   32 Bit       Adders := 291   
+	   3 Input   32 Bit       Adders := 323   
+	   4 Input   32 Bit       Adders := 97    
+	   5 Input   32 Bit       Adders := 4     
+	   2 Input    4 Bit       Adders := 92    
+	   2 Input    3 Bit       Adders := 36    
+	   3 Input    3 Bit       Adders := 160   
+	   4 Input    3 Bit       Adders := 52    
+	   5 Input    3 Bit       Adders := 8     
+	   4 Input    2 Bit       Adders := 84    
+	   2 Input    2 Bit       Adders := 30    
+	   3 Input    2 Bit       Adders := 24    
 +---Registers : 
-	               32 Bit    Registers := 289   
-	               27 Bit    Registers := 2     
-	               12 Bit    Registers := 2     
-	                4 Bit    Registers := 20    
-	                3 Bit    Registers := 18    
-	                2 Bit    Registers := 19    
-	                1 Bit    Registers := 378   
+	               32 Bit    Registers := 562   
+	               27 Bit    Registers := 4     
+	                4 Bit    Registers := 36    
+	                3 Bit    Registers := 44    
+	                2 Bit    Registers := 37    
+	                1 Bit    Registers := 812   
 +---Multipliers : 
-	              32x32  Multipliers := 17    
+	              32x32  Multipliers := 33    
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 148   
-	   4 Input   32 Bit        Muxes := 65    
-	   3 Input   32 Bit        Muxes := 80    
+	   2 Input   32 Bit        Muxes := 333   
+	   4 Input   32 Bit        Muxes := 129   
+	   3 Input   32 Bit        Muxes := 160   
 	   5 Input   32 Bit        Muxes := 5     
+	   4 Input   27 Bit        Muxes := 8     
 	   5 Input    5 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 2     
-	   2 Input    4 Bit        Muxes := 16    
-	   3 Input    4 Bit        Muxes := 2     
-	  16 Input    4 Bit        Muxes := 2     
-	   2 Input    3 Bit        Muxes := 18    
-	   4 Input    2 Bit        Muxes := 65    
-	   2 Input    2 Bit        Muxes := 147   
+	   2 Input    4 Bit        Muxes := 32    
+	   3 Input    4 Bit        Muxes := 4     
+	   8 Input    3 Bit        Muxes := 8     
+	   2 Input    3 Bit        Muxes := 37    
+	   4 Input    2 Bit        Muxes := 131   
+	   2 Input    2 Bit        Muxes := 290   
 	   5 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 1179  
-	   4 Input    1 Bit        Muxes := 688   
-	   3 Input    1 Bit        Muxes := 128   
-	   5 Input    1 Bit        Muxes := 17    
-	   6 Input    1 Bit        Muxes := 2     
-	   7 Input    1 Bit        Muxes := 2     
-	   8 Input    1 Bit        Muxes := 18    
-	  16 Input    1 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 2483  
+	   4 Input    1 Bit        Muxes := 1472  
+	   3 Input    1 Bit        Muxes := 256   
+	   8 Input    1 Bit        Muxes := 44    
+	   5 Input    1 Bit        Muxes := 19    
+	   6 Input    1 Bit        Muxes := 4     
+	   7 Input    1 Bit        Muxes := 4     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -650,109 +650,6 @@ DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
 DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
 DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
 DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[16]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[15]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
 DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
 DSP Report: register o_result0 is absorbed into DSP o_result0.
 DSP Report: operator o_result0 is absorbed into DSP o_result0.
@@ -807,9 +704,72 @@ WARNING: [Synth 8-3332] Sequential element (o_result_reg[15]) is unused and will
 WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]__0) is unused and will be removed from module Mult_Comp_Unit__3.
 WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]__0) is unused and will be removed from module Mult_Comp_Unit__3.
 WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]__0) is unused and will be removed from module Mult_Comp_Unit__3.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[16]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[15]) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]__0) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]__0) is unused and will be removed from module Mult_Comp_Unit__4.
+WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]__0) is unused and will be removed from module Mult_Comp_Unit__4.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
 DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
 DSP Report: register o_result0 is absorbed into DSP o_result0.
 DSP Report: operator o_result0 is absorbed into DSP o_result0.
@@ -828,45 +788,7 @@ DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
 DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
 DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
 DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:43]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
 DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
 DSP Report: register o_result0 is absorbed into DSP o_result0.
 DSP Report: operator o_result0 is absorbed into DSP o_result0.
@@ -886,151 +808,381 @@ DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
 DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
 DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
 INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-4471] merging register 'add_gen[4].add_unit/done_reg' into 'add_gen[0].add_unit/done_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Output_Buffer.sv:60]
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+INFO: [Synth 8-4471] merging register 'add_gen[4].add_unit/done_reg' into 'add_gen[0].add_unit/done_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:60]
 INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[3]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
 INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[4]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
 INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[5]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
 INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[6]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
 INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[7]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
 INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[8]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[9]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[10]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[11]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[12]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[13]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[14]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[15]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[16]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[17]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[18]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[19]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[20]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[21]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[22]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[23]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[24]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[25]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[26]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[27]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[28]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[29]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[30]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[7].acc_seg/spacers_reg[31]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[3]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[4]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[5]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[6]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[7]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[8]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[9]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[10]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[11]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[12]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[13]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[14]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[15]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[16]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[17]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[18]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[19]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[20]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[21]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[22]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[23]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[24]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[25]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[26]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[27]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[28]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[29]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[30]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[6].acc_seg/spacers_reg[31]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[3]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[4]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[5]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[6]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[7]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[8]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[9]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[10]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[11]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[12]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[13]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[14]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[15]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[16]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[17]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[18]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[19]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[20]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[21]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[22]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[23]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[24]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[25]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[26]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[27]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[28]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[29]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[30]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[5].acc_seg/spacers_reg[31]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[3]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[4]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[5]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[6]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[7]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[8]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[9]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[10]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[11]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[12]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[13]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[14]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Synth 8-3886] merging instance 'seg_gen[4].acc_seg/spacers_reg[15]' (LD) to 'seg_gen[2].acc_seg/spacers_reg[2]'
+INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\seg_gen[0].acc_seg/spacers_reg[2] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (add_core/\count_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\space_sum_reg[3] )
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\pop_sum_reg[30] )
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][0]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][1]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][2]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][3]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][4]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][5]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][6]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][7]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][8]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][9]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][10]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][11]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][12]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][13]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][14]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][15]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][16]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][17]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][18]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][19]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][20]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][21]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][22]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][23]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][24]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][25]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][26]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][27]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][28]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][29]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'idxr/vals_reg[alpha_x][30]' (FDE) to 'idxr/vals_reg[alpha_x][31]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\idxr/vals_reg[alpha_x][31] )
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/N_val_reg[0]' (FDE) to 'pipe_splitter/N_val_reg[1]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][0]' (FDRE) to 'idxr/o_vals_reg[alpha_x][1]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][1]' (FDRE) to 'idxr/o_vals_reg[alpha_x][2]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][2]' (FDRE) to 'idxr/o_vals_reg[alpha_x][3]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][3]' (FDRE) to 'idxr/o_vals_reg[alpha_x][4]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][4]' (FDRE) to 'idxr/o_vals_reg[alpha_x][5]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][5]' (FDRE) to 'idxr/o_vals_reg[alpha_x][6]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][6]' (FDRE) to 'idxr/o_vals_reg[alpha_x][7]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][7]' (FDRE) to 'idxr/o_vals_reg[alpha_x][8]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][8]' (FDRE) to 'idxr/o_vals_reg[alpha_x][9]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][9]' (FDRE) to 'idxr/o_vals_reg[alpha_x][10]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][10]' (FDRE) to 'idxr/o_vals_reg[alpha_x][11]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][11]' (FDRE) to 'idxr/o_vals_reg[alpha_x][12]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][12]' (FDRE) to 'idxr/o_vals_reg[alpha_x][13]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][13]' (FDRE) to 'idxr/o_vals_reg[alpha_x][14]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][14]' (FDRE) to 'idxr/o_vals_reg[alpha_x][15]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][15]' (FDRE) to 'idxr/o_vals_reg[alpha_x][16]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][16]' (FDRE) to 'idxr/o_vals_reg[alpha_x][17]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][17]' (FDRE) to 'idxr/o_vals_reg[alpha_x][18]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][18]' (FDRE) to 'idxr/o_vals_reg[alpha_x][19]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][19]' (FDRE) to 'idxr/o_vals_reg[alpha_x][20]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][20]' (FDRE) to 'idxr/o_vals_reg[alpha_x][21]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][21]' (FDRE) to 'idxr/o_vals_reg[alpha_x][22]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][22]' (FDRE) to 'idxr/o_vals_reg[alpha_x][23]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][23]' (FDRE) to 'idxr/o_vals_reg[alpha_x][24]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][24]' (FDRE) to 'idxr/o_vals_reg[alpha_x][25]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][25]' (FDRE) to 'idxr/o_vals_reg[alpha_x][26]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][26]' (FDRE) to 'idxr/o_vals_reg[alpha_x][27]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][27]' (FDRE) to 'idxr/o_vals_reg[alpha_x][28]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][28]' (FDRE) to 'idxr/o_vals_reg[alpha_x][29]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][29]' (FDRE) to 'idxr/o_vals_reg[alpha_x][30]'
-INFO: [Synth 8-3886] merging instance 'idxr/o_vals_reg[alpha_x][30]' (FDRE) to 'idxr/o_vals_reg[alpha_x][31]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][0]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][1]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][1]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][2]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][2]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][3]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][3]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][4]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][4]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][5]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][5]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][6]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][6]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][7]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][7]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][8]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][8]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][9]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][9]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][10]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][10]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][11]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][11]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][12]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][12]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][13]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][13]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][14]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][14]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][15]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][15]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][16]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][16]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][17]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][17]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][18]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][18]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][19]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][19]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][20]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][20]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][21]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][21]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][22]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][22]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][23]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][23]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][24]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][24]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][25]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][25]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][26]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][26]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][27]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][27]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][28]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][28]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][29]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][29]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][30]'
-INFO: [Synth 8-3886] merging instance 'pipe_splitter/o_mem_offset_reg[0][30]' (FDRE) to 'pipe_splitter/o_mem_offset_reg[0][31]'
+INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:66]
+DSP Report: Generating DSP p_3_in, operation Mode is: A*B.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: Generating DSP p_3_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: Generating DSP p_3_in, operation Mode is: A*B.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: Generating DSP p_3_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+DSP Report: operator p_3_in is absorbed into DSP p_3_in.
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (input_mem/\R_data_pending_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (input_mem/\L_data_pending_reg[1] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (idxr/\vals_reg[alpha_x][31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pipe_splitter/\N_val_reg[30] )
 INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\pipe_splitter/o_mem_offset_reg[0][31] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\idxr/o_vals_reg[alpha_x][31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (pipe_splitter/\o_mem_offset_reg[0][31] )
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (idxr/\o_vals_reg[alpha_x][31] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:03 ; elapsed = 00:01:34 . Memory (MB): peak = 1684.801 ; gain = 778.047
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:23 ; elapsed = 00:01:54 . Memory (MB): peak = 1748.031 ; gain = 841.133
 ---------------------------------------------------------------------------------
- Sort Area is Multiplier_Unit__parameterized2 o_result0_0 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_0 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_0 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_0 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized2 o_result0_0 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_0 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_0 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_0 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_6 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_6 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_6 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_6 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_6 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_6 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_8 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_8 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized2 o_result0_3 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_3 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_3 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_3 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized2 o_result0_3 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_3 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_3 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_3 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_7 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_7 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_7 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_7 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_7 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB2 o_result0_7 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_9 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_9 : 0 1 : 2707 5484 : Used 2 time 0
+WARNING: [Synth 8-3323] Resources of type DSP have been overutilized. Used = 132, Available = 90. Use report_utilization command for details.
+ Sort Area is Multiplier_Unit__parameterized0 o_result0_0 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_0 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_0 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_0 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplier_Unit__parameterized0 o_result0_0 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_0 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_0 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_0 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplier_Unit__parameterized1 o_result0_6 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_6 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_6 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_6 : 0 0 : 3137 5981 : Used 4 time 0
+ Sort Area is Multiplier_Unit__parameterized1 o_result0_6 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_6 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_6 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_6 : 0 1 : 2844 5981 : Used 4 time 0
+ Sort Area is Matrix_Multiplier__GC0 p_3_in_0 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is Matrix_Multiplier__GC0 p_3_in_0 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is Multiplier_Unit__parameterized0 o_result0_3 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_3 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_3 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_3 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplier_Unit__parameterized0 o_result0_3 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_3 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_3 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_3 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplier_Unit__parameterized1 o_result0_7 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_7 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_7 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_7 : 0 0 : 2777 5484 : Used 4 time 0
+ Sort Area is Multiplier_Unit__parameterized1 o_result0_7 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB3 o_result0_7 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB0 o_result0_7 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Multiplication_Core__GB4 o_result0_7 : 0 1 : 2707 5484 : Used 4 time 0
+ Sort Area is Matrix_Multiplier__GC0 p_3_in_3 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is Matrix_Multiplier__GC0 p_3_in_3 : 0 1 : 2659 5418 : Used 1 time 0
+ DSP resource Status: o_result0_3 0 5484 2777: Used 4 time : Accepted (70 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 0 5981 3137: Used 4 time : Accepted (4 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 1 5981 2844: Used 4 time : Accepted (20 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_7 0 5484 2777: Used 4 time : Rejected (102 > 90) uniquify 0 
+ DSP resource Status: o_result0_6 0 5981 3137: Used 4 time : Accepted (36 < 90) uniquify 0 
+ DSP resource Status: o_result0_6 1 5981 2844: Used 4 time : Accepted (52 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_3 0 5484 2777: Used 4 time : Accepted (78 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 0 5981 3137: Used 4 time : Accepted (12 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 1 5981 2844: Used 4 time : Accepted (28 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_7 0 5484 2777: Used 4 time : Rejected (110 > 90) uniquify 0 
+ DSP resource Status: o_result0_6 0 5981 3137: Used 4 time : Accepted (44 < 90) uniquify 0 
+ DSP resource Status: o_result0_6 1 5981 2844: Used 4 time : Accepted (60 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_3 0 5484 2777: Used 4 time : Accepted (74 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 0 5981 3137: Used 4 time : Accepted (8 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 1 5981 2844: Used 4 time : Accepted (24 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_7 0 5484 2777: Used 4 time : Rejected (106 > 90) uniquify 0 
+ DSP resource Status: o_result0_6 0 5981 3137: Used 4 time : Accepted (40 < 90) uniquify 0 
+ DSP resource Status: o_result0_6 1 5981 2844: Used 4 time : Accepted (56 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_3 0 5484 2777: Used 4 time : Accepted (82 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 0 5981 3137: Used 4 time : Accepted (16 < 90) uniquify 0 
+ DSP resource Status: o_result0_0 1 5981 2844: Used 4 time : Accepted (32 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: o_result0_7 0 5484 2777: Used 4 time : Rejected (114 > 90) uniquify 0 
+ DSP resource Status: o_result0_6 0 5981 3137: Used 4 time : Accepted (48 < 90) uniquify 0 
+ DSP resource Status: o_result0_6 1 5981 2844: Used 4 time : Accepted (64 < 90) uniquify 0 
+WARNING: [Synth 8-3936] Found unconnected internal register 'o_result_reg' and it is trimmed from '48' to '15' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:43]
+DSP Report: Generating DSP o_result0, operation Mode is (post resource management): A2*B2.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: register o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: operator o_result0 is absorbed into DSP o_result0.
+DSP Report: Generating DSP o_result_reg, operation Mode is (post resource management): (PCIN>>17)+A2*B.
+DSP Report: register o_result0 is absorbed into DSP o_result_reg.
+DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
+ DSP resource Status: p_3_in_3 0 5418 2759: Used 1 time : Rejected (131 > 90) uniquify 0 
+ DSP resource Status: p_3_in_0 0 5879 3101: Used 1 time : Accepted (65 < 90) uniquify 0 
+ DSP resource Status: p_3_in_0 1 5879 2778: Used 1 time : Accepted (66 < 90) uniquify 0 
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
@@ -1071,6 +1223,10 @@ DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding R
 |Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
 |Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
 |Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
+|Indexer        | A*B             | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Indexer        | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Indexer        | A*B             | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Indexer        | (PCIN>>17)+A*B  | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 +---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
@@ -1081,19 +1237,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:14 ; elapsed = 00:01:46 . Memory (MB): peak = 1684.801 ; gain = 778.047
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:37 ; elapsed = 00:02:08 . Memory (MB): peak = 1748.031 ; gain = 841.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:42 ; elapsed = 00:02:14 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Timing Optimization : Time (s): cpu = 00:01:52 ; elapsed = 00:02:23 . Memory (MB): peak = 1780.410 ; gain = 873.512
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:49 ; elapsed = 00:02:21 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Technology Mapping : Time (s): cpu = 00:02:14 ; elapsed = 00:02:45 . Memory (MB): peak = 1787.371 ; gain = 880.473
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1111,37 +1267,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:58 ; elapsed = 00:02:29 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished IO Insertion : Time (s): cpu = 00:02:28 ; elapsed = 00:03:00 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:58 ; elapsed = 00:02:29 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:28 ; elapsed = 00:03:00 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:03 ; elapsed = 00:02:35 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:41 ; elapsed = 00:03:13 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:03 ; elapsed = 00:02:35 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:42 ; elapsed = 00:03:14 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:05 ; elapsed = 00:02:36 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:45 ; elapsed = 00:03:17 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:05 ; elapsed = 00:02:36 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:45 ; elapsed = 00:03:17 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1159,49 +1315,49 @@ Report Cell Usage:
 |      |Cell        |Count |
 +------+------------+------+
 |1     |blk_mem_gen |     1|
-|2     |BUFG        |     3|
-|3     |CARRY4      |  3364|
-|4     |LUT1        |   718|
-|5     |LUT2        |  7097|
-|6     |LUT3        |  3920|
-|7     |LUT4        |  4641|
-|8     |LUT5        |   767|
-|9     |LUT6        |  5358|
-|10    |MUXF7       |     6|
-|11    |FDRE        |  5645|
-|12    |FDSE        |    24|
-|13    |LD          |    17|
-|14    |LDC         |    64|
+|2     |BUFG        |     5|
+|3     |CARRY4      |  8012|
+|4     |LUT1        |  1479|
+|5     |LUT2        | 19385|
+|6     |LUT3        |  9898|
+|7     |LUT4        | 10445|
+|8     |LUT5        |  1924|
+|9     |LUT6        |  9964|
+|10    |MUXF7       |    12|
+|11    |FDRE        | 10702|
+|12    |FDSE        |    48|
+|13    |LD          |    33|
+|14    |LDC         |   128|
 |15    |IBUF        |     2|
-|16    |OBUF        |     2|
-|17    |OBUFT       |    15|
+|16    |OBUF        |     4|
+|17    |OBUFT       |    13|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:05 ; elapsed = 00:02:37 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:45 ; elapsed = 00:03:17 . Memory (MB): peak = 1794.242 ; gain = 887.344
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 520 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:45 ; elapsed = 00:02:29 . Memory (MB): peak = 1828.520 ; gain = 806.148
-Synthesis Optimization Complete : Time (s): cpu = 00:02:05 ; elapsed = 00:02:37 . Memory (MB): peak = 1828.520 ; gain = 921.766
+Synthesis finished with 0 errors, 0 critical warnings and 845 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:19 ; elapsed = 00:03:04 . Memory (MB): peak = 1794.242 ; gain = 704.359
+Synthesis Optimization Complete : Time (s): cpu = 00:02:46 ; elapsed = 00:03:18 . Memory (MB): peak = 1794.242 ; gain = 887.344
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.603 . Memory (MB): peak = 1828.520 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 3451 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:02 ; elapsed = 00:00:01 . Memory (MB): peak = 1805.672 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 8185 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1829.125 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1825.676 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 81 instances were transformed.
-  LD => LDCE: 17 instances
-  LDC => LDCE: 64 instances
+  A total of 161 instances were transformed.
+  LD => LDCE: 33 instances
+  LDC => LDCE: 128 instances
 
 The system cannot find the path specified.
-Synth Design complete | Checksum: 88239582
+Synth Design complete | Checksum: 31a06321
 INFO: [Common 17-83] Releasing license: Synthesis
-214 Infos, 340 Warnings, 0 Critical Warnings and 0 Errors encountered.
+225 Infos, 357 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:18 ; elapsed = 00:02:50 . Memory (MB): peak = 1829.125 ; gain = 1308.637
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.077 . Memory (MB): peak = 1829.125 ; gain = 0.000
+synth_design: Time (s): cpu = 00:03:07 ; elapsed = 00:03:41 . Memory (MB): peak = 1825.676 ; gain = 1306.754
+Write ShapeDB Complete: Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.242 . Memory (MB): peak = 1825.676 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/impl_top.dcp' has been generated.
-write_checkpoint: Time (s): cpu = 00:00:06 ; elapsed = 00:00:05 . Memory (MB): peak = 1829.125 ; gain = 0.000
+write_checkpoint: Time (s): cpu = 00:00:12 ; elapsed = 00:00:09 . Memory (MB): peak = 1825.676 ; gain = 0.000
 INFO: [runtcl-4] Executing : report_utilization -file impl_top_utilization_synth.rpt -pb impl_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Mar 28 10:34:56 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Mar 30 14:55:43 2025...

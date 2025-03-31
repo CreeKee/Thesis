@@ -12,13 +12,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,857.001 ns"></ZoomEndTime>
-      <Cursor1Time time="90.000 ns"></Cursor1Time>
+      <ZoomStartTime time="95.375 ns"></ZoomStartTime>
+      <ZoomEndTime time="114.126 ns"></ZoomEndTime>
+      <Cursor1Time time="111.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="410"></NameColumnWidth>
-      <ValueColumnWidth column_width="269"></ValueColumnWidth>
+      <ValueColumnWidth column_width="251"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="5" />
    <wvobject fp_name="group669" type="group">
@@ -45,36 +45,36 @@
          <obj_property name="ObjectShortName">p_val[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/stored_offsets" type="array">
-         <obj_property name="ElementShortName">stored_offsets[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">stored_offsets[0:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">stored_offsets[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">stored_offsets[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/donedone" type="logic">
          <obj_property name="ElementShortName">donedone</obj_property>
          <obj_property name="ObjectShortName">donedone</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/split_vals" type="array">
-         <obj_property name="ElementShortName">split_vals[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">split_vals[0:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">split_vals[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">split_vals[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/offsets" type="array">
-         <obj_property name="ElementShortName">offsets[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">offsets[0:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">offsets[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">offsets[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/L_mem_addrs" type="array">
-         <obj_property name="ElementShortName">L_mem_addrs[0:7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">L_mem_addrs[0:7][31:0]</obj_property>
+         <obj_property name="ElementShortName">L_mem_addrs[0:7][26:0]</obj_property>
+         <obj_property name="ObjectShortName">L_mem_addrs[0:7][26:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/R_mem_addrs" type="array">
-         <obj_property name="ElementShortName">R_mem_addrs[0:7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">R_mem_addrs[0:7][31:0]</obj_property>
+         <obj_property name="ElementShortName">R_mem_addrs[0:7][26:0]</obj_property>
+         <obj_property name="ObjectShortName">R_mem_addrs[0:7][26:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/L_data_rdy" type="array">
-         <obj_property name="ElementShortName">L_data_rdy[0:7]</obj_property>
-         <obj_property name="ObjectShortName">L_data_rdy[0:7]</obj_property>
+         <obj_property name="ElementShortName">L_data_rdy[0:63]</obj_property>
+         <obj_property name="ObjectShortName">L_data_rdy[0:63]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/R_data_rdy" type="array">
-         <obj_property name="ElementShortName">R_data_rdy[0:7]</obj_property>
-         <obj_property name="ObjectShortName">R_data_rdy[0:7]</obj_property>
+         <obj_property name="ElementShortName">R_data_rdy[0:63]</obj_property>
+         <obj_property name="ObjectShortName">R_data_rdy[0:63]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/L_reqs" type="array">
          <obj_property name="ElementShortName">L_reqs[0:7]</obj_property>
@@ -93,28 +93,30 @@
          <obj_property name="ObjectShortName">R_mem_bus[31:0][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/mult_res" type="array">
-         <obj_property name="ElementShortName">mult_res[0:7]</obj_property>
-         <obj_property name="ObjectShortName">mult_res[0:7]</obj_property>
+         <obj_property name="ElementShortName">mult_res[0:63]</obj_property>
+         <obj_property name="ObjectShortName">mult_res[0:63]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/mult_rdy" type="array">
-         <obj_property name="ElementShortName">mult_rdy[0:7]</obj_property>
-         <obj_property name="ObjectShortName">mult_rdy[0:7]</obj_property>
+         <obj_property name="ElementShortName">mult_rdy[0:63]</obj_property>
+         <obj_property name="ObjectShortName">mult_rdy[0:63]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/adds" type="array">
-         <obj_property name="ElementShortName">adds[0:0][0:3][31:0]</obj_property>
-         <obj_property name="ObjectShortName">adds[0:0][0:3][31:0]</obj_property>
+         <obj_property name="ElementShortName">adds[0:7][0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">adds[0:7][0:3][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/adder_push" type="array">
-         <obj_property name="ElementShortName">adder_push[0:0][0:3]</obj_property>
-         <obj_property name="ObjectShortName">adder_push[0:0][0:3]</obj_property>
+         <obj_property name="ElementShortName">adder_push[0:7][0:3]</obj_property>
+         <obj_property name="ObjectShortName">adder_push[0:7][0:3]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/acc_step" type="array">
-         <obj_property name="ElementShortName">acc_step[0:0]</obj_property>
-         <obj_property name="ObjectShortName">acc_step[0:0]</obj_property>
+         <obj_property name="ElementShortName">acc_step[0:7]</obj_property>
+         <obj_property name="ObjectShortName">acc_step[0:7]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/done" type="array">
-         <obj_property name="ElementShortName">done[0:0]</obj_property>
-         <obj_property name="ObjectShortName">done[0:0]</obj_property>
+         <obj_property name="ElementShortName">done[0:7]</obj_property>
+         <obj_property name="ObjectShortName">done[0:7]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/start_mult" type="logic">
          <obj_property name="ElementShortName">start_mult</obj_property>
@@ -184,7 +186,6 @@
    <wvobject fp_name="group1493" type="group">
       <obj_property name="label">Indexer</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="/tb_ult/idxr/i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -204,6 +205,7 @@
       <wvobject fp_name="/tb_ult/idxr/o_vals" type="array">
          <obj_property name="ElementShortName">o_vals</obj_property>
          <obj_property name="ObjectShortName">o_vals</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/idxr/o_ready" type="logic">
          <obj_property name="ElementShortName">o_ready</obj_property>
@@ -298,18 +300,16 @@
          <obj_property name="ObjectShortName">o_ready</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/pipe_splitter/next_split_vals" type="array">
-         <obj_property name="ElementShortName">next_split_vals[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">next_split_vals[0:0][31:0]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
+         <obj_property name="ElementShortName">next_split_vals[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">next_split_vals[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/pipe_splitter/o_split_vals" type="array">
-         <obj_property name="ElementShortName">o_split_vals[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">o_split_vals[0:0][31:0]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
+         <obj_property name="ElementShortName">o_split_vals[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_split_vals[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/pipe_splitter/o_mem_offset" type="array">
-         <obj_property name="ElementShortName">o_mem_offset[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">o_mem_offset[0:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">o_mem_offset[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_mem_offset[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/pipe_splitter/curr_state" type="other">
          <obj_property name="ElementShortName">curr_state</obj_property>
@@ -332,8 +332,8 @@
          <obj_property name="ObjectShortName">next_M_val[31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/pipe_splitter/next_mem_offset" type="array">
-         <obj_property name="ElementShortName">next_mem_offset[0:0][31:0]</obj_property>
-         <obj_property name="ObjectShortName">next_mem_offset[0:0][31:0]</obj_property>
+         <obj_property name="ElementShortName">next_mem_offset[0:7][31:0]</obj_property>
+         <obj_property name="ObjectShortName">next_mem_offset[0:7][31:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/pipe_splitter/PIPE_COUNT" type="array">
          <obj_property name="ElementShortName">PIPE_COUNT[31:0]</obj_property>
@@ -343,33 +343,146 @@
    <wvobject fp_name="group517" type="group">
       <obj_property name="label">Input controller</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="group880" type="group">
+         <obj_property name="label">L addr man</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/i_clk" type="logic">
+            <obj_property name="ElementShortName">i_clk</obj_property>
+            <obj_property name="ObjectShortName">i_clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/i_curr_m_addr" type="array">
+            <obj_property name="ElementShortName">i_curr_m_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_curr_m_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/i_next_m_addr" type="array">
+            <obj_property name="ElementShortName">i_next_m_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_next_m_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/i_addrs" type="array">
+            <obj_property name="ElementShortName">i_addrs[0:7][26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_addrs[0:7][26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/i_reqs" type="array">
+            <obj_property name="ElementShortName">i_reqs[0:7]</obj_property>
+            <obj_property name="ObjectShortName">i_reqs[0:7]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/o_data_rdy" type="array">
+            <obj_property name="ElementShortName">o_data_rdy[0:7]</obj_property>
+            <obj_property name="ObjectShortName">o_data_rdy[0:7]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/o_sel_addr" type="array">
+            <obj_property name="ElementShortName">o_sel_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">o_sel_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/o_sel_req" type="logic">
+            <obj_property name="ElementShortName">o_sel_req</obj_property>
+            <obj_property name="ObjectShortName">o_sel_req</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/addr_sel" type="array">
+            <obj_property name="ElementShortName">addr_sel[2:0]</obj_property>
+            <obj_property name="ObjectShortName">addr_sel[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/next_addr_sel" type="array">
+            <obj_property name="ElementShortName">next_addr_sel[2:0]</obj_property>
+            <obj_property name="ObjectShortName">next_addr_sel[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/PAGE_SIZE" type="array">
+            <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+            <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/L_addr_manager/INPUT_COUNT" type="array">
+            <obj_property name="ElementShortName">INPUT_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">INPUT_COUNT[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject fp_name="group881" type="group">
+         <obj_property name="label">R addr man</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/i_clk" type="logic">
+            <obj_property name="ElementShortName">i_clk</obj_property>
+            <obj_property name="ObjectShortName">i_clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/i_curr_m_addr" type="array">
+            <obj_property name="ElementShortName">i_curr_m_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_curr_m_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/i_next_m_addr" type="array">
+            <obj_property name="ElementShortName">i_next_m_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_next_m_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/i_addrs" type="array">
+            <obj_property name="ElementShortName">i_addrs[0:7][26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_addrs[0:7][26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/i_reqs" type="array">
+            <obj_property name="ElementShortName">i_reqs[0:7]</obj_property>
+            <obj_property name="ObjectShortName">i_reqs[0:7]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/o_data_rdy" type="array">
+            <obj_property name="ElementShortName">o_data_rdy[0:7]</obj_property>
+            <obj_property name="ObjectShortName">o_data_rdy[0:7]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/o_sel_addr" type="array">
+            <obj_property name="ElementShortName">o_sel_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">o_sel_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/o_sel_req" type="logic">
+            <obj_property name="ElementShortName">o_sel_req</obj_property>
+            <obj_property name="ObjectShortName">o_sel_req</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/addr_sel" type="array">
+            <obj_property name="ElementShortName">addr_sel[2:0]</obj_property>
+            <obj_property name="ObjectShortName">addr_sel[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/next_addr_sel" type="array">
+            <obj_property name="ElementShortName">next_addr_sel[2:0]</obj_property>
+            <obj_property name="ObjectShortName">next_addr_sel[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/PAGE_SIZE" type="array">
+            <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+            <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/input_mem/R_addr_manager/INPUT_COUNT" type="array">
+            <obj_property name="ElementShortName">INPUT_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">INPUT_COUNT[31:0]</obj_property>
+         </wvobject>
+      </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/i_clk" type="logic">
          <obj_property name="ElementShortName">i_clk</obj_property>
          <obj_property name="ObjectShortName">i_clk</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/i_L_addrs" type="array">
-         <obj_property name="ElementShortName">i_L_addrs[0:7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">i_L_addrs[0:7][31:0]</obj_property>
+         <obj_property name="ElementShortName">i_L_addrs[0:7][26:0]</obj_property>
+         <obj_property name="ObjectShortName">i_L_addrs[0:7][26:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/i_L_reqs" type="array">
          <obj_property name="ElementShortName">i_L_reqs[0:7]</obj_property>
          <obj_property name="ObjectShortName">i_L_reqs[0:7]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/i_R_addrs" type="array">
-         <obj_property name="ElementShortName">i_R_addrs[0:7][31:0]</obj_property>
-         <obj_property name="ObjectShortName">i_R_addrs[0:7][31:0]</obj_property>
+         <obj_property name="ElementShortName">i_R_addrs[0:7][26:0]</obj_property>
+         <obj_property name="ObjectShortName">i_R_addrs[0:7][26:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/i_R_reqs" type="array">
          <obj_property name="ElementShortName">i_R_reqs[0:7]</obj_property>
          <obj_property name="ObjectShortName">i_R_reqs[0:7]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/o_L_data_rdy" type="array">
-         <obj_property name="ElementShortName">o_L_data_rdy[0:7]</obj_property>
-         <obj_property name="ObjectShortName">o_L_data_rdy[0:7]</obj_property>
+      <wvobject fp_name="/tb_ult/input_mem/o_curr_L_addr" type="array">
+         <obj_property name="ElementShortName">o_curr_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">o_curr_L_addr[26:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/o_R_data_rdy" type="array">
-         <obj_property name="ElementShortName">o_R_data_rdy[0:7]</obj_property>
-         <obj_property name="ObjectShortName">o_R_data_rdy[0:7]</obj_property>
+      <wvobject fp_name="/tb_ult/input_mem/o_next_L_addr" type="array">
+         <obj_property name="ElementShortName">o_next_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">o_next_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ult/input_mem/o_curr_R_addr" type="array">
+         <obj_property name="ElementShortName">o_curr_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">o_curr_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ult/input_mem/o_next_R_addr" type="array">
+         <obj_property name="ElementShortName">o_next_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">o_next_R_addr[26:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/mem_bus_a" type="array">
          <obj_property name="ElementShortName">mem_bus_a[31:0][31:0]</obj_property>
@@ -379,13 +492,29 @@
          <obj_property name="ElementShortName">mem_bus_b[31:0][31:0]</obj_property>
          <obj_property name="ObjectShortName">mem_bus_b[31:0][31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/mem_addr_a" type="array">
-         <obj_property name="ElementShortName">mem_addr_a[26:0]</obj_property>
-         <obj_property name="ObjectShortName">mem_addr_a[26:0]</obj_property>
+      <wvobject fp_name="/tb_ult/input_mem/curr_L_addr" type="array">
+         <obj_property name="ElementShortName">curr_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_L_addr[26:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/mem_addr_b" type="array">
-         <obj_property name="ElementShortName">mem_addr_b[26:0]</obj_property>
-         <obj_property name="ObjectShortName">mem_addr_b[26:0]</obj_property>
+      <wvobject fp_name="/tb_ult/input_mem/next_L_addr" type="array">
+         <obj_property name="ElementShortName">next_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">next_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ult/input_mem/pend_L_addr" type="array">
+         <obj_property name="ElementShortName">pend_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">pend_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ult/input_mem/curr_R_addr" type="array">
+         <obj_property name="ElementShortName">curr_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ult/input_mem/next_R_addr" type="array">
+         <obj_property name="ElementShortName">next_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">next_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_ult/input_mem/pend_R_addr" type="array">
+         <obj_property name="ElementShortName">pend_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">pend_R_addr[26:0]</obj_property>
       </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/R_data_pending" type="array">
          <obj_property name="ElementShortName">R_data_pending[1:0]</obj_property>
@@ -395,30 +524,6 @@
          <obj_property name="ElementShortName">L_data_pending[1:0]</obj_property>
          <obj_property name="ObjectShortName">L_data_pending[1:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/R_addr_sel" type="array">
-         <obj_property name="ElementShortName">R_addr_sel[2:0]</obj_property>
-         <obj_property name="ObjectShortName">R_addr_sel[2:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/L_addr_sel" type="array">
-         <obj_property name="ElementShortName">L_addr_sel[2:0]</obj_property>
-         <obj_property name="ObjectShortName">L_addr_sel[2:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/next_R_addr_sel" type="array">
-         <obj_property name="ElementShortName">next_R_addr_sel[2:0]</obj_property>
-         <obj_property name="ObjectShortName">next_R_addr_sel[2:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/next_L_addr_sel" type="array">
-         <obj_property name="ElementShortName">next_L_addr_sel[2:0]</obj_property>
-         <obj_property name="ObjectShortName">next_L_addr_sel[2:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/R_curr_addr" type="array">
-         <obj_property name="ElementShortName">R_curr_addr[11:0]</obj_property>
-         <obj_property name="ObjectShortName">R_curr_addr[11:0]</obj_property>
-      </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/L_curr_addr" type="array">
-         <obj_property name="ElementShortName">L_curr_addr[11:0]</obj_property>
-         <obj_property name="ObjectShortName">L_curr_addr[11:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/tb_ult/input_mem/PAGE_SIZE" type="array">
          <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
          <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
@@ -427,20 +532,23 @@
          <obj_property name="ElementShortName">MEM_A_ADDR_WIDTH[31:0]</obj_property>
          <obj_property name="ObjectShortName">MEM_A_ADDR_WIDTH[31:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/tb_ult/input_mem/MULT_COUNT" type="array">
-         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
-         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      <wvobject fp_name="/tb_ult/input_mem/PIPE_COUNT" type="array">
+         <obj_property name="ElementShortName">PIPE_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PIPE_COUNT[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group518" type="group">
       <obj_property name="label">Pipes</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject fp_name="group519" type="group">
          <obj_property name="label">Pipe0</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="isExpanded"></obj_property>
          <wvobject fp_name="group855" type="group">
             <obj_property name="label">Mult Core</obj_property>
             <obj_property name="DisplayName">label</obj_property>
+            <obj_property name="isExpanded"></obj_property>
             <wvobject fp_name="group917" type="group">
                <obj_property name="label">mult 0</obj_property>
                <obj_property name="DisplayName">label</obj_property>
@@ -734,6 +842,110 @@
                <obj_property name="label">mult 31</obj_property>
                <obj_property name="DisplayName">label</obj_property>
             </wvobject>
+            <wvobject fp_name="group943" type="group">
+               <obj_property name="label">L addr man</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/i_clk" type="logic">
+                  <obj_property name="ElementShortName">i_clk</obj_property>
+                  <obj_property name="ObjectShortName">i_clk</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/i_curr_m_addr" type="array">
+                  <obj_property name="ElementShortName">i_curr_m_addr[26:0]</obj_property>
+                  <obj_property name="ObjectShortName">i_curr_m_addr[26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/i_next_m_addr" type="array">
+                  <obj_property name="ElementShortName">i_next_m_addr[26:0]</obj_property>
+                  <obj_property name="ObjectShortName">i_next_m_addr[26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/i_addrs" type="array">
+                  <obj_property name="ElementShortName">i_addrs[0:7][26:0]</obj_property>
+                  <obj_property name="ObjectShortName">i_addrs[0:7][26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/i_reqs" type="array">
+                  <obj_property name="ElementShortName">i_reqs[0:7]</obj_property>
+                  <obj_property name="ObjectShortName">i_reqs[0:7]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/o_data_rdy" type="array">
+                  <obj_property name="ElementShortName">o_data_rdy[0:7]</obj_property>
+                  <obj_property name="ObjectShortName">o_data_rdy[0:7]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/o_sel_addr" type="array">
+                  <obj_property name="ElementShortName">o_sel_addr[26:0]</obj_property>
+                  <obj_property name="ObjectShortName">o_sel_addr[26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/o_sel_req" type="logic">
+                  <obj_property name="ElementShortName">o_sel_req</obj_property>
+                  <obj_property name="ObjectShortName">o_sel_req</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/addr_sel" type="array">
+                  <obj_property name="ElementShortName">addr_sel[2:0]</obj_property>
+                  <obj_property name="ObjectShortName">addr_sel[2:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/next_addr_sel" type="array">
+                  <obj_property name="ElementShortName">next_addr_sel[2:0]</obj_property>
+                  <obj_property name="ObjectShortName">next_addr_sel[2:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/PAGE_SIZE" type="array">
+                  <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_addr_manager/INPUT_COUNT" type="array">
+                  <obj_property name="ElementShortName">INPUT_COUNT[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">INPUT_COUNT[31:0]</obj_property>
+               </wvobject>
+            </wvobject>
+            <wvobject fp_name="group944" type="group">
+               <obj_property name="label">R addr man</obj_property>
+               <obj_property name="DisplayName">label</obj_property>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/i_clk" type="logic">
+                  <obj_property name="ElementShortName">i_clk</obj_property>
+                  <obj_property name="ObjectShortName">i_clk</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/i_curr_m_addr" type="array">
+                  <obj_property name="ElementShortName">i_curr_m_addr[26:0]</obj_property>
+                  <obj_property name="ObjectShortName">i_curr_m_addr[26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/i_next_m_addr" type="array">
+                  <obj_property name="ElementShortName">i_next_m_addr[26:0]</obj_property>
+                  <obj_property name="ObjectShortName">i_next_m_addr[26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/i_addrs" type="array">
+                  <obj_property name="ElementShortName">i_addrs[0:7][26:0]</obj_property>
+                  <obj_property name="ObjectShortName">i_addrs[0:7][26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/i_reqs" type="array">
+                  <obj_property name="ElementShortName">i_reqs[0:7]</obj_property>
+                  <obj_property name="ObjectShortName">i_reqs[0:7]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/o_data_rdy" type="array">
+                  <obj_property name="ElementShortName">o_data_rdy[0:7]</obj_property>
+                  <obj_property name="ObjectShortName">o_data_rdy[0:7]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/o_sel_addr" type="array">
+                  <obj_property name="ElementShortName">o_sel_addr[26:0]</obj_property>
+                  <obj_property name="ObjectShortName">o_sel_addr[26:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/o_sel_req" type="logic">
+                  <obj_property name="ElementShortName">o_sel_req</obj_property>
+                  <obj_property name="ObjectShortName">o_sel_req</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/addr_sel" type="array">
+                  <obj_property name="ElementShortName">addr_sel[2:0]</obj_property>
+                  <obj_property name="ObjectShortName">addr_sel[2:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/next_addr_sel" type="array">
+                  <obj_property name="ElementShortName">next_addr_sel[2:0]</obj_property>
+                  <obj_property name="ObjectShortName">next_addr_sel[2:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/PAGE_SIZE" type="array">
+                  <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+               </wvobject>
+               <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_addr_manager/INPUT_COUNT" type="array">
+                  <obj_property name="ElementShortName">INPUT_COUNT[31:0]</obj_property>
+                  <obj_property name="ObjectShortName">INPUT_COUNT[31:0]</obj_property>
+               </wvobject>
+            </wvobject>
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_clk" type="logic">
                <obj_property name="ElementShortName">i_clk</obj_property>
                <obj_property name="ObjectShortName">i_clk</obj_property>
@@ -762,14 +974,6 @@
                <obj_property name="ElementShortName">i_indicies</obj_property>
                <obj_property name="ObjectShortName">i_indicies</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_L_ready" type="array">
-               <obj_property name="ElementShortName">i_L_ready[0:7]</obj_property>
-               <obj_property name="ObjectShortName">i_L_ready[0:7]</obj_property>
-            </wvobject>
-            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_R_ready" type="array">
-               <obj_property name="ElementShortName">i_R_ready[0:7]</obj_property>
-               <obj_property name="ObjectShortName">i_R_ready[0:7]</obj_property>
-            </wvobject>
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_L_data" type="array">
                <obj_property name="ElementShortName">i_L_data[31:0][31:0]</obj_property>
                <obj_property name="ObjectShortName">i_L_data[31:0][31:0]</obj_property>
@@ -777,6 +981,22 @@
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_R_data" type="array">
                <obj_property name="ElementShortName">i_R_data[31:0][31:0]</obj_property>
                <obj_property name="ObjectShortName">i_R_data[31:0][31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_curr_L_addr" type="array">
+               <obj_property name="ElementShortName">i_curr_L_addr[26:0]</obj_property>
+               <obj_property name="ObjectShortName">i_curr_L_addr[26:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_next_L_addr" type="array">
+               <obj_property name="ElementShortName">i_next_L_addr[26:0]</obj_property>
+               <obj_property name="ObjectShortName">i_next_L_addr[26:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_curr_R_addr" type="array">
+               <obj_property name="ElementShortName">i_curr_R_addr[26:0]</obj_property>
+               <obj_property name="ObjectShortName">i_curr_R_addr[26:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_next_R_addr" type="array">
+               <obj_property name="ElementShortName">i_next_R_addr[26:0]</obj_property>
+               <obj_property name="ObjectShortName">i_next_R_addr[26:0]</obj_property>
             </wvobject>
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/i_L_offset" type="array">
                <obj_property name="ElementShortName">i_L_offset[31:0]</obj_property>
@@ -798,21 +1018,21 @@
                <obj_property name="ElementShortName">i_step</obj_property>
                <obj_property name="ObjectShortName">i_step</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_L_mem_addrs" type="array">
-               <obj_property name="ElementShortName">o_L_mem_addrs[0:7][31:0]</obj_property>
-               <obj_property name="ObjectShortName">o_L_mem_addrs[0:7][31:0]</obj_property>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_L_mem_addr" type="array">
+               <obj_property name="ElementShortName">o_L_mem_addr[26:0]</obj_property>
+               <obj_property name="ObjectShortName">o_L_mem_addr[26:0]</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_R_mem_addrs" type="array">
-               <obj_property name="ElementShortName">o_R_mem_addrs[0:7][31:0]</obj_property>
-               <obj_property name="ObjectShortName">o_R_mem_addrs[0:7][31:0]</obj_property>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_R_mem_addr" type="array">
+               <obj_property name="ElementShortName">o_R_mem_addr[26:0]</obj_property>
+               <obj_property name="ObjectShortName">o_R_mem_addr[26:0]</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_L_request" type="array">
-               <obj_property name="ElementShortName">o_L_request[0:7]</obj_property>
-               <obj_property name="ObjectShortName">o_L_request[0:7]</obj_property>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_L_request" type="logic">
+               <obj_property name="ElementShortName">o_L_request</obj_property>
+               <obj_property name="ObjectShortName">o_L_request</obj_property>
             </wvobject>
-            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_R_request" type="array">
-               <obj_property name="ElementShortName">o_R_request[0:7]</obj_property>
-               <obj_property name="ObjectShortName">o_R_request[0:7]</obj_property>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_R_request" type="logic">
+               <obj_property name="ElementShortName">o_R_request</obj_property>
+               <obj_property name="ObjectShortName">o_R_request</obj_property>
             </wvobject>
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/o_dready" type="array">
                <obj_property name="ElementShortName">o_dready[0:7]</obj_property>
@@ -853,6 +1073,38 @@
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/curr" type="array">
                <obj_property name="ElementShortName">curr[31:0]</obj_property>
                <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_raw_addrs" type="array">
+               <obj_property name="ElementShortName">L_raw_addrs[0:7][31:0]</obj_property>
+               <obj_property name="ObjectShortName">L_raw_addrs[0:7][31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_mem_addrs" type="array">
+               <obj_property name="ElementShortName">L_mem_addrs[0:7][26:0]</obj_property>
+               <obj_property name="ObjectShortName">L_mem_addrs[0:7][26:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_reqs" type="array">
+               <obj_property name="ElementShortName">L_reqs[0:7]</obj_property>
+               <obj_property name="ObjectShortName">L_reqs[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/L_data_rdy" type="array">
+               <obj_property name="ElementShortName">L_data_rdy[0:7]</obj_property>
+               <obj_property name="ObjectShortName">L_data_rdy[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_raw_addrs" type="array">
+               <obj_property name="ElementShortName">R_raw_addrs[0:7][31:0]</obj_property>
+               <obj_property name="ObjectShortName">R_raw_addrs[0:7][31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_mem_addrs" type="array">
+               <obj_property name="ElementShortName">R_mem_addrs[0:7][26:0]</obj_property>
+               <obj_property name="ObjectShortName">R_mem_addrs[0:7][26:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_reqs" type="array">
+               <obj_property name="ElementShortName">R_reqs[0:7]</obj_property>
+               <obj_property name="ObjectShortName">R_reqs[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/R_data_rdy" type="array">
+               <obj_property name="ElementShortName">R_data_rdy[0:7]</obj_property>
+               <obj_property name="ObjectShortName">R_data_rdy[0:7]</obj_property>
             </wvobject>
             <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /mult_core/PAGE_SIZE" type="array">
                <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
@@ -1044,13 +1296,21 @@
             <obj_property name="ElementShortName">i_R_mem_bus[31:0][31:0]</obj_property>
             <obj_property name="ObjectShortName">i_R_mem_bus[31:0][31:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_L_data_rdy" type="array">
-            <obj_property name="ElementShortName">i_L_data_rdy[0:7]</obj_property>
-            <obj_property name="ObjectShortName">i_L_data_rdy[0:7]</obj_property>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_curr_L_addr" type="array">
+            <obj_property name="ElementShortName">i_curr_L_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_curr_L_addr[26:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_R_data_rdy" type="array">
-            <obj_property name="ElementShortName">i_R_data_rdy[0:7]</obj_property>
-            <obj_property name="ObjectShortName">i_R_data_rdy[0:7]</obj_property>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_next_L_addr" type="array">
+            <obj_property name="ElementShortName">i_next_L_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_next_L_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_curr_R_addr" type="array">
+            <obj_property name="ElementShortName">i_curr_R_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_curr_R_addr[26:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_next_R_addr" type="array">
+            <obj_property name="ElementShortName">i_next_R_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">i_next_R_addr[26:0]</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /i_L_offset" type="array">
             <obj_property name="ElementShortName">i_L_offset[31:0]</obj_property>
@@ -1060,21 +1320,21 @@
             <obj_property name="ElementShortName">i_R_offset[31:0]</obj_property>
             <obj_property name="ObjectShortName">i_R_offset[31:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_L_mem_addrs" type="array">
-            <obj_property name="ElementShortName">o_L_mem_addrs[0:7][31:0]</obj_property>
-            <obj_property name="ObjectShortName">o_L_mem_addrs[0:7][31:0]</obj_property>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_L_mem_addr" type="array">
+            <obj_property name="ElementShortName">o_L_mem_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">o_L_mem_addr[26:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_R_mem_addrs" type="array">
-            <obj_property name="ElementShortName">o_R_mem_addrs[0:7][31:0]</obj_property>
-            <obj_property name="ObjectShortName">o_R_mem_addrs[0:7][31:0]</obj_property>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_R_mem_addr" type="array">
+            <obj_property name="ElementShortName">o_R_mem_addr[26:0]</obj_property>
+            <obj_property name="ObjectShortName">o_R_mem_addr[26:0]</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_L_reqs" type="array">
-            <obj_property name="ElementShortName">o_L_reqs[0:7]</obj_property>
-            <obj_property name="ObjectShortName">o_L_reqs[0:7]</obj_property>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_L_req" type="logic">
+            <obj_property name="ElementShortName">o_L_req</obj_property>
+            <obj_property name="ObjectShortName">o_L_req</obj_property>
          </wvobject>
-         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_R_reqs" type="array">
-            <obj_property name="ElementShortName">o_R_reqs[0:7]</obj_property>
-            <obj_property name="ObjectShortName">o_R_reqs[0:7]</obj_property>
+         <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_R_req" type="logic">
+            <obj_property name="ElementShortName">o_R_req</obj_property>
+            <obj_property name="ObjectShortName">o_R_req</obj_property>
          </wvobject>
          <wvobject fp_name="/tb_ult/\pipe_gen[0].Pipeline /o_mult_res" type="array">
             <obj_property name="ElementShortName">o_mult_res[0:7]</obj_property>
@@ -1132,10 +1392,371 @@
       <wvobject fp_name="group520" type="group">
          <obj_property name="label">Pipe1</obj_property>
          <obj_property name="DisplayName">label</obj_property>
+         <wvobject fp_name="group2797" type="group">
+            <obj_property name="label">acc buff</obj_property>
+            <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/i_clk" type="logic">
+               <obj_property name="ElementShortName">i_clk</obj_property>
+               <obj_property name="ObjectShortName">i_clk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/i_mults" type="array">
+               <obj_property name="ElementShortName">i_mults[0:7]</obj_property>
+               <obj_property name="ObjectShortName">i_mults[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/i_m_rdy" type="array">
+               <obj_property name="ElementShortName">i_m_rdy[0:7]</obj_property>
+               <obj_property name="ObjectShortName">i_m_rdy[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/i_stall" type="logic">
+               <obj_property name="ElementShortName">i_stall</obj_property>
+               <obj_property name="ObjectShortName">i_stall</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/i_clear" type="logic">
+               <obj_property name="ElementShortName">i_clear</obj_property>
+               <obj_property name="ObjectShortName">i_clear</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/i_end" type="logic">
+               <obj_property name="ElementShortName">i_end</obj_property>
+               <obj_property name="ObjectShortName">i_end</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_m_pull" type="array">
+               <obj_property name="ElementShortName">o_m_pull[0:7]</obj_property>
+               <obj_property name="ObjectShortName">o_m_pull[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_curr" type="array">
+               <obj_property name="ElementShortName">o_curr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">o_curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_op_cnt" type="array">
+               <obj_property name="ElementShortName">o_op_cnt[2:0]</obj_property>
+               <obj_property name="ObjectShortName">o_op_cnt[2:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_adds" type="array">
+               <obj_property name="ElementShortName">o_adds[0:3][31:0]</obj_property>
+               <obj_property name="ObjectShortName">o_adds[0:3][31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_pushs" type="array">
+               <obj_property name="ElementShortName">o_pushs[0:3]</obj_property>
+               <obj_property name="ObjectShortName">o_pushs[0:3]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_step_ready" type="logic">
+               <obj_property name="ElementShortName">o_step_ready</obj_property>
+               <obj_property name="ObjectShortName">o_step_ready</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/o_done" type="logic">
+               <obj_property name="ElementShortName">o_done</obj_property>
+               <obj_property name="ObjectShortName">o_done</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/curr" type="array">
+               <obj_property name="ElementShortName">curr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/n_curr" type="array">
+               <obj_property name="ElementShortName">n_curr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">n_curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/spec_curr" type="array">
+               <obj_property name="ElementShortName">spec_curr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">spec_curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/pull_sum" type="array">
+               <obj_property name="ElementShortName">pull_sum[31:0]</obj_property>
+               <obj_property name="ObjectShortName">pull_sum[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/pop_sum" type="array">
+               <obj_property name="ElementShortName">pop_sum[31:0]</obj_property>
+               <obj_property name="ObjectShortName">pop_sum[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/pop_sum_p" type="array">
+               <obj_property name="ElementShortName">pop_sum_p[31:0]</obj_property>
+               <obj_property name="ObjectShortName">pop_sum_p[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/space_sum" type="array">
+               <obj_property name="ElementShortName">space_sum[31:0]</obj_property>
+               <obj_property name="ObjectShortName">space_sum[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/space_sum_p" type="array">
+               <obj_property name="ElementShortName">space_sum_p[31:0]</obj_property>
+               <obj_property name="ObjectShortName">space_sum_p[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/adds" type="array">
+               <obj_property name="ElementShortName">adds[0:3]</obj_property>
+               <obj_property name="ObjectShortName">adds[0:3]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/spaces" type="array">
+               <obj_property name="ElementShortName">spaces[0:3]</obj_property>
+               <obj_property name="ObjectShortName">spaces[0:3]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/seg_vals" type="array">
+               <obj_property name="ElementShortName">seg_vals[0:7]</obj_property>
+               <obj_property name="ObjectShortName">seg_vals[0:7]</obj_property>
+               <obj_property name="isExpanded"></obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/seg_stalls" type="array">
+               <obj_property name="ElementShortName">seg_stalls[0:7]</obj_property>
+               <obj_property name="ObjectShortName">seg_stalls[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/pulls" type="array">
+               <obj_property name="ElementShortName">pulls[0:7]</obj_property>
+               <obj_property name="ObjectShortName">pulls[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/do_stall" type="logic">
+               <obj_property name="ElementShortName">do_stall</obj_property>
+               <obj_property name="ObjectShortName">do_stall</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/seg_stall" type="logic">
+               <obj_property name="ElementShortName">seg_stall</obj_property>
+               <obj_property name="ObjectShortName">seg_stall</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/add_clk" type="logic">
+               <obj_property name="ElementShortName">add_clk</obj_property>
+               <obj_property name="ObjectShortName">add_clk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/add_clk_reg" type="logic">
+               <obj_property name="ElementShortName">add_clk_reg</obj_property>
+               <obj_property name="ObjectShortName">add_clk_reg</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/op_count" type="array">
+               <obj_property name="ElementShortName">op_count[2:0]</obj_property>
+               <obj_property name="ObjectShortName">op_count[2:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/m_p_dex_reg" type="array">
+               <obj_property name="ElementShortName">m_p_dex_reg[2:0]</obj_property>
+               <obj_property name="ObjectShortName">m_p_dex_reg[2:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/do_step" type="logic">
+               <obj_property name="ElementShortName">do_step</obj_property>
+               <obj_property name="ObjectShortName">do_step</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/SEGMENTS" type="array">
+               <obj_property name="ElementShortName">SEGMENTS[31:0]</obj_property>
+               <obj_property name="ObjectShortName">SEGMENTS[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/MULTIPLIERS" type="array">
+               <obj_property name="ElementShortName">MULTIPLIERS[31:0]</obj_property>
+               <obj_property name="ObjectShortName">MULTIPLIERS[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_buff/ADD_COUNT" type="array">
+               <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+               <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+            </wvobject>
+         </wvobject>
          <wvobject fp_name="group812" type="group">
             <obj_property name="label">Mult core</obj_property>
             <obj_property name="DisplayName">label</obj_property>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_clk" type="logic">
+               <obj_property name="ElementShortName">i_clk</obj_property>
+               <obj_property name="ObjectShortName">i_clk</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_start" type="logic">
+               <obj_property name="ElementShortName">i_start</obj_property>
+               <obj_property name="ObjectShortName">i_start</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_done" type="logic">
+               <obj_property name="ElementShortName">i_done</obj_property>
+               <obj_property name="ObjectShortName">i_done</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_M" type="array">
+               <obj_property name="ElementShortName">i_M[31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_M[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_N" type="array">
+               <obj_property name="ElementShortName">i_N[31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_N[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_P" type="array">
+               <obj_property name="ElementShortName">i_P[31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_P[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_indicies" type="array">
+               <obj_property name="ElementShortName">i_indicies</obj_property>
+               <obj_property name="ObjectShortName">i_indicies</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_L_data" type="array">
+               <obj_property name="ElementShortName">i_L_data[31:0][31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_L_data[31:0][31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_R_data" type="array">
+               <obj_property name="ElementShortName">i_R_data[31:0][31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_R_data[31:0][31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_L_offset" type="array">
+               <obj_property name="ElementShortName">i_L_offset[31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_L_offset[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_R_offset" type="array">
+               <obj_property name="ElementShortName">i_R_offset[31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_R_offset[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_curr" type="array">
+               <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_op_cnt" type="array">
+               <obj_property name="ElementShortName">i_op_cnt[2:0]</obj_property>
+               <obj_property name="ObjectShortName">i_op_cnt[2:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/i_step" type="logic">
+               <obj_property name="ElementShortName">i_step</obj_property>
+               <obj_property name="ObjectShortName">i_step</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/o_L_request" type="logic">
+               <obj_property name="ElementShortName">o_L_request</obj_property>
+               <obj_property name="ObjectShortName">o_L_request</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/o_R_request" type="logic">
+               <obj_property name="ElementShortName">o_R_request</obj_property>
+               <obj_property name="ObjectShortName">o_R_request</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/o_dready" type="array">
+               <obj_property name="ElementShortName">o_dready[0:7]</obj_property>
+               <obj_property name="ObjectShortName">o_dready[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/o_mults" type="array">
+               <obj_property name="ElementShortName">o_mults[0:7]</obj_property>
+               <obj_property name="ObjectShortName">o_mults[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/dim_M" type="array">
+               <obj_property name="ElementShortName">dim_M[31:0]</obj_property>
+               <obj_property name="ObjectShortName">dim_M[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/dim_N" type="array">
+               <obj_property name="ElementShortName">dim_N[31:0]</obj_property>
+               <obj_property name="ObjectShortName">dim_N[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/dim_P" type="array">
+               <obj_property name="ElementShortName">dim_P[31:0]</obj_property>
+               <obj_property name="ObjectShortName">dim_P[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/m_pull" type="array">
+               <obj_property name="ElementShortName">m_pull[0:7]</obj_property>
+               <obj_property name="ObjectShortName">m_pull[0:7]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/diff" type="array">
+               <obj_property name="ElementShortName">diff[31:0]</obj_property>
+               <obj_property name="ObjectShortName">diff[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/L_offset" type="array">
+               <obj_property name="ElementShortName">L_offset[31:0]</obj_property>
+               <obj_property name="ObjectShortName">L_offset[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/R_offset" type="array">
+               <obj_property name="ElementShortName">R_offset[31:0]</obj_property>
+               <obj_property name="ObjectShortName">R_offset[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/curr" type="array">
+               <obj_property name="ElementShortName">curr[31:0]</obj_property>
+               <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/PAGE_SIZE" type="array">
+               <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+               <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/MULT_COUNT" type="array">
+               <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+               <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+            </wvobject>
+            <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /mult_core/SEG_COUNT" type="array">
+               <obj_property name="ElementShortName">SEG_COUNT[31:0]</obj_property>
+               <obj_property name="ObjectShortName">SEG_COUNT[31:0]</obj_property>
+            </wvobject>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_clk" type="logic">
+            <obj_property name="ElementShortName">i_clk</obj_property>
+            <obj_property name="ObjectShortName">i_clk</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_start" type="logic">
+            <obj_property name="ElementShortName">i_start</obj_property>
+            <obj_property name="ObjectShortName">i_start</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_stall" type="logic">
+            <obj_property name="ElementShortName">i_stall</obj_property>
+            <obj_property name="ObjectShortName">i_stall</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_M" type="array">
+            <obj_property name="ElementShortName">i_M[31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_M[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_N" type="array">
+            <obj_property name="ElementShortName">i_N[31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_N[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_P" type="array">
+            <obj_property name="ElementShortName">i_P[31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_P[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_indicies" type="array">
+            <obj_property name="ElementShortName">i_indicies</obj_property>
+            <obj_property name="ObjectShortName">i_indicies</obj_property>
             <obj_property name="isExpanded"></obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_L_mem_bus" type="array">
+            <obj_property name="ElementShortName">i_L_mem_bus[31:0][31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_L_mem_bus[31:0][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_R_mem_bus" type="array">
+            <obj_property name="ElementShortName">i_R_mem_bus[31:0][31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_R_mem_bus[31:0][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_L_offset" type="array">
+            <obj_property name="ElementShortName">i_L_offset[31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_L_offset[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /i_R_offset" type="array">
+            <obj_property name="ElementShortName">i_R_offset[31:0]</obj_property>
+            <obj_property name="ObjectShortName">i_R_offset[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /o_mult_res" type="array">
+            <obj_property name="ElementShortName">o_mult_res[0:7]</obj_property>
+            <obj_property name="ObjectShortName">o_mult_res[0:7]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /o_mult_rdy" type="array">
+            <obj_property name="ElementShortName">o_mult_rdy[0:7]</obj_property>
+            <obj_property name="ObjectShortName">o_mult_rdy[0:7]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /o_adds" type="array">
+            <obj_property name="ElementShortName">o_adds[0:3][31:0]</obj_property>
+            <obj_property name="ObjectShortName">o_adds[0:3][31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /o_adder_push" type="array">
+            <obj_property name="ElementShortName">o_adder_push[0:3]</obj_property>
+            <obj_property name="ObjectShortName">o_adder_push[0:3]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /o_acc_step" type="logic">
+            <obj_property name="ElementShortName">o_acc_step</obj_property>
+            <obj_property name="ObjectShortName">o_acc_step</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /o_done" type="logic">
+            <obj_property name="ElementShortName">o_done</obj_property>
+            <obj_property name="ObjectShortName">o_done</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /curr" type="array">
+            <obj_property name="ElementShortName">curr[31:0]</obj_property>
+            <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /acc_done" type="logic">
+            <obj_property name="ElementShortName">acc_done</obj_property>
+            <obj_property name="ObjectShortName">acc_done</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /op_cnt" type="array">
+            <obj_property name="ElementShortName">op_cnt[2:0]</obj_property>
+            <obj_property name="ObjectShortName">op_cnt[2:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /PAGE_SIZE" type="array">
+            <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+            <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /SEG_COUNT" type="array">
+            <obj_property name="ElementShortName">SEG_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">SEG_COUNT[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /MULT_COUNT" type="array">
+            <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+         </wvobject>
+         <wvobject fp_name="/tb_ult/\pipe_gen[1].Pipeline /ADD_COUNT" type="array">
+            <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+            <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
          </wvobject>
       </wvobject>
       <wvobject fp_name="group521" type="group">

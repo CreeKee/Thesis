@@ -24,7 +24,7 @@
 
 
 module impl_top #(
-    parameter PIPE_COUNT = 2,
+    parameter PIPE_COUNT = 4,
     parameter PAGE_SIZE = 32,
     parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
     parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,

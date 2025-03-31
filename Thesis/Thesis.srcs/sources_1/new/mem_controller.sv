@@ -60,11 +60,11 @@ module mem_controller#(
     )(
     input  logic i_clk,
 
-    input  logic [31:0] i_L_addrs [PIPE_COUNT],
-    input  logic        i_L_reqs  [PIPE_COUNT],
+    input  logic [31-$clog2(PAGE_SIZE):0] i_L_addrs [PIPE_COUNT],
+    input  logic                          i_L_reqs  [PIPE_COUNT],
 
-    input  logic [31:0] i_R_addrs [PIPE_COUNT],
-    input  logic        i_R_reqs  [PIPE_COUNT],
+    input  logic [31-$clog2(PAGE_SIZE):0] i_R_addrs [PIPE_COUNT],
+    input  logic                          i_R_reqs  [PIPE_COUNT],
 
     output logic [31-$clog2(PAGE_SIZE):0] o_curr_L_addr,
     output logic [31-$clog2(PAGE_SIZE):0] o_next_L_addr,
@@ -91,13 +91,13 @@ module mem_controller#(
     blk_mem_gen_0 bram(
         .clka(i_clk), 
         .wea(0), 
-        .addra(curr_L_addr << $clog2(PAGE_SIZE)), 
+        .addra(next_L_addr << $clog2(PAGE_SIZE)), 
         .dina(0), 
         .douta(mem_bus_a), 
         
         .clkb(i_clk), 
         .web(0), 
-        .addrb(curr_R_addr << $clog2(PAGE_SIZE)), 
+        .addrb(next_R_addr << $clog2(PAGE_SIZE)), 
         .dinb(0),
         .doutb(mem_bus_b)
     );
@@ -128,7 +128,7 @@ module mem_controller#(
         .i_addrs(i_R_addrs),
         .i_reqs(i_R_reqs),
 
-        .o_sel_addr(pend_L_addr)
+        .o_sel_addr(pend_R_addr)
     );
 
     always_ff @ ( posedge i_clk ) begin
@@ -136,26 +136,26 @@ module mem_controller#(
         if(L_data_pending == 0) begin
             
             //signal that a memory read is happening
-            L_data_pending <= 2'b11;
+            L_data_pending <= 2'b01;
 
             //update address to start the read request
             curr_L_addr <= next_L_addr;
-            next_L_addr <= pend_L_addr
+            next_L_addr <= pend_L_addr;
 
         end
-        else L_data_pending <= L_data_pending>>1;
+        else L_data_pending <= L_data_pending >> 1;
 
         if(R_data_pending == 0) begin
             
             //signal that a memory read is happening
-            R_data_pending <= 2'b11;
+            R_data_pending <= 2'b01;
 
             //update address to start the read request
             curr_R_addr <= next_R_addr;
-            next_R_addr <= pend_R_addr
+            next_R_addr <= pend_R_addr;
 
         end
-        else R_data_pending <= R_data_pending>>1;
+        else R_data_pending <= R_data_pending >> 1;
 
     end
 endmodule

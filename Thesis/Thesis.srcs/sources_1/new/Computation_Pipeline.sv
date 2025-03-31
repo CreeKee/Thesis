@@ -42,6 +42,12 @@ module Computation_Pipeline#(
     input logic [PAGE_SIZE-1:0][31:0] i_L_mem_bus,
     input logic [PAGE_SIZE-1:0][31:0] i_R_mem_bus,
 
+    input logic [31-$clog2(PAGE_SIZE):0] i_curr_L_addr,
+    input logic [31-$clog2(PAGE_SIZE):0] i_next_L_addr,
+
+    input logic [31-$clog2(PAGE_SIZE):0] i_curr_R_addr,
+    input logic [31-$clog2(PAGE_SIZE):0] i_next_R_addr,
+
     //input logic i_L_data_rdy [MULT_COUNT],
     //input logic i_R_data_rdy [MULT_COUNT],
 
@@ -76,31 +82,11 @@ module Computation_Pipeline#(
     logic [$clog2(MULT_COUNT)-1:0] op_cnt;
 
     //Mult core signals
-    logic [31-$clog2(PAGE_SIZE):0] L_mem_addrs [MULT_COUNT];
-    logic                          L_reqs [MULT_COUNT];
-    logic                          L_data_rdy [MULT_COUNT];
-
-    logic [31-$clog2(PAGE_SIZE):0] R_mem_addrs [MULT_COUNT];
-    logic                          R_reqs [MULT_COUNT];
 
     assign o_done = acc_done;
 
 
-    Address_Selector #(
-        .PAGE_SIZE(PAGE_SIZE),
-        .INPUT_COUNT(MULT_COUNT)
-    ) L_addr_manager(
-        .i_clk(i_clk),
-        .i_curr_m_addr(curr_L_addr),
-        .i_next_m_addr(next_L_addr),
-
-        .i_addrs(L_mem_addrs),
-        .i_reqs(L_reqs),
-
-        .o_data_rdy(L_data_rdy),
-        .o_sel_addr(pend_L_addr)
-        output logic o_sel_req
-    );
+    
 
     Multiplication_Core#(
     .PAGE_SIZE(PAGE_SIZE),
@@ -117,11 +103,14 @@ module Computation_Pipeline#(
 
         .i_indicies(i_indicies),
 
-        .i_L_ready(i_L_data_rdy),
-        .i_R_ready(i_R_data_rdy),
-
         .i_L_data(i_L_mem_bus),
         .i_R_data(i_R_mem_bus),
+
+        .i_curr_L_addr(i_curr_L_addr),
+        .i_next_L_addr(i_next_L_addr),
+
+        .i_curr_R_addr(i_curr_R_addr),
+        .i_next_R_addr(i_next_R_addr),
 
         .i_L_offset(i_L_offset),
         .i_R_offset(i_R_offset),
@@ -130,11 +119,11 @@ module Computation_Pipeline#(
         .i_op_cnt(op_cnt),
         .i_step(o_acc_step),
 
-        .o_L_mem_addrs(o_L_mem_addrs),
-        .o_R_mem_addrs(o_R_mem_addrs),
+        .o_L_mem_addr(o_L_mem_addr),
+        .o_R_mem_addr(o_R_mem_addr),
 
-        .o_L_request(o_L_reqs),
-        .o_R_request(o_R_reqs),
+        .o_L_request(o_L_req),
+        .o_R_request(o_R_req),
 
         .o_dready(o_mult_rdy),
         .o_mults(o_mult_res)
