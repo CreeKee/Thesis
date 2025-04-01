@@ -26,7 +26,8 @@ import data_packet_pkg::data_packet;
 module Accordian_Buffer #(
     parameter SEGMENTS = 8,
     parameter MULTIPLIERS = 8,
-    parameter ADD_COUNT = SEGMENTS/2
+    parameter ADD_COUNT = SEGMENTS/2,
+    parameter USE_FLOAT
     )(
     input logic i_clk,
     input data_packet i_mults [MULTIPLIERS],
@@ -111,7 +112,8 @@ module Accordian_Buffer #(
     
     Addition_Core#(
     .SEGMENTS(SEGMENTS),
-    .ADD_COUNT(ADD_COUNT)
+    .ADD_COUNT(ADD_COUNT),
+    .USE_FLOAT(USE_FLOAT)
     ) add_core(
         .i_clk(i_clk),
         .i_stall(do_stall|i_clear),

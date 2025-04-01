@@ -18,9 +18,11 @@
 // Additional Comments:
 // 
 //////////////////////////////////////////////////////////////////////////////////
+import data_packet_pkg::*;
 
-
-module Simple_Adder(
+module Simple_Adder#(
+    parameter DELAY = 4
+    )(
     input logic i_clk,
     input logic [3:0] i_count, 
 
@@ -40,22 +42,12 @@ module Simple_Adder(
     data_packet A_val = {0,0,0,0}, B_val = {0,0,0,0};
     logic done = 0;
 
-    // assign o_res.val = i_A.val+i_B.val;
-    // assign o_res.is_head = i_A.is_head | i_B.is_head;
-    // assign o_res.is_tail = i_A.is_tail | i_B.is_tail;
-
-    // assign o_pop = o_res.is_head & o_res.is_tail;
-
-    //assign o_acc_fin     = i_A.is_head & i_B.is_tail;
-    //assign o_mismatch    = i_A.is_tail;
-
-
     always_ff @ ( posedge i_clk ) begin
 
         o_acc_fin     <= i_A.is_head & i_B.is_tail;
         o_mismatch    <= i_A.is_tail & !i_B.is_end;
 
-        if(i_count == 3) begin
+        if(i_count == DELAY-1) begin
 
             if(done == 0) begin
                 o_res.val     <= i_A.val     + i_B.val;
@@ -63,8 +55,6 @@ module Simple_Adder(
                 o_res.is_tail <= i_A.is_tail | i_B.is_tail;
                 o_res.is_end  <= i_A.is_end  & i_B.is_end;
 
-                //o_acc_fin     <= i_A.is_head & i_B.is_tail;
-                //o_mismatch    <= i_A.is_tail;
             end
 
             done <= 1;
@@ -78,3 +68,5 @@ module Simple_Adder(
     end
 
 endmodule
+
+

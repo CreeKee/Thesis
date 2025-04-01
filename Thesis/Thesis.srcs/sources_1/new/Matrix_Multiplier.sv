@@ -19,6 +19,35 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+`ifndef D_PACK
+`define D_PACK
+package data_packet_pkg;
+    typedef struct packed {
+        logic is_end;
+        logic is_head;
+        logic is_tail;
+        logic[31:0] val;
+    } data_packet;
+
+    typedef struct {
+        logic [31:0] alpha_x;
+        logic [31:0] alpha_y;
+        logic [31:0] alpha_z;
+
+        logic [31:0] beta_x;
+        logic [31:0] beta_y;
+        logic [31:0] beta_z;
+
+        logic [31:0] x_step;
+
+        logic [31:0] z_step;
+        logic [31:0] z_fall;
+        logic [31:0] z_xtra;
+    } mult_pack;
+
+endpackage
+`endif
+
 import data_packet_pkg::*;
 
 module Matrix_Multiplier#(
@@ -29,7 +58,9 @@ module Matrix_Multiplier#(
 
     parameter SEGS_PER_PIPE=8,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=8
+    parameter MULT_PER_PIPE=8,
+
+    parameter USE_FLOAT = 0
     )(
     input logic i_clk,
     input logic i_btn,
@@ -148,7 +179,8 @@ module Matrix_Multiplier#(
             .PAGE_SIZE(PAGE_SIZE),
             .SEG_COUNT(SEGS_PER_PIPE),
             .MULT_COUNT(MULT_PER_PIPE),
-            .ADD_COUNT(ADDS_PER_PIPE)
+            .ADD_COUNT(ADDS_PER_PIPE),
+            .USE_FLOAT(USE_FLOAT)
             ) Pipeline(
 
             .i_clk(i_clk),

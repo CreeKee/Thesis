@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743371492" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/impl_top.dcp">
+<GenRun Id="synth_1" LaunchPart="xc7a35tcpg236-1" LaunchTime="1743441390" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/impl_top.dcp">
   <File Type="PA-TCL" Name="impl_top.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="impl_top_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="impl_top_reports.tcl"/>
   <File Type="RDS-RDS" Name="impl_top.vds"/>
   <File Type="RDS-UTIL" Name="impl_top_utilization_synth.rpt"/>
   <File Type="RDS-UTIL-PB" Name="impl_top_utilization_synth.pb"/>
   <File Type="RDS-DCP" Name="impl_top.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="impl_top_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="impl_top_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
     <File Path="$PSRCDIR/sources_1/new/Matrix_Multiplier.sv">
@@ -224,4 +221,5 @@
     <Step Id="synth_design"/>
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="blk_mem_gen_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="floating_point_0"/>
 </GenRun>

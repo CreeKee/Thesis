@@ -24,7 +24,8 @@ import data_packet_pkg::data_packet;
 module Addition_Core#(
     parameter SEGMENTS,
     parameter ADD_COUNT = SEGMENTS/2,
-    parameter DELAY = 4
+    parameter DELAY = 4,
+    parameter USE_FLOAT
     )(
         input logic i_clk,
         input logic i_stall,
@@ -47,17 +48,32 @@ module Addition_Core#(
     generate 
         // create adder units
         for (seg = 0; seg < SEGMENTS; seg += 2) begin : add_gen
-            Simple_Adder add_unit(
-                .i_clk(i_clk),
-                .i_count(count),
+            if(USE_FLOAT) begin
+                Complex_Adder add_unit(
+                    .i_clk(i_clk),
+                    .i_count(count),
 
-                .i_A(i_seg_vals[seg]),
-                .i_B(i_seg_vals[seg+1]),
+                    .i_A(i_seg_vals[seg]),
+                    .i_B(i_seg_vals[seg+1]),
 
-                .o_res     (o_adds    [seg/2]),
-                .o_acc_fin (o_acc_fins[seg/2]),
-                .o_mismatch(o_spaces    [seg/2])
-            );
+                    .o_res     (o_adds    [seg/2]),
+                    .o_acc_fin (o_acc_fins[seg/2]),
+                    .o_mismatch(o_spaces    [seg/2])
+                );
+            end
+            else begin
+                Simple_Adder add_unit(
+                    .i_clk(i_clk),
+                    .i_count(count),
+
+                    .i_A(i_seg_vals[seg]),
+                    .i_B(i_seg_vals[seg+1]),
+
+                    .o_res     (o_adds    [seg/2]),
+                    .o_acc_fin (o_acc_fins[seg/2]),
+                    .o_mismatch(o_spaces    [seg/2])
+                );
+            end
 
         end
     endgenerate

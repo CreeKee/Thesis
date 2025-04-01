@@ -25,14 +25,14 @@
 
 
 module tb_ult#(
-    parameter PIPE_COUNT = 8,
+    parameter PIPE_COUNT = 4,
     parameter PAGE_SIZE = 32,
     parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
     parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
     parameter SEGS_PER_PIPE=8,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=8
+    parameter MULT_PER_PIPE=16
     )(
 
     );
@@ -40,7 +40,7 @@ module tb_ult#(
 
     logic i_clk  = 0;
     logic active = 0;
-    // logic [31:0] m_val=7, n_val=3, p_val=5;
+    //logic [31:0] m_val=7, n_val=3, p_val=5;
     logic [31:0] m_val=52, n_val=33, p_val=47;
 
     logic [31:0] stored_offsets [PIPE_COUNT];
@@ -146,7 +146,8 @@ module tb_ult#(
             .PAGE_SIZE(PAGE_SIZE),
             .SEG_COUNT(SEGS_PER_PIPE),
             .MULT_COUNT(MULT_PER_PIPE),
-            .ADD_COUNT(ADDS_PER_PIPE)
+            .ADD_COUNT(ADDS_PER_PIPE),
+            .USE_FLOAT(1)
             ) Pipeline(
 
             .i_clk(i_clk),
@@ -210,6 +211,24 @@ module tb_ult#(
 
 
     /**********************************************************************************/
+
+    // logic [31:0] m_res;
+    // logic m_red, m_val;
+
+    // floating_point_0 fp_adder(
+    //     .aclk(i_clk),
+    //     .s_axis_a_tvalid(1),
+    //     //.s_axis_a_tready(1),
+    //     .s_axis_a_tdata(32'h40600000),
+    //     .s_axis_b_tvalid(1),
+    //     //.s_axis_b_tready(1),
+    //     .s_axis_b_tdata(32'h40600000),
+    //     .m_axis_result_tvalid(m_val),
+    //     .m_axis_result_tready(m_red),
+    //     .m_axis_result_tdata(m_res)
+    // );
+
+
 
 
     always_comb begin

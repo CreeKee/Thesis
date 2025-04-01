@@ -25,7 +25,8 @@ module Computation_Pipeline#(
     parameter PAGE_SIZE,
     parameter SEG_COUNT,
     parameter MULT_COUNT,
-    parameter ADD_COUNT
+    parameter ADD_COUNT,
+    parameter USE_FLOAT = 0
     )(
 
     input logic i_clk,
@@ -85,9 +86,6 @@ module Computation_Pipeline#(
 
     assign o_done = acc_done;
 
-
-    
-
     Multiplication_Core#(
     .PAGE_SIZE(PAGE_SIZE),
     .MULT_COUNT(MULT_COUNT),
@@ -131,7 +129,8 @@ module Computation_Pipeline#(
 
     Accordian_Buffer#(
     .SEGMENTS(SEG_COUNT),
-    .MULTIPLIERS(MULT_COUNT)
+    .MULTIPLIERS(MULT_COUNT),
+    .USE_FLOAT(USE_FLOAT)
     ) acc_buff (
         .i_clk(i_clk),
         .i_mults(o_mult_res),
