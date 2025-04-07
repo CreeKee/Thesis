@@ -76,8 +76,6 @@ module Multiplier_Unit#(
 
     logic [31:0] start_count;
 
-    logic [31:0] Lr, LcRr, Rc;
-
     logic [31:0] L_dex = 0, R_dex = 0;
     logic [31:0] L_val = 0, R_val = 0, M_res;
 
@@ -91,10 +89,6 @@ module Multiplier_Unit#(
     logic m_pull, mul_stale = 1, res_stale = 1, m_pend = 0;
 
     assign cont = (i_pull == 1'b1) | (o_res_ready == 0);
-
-    assign Lr = x;
-    assign LcRr = z;
-    assign Rc = y;
 
     assign n0_z = (z + MULT_COUNT);
     assign n1_z = (z + MULT_COUNT) - i_idx.alpha_z;
@@ -319,7 +313,6 @@ module Multiplier_Unit#(
                 //signal that a multiplication result is ready
                 if(m_pull) begin 
                     mul_stale <= 0;
-                    
                 end
 
                 //check if everything is ready
@@ -450,8 +443,6 @@ module Multiplier_Unit#(
             end
 
             ENDING: begin
-                
-
                 if(res_stale & mul_stale & !m_pend) begin
                     o_result.val <= 0;
                     o_result.is_head <= 0;

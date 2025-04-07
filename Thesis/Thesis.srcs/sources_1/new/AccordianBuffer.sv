@@ -47,7 +47,9 @@ module Accordian_Buffer #(
     output logic o_done
     );
 
-    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum, pop_sum = 0, pop_sum_p, space_sum = 0, space_sum_p;
+    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum;
+    logic [31:0] pop_sum = 0, pop_sum_p, space_sum = 0, space_sum_p;
+    
     data_packet adds   [ADD_COUNT];
     logic       spaces [ADD_COUNT];
 
@@ -123,6 +125,9 @@ module Accordian_Buffer #(
         .o_acc_fins(o_pushs),
         .o_spaces(spaces),
 
+        .o_pop_sum(pop_sum_p),
+        .o_space_sum(space_sum_p),
+
         .o_ready(add_clk)
     );
 
@@ -143,12 +148,12 @@ module Accordian_Buffer #(
         do_stall = seg_stall|i_stall;
 
         //calculate how many finished values have been popped off the buffer
-        pop_sum_p = 0;
-        space_sum_p = 0;
-        for (int idx = 0; idx < ADD_COUNT; idx++) begin
-            pop_sum_p   = pop_sum_p   + o_pushs[idx];
-            space_sum_p = space_sum_p + spaces[idx];
-        end
+        // pop_sum_p = 0;
+        // space_sum_p = 0;
+        // for (int idx = 0; idx < ADD_COUNT; idx++) begin
+        //     pop_sum_p   = pop_sum_p   + o_pushs[idx];
+        //     space_sum_p = space_sum_p + spaces[idx];
+        // end
 
         
     end
@@ -167,9 +172,7 @@ module Accordian_Buffer #(
         //stall
         else if(i_stall) begin
             curr <= curr;
-            
             m_p_dex_reg <= m_p_dex_reg;
-
         end
 
         else begin

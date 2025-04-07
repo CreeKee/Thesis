@@ -31,7 +31,7 @@ module impl_top #(
 
     parameter SEGS_PER_PIPE=8,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=16
+    parameter MULT_PER_PIPE=8
     )(
     input logic i_clk,
     input logic i_btn,

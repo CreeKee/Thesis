@@ -35,6 +35,9 @@ module Addition_Core#(
         output logic       o_acc_fins [ADD_COUNT],
         output logic       o_spaces   [ADD_COUNT],
 
+        output logic [31:0] o_space_sum,
+        output logic [31:0] o_pop_sum,
+
         output logic o_ready
 
     );
@@ -49,7 +52,7 @@ module Addition_Core#(
         // create adder units
         for (seg = 0; seg < SEGMENTS; seg += 2) begin : add_gen
             if(USE_FLOAT) begin
-                Complex_Adder add_unit(
+                Simple_Adder add_unit(
                     .i_clk(i_clk),
                     .i_count(count),
 
@@ -83,6 +86,14 @@ module Addition_Core#(
         if(i_stall && count == DELAY) count <= count;
         else if(count < DELAY) count <= count+1;
         else count <= 0;
+
+        //calculate how many finished values have been popped off the buffer
+        o_pop_sum = 0;
+        o_space_sum = 0;
+        for (int idx = 0; idx < ADD_COUNT; idx++) begin
+            o_pop_sum   = o_pop_sum   + o_acc_fins[idx];
+            o_space_sum = o_space_sum + o_spaces[idx];
+        end
     end
 
 endmodule

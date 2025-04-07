@@ -191,10 +191,9 @@ module Multiplication_Core#(
 
         if(i_step) begin
 
-            for (int idx = 0; (idx < SEG_COUNT) & (idx < diff) & idx < MULT_COUNT; idx++) begin
+            for (int idx = 0; (idx < SEG_COUNT) & (idx < diff) & (idx < MULT_COUNT); idx++) begin
 
                 //signal multipliers that their value has been pulled
-
                 if(o_dready[`M_IDX]) begin 
                     m_pull[`M_IDX] = 1;
                 end

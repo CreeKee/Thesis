@@ -53,13 +53,13 @@ module Complex_Adder#(
     //     .m_axis_result_tdata(add_res)
     // );
 
-    baby_adder add_computer(
-    .i_clk(i_clk),
-    .i_A_data(0),
-    .i_B_data(0)
+    // baby_adder add_computer(
+    // .i_clk(i_clk),
+    // .i_A_data(0),
+    // .i_B_data(0)
 
     //.o_add_res()
-    );
+    // );
 
     always_comb begin
         A_data = i_A.val;
@@ -95,21 +95,21 @@ module Complex_Adder#(
 
 endmodule
 
-module baby_adder(
-    input logic i_clk,
-    input logic [31:0] i_A_data,
-    input logic [31:0] i_B_data,
+// module baby_adder(
+//     input logic i_clk,
+//     input logic [31:0] i_A_data,
+//     input logic [31:0] i_B_data,
 
-    output logic [31:0] o_add_res
-);
+//     output logic [31:0] o_add_res
+// );
 
-    floating_point_0 fp_adder(
-        .aclk(i_clk),
-        .s_axis_a_tvalid(1),
-        .s_axis_a_tdata(i_A_data),
-        .s_axis_b_tvalid(1),
-        .s_axis_b_tdata(i_B_data),
-        .m_axis_result_tdata(o_add_res)
-    );
+//     floating_point_0 fp_adder(
+//         .aclk(i_clk),
+//         .s_axis_a_tvalid(1),
+//         .s_axis_a_tdata(i_A_data),
+//         .s_axis_b_tvalid(1),
+//         .s_axis_b_tdata(i_B_data),
+//         .m_axis_result_tdata(o_add_res)
+//     );
 
-endmodule
+// endmodule

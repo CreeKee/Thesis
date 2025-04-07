@@ -63,7 +63,6 @@ module Accordian_Segment #(
     assign add_dex = SEGMENT_INDEX  - (spacers_reg >> 1) - (spacers_reg & 1) + i_pops;
     assign seg_dex = (add_dex << 1) + (spacers_reg &  1);
 
-    
     always_comb begin : ComBlock
 
         o_stall = 0;
@@ -87,7 +86,6 @@ module Accordian_Segment #(
             if(curr <= SEGMENT_INDEX & !o_stall) o_pulled = 1;
             else o_pulled = 0;
             
-
             //determine spacing
             spacers = 0;
             valid_adds = 0;
@@ -150,8 +148,6 @@ module Accordian_Segment #(
                             //pull in value from adder
                             o_val <= i_add[add_dex];
                         end
-                        //er
-                        //o_val <= i_add[add_dex];
                     end
                 end
                 else begin 
