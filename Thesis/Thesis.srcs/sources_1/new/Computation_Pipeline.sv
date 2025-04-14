@@ -89,7 +89,8 @@ module Computation_Pipeline#(
     Multiplication_Core#(
     .PAGE_SIZE(PAGE_SIZE),
     .MULT_COUNT(MULT_COUNT),
-    .SEG_COUNT(SEG_COUNT)
+    .SEG_COUNT(SEG_COUNT),
+    .USE_FLOAT(USE_FLOAT)
     ) mult_core(
         .i_clk(i_clk),
         .i_start(i_start),

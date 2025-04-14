@@ -25,23 +25,26 @@
 
 
 module tb_ult#(
-    parameter PIPE_COUNT = 4,
+    parameter PIPE_COUNT = 1,
     parameter PAGE_SIZE = 32,
     parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
     parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
-    parameter SEGS_PER_PIPE=8,
+    parameter SEGS_PER_PIPE=4,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=16
+    parameter MULT_PER_PIPE=4
     )(
 
     );
     import data_packet_pkg::data_packet;
 
+    logic [15:0] sw = 0;
+    logic [31:0] read_data;
+
     logic i_clk  = 0;
     logic active = 0;
-    //logic [31:0] m_val=7, n_val=3, p_val=5;
-    logic [31:0] m_val=52, n_val=33, p_val=47;
+    logic [31:0] m_val=7, n_val=3, p_val=5;
+    //logic [31:0] m_val=52, n_val=33, p_val=47;
 
     logic [31:0] stored_offsets [PIPE_COUNT];
     
@@ -56,9 +59,6 @@ module tb_ult#(
     //Input mem signals
     logic [31-$clog2(PAGE_SIZE):0] L_mem_addrs [PIPE_COUNT];
     logic [31-$clog2(PAGE_SIZE):0] R_mem_addrs [PIPE_COUNT];
-
-    logic L_data_rdy [MULT_COUNT];
-    logic R_data_rdy [MULT_COUNT];
 
     logic L_reqs     [PIPE_COUNT];
     logic R_reqs     [PIPE_COUNT];
@@ -86,15 +86,14 @@ module tb_ult#(
     logic split_fin, split_rdy = 0;
     logic index_fin, index_rdy = 0;
 
-        Splitter#(
-    .PIPE_COUNT(PIPE_COUNT)
+    Splitter#(
+        .PIPE_COUNT(PIPE_COUNT)
     ) pipe_splitter(
         .i_clk(i_clk),
         .start(active),
 
         .i_M(m_val),
         .i_N(n_val),
-        .i_P(p_val),
 
         .o_ready(split_fin),
         .o_split_vals(split_vals),
@@ -147,7 +146,7 @@ module tb_ult#(
             .SEG_COUNT(SEGS_PER_PIPE),
             .MULT_COUNT(MULT_PER_PIPE),
             .ADD_COUNT(ADDS_PER_PIPE),
-            .USE_FLOAT(1)
+            .USE_FLOAT(0)
             ) Pipeline(
 
             .i_clk(i_clk),
@@ -162,9 +161,6 @@ module tb_ult#(
 
             .i_L_mem_bus(L_mem_bus),
             .i_R_mem_bus(R_mem_bus),
-
-            // .i_L_data_rdy(L_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
-            // .i_R_data_rdy(R_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
 
             .i_curr_L_addr(curr_L_addr),
             .i_next_L_addr(next_L_addr),
@@ -193,6 +189,23 @@ module tb_ult#(
             );
         end
     endgenerate
+
+    output_memory_controller2#(
+        .ADD_COUNT(ADDS_PER_PIPE),
+        .PIPE_COUNT(PIPE_COUNT),
+        .PAGE_SIZE(8),
+        .WB_THRESH(8)
+    ) o_mem_unit(
+        .i_clk(i_clk),
+        .i_end(done),
+        .i_vals(adds),
+        .i_push(adder_push),
+        .i_offsets(offsets),
+        .i_step(acc_step),
+
+        .i_read_addr(sw),
+        .read_data(read_data)
+    );
 
     always_ff @ ( posedge i_clk ) begin
 

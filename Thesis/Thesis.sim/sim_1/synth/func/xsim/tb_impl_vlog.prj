@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../../Thesis.srcs/sources_1/new" --include "../../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"tb_impl_func_synth.v" \
+
+sv xil_defaultlib  --include "../../../../../Thesis.srcs/sources_1/new" --include "../../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../../Thesis.srcs/sim_1/new/tb_mult.sv" \
+"../../../../../Thesis.srcs/sim_1/new/tb_ult.sv" \
+"../../../../../Thesis.srcs/sim_1/new/tb_impl.sv" \
+
+# Do not sort compile order
+nosort

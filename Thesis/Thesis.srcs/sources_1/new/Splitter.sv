@@ -29,7 +29,6 @@ module Splitter#(
 
         input logic [31:0] i_M,
         input logic [31:0] i_N,
-        input logic [31:0] i_P,
 
         output logic o_ready,
         output logic [31:0] o_split_vals [PIPE_COUNT],
@@ -40,7 +39,7 @@ module Splitter#(
     typedef enum bit {IDLE, ACTIVE} state_s;
     state_s curr_state = IDLE, next_state;
 
-    logic [31:0] M_val = 0, P_val = 0, N_val = 0;
+    logic [31:0] M_val = 0, N_val = 0;
     logic [31:0] next_M_val;
 
     logic wait_reset = 0;
@@ -76,6 +75,7 @@ module Splitter#(
                     next_state = IDLE;
                     o_ready = 1;
                 end
+                else next_state = ACTIVE;
 
                 next_M_val = M_val;
                 next_mem_offset = o_mem_offset;
@@ -103,7 +103,6 @@ module Splitter#(
 
                 if(next_state == ACTIVE) begin
                     M_val <= i_M;
-                    P_val <= i_P;
                     N_val <= i_N;
                 end
                 else begin
@@ -112,7 +111,6 @@ module Splitter#(
                    else wait_reset <= 0;
 
                     M_val <= 0;
-                    P_val <= 0;
                     N_val <= 0;
                 end
             end

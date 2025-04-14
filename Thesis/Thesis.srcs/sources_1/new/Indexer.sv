@@ -159,9 +159,12 @@ module Indexer#(
                         vals.beta_y  <= n_vals.beta_y;
                         
                         if(gamma_y >= i_P) begin
-                            dim = XDIM;
+                            dim = ZDIM;
                             vals.alpha_y <= n_vals.alpha_y;
                             gamma_y      <= n_gamma_y;
+
+                            vals.beta_x  <= n_vals.beta_x;
+                            vals.x_step  <= n_vals.x_step;
 
                         end
                         else dim = ZDIM;
@@ -169,10 +172,6 @@ module Indexer#(
 
                     XDIM: begin
                         dim = ZDIM;
-
-                        vals.beta_x  <= n_vals.beta_x;
-                        vals.x_step  <= n_vals.x_step;
-                        
 
                     end
 

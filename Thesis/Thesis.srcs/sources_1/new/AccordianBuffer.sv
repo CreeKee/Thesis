@@ -36,9 +36,7 @@ module Accordian_Buffer #(
     input logic i_clear,
     input logic i_end,
 
-    output logic o_m_pull [MULTIPLIERS],
-
-    output logic [31:0] o_curr,
+    output logic [31:0] o_curr = 0,
     output logic [$clog2(MULTIPLIERS)-1:0] o_op_cnt,
 
     output logic [31:0] o_adds [ADD_COUNT],
@@ -47,7 +45,7 @@ module Accordian_Buffer #(
     output logic o_done
     );
 
-    logic [31:0] curr = 0, n_curr, spec_curr, pull_sum;
+    logic [31:0] curr = 0, n_curr, pull_sum;
     logic [31:0] pop_sum = 0, pop_sum_p, space_sum = 0, space_sum_p;
     
     data_packet adds   [ADD_COUNT];
@@ -62,12 +60,11 @@ module Accordian_Buffer #(
     logic add_clk, add_clk_reg = 0;
     
     logic [$clog2(MULTIPLIERS)-1:0] op_count = 0;
-    logic [$clog2(MULTIPLIERS)-1:0] m_p_dex_reg = 0;
     logic do_step;
 
     assign o_step_ready = do_step;
     assign do_step = add_clk_reg&(~do_stall);
-    assign spec_curr = (curr >> 1) - pop_sum + (space_sum) + (curr&1);
+    assign n_curr = (curr >> 1) - pop_sum + (space_sum) + (curr&1);
     assign o_done = seg_vals[0].is_end;
     assign o_op_cnt = op_count;
 
@@ -88,6 +85,7 @@ module Accordian_Buffer #(
                 .i_pull(do_step),
                 .i_clear(i_clear),
                 .i_stall(i_stall),
+
                 .i_override(spaces),
                 .i_m_rdy(i_m_rdy),
 
@@ -133,8 +131,8 @@ module Accordian_Buffer #(
 
     always_comb begin
 
-        if($signed(spec_curr) > 0) n_curr = spec_curr;
-        else n_curr = 0;
+        // if($signed(spec_curr) > 0) n_curr = spec_curr;
+        // else n_curr = 0;
 
         //calculate how many new values have been pulled into the buffer
         //and cascade internal stall calls
@@ -146,15 +144,6 @@ module Accordian_Buffer #(
         end
 
         do_stall = seg_stall|i_stall;
-
-        //calculate how many finished values have been popped off the buffer
-        // pop_sum_p = 0;
-        // space_sum_p = 0;
-        // for (int idx = 0; idx < ADD_COUNT; idx++) begin
-        //     pop_sum_p   = pop_sum_p   + o_pushs[idx];
-        //     space_sum_p = space_sum_p + spaces[idx];
-        // end
-
         
     end
 
@@ -164,7 +153,6 @@ module Accordian_Buffer #(
 
         //reset registers
         if(i_clear) begin
-            m_p_dex_reg <= 0;
             curr <= 0;
             op_count <= 0;
         end
@@ -172,7 +160,6 @@ module Accordian_Buffer #(
         //stall
         else if(i_stall) begin
             curr <= curr;
-            m_p_dex_reg <= m_p_dex_reg;
         end
 
         else begin
@@ -182,15 +169,6 @@ module Accordian_Buffer #(
 
             if(do_step) begin
 
-                //update multiplication index
-                m_p_dex_reg <= m_p_dex_reg+pull_sum;
-                for (int idx = 0; idx < MULTIPLIERS; idx++) begin
-
-                    //signal multipliers that their value has been pulled
-                    if(idx < pull_sum) o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 1;
-                    else o_m_pull[(idx+m_p_dex_reg)%MULTIPLIERS] <= 0;
-                end
-
                 //update current fill of the buffer
                 curr <= n_curr + pull_sum;
 
@@ -199,10 +177,6 @@ module Accordian_Buffer #(
             end
             else begin
                 //hold values, wait for addition step
-                m_p_dex_reg <= m_p_dex_reg;
-                for (int idx = 0; idx < MULTIPLIERS; idx++) begin
-                    o_m_pull[idx] <= 0;
-                end
                 curr <= curr;
 
                 op_count <= op_count;

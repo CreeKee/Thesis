@@ -41,25 +41,16 @@ module Complex_Adder#(
 
     logic[31:0] add_res, A_data, B_data;
 
-    data_packet A_val = {0,0,0,0}, B_val = {0,0,0,0};
     logic done = 0;
-    assign add_res = i_A.val + i_B.val;
-    // floating_point_0 fp_adder(
-    //     .aclk(i_clk),
-    //     .s_axis_a_tvalid(1),
-    //     .s_axis_a_tdata(0),
-    //     .s_axis_b_tvalid(1),
-    //     .s_axis_b_tdata(0),
-    //     .m_axis_result_tdata(add_res)
-    // );
-
-    // baby_adder add_computer(
-    // .i_clk(i_clk),
-    // .i_A_data(0),
-    // .i_B_data(0)
-
-    //.o_add_res()
-    // );
+    floating_point_0_1 fp_adder(
+        .aclk(i_clk),
+        .s_axis_a_tvalid(1),
+        .s_axis_a_tdata(A_data),
+        .s_axis_b_tvalid(1),
+        .s_axis_b_tdata(B_data),
+        .m_axis_result_tready(1),
+        .m_axis_result_tdata(add_res)
+    );
 
     always_comb begin
         A_data = i_A.val;
@@ -82,9 +73,6 @@ module Complex_Adder#(
             end
 
             done <= 1;
-
-            A_val <= i_A;
-            B_val <= i_B;
             
         end
         else done <= 0;
@@ -94,22 +82,3 @@ module Complex_Adder#(
     
 
 endmodule
-
-// module baby_adder(
-//     input logic i_clk,
-//     input logic [31:0] i_A_data,
-//     input logic [31:0] i_B_data,
-
-//     output logic [31:0] o_add_res
-// );
-
-//     floating_point_0 fp_adder(
-//         .aclk(i_clk),
-//         .s_axis_a_tvalid(1),
-//         .s_axis_a_tdata(i_A_data),
-//         .s_axis_b_tvalid(1),
-//         .s_axis_b_tdata(i_B_data),
-//         .m_axis_result_tdata(o_add_res)
-//     );
-
-// endmodule

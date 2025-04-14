@@ -24,22 +24,24 @@ import data_packet_pkg::*;
 
 
 module impl_top #(
-    parameter PIPE_COUNT = 2,
+    parameter PIPE_COUNT = 1,
     parameter PAGE_SIZE = 32,
     parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
     parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
-    parameter SEGS_PER_PIPE=8,
+    parameter SEGS_PER_PIPE=2,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=8
+    parameter MULT_PER_PIPE=2,
+
+    parameter USE_FLOAT = 1
     )(
     input logic i_clk,
     input logic i_btn,
     input logic [15:0] sw,
-    output logic o_TxD,
+    output logic o_TxD = 0,
     output logic [15:0] LED
-);
 
+);
 
     Matrix_Multiplier#(
     .PIPE_COUNT(PIPE_COUNT),
@@ -49,7 +51,9 @@ module impl_top #(
 
     .SEGS_PER_PIPE(SEGS_PER_PIPE),
     .ADDS_PER_PIPE(ADDS_PER_PIPE),
-    .MULT_PER_PIPE(MULT_PER_PIPE)
+    .MULT_PER_PIPE(MULT_PER_PIPE),
+
+    .USE_FLOAT(USE_FLOAT)
     ) Complete_Mat_Mul(
         .i_clk(i_clk),
         .i_btn(i_btn),
@@ -57,6 +61,7 @@ module impl_top #(
         .o_TxD(o_TxD),
         .LED(LED)
     );
+
 
 
 endmodule

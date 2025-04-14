@@ -53,12 +53,13 @@ import data_packet_pkg::*;
 module Matrix_Multiplier#(
     parameter PIPE_COUNT = 8,
     parameter PAGE_SIZE = 32,
-    parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
-    parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
+    parameter MULT_PER_PIPE=8,
     parameter SEGS_PER_PIPE=8,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
-    parameter MULT_PER_PIPE=8,
+
+    parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
+    parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
     parameter USE_FLOAT = 0
     )(
@@ -67,14 +68,17 @@ module Matrix_Multiplier#(
     input logic [15:0] sw,
     output logic o_TxD,
     output logic [15:0] LED
-);
 
-    logic active;
+    );
+
+    logic active = 1;
     logic [31:0] m_val=7, n_val=3, p_val=5;
     //logic [31:0] m_val=52, n_val=33, p_val=47;
 
     logic [31:0] stored_offsets [PIPE_COUNT];
-    
+    logic [31:0] read_data;
+
+    logic[31:0] led_val = 0;
 
     logic donedone;
 
@@ -87,9 +91,6 @@ module Matrix_Multiplier#(
     //Input mem signals
     logic [31-$clog2(PAGE_SIZE):0] L_mem_addrs [PIPE_COUNT];
     logic [31-$clog2(PAGE_SIZE):0] R_mem_addrs [PIPE_COUNT];
-
-    logic L_data_rdy [MULT_COUNT];
-    logic R_data_rdy [MULT_COUNT];
 
     logic L_reqs     [PIPE_COUNT];
     logic R_reqs     [PIPE_COUNT];
@@ -112,20 +113,17 @@ module Matrix_Multiplier#(
     logic start_pipe;
     logic split_fin, split_rdy = 0;
     logic index_fin, index_rdy = 0;
-
-    assign active = i_btn;
-    assign LED[PIPE_COUNT] = donedone;
     
 
+
     Splitter#(
-    .PIPE_COUNT(PIPE_COUNT)
+        .PIPE_COUNT(PIPE_COUNT)
     ) pipe_splitter(
         .i_clk(i_clk),
         .start(active),
 
         .i_M(m_val),
         .i_N(n_val),
-        .i_P(p_val),
 
         .o_ready(split_fin),
         .o_split_vals(split_vals),
@@ -134,7 +132,7 @@ module Matrix_Multiplier#(
     );
 
     Indexer#(
-    .MULT_COUNT(MULT_PER_PIPE)
+        .MULT_COUNT(MULT_PER_PIPE)
     ) idxr(
         .i_clk(i_clk),
         .i_active(active),
@@ -168,12 +166,9 @@ module Matrix_Multiplier#(
         .mem_bus_b(R_mem_bus)
     );
 
-
     genvar pipe;
     generate
         for (pipe=0; pipe < PIPE_COUNT; pipe++) begin : pipe_gen
-            
-            assign LED[pipe] = done[pipe];
 
             Computation_Pipeline#(
             .PAGE_SIZE(PAGE_SIZE),
@@ -195,9 +190,6 @@ module Matrix_Multiplier#(
 
             .i_L_mem_bus(L_mem_bus),
             .i_R_mem_bus(R_mem_bus),
-
-            // .i_L_data_rdy(L_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
-            // .i_R_data_rdy(R_data_rdy[MULT_PER_PIPE*pipe +: MULT_PER_PIPE]),
 
             .i_curr_L_addr(curr_L_addr),
             .i_next_L_addr(next_L_addr),
@@ -227,12 +219,52 @@ module Matrix_Multiplier#(
         end
     endgenerate
 
+
+    output_memory_controller2#(
+        .ADD_COUNT(ADDS_PER_PIPE),
+        .PIPE_COUNT(PIPE_COUNT),
+        .PAGE_SIZE(8),
+        .WB_THRESH(8)
+    ) o_mem_unit(
+        .i_clk(i_clk),
+        .i_end(done),
+        .i_vals(adds),
+        .i_push(adder_push),
+        .i_offsets(offsets),
+        .i_step(acc_step),
+
+        .i_read_addr(sw),
+        .read_data(read_data)
+        );
+
+    always_comb begin
+        if(i_btn) LED = read_data[31:16];
+        else LED = read_data[15:0];
+
+        donedone = 1;
+        for(int p = 0; p < PIPE_COUNT; p++) begin
+            donedone &= done[p];
+        end
+        LED[15] = donedone;
+
+        // for(int p = 0; p < PIPE_COUNT; p++) begin
+        //     LED[p] |= done[p];
+        // end
+
+        // if(i_btn) LED = led_val[31:16];
+        // else LED = led_val[15:0];
+    end
+
+
     always_ff @ ( posedge i_clk ) begin
+
+        active <= 0;
 
         if(start_pipe) begin
             start_pipe <= 0;
             split_rdy <= 0;
             index_rdy <= 0;
+
         end
         else begin
             start_pipe <= (split_fin|split_rdy)&(index_fin|index_rdy);
@@ -240,7 +272,21 @@ module Matrix_Multiplier#(
             index_rdy <= index_fin|index_rdy;
         end
 
+        if(done[0] & led_val == 0 | i_btn) led_val <= mult_res[sw].val+1;
+
     end
+
+
+        always_comb begin
+        donedone = 1;
+        for(int p = 0; p<PIPE_COUNT; p++) begin
+
+            donedone &= done[p];
+
+        end
+    end
+
+    
 endmodule
 
 

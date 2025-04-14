@@ -62,20 +62,20 @@
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="basys3"/>
     <Option Name="FeatureSet" Val="FeatureSet_Classic"/>
-    <Option Name="WTXSimLaunchSim" Val="2399"/>
+    <Option Name="WTXSimLaunchSim" Val="2727"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
     <Option Name="WTVcsLaunchSim" Val="0"/>
     <Option Name="WTRivieraLaunchSim" Val="0"/>
     <Option Name="WTActivehdlLaunchSim" Val="0"/>
-    <Option Name="WTXSimExportSim" Val="29"/>
-    <Option Name="WTModelSimExportSim" Val="29"/>
-    <Option Name="WTQuestaExportSim" Val="29"/>
+    <Option Name="WTXSimExportSim" Val="37"/>
+    <Option Name="WTModelSimExportSim" Val="37"/>
+    <Option Name="WTQuestaExportSim" Val="37"/>
     <Option Name="WTIesExportSim" Val="0"/>
-    <Option Name="WTVcsExportSim" Val="29"/>
-    <Option Name="WTRivieraExportSim" Val="29"/>
-    <Option Name="WTActivehdlExportSim" Val="29"/>
+    <Option Name="WTVcsExportSim" Val="37"/>
+    <Option Name="WTRivieraExportSim" Val="37"/>
+    <Option Name="WTActivehdlExportSim" Val="37"/>
     <Option Name="GenerateIPUpgradeLog" Val="TRUE"/>
     <Option Name="XSimRadix" Val="hex"/>
     <Option Name="XSimTimeUnit" Val="ns"/>
@@ -277,6 +277,27 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/new/Mult_Comp_Unit_fp.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/Simple_impl.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_1_1/blk_mem_gen_1_1.xci">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
         <Option Name="TopModule" Val="impl_top"/>
@@ -298,6 +319,7 @@
       <Filter Type="Srcs"/>
       <File Path="$PPRDIR/Test_Bench_behav.wcfg">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -318,6 +340,7 @@
       </File>
       <File Path="$PPRDIR/tb_mult_behav.wcfg">
         <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
@@ -350,13 +373,42 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sim_1/new/tb_impl.sv">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/tb_impl_behav.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/tb_ult_behav.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/tb_impl_behav1.wcfg">
+        <FileInfo>
+          <Attr Name="UserDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PPRDIR/tb_impl_func_synth.wcfg">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="tb_ult"/>
+        <Option Name="TopModule" Val="tb_impl"/>
         <Option Name="TopLib" Val="xil_defaultlib"/>
         <Option Name="TransportPathDelay" Val="0"/>
         <Option Name="TransportIntDelay" Val="0"/>
         <Option Name="SelectedSimModel" Val="rtl"/>
+        <Option Name="SimMode" Val="post-synthesis"/>
         <Option Name="PamDesignTestbench" Val=""/>
         <Option Name="PamDutBypassFile" Val="xil_dut_bypass"/>
         <Option Name="PamSignalDriverFile" Val="xil_bypass_driver"/>
@@ -364,6 +416,7 @@
         <Option Name="SrcSet" Val="sources_1"/>
         <Option Name="XSimWcfgFile" Val="$PPRDIR/Test_Bench_behav.wcfg"/>
         <Option Name="XSimWcfgFile" Val="$PPRDIR/tb_mult_behav.wcfg"/>
+        <Option Name="NLNetlistMode" Val="funcsim"/>
       </Config>
     </FileSet>
     <FileSet Name="utils_1" Type="Utils" RelSrcDir="$PSRCDIR/utils_1" RelGenDir="$PGENDIR/utils_1">
@@ -380,8 +433,8 @@
         <Option Name="TopAutoSet" Val="TRUE"/>
       </Config>
     </FileSet>
-    <FileSet Name="blk_mem_gen_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/blk_mem_gen_1" RelGenDir="$PGENDIR/blk_mem_gen_1">
-      <File Path="$PSRCDIR/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci">
+    <FileSet Name="floating_point_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/floating_point_1" RelGenDir="$PGENDIR/floating_point_1">
+      <File Path="$PSRCDIR/sources_1/ip/floating_point_1/floating_point_1.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -389,12 +442,12 @@
         </FileInfo>
       </File>
       <Config>
-        <Option Name="TopModule" Val="blk_mem_gen_1"/>
+        <Option Name="TopModule" Val="floating_point_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
-    <FileSet Name="floating_point_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/floating_point_0" RelGenDir="$PGENDIR/floating_point_0">
-      <File Path="$PSRCDIR/sources_1/ip/floating_point_0/floating_point_0.xci">
+    <FileSet Name="floating_point_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/floating_point_0_1" RelGenDir="$PGENDIR/floating_point_0_1">
+      <File Path="$PSRCDIR/sources_1/ip/floating_point_0_1/floating_point_0_1.xci">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
@@ -402,7 +455,7 @@
         </FileInfo>
       </File>
       <Config>
-        <Option Name="TopModule" Val="floating_point_0"/>
+        <Option Name="TopModule" Val="floating_point_0_1"/>
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
@@ -436,7 +489,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="blk_mem_gen_1_synth_1" Type="Ft3:Synth" SrcSet="blk_mem_gen_1" Part="xc7a35tcpg236-1" ConstrsSet="blk_mem_gen_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/blk_mem_gen_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/blk_mem_gen_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/blk_mem_gen_1_synth_1">
+    <Run Id="floating_point_1_synth_1" Type="Ft3:Synth" SrcSet="floating_point_1" Part="xc7a35tcpg236-1" ConstrsSet="floating_point_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/floating_point_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/floating_point_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/floating_point_1_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
         <Step Id="synth_design"/>
@@ -446,7 +499,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="floating_point_0_synth_1" Type="Ft3:Synth" SrcSet="floating_point_0" Part="xc7a35tcpg236-1" ConstrsSet="floating_point_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/floating_point_0_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/floating_point_0_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/floating_point_0_synth_1">
+    <Run Id="floating_point_0_1_synth_1" Type="Ft3:Synth" SrcSet="floating_point_0_1" Part="xc7a35tcpg236-1" ConstrsSet="floating_point_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/floating_point_0_1_synth_1" IncludeInArchive="true" IsChild="false" AutoIncrementalDir="$PSRCDIR/utils_1/imports/floating_point_0_1_synth_1" AutoRQSDir="$PSRCDIR/utils_1/imports/floating_point_0_1_synth_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
         <Step Id="synth_design"/>
@@ -474,7 +527,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="blk_mem_gen_1_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="blk_mem_gen_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="blk_mem_gen_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/blk_mem_gen_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/blk_mem_gen_1_impl_1">
+    <Run Id="floating_point_1_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="floating_point_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="floating_point_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/floating_point_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/floating_point_1_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
         <Step Id="init_design"/>
@@ -491,7 +544,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="floating_point_0_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="floating_point_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="floating_point_0_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/floating_point_0_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/floating_point_0_impl_1">
+    <Run Id="floating_point_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7a35tcpg236-1" ConstrsSet="floating_point_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="floating_point_0_1_synth_1" IncludeInArchive="false" IsChild="false" GenFullBitstream="true" AutoIncrementalDir="$PSRCDIR/utils_1/imports/floating_point_0_1_impl_1" AutoRQSDir="$PSRCDIR/utils_1/imports/floating_point_0_1_impl_1">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023"/>
         <Step Id="init_design"/>

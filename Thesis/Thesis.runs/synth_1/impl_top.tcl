@@ -71,6 +71,7 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
+set_msg_config -id {Common 17-41} -limit 10000000
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a35tcpg236-1
 
@@ -113,15 +114,20 @@ read_verilog -library xil_defaultlib -sv {
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Signal_defs.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv}
   {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv}
+  {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_impl.sv}
 }
 read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0.xci}}
 set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0_ooc.xdc}}]
 
-read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1.xci}}
-set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_1/blk_mem_gen_1_ooc.xdc}}]
+read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/blk_mem_gen_1_1/blk_mem_gen_1_1.xci}}
+set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_1_1/blk_mem_gen_1_1_ooc.xdc}}]
 
-read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/floating_point_0/floating_point_0.xci}}
-set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_0/floating_point_0_ooc.xdc}}]
+read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/floating_point_1/floating_point_1.xci}}
+set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_1/floating_point_1_ooc.xdc}}]
+
+read_ip -quiet {{E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/ip/floating_point_0_1/floating_point_0_1.xci}}
+set_property used_in_implementation false [get_files -all {{e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_0_1/floating_point_0_1_ooc.xdc}}]
 
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being

@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_impl_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="data_packet_pkg" />
+            <top_module name="glbl" />
+            <top_module name="tb_impl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,851.001 ns"></ZoomEndTime>
+      <Cursor1Time time="0.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="345"></NameColumnWidth>
+      <ValueColumnWidth column_width="340"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="4" />
+   <wvobject fp_name="group403" type="group">
+      <obj_property name="label">dut</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_impl/dut/i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/i_btn" type="logic">
+         <obj_property name="ElementShortName">i_btn</obj_property>
+         <obj_property name="ObjectShortName">i_btn</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/sw" type="array">
+         <obj_property name="ElementShortName">sw[15:0]</obj_property>
+         <obj_property name="ObjectShortName">sw[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_TxD" type="logic">
+         <obj_property name="ElementShortName">o_TxD</obj_property>
+         <obj_property name="ObjectShortName">o_TxD</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/LED" type="array">
+         <obj_property name="ElementShortName">LED[15:0]</obj_property>
+         <obj_property name="ObjectShortName">LED[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/start" type="logic">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/curr" type="array">
+         <obj_property name="ElementShortName">curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/op_cnt" type="array">
+         <obj_property name="ElementShortName">op_cnt[31:0]</obj_property>
+         <obj_property name="ObjectShortName">op_cnt[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/read_data" type="array">
+         <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/adds" type="array">
+         <obj_property name="ElementShortName">adds[0:0][0:1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">adds[0:0][0:1][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/adder_push" type="array">
+         <obj_property name="ElementShortName">adder_push[0:0][0:1]</obj_property>
+         <obj_property name="ObjectShortName">adder_push[0:0][0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_step" type="array">
+         <obj_property name="ElementShortName">acc_step[0:0]</obj_property>
+         <obj_property name="ObjectShortName">acc_step[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/done" type="array">
+         <obj_property name="ElementShortName">done[0:0]</obj_property>
+         <obj_property name="ObjectShortName">done[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/offsets" type="array">
+         <obj_property name="ElementShortName">offsets[0:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">offsets[0:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/indicies" type="array">
+         <obj_property name="ElementShortName">indicies</obj_property>
+         <obj_property name="ObjectShortName">indicies</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/index_fin" type="logic">
+         <obj_property name="ElementShortName">index_fin</obj_property>
+         <obj_property name="ObjectShortName">index_fin</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/L_mem_addrs" type="array">
+         <obj_property name="ElementShortName">L_mem_addrs[0:0][26:0]</obj_property>
+         <obj_property name="ObjectShortName">L_mem_addrs[0:0][26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/R_mem_addrs" type="array">
+         <obj_property name="ElementShortName">R_mem_addrs[0:0][26:0]</obj_property>
+         <obj_property name="ObjectShortName">R_mem_addrs[0:0][26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/L_reqs" type="array">
+         <obj_property name="ElementShortName">L_reqs[0:0]</obj_property>
+         <obj_property name="ObjectShortName">L_reqs[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/R_reqs" type="array">
+         <obj_property name="ElementShortName">R_reqs[0:0]</obj_property>
+         <obj_property name="ObjectShortName">R_reqs[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/L_mem_bus" type="array">
+         <obj_property name="ElementShortName">L_mem_bus[31:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">L_mem_bus[31:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/R_mem_bus" type="array">
+         <obj_property name="ElementShortName">R_mem_bus[31:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_mem_bus[31:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_res" type="array">
+         <obj_property name="ElementShortName">mult_res[0:3]</obj_property>
+         <obj_property name="ObjectShortName">mult_res[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_mem" type="array">
+         <obj_property name="ElementShortName">mult_mem[0:0][0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">mult_mem[0:0][0:3][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_rdy" type="array">
+         <obj_property name="ElementShortName">mult_rdy[0:0][0:3]</obj_property>
+         <obj_property name="ObjectShortName">mult_rdy[0:0][0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/curr_L_addr" type="array">
+         <obj_property name="ElementShortName">curr_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/next_L_addr" type="array">
+         <obj_property name="ElementShortName">next_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">next_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/curr_R_addr" type="array">
+         <obj_property name="ElementShortName">curr_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/next_R_addr" type="array">
+         <obj_property name="ElementShortName">next_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">next_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/L_req" type="logic">
+         <obj_property name="ElementShortName">L_req</obj_property>
+         <obj_property name="ObjectShortName">L_req</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/R_req" type="logic">
+         <obj_property name="ElementShortName">R_req</obj_property>
+         <obj_property name="ObjectShortName">R_req</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/PIPE_COUNT" type="array">
+         <obj_property name="ElementShortName">PIPE_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PIPE_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/PAGE_SIZE" type="array">
+         <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/SEGS_PER_PIPE" type="array">
+         <obj_property name="ElementShortName">SEGS_PER_PIPE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEGS_PER_PIPE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/ADDS_PER_PIPE" type="array">
+         <obj_property name="ElementShortName">ADDS_PER_PIPE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADDS_PER_PIPE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/MULT_PER_PIPE" type="array">
+         <obj_property name="ElementShortName">MULT_PER_PIPE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_PER_PIPE[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group501" type="group">
+      <obj_property name="label">mult core</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_start" type="logic">
+         <obj_property name="ElementShortName">i_start</obj_property>
+         <obj_property name="ObjectShortName">i_start</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_done" type="logic">
+         <obj_property name="ElementShortName">i_done</obj_property>
+         <obj_property name="ObjectShortName">i_done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_M" type="array">
+         <obj_property name="ElementShortName">i_M[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_M[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_N" type="array">
+         <obj_property name="ElementShortName">i_N[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_N[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_P" type="array">
+         <obj_property name="ElementShortName">i_P[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_P[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_indicies" type="array">
+         <obj_property name="ElementShortName">i_indicies</obj_property>
+         <obj_property name="ObjectShortName">i_indicies</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_L_data" type="array">
+         <obj_property name="ElementShortName">i_L_data[31:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_L_data[31:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_R_data" type="array">
+         <obj_property name="ElementShortName">i_R_data[31:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_R_data[31:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_curr_L_addr" type="array">
+         <obj_property name="ElementShortName">i_curr_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_next_L_addr" type="array">
+         <obj_property name="ElementShortName">i_next_L_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">i_next_L_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_curr_R_addr" type="array">
+         <obj_property name="ElementShortName">i_curr_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_next_R_addr" type="array">
+         <obj_property name="ElementShortName">i_next_R_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">i_next_R_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_L_offset" type="array">
+         <obj_property name="ElementShortName">i_L_offset[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_L_offset[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_R_offset" type="array">
+         <obj_property name="ElementShortName">i_R_offset[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_R_offset[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_curr" type="array">
+         <obj_property name="ElementShortName">i_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_op_cnt" type="array">
+         <obj_property name="ElementShortName">i_op_cnt[1:0]</obj_property>
+         <obj_property name="ObjectShortName">i_op_cnt[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/i_step" type="logic">
+         <obj_property name="ElementShortName">i_step</obj_property>
+         <obj_property name="ObjectShortName">i_step</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/o_L_mem_addr" type="array">
+         <obj_property name="ElementShortName">o_L_mem_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">o_L_mem_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/o_R_mem_addr" type="array">
+         <obj_property name="ElementShortName">o_R_mem_addr[26:0]</obj_property>
+         <obj_property name="ObjectShortName">o_R_mem_addr[26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/o_L_request" type="logic">
+         <obj_property name="ElementShortName">o_L_request</obj_property>
+         <obj_property name="ObjectShortName">o_L_request</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/o_R_request" type="logic">
+         <obj_property name="ElementShortName">o_R_request</obj_property>
+         <obj_property name="ObjectShortName">o_R_request</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/o_dready" type="array">
+         <obj_property name="ElementShortName">o_dready[0:3]</obj_property>
+         <obj_property name="ObjectShortName">o_dready[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/o_mults" type="array">
+         <obj_property name="ElementShortName">o_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">o_mults[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/dim_M" type="array">
+         <obj_property name="ElementShortName">dim_M[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dim_M[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/dim_N" type="array">
+         <obj_property name="ElementShortName">dim_N[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dim_N[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/dim_P" type="array">
+         <obj_property name="ElementShortName">dim_P[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dim_P[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/m_pull" type="array">
+         <obj_property name="ElementShortName">m_pull[0:3]</obj_property>
+         <obj_property name="ObjectShortName">m_pull[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/diff" type="array">
+         <obj_property name="ElementShortName">diff[31:0]</obj_property>
+         <obj_property name="ObjectShortName">diff[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/L_offset" type="array">
+         <obj_property name="ElementShortName">L_offset[31:0]</obj_property>
+         <obj_property name="ObjectShortName">L_offset[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/R_offset" type="array">
+         <obj_property name="ElementShortName">R_offset[31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_offset[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/curr" type="array">
+         <obj_property name="ElementShortName">curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/mul_dex" type="array">
+         <obj_property name="ElementShortName">mul_dex[1:0]</obj_property>
+         <obj_property name="ObjectShortName">mul_dex[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/L_raw_addrs" type="array">
+         <obj_property name="ElementShortName">L_raw_addrs[0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">L_raw_addrs[0:3][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/L_mem_addrs" type="array">
+         <obj_property name="ElementShortName">L_mem_addrs[0:3][26:0]</obj_property>
+         <obj_property name="ObjectShortName">L_mem_addrs[0:3][26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/L_reqs" type="array">
+         <obj_property name="ElementShortName">L_reqs[0:3]</obj_property>
+         <obj_property name="ObjectShortName">L_reqs[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/L_data_rdy" type="array">
+         <obj_property name="ElementShortName">L_data_rdy[0:3]</obj_property>
+         <obj_property name="ObjectShortName">L_data_rdy[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/R_raw_addrs" type="array">
+         <obj_property name="ElementShortName">R_raw_addrs[0:3][31:0]</obj_property>
+         <obj_property name="ObjectShortName">R_raw_addrs[0:3][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/R_mem_addrs" type="array">
+         <obj_property name="ElementShortName">R_mem_addrs[0:3][26:0]</obj_property>
+         <obj_property name="ObjectShortName">R_mem_addrs[0:3][26:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/R_reqs" type="array">
+         <obj_property name="ElementShortName">R_reqs[0:3]</obj_property>
+         <obj_property name="ObjectShortName">R_reqs[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/R_data_rdy" type="array">
+         <obj_property name="ElementShortName">R_data_rdy[0:3]</obj_property>
+         <obj_property name="ObjectShortName">R_data_rdy[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/PAGE_SIZE" type="array">
+         <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/MULT_COUNT" type="array">
+         <obj_property name="ElementShortName">MULT_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULT_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/SEG_COUNT" type="array">
+         <obj_property name="ElementShortName">SEG_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEG_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/mult_core/USE_FLOAT" type="array">
+         <obj_property name="ElementShortName">USE_FLOAT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">USE_FLOAT[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group442" type="group">
+      <obj_property name="label">acc buff</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/i_mults" type="array">
+         <obj_property name="ElementShortName">i_mults[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_mults[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/i_m_rdy" type="array">
+         <obj_property name="ElementShortName">i_m_rdy[0:3]</obj_property>
+         <obj_property name="ObjectShortName">i_m_rdy[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/i_stall" type="logic">
+         <obj_property name="ElementShortName">i_stall</obj_property>
+         <obj_property name="ObjectShortName">i_stall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/i_clear" type="logic">
+         <obj_property name="ElementShortName">i_clear</obj_property>
+         <obj_property name="ObjectShortName">i_clear</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/i_end" type="logic">
+         <obj_property name="ElementShortName">i_end</obj_property>
+         <obj_property name="ObjectShortName">i_end</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/o_curr" type="array">
+         <obj_property name="ElementShortName">o_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/o_op_cnt" type="array">
+         <obj_property name="ElementShortName">o_op_cnt[1:0]</obj_property>
+         <obj_property name="ObjectShortName">o_op_cnt[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/o_adds" type="array">
+         <obj_property name="ElementShortName">o_adds[0:1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">o_adds[0:1][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/o_pushs" type="array">
+         <obj_property name="ElementShortName">o_pushs[0:1]</obj_property>
+         <obj_property name="ObjectShortName">o_pushs[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/o_step_ready" type="logic">
+         <obj_property name="ElementShortName">o_step_ready</obj_property>
+         <obj_property name="ObjectShortName">o_step_ready</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/o_done" type="logic">
+         <obj_property name="ElementShortName">o_done</obj_property>
+         <obj_property name="ObjectShortName">o_done</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/curr" type="array">
+         <obj_property name="ElementShortName">curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/n_curr" type="array">
+         <obj_property name="ElementShortName">n_curr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">n_curr[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/pull_sum" type="array">
+         <obj_property name="ElementShortName">pull_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pull_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/pop_sum" type="array">
+         <obj_property name="ElementShortName">pop_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pop_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/pop_sum_p" type="array">
+         <obj_property name="ElementShortName">pop_sum_p[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pop_sum_p[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/space_sum" type="array">
+         <obj_property name="ElementShortName">space_sum[31:0]</obj_property>
+         <obj_property name="ObjectShortName">space_sum[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/space_sum_p" type="array">
+         <obj_property name="ElementShortName">space_sum_p[31:0]</obj_property>
+         <obj_property name="ObjectShortName">space_sum_p[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/adds" type="array">
+         <obj_property name="ElementShortName">adds[0:1]</obj_property>
+         <obj_property name="ObjectShortName">adds[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/spaces" type="array">
+         <obj_property name="ElementShortName">spaces[0:1]</obj_property>
+         <obj_property name="ObjectShortName">spaces[0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/seg_vals" type="array">
+         <obj_property name="ElementShortName">seg_vals[0:3]</obj_property>
+         <obj_property name="ObjectShortName">seg_vals[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/seg_stalls" type="array">
+         <obj_property name="ElementShortName">seg_stalls[0:3]</obj_property>
+         <obj_property name="ObjectShortName">seg_stalls[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/pulls" type="array">
+         <obj_property name="ElementShortName">pulls[0:3]</obj_property>
+         <obj_property name="ObjectShortName">pulls[0:3]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/do_stall" type="logic">
+         <obj_property name="ElementShortName">do_stall</obj_property>
+         <obj_property name="ObjectShortName">do_stall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/seg_stall" type="logic">
+         <obj_property name="ElementShortName">seg_stall</obj_property>
+         <obj_property name="ObjectShortName">seg_stall</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/add_clk" type="logic">
+         <obj_property name="ElementShortName">add_clk</obj_property>
+         <obj_property name="ObjectShortName">add_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/add_clk_reg" type="logic">
+         <obj_property name="ElementShortName">add_clk_reg</obj_property>
+         <obj_property name="ObjectShortName">add_clk_reg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/op_count" type="array">
+         <obj_property name="ElementShortName">op_count[1:0]</obj_property>
+         <obj_property name="ObjectShortName">op_count[1:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/do_step" type="logic">
+         <obj_property name="ElementShortName">do_step</obj_property>
+         <obj_property name="ObjectShortName">do_step</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/SEGMENTS" type="array">
+         <obj_property name="ElementShortName">SEGMENTS[31:0]</obj_property>
+         <obj_property name="ObjectShortName">SEGMENTS[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/MULTIPLIERS" type="array">
+         <obj_property name="ElementShortName">MULTIPLIERS[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MULTIPLIERS[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/acc_buff/USE_FLOAT" type="array">
+         <obj_property name="ElementShortName">USE_FLOAT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">USE_FLOAT[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group477" type="group">
+      <obj_property name="label">out mem</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_clk" type="logic">
+         <obj_property name="ElementShortName">i_clk</obj_property>
+         <obj_property name="ObjectShortName">i_clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_end" type="array">
+         <obj_property name="ElementShortName">i_end[0:0]</obj_property>
+         <obj_property name="ObjectShortName">i_end[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_vals" type="array">
+         <obj_property name="ElementShortName">i_vals[0:0][0:1][31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_vals[0:0][0:1][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_push" type="array">
+         <obj_property name="ElementShortName">i_push[0:0][0:1]</obj_property>
+         <obj_property name="ObjectShortName">i_push[0:0][0:1]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_offsets" type="array">
+         <obj_property name="ElementShortName">i_offsets[0:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">i_offsets[0:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_step" type="array">
+         <obj_property name="ElementShortName">i_step[0:0]</obj_property>
+         <obj_property name="ObjectShortName">i_step[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/i_read_addr" type="array">
+         <obj_property name="ElementShortName">i_read_addr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">i_read_addr[15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/read_data" type="array">
+         <obj_property name="ElementShortName">read_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">read_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/write_timer" type="array">
+         <obj_property name="ElementShortName">write_timer[31:0]</obj_property>
+         <obj_property name="ObjectShortName">write_timer[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/ready" type="array">
+         <obj_property name="ElementShortName">ready[0:0]</obj_property>
+         <obj_property name="ObjectShortName">ready[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/serviced" type="array">
+         <obj_property name="ElementShortName">serviced[0:0]</obj_property>
+         <obj_property name="ObjectShortName">serviced[0:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/mem_addrs" type="array">
+         <obj_property name="ElementShortName">mem_addrs[0:0][11:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_addrs[0:0][11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/wb_addr" type="array">
+         <obj_property name="ElementShortName">wb_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_addr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/curr_addr" type="array">
+         <obj_property name="ElementShortName">curr_addr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">curr_addr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/pages" type="array">
+         <obj_property name="ElementShortName">pages[0:0][7:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">pages[0:0][7:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/wb_page" type="array">
+         <obj_property name="ElementShortName">wb_page[7:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_page[7:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/do_write" type="logic">
+         <obj_property name="ElementShortName">do_write</obj_property>
+         <obj_property name="ObjectShortName">do_write</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/read_page" type="array">
+         <obj_property name="ElementShortName">read_page[7:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">read_page[7:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/ADD_COUNT" type="array">
+         <obj_property name="ElementShortName">ADD_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">ADD_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/PIPE_COUNT" type="array">
+         <obj_property name="ElementShortName">PIPE_COUNT[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PIPE_COUNT[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/PAGE_SIZE" type="array">
+         <obj_property name="ElementShortName">PAGE_SIZE[31:0]</obj_property>
+         <obj_property name="ObjectShortName">PAGE_SIZE[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/WB_THRESH" type="array">
+         <obj_property name="ElementShortName">WB_THRESH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">WB_THRESH[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/tb_impl/dut/o_mem_unit/MEM_ADDR_WIDTH" type="array">
+         <obj_property name="ElementShortName">MEM_ADDR_WIDTH[31:0]</obj_property>
+         <obj_property name="ObjectShortName">MEM_ADDR_WIDTH[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

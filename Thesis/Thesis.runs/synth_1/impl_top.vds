@@ -3,8 +3,8 @@
 # SW Build 4029153 on Fri Oct 13 20:14:34 MDT 2023
 # IP Build 4028589 on Sat Oct 14 00:45:43 MDT 2023
 # SharedData Build 4025554 on Tue Oct 10 17:18:54 MDT 2023
-# Start of session at: Tue Apr  1 10:10:11 2025
-# Process ID: 35232
+# Start of session at: Mon Apr 14 10:06:06 2025
+# Process ID: 15168
 # Current directory: E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1
 # Command line: vivado.exe -log impl_top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source impl_top.tcl
 # Log file: E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/impl_top.vds
@@ -12,7 +12,7 @@
 # Running On: WINDOWS-RV84OD0, OS: Windows, CPU Frequency: 4008 MHz, CPU Physical cores: 6, Host memory: 34156 MB
 #-----------------------------------------------------------
 source impl_top.tcl -notrace
-create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 500.113 ; gain = 218.520
+create_project: Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 502.344 ; gain = 220.961
 Command: read_checkpoint -auto_incremental -incremental {E:/Seth stuff/Thesis/Thesis/Thesis.srcs/utils_1/imports/synth_1/impl_top.dcp}
 INFO: [Vivado 12-5825] Read reference checkpoint from E:/Seth stuff/Thesis/Thesis/Thesis.srcs/utils_1/imports/synth_1/impl_top.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -23,25 +23,23 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a35t
 INFO: [Device 21-403] Loading part xc7a35tcpg236-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 39004
+INFO: [Synth 8-7075] Helper process launched with PID 32904
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1346.305 ; gain = 438.465
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 1347.355 ; gain = 439.293
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-6901] identifier 'MULT_PER_PIPE' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:56]
-WARNING: [Synth 8-6901] identifier 'ADDS_PER_PIPE' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:57]
 WARNING: [Synth 8-9661] initial value of parameter 'USE_FLOAT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.sv:30]
 WARNING: [Synth 8-9661] initial value of parameter 'SEGMENT_INDEX' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:25]
 WARNING: [Synth 8-9661] initial value of parameter 'SEG_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:26]
 WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:27]
 WARNING: [Synth 8-9661] initial value of parameter 'ADD_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:28]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:135]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:135]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:135]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:135]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:158]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:158]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:158]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:158]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:138]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:138]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:138]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:138]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:159]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:159]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:159]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:159]
 WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:32]
 WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:32]
 WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:32]
@@ -57,9 +55,10 @@ WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated a
 WARNING: [Synth 8-9661] initial value of parameter 'PAGE_SIZE' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:25]
 WARNING: [Synth 8-9661] initial value of parameter 'MULTIPLIER_INDEX' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:26]
 WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:27]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:50]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:50]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:50]
+WARNING: [Synth 8-9661] initial value of parameter 'USE_FLOAT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:28]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:55]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:55]
+WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:55]
 WARNING: [Synth 8-6901] identifier 'MULT_PER_PIPE' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:29]
 WARNING: [Synth 8-6901] identifier 'ADDS_PER_PIPE' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:30]
 WARNING: [Synth 8-9661] initial value of parameter 'ADD_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Buffer_Port.sv:26]
@@ -70,6 +69,7 @@ WARNING: [Synth 8-10829] illegal initialization of non-singular port 'o_vals' [E
 WARNING: [Synth 8-9661] initial value of parameter 'PAGE_SIZE' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:26]
 WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:27]
 WARNING: [Synth 8-9661] initial value of parameter 'SEG_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:28]
+WARNING: [Synth 8-9661] initial value of parameter 'USE_FLOAT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:29]
 WARNING: [Synth 8-9661] initial value of parameter 'SEGMENTS' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv:25]
 WARNING: [Synth 8-9661] initial value of parameter 'USE_FLOAT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv:28]
 WARNING: [Synth 8-9661] initial value of parameter 'PIPE_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:59]
@@ -77,6 +77,9 @@ WARNING: [Synth 8-6901] identifier 'curr_L_addr' is used before its declaration 
 WARNING: [Synth 8-6901] identifier 'next_L_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:81]
 WARNING: [Synth 8-6901] identifier 'curr_R_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:83]
 WARNING: [Synth 8-6901] identifier 'next_R_addr' is used before its declaration [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:84]
+WARNING: [Synth 8-9661] initial value of parameter 'PIPE_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:25]
+WARNING: [Synth 8-9661] initial value of parameter 'PIPE_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:125]
+WARNING: [Synth 8-9661] initial value of parameter 'PIPE_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:231]
 WARNING: [Synth 8-9661] initial value of parameter 'PAGE_SIZE' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:25]
 WARNING: [Synth 8-9661] initial value of parameter 'SEG_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:26]
 WARNING: [Synth 8-9661] initial value of parameter 'MULT_COUNT' is omitted [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:27]
@@ -87,340 +90,271 @@ WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated a
 WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:32]
 WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:32]
 WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:32]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
-WARNING: [Synth 8-10604] concatenation with an unsized literal will be treated as 32 bits [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:44]
+INFO: [Synth 8-11241] undeclared symbol 'L_val', assumed default net type 'wire' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:38]
+INFO: [Synth 8-11241] undeclared symbol 'R_val', assumed default net type 'wire' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:41]
+INFO: [Synth 8-11241] undeclared symbol 'm_res', assumed default net type 'wire' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:42]
+WARNING: [Synth 8-8895] 'L_val' is already implicitly declared on line 38 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:45]
+WARNING: [Synth 8-8895] 'R_val' is already implicitly declared on line 41 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:45]
+WARNING: [Synth 8-8895] 'm_res' is already implicitly declared on line 42 [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:45]
 INFO: [Synth 8-6157] synthesizing module 'impl_top' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:26]
 INFO: [Synth 8-6157] synthesizing module 'Matrix_Multiplier' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:53]
-	Parameter PIPE_COUNT bound to: 2 - type: integer 
+	Parameter PIPE_COUNT bound to: 1 - type: integer 
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULT_COUNT bound to: 16 - type: integer 
-	Parameter ADD_COUNT bound to: 8 - type: integer 
-	Parameter SEGS_PER_PIPE bound to: 8 - type: integer 
-	Parameter ADDS_PER_PIPE bound to: 4 - type: integer 
-	Parameter MULT_PER_PIPE bound to: 8 - type: integer 
+	Parameter MULT_PER_PIPE bound to: 2 - type: integer 
+	Parameter SEGS_PER_PIPE bound to: 2 - type: integer 
+	Parameter ADDS_PER_PIPE bound to: 1 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter ADD_COUNT bound to: 1 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:24]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-	Parameter USE_FLOAT bound to: 0 - type: integer 
+	Parameter SEG_COUNT bound to: 2 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter ADD_COUNT bound to: 1 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'Multiplication_Core' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:25]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter SEG_COUNT bound to: 2 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
 	Parameter MULTIPLIER_INDEX bound to: 0 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'Mult_Comp_Unit' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:23]
-INFO: [Synth 8-6155] done synthesizing module 'Mult_Comp_Unit' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv:23]
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'Mult_Comp_Unit_fp' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'floating_point_1' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/floating_point_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'floating_point_1' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/floating_point_1_stub.v:6]
+WARNING: [Synth 8-7071] port 's_axis_a_tready' of module 'floating_point_1' is unconnected for instance 'fp_mult' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:35]
+WARNING: [Synth 8-7071] port 's_axis_b_tready' of module 'floating_point_1' is unconnected for instance 'fp_mult' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:35]
+WARNING: [Synth 8-7071] port 'm_axis_result_tvalid' of module 'floating_point_1' is unconnected for instance 'fp_mult' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:35]
+WARNING: [Synth 8-7023] instance 'fp_mult' of module 'floating_point_1' has 10 connections declared, but only 7 given [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:35]
+INFO: [Synth 8-6155] done synthesizing module 'Mult_Comp_Unit_fp' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv:23]
 INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
 	Parameter MULTIPLIER_INDEX bound to: 1 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized1' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULTIPLIER_INDEX bound to: 2 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized1' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized2' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULTIPLIER_INDEX bound to: 3 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized2' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized3' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULTIPLIER_INDEX bound to: 4 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized3' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized4' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULTIPLIER_INDEX bound to: 5 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized4' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized5' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULTIPLIER_INDEX bound to: 6 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized5' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Multiplier_Unit__parameterized6' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
-	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter MULTIPLIER_INDEX bound to: 7 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Multiplier_Unit__parameterized6' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'Address_Selector' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter INPUT_COUNT bound to: 8 - type: integer 
+	Parameter INPUT_COUNT bound to: 2 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Address_Selector' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'Multiplication_Core' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:25]
 INFO: [Synth 8-6157] synthesizing module 'Accordian_Buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.sv:26]
-	Parameter SEGMENTS bound to: 8 - type: integer 
-	Parameter MULTIPLIERS bound to: 8 - type: integer 
-	Parameter USE_FLOAT bound to: 0 - type: integer 
+	Parameter SEGMENTS bound to: 2 - type: integer 
+	Parameter MULTIPLIERS bound to: 2 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
 	Parameter SEGMENT_INDEX bound to: 0 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
+	Parameter SEG_COUNT bound to: 2 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter ADD_COUNT bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
 	Parameter SEGMENT_INDEX bound to: 1 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
+	Parameter SEG_COUNT bound to: 2 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
+	Parameter ADD_COUNT bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized1' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-	Parameter SEGMENT_INDEX bound to: 2 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized1' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized2' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-	Parameter SEGMENT_INDEX bound to: 3 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized2' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized3' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-	Parameter SEGMENT_INDEX bound to: 4 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized3' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized4' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-	Parameter SEGMENT_INDEX bound to: 5 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized4' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized5' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-	Parameter SEGMENT_INDEX bound to: 6 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized5' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-INFO: [Synth 8-6157] synthesizing module 'Accordian_Segment__parameterized6' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
-	Parameter SEGMENT_INDEX bound to: 7 - type: integer 
-	Parameter SEG_COUNT bound to: 8 - type: integer 
-	Parameter MULT_COUNT bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'Accordian_Segment__parameterized6' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'Addition_Core' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv:24]
-	Parameter SEGMENTS bound to: 8 - type: integer 
-	Parameter ADD_COUNT bound to: 4 - type: integer 
-	Parameter USE_FLOAT bound to: 0 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'Simple_Adder' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:23]
-INFO: [Synth 8-6155] done synthesizing module 'Simple_Adder' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:23]
+	Parameter SEGMENTS bound to: 2 - type: integer 
+	Parameter ADD_COUNT bound to: 1 - type: integer 
+	Parameter USE_FLOAT bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'Complex_Adder' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:23]
+INFO: [Synth 8-6157] synthesizing module 'floating_point_0_1' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/floating_point_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'floating_point_0_1' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/floating_point_0_1_stub.v:6]
+WARNING: [Synth 8-7071] port 's_axis_a_tready' of module 'floating_point_0_1' is unconnected for instance 'fp_adder' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:45]
+WARNING: [Synth 8-7071] port 's_axis_b_tready' of module 'floating_point_0_1' is unconnected for instance 'fp_adder' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:45]
+WARNING: [Synth 8-7071] port 'm_axis_result_tvalid' of module 'floating_point_0_1' is unconnected for instance 'fp_adder' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:45]
+WARNING: [Synth 8-7071] port 'm_axis_result_tuser' of module 'floating_point_0_1' is unconnected for instance 'fp_adder' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:45]
+WARNING: [Synth 8-7023] instance 'fp_adder' of module 'floating_point_0_1' has 11 connections declared, but only 7 given [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:45]
+INFO: [Synth 8-6155] done synthesizing module 'Complex_Adder' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Complex_Adder.sv:23]
 INFO: [Synth 8-6155] done synthesizing module 'Addition_Core' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Addition_Core.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'Accordian_Buffer' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/AccordianBuffer.sv:26]
-WARNING: [Synth 8-689] width (32) of port connection 'i_clear' does not match port width (1) of module 'Accordian_Buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:138]
+WARNING: [Synth 8-689] width (32) of port connection 'i_clear' does not match port width (1) of module 'Accordian_Buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:139]
 INFO: [Synth 8-6155] done synthesizing module 'Computation_Pipeline' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Computation_Pipeline.sv:24]
-WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:188]
-WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:188]
+WARNING: [Synth 8-689] width (32) of port connection 'i_stall' does not match port width (1) of module 'Computation_Pipeline' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:183]
 INFO: [Synth 8-6157] synthesizing module 'Splitter' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:23]
-	Parameter PIPE_COUNT bound to: 2 - type: integer 
+	Parameter PIPE_COUNT bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Splitter' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:23]
 INFO: [Synth 8-6157] synthesizing module 'Indexer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:24]
-	Parameter MULT_COUNT bound to: 8 - type: integer 
+	Parameter MULT_COUNT bound to: 2 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:106]
 INFO: [Synth 8-6155] done synthesizing module 'Indexer' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:24]
 INFO: [Synth 8-6157] synthesizing module 'mem_controller' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:56]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter PIPE_COUNT bound to: 2 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-35232-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-35232-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
+	Parameter PIPE_COUNT bound to: 1 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/blk_mem_gen_0_stub.v:6]
 WARNING: [Synth 8-689] width (27) of port connection 'addra' does not match port width (12) of module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:94]
 WARNING: [Synth 8-689] width (27) of port connection 'addrb' does not match port width (12) of module 'blk_mem_gen_0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:100]
 INFO: [Synth 8-6157] synthesizing module 'Address_Selector__parameterized0' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
 	Parameter PAGE_SIZE bound to: 32 - type: integer 
-	Parameter INPUT_COUNT bound to: 2 - type: integer 
+	Parameter INPUT_COUNT bound to: 1 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'Address_Selector__parameterized0' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:24]
 INFO: [Synth 8-6155] done synthesizing module 'mem_controller' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/mem_controller.sv:56]
+INFO: [Synth 8-6157] synthesizing module 'output_memory_controller2' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:123]
+	Parameter ADD_COUNT bound to: 1 - type: integer 
+	Parameter PIPE_COUNT bound to: 1 - type: integer 
+	Parameter PAGE_SIZE bound to: 8 - type: integer 
+	Parameter WB_THRESH bound to: 8 - type: integer 
+INFO: [Synth 8-6157] synthesizing module 'output_pipe_buffer' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:229]
+	Parameter ADD_COUNT bound to: 1 - type: integer 
+	Parameter PIPE_COUNT bound to: 1 - type: integer 
+	Parameter PAGE_SIZE bound to: 8 - type: integer 
+	Parameter WB_THRESH bound to: 8 - type: integer 
+	Parameter MEM_ADDR_WIDTH bound to: 12 - type: integer 
+WARNING: [Synth 8-324] index 1 out of range [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:297]
+WARNING: [Synth 8-324] index 2 out of range [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:297]
+INFO: [Synth 8-6155] done synthesizing module 'output_pipe_buffer' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:229]
+INFO: [Synth 8-6157] synthesizing module 'blk_mem_gen_1_1' [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/blk_mem_gen_1_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'blk_mem_gen_1_1' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/.Xil/Vivado-15168-WINDOWS-RV84OD0/realtime/blk_mem_gen_1_1_stub.v:6]
+WARNING: [Synth 8-689] width (12) of port connection 'addra' does not match port width (9) of module 'blk_mem_gen_1_1' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:163]
+WARNING: [Synth 8-689] width (13) of port connection 'addrb' does not match port width (9) of module 'blk_mem_gen_1_1' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:168]
+WARNING: [Synth 8-7071] port 'douta' of module 'blk_mem_gen_1_1' is unconnected for instance 'bram' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:160]
+WARNING: [Synth 8-7023] instance 'bram' of module 'blk_mem_gen_1_1' has 10 connections declared, but only 9 given [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:160]
+INFO: [Synth 8-6155] done synthesizing module 'output_memory_controller2' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:123]
 INFO: [Synth 8-6155] done synthesizing module 'Matrix_Multiplier' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:53]
+CRITICAL WARNING: [Synth 8-5972] variable 'o_TxD' cannot be written by both continuous and procedural assignments [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:61]
 INFO: [Synth 8-6155] done synthesizing module 'impl_top' (0#1) [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/impl_top.sv:26]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-6014] Unused sequential element res_check_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:182]
-WARNING: [Synth 8-6014] Unused sequential element get_mul_res_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:183]
-WARNING: [Synth 8-87] always_comb on 'm_pull_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-87] always_comb on 'o_pulled_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-87] always_comb on 'spacers_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-6014] Unused sequential element A_val_reg[is_end] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:62]
-WARNING: [Synth 8-6014] Unused sequential element A_val_reg[is_head] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:62]
-WARNING: [Synth 8-6014] Unused sequential element A_val_reg[is_tail] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:62]
-WARNING: [Synth 8-6014] Unused sequential element A_val_reg[val] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:62]
-WARNING: [Synth 8-6014] Unused sequential element B_val_reg[is_end] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:63]
-WARNING: [Synth 8-6014] Unused sequential element B_val_reg[is_head] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:63]
-WARNING: [Synth 8-6014] Unused sequential element B_val_reg[is_tail] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:63]
-WARNING: [Synth 8-6014] Unused sequential element B_val_reg[val] was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Simple_Adder.sv:63]
-WARNING: [Synth 8-6014] Unused sequential element P_val_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:106]
-WARNING: [Synth 8-87] always_comb on 'next_state_reg' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:64]
-WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[0]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
-WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[1]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
-WARNING: [Synth 8-6014] Unused sequential element gamma_x_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:210]
-WARNING: [Synth 8-3848] Net o_TxD in module/entity Matrix_Multiplier does not have driver. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:68]
-WARNING: [Synth 8-3848] Net donedone in module/entity Matrix_Multiplier does not have driver. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:79]
-WARNING: [Synth 8-7129] Port i_P[31] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[30] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[29] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[28] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[27] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[26] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[25] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[24] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[23] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[22] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[21] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[20] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[19] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[18] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[17] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[16] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[15] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[14] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[13] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[12] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[11] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[10] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[9] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[8] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[7] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[6] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[5] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[4] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[3] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[2] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[1] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_P[0] in module Splitter is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[31] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[30] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[29] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[28] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[27] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[26] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[25] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[24] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[23] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[22] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[21] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[20] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[19] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[18] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[17] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[16] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[15] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[14] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[13] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[12] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[11] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[10] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[9] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[8] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[7] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[6] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[5] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[4] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[3] in module Accordian_Segment__parameterized6 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[31] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[30] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[29] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[28] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[27] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[26] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[25] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[24] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[23] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[22] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[21] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[20] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[19] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[18] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[17] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[16] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[15] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[14] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[13] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[12] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[11] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[10] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[9] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[8] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[7] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[6] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[5] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[4] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[3] in module Accordian_Segment__parameterized5 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[31] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[30] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[29] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[28] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[27] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[26] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[25] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[24] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[23] in module Accordian_Segment__parameterized4 is either unconnected or has no load
-WARNING: [Synth 8-7129] Port i_pops[22] in module Accordian_Segment__parameterized4 is either unconnected or has no load
+WARNING: [Synth 8-6014] Unused sequential element curr_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplication_Core.sv:167]
+WARNING: [Synth 8-6014] Unused sequential element N_val_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:106]
+WARNING: [Synth 8-87] always_comb on 'next_split_vals_reg[0]' did not result in combinational logic [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:68]
+WARNING: [Synth 8-6014] Unused sequential element gamma_x_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Indexer.sv:209]
+WARNING: [Synth 8-6014] Unused sequential element addr_sel_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Address_Selector.sv:44]
+WARNING: [Synth 8-6014] Unused sequential element led_val_reg was removed.  [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:275]
+WARNING: [Synth 8-3848] Net o_TxD in module/entity Matrix_Multiplier does not have driver. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Matrix_Multiplier.sv:69]
+WARNING: [Synth 8-3917] design impl_top has port o_TxD driven by constant 0
+WARNING: [Synth 8-7129] Port i_offsets[0][31] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][30] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][29] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][28] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][27] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][26] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][25] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][24] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][23] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][22] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][21] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][20] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][19] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][18] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][17] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][16] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][15] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][14] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][13] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][12] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][11] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][10] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][9] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][8] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][7] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][6] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][5] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][4] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][3] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][2] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][1] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_offsets[0][0] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_read_addr[15] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_read_addr[14] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_read_addr[13] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_read_addr[12] in module output_memory_controller2 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_clk in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[26] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[25] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[24] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[23] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[22] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[21] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[20] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[19] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[18] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[17] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[16] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[15] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[14] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[13] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[12] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[11] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[10] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[9] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[8] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[7] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[6] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[5] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[4] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[3] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[2] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[1] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_next_m_addr[0] in module Address_Selector__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[31] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[30] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[29] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[28] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[27] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[26] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[25] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[24] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[23] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[22] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[21] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[20] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[19] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[18] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[17] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[16] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[15] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[14] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[13] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[12] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[11] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[10] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[9] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[8] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[7] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[6] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[5] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[4] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[3] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[2] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[1] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_N[0] in module Splitter is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_pops[31] in module Accordian_Segment__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_pops[30] in module Accordian_Segment__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_pops[29] in module Accordian_Segment__parameterized0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port i_pops[28] in module Accordian_Segment__parameterized0 is either unconnected or has no load
 INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:11 ; elapsed = 00:00:11 . Memory (MB): peak = 1563.504 ; gain = 655.664
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1488.801 ; gain = 580.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1563.504 ; gain = 655.664
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1488.801 ; gain = 580.738
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1563.504 ; gain = 655.664
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1488.801 ; gain = 580.738
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.711 . Memory (MB): peak = 1563.504 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.166 . Memory (MB): peak = 1488.801 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
 Initializing timing engine
 Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'Complete_Mat_Mul/input_mem/bram'
 Finished Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_0/blk_mem_gen_0/blk_mem_gen_0_in_context.xdc] for cell 'Complete_Mat_Mul/input_mem/bram'
+Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_1_1/blk_mem_gen_1_1/blk_mem_gen_1_in_context.xdc] for cell 'Complete_Mat_Mul/o_mem_unit/bram'
+Finished Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/blk_mem_gen_1_1/blk_mem_gen_1_1/blk_mem_gen_1_in_context.xdc] for cell 'Complete_Mat_Mul/o_mem_unit/bram'
+Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_1/floating_point_1/floating_point_1_in_context.xdc] for cell 'Complete_Mat_Mul/pipe_gen[0].Pipeline/mult_core/mul_gen[0].mult/multiplier/fp_mult'
+Finished Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_1/floating_point_1/floating_point_1_in_context.xdc] for cell 'Complete_Mat_Mul/pipe_gen[0].Pipeline/mult_core/mul_gen[0].mult/multiplier/fp_mult'
+Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_1/floating_point_1/floating_point_1_in_context.xdc] for cell 'Complete_Mat_Mul/pipe_gen[0].Pipeline/mult_core/mul_gen[1].mult/multiplier/fp_mult'
+Finished Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_1/floating_point_1/floating_point_1_in_context.xdc] for cell 'Complete_Mat_Mul/pipe_gen[0].Pipeline/mult_core/mul_gen[1].mult/multiplier/fp_mult'
+Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_0_1/floating_point_0_1/floating_point_0_in_context.xdc] for cell 'Complete_Mat_Mul/pipe_gen[0].Pipeline/acc_buff/add_core/add_gen[0].add_unit/fp_adder'
+Finished Parsing XDC File [e:/Seth stuff/Thesis/Thesis/Thesis.gen/sources_1/ip/floating_point_0_1/floating_point_0_1/floating_point_0_in_context.xdc] for cell 'Complete_Mat_Mul/pipe_gen[0].Pipeline/acc_buff/add_core/add_gen[0].add_unit/fp_adder'
 Parsing XDC File [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/constrs_1/new/Basys3_Master.xdc]
 Finished Parsing XDC File [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/constrs_1/new/Basys3_Master.xdc]
 INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/constrs_1/new/Basys3_Master.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/impl_top_propImpl.xdc].
@@ -429,77 +363,60 @@ Parsing XDC File [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/dont_touch.xdc
 Finished Parsing XDC File [E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1676.066 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1591.727 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.089 . Memory (MB): peak = 1676.066 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1591.727 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'Complete_Mat_Mul/input_mem/bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'Complete_Mat_Mul/o_mem_unit/bram' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '100.000' specified during out-of-context synthesis of instance 'Complete_Mat_Mul/pipe_gen[0].Pipeline/acc_buff/add_core/add_gen[0].add_unit/fp_adder' at clock pin 'aclk' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '100.000' specified during out-of-context synthesis of instance 'Complete_Mat_Mul/pipe_gen[0].Pipeline/mult_core/mul_gen[0].mult/multiplier/fp_mult' at clock pin 'aclk' is different from the actual clock period '10.000', this can lead to different synthesis results.
+WARNING: [Timing 38-316] Clock period '100.000' specified during out-of-context synthesis of instance 'Complete_Mat_Mul/pipe_gen[0].Pipeline/mult_core/mul_gen[1].mult/multiplier/fp_mult' at clock pin 'aclk' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:29 ; elapsed = 00:00:28 . Memory (MB): peak = 1680.180 ; gain = 772.340
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a35tcpg236-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:29 ; elapsed = 00:00:28 . Memory (MB): peak = 1680.180 ; gain = 772.340
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for Complete_Mat_Mul/input_mem/bram. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Complete_Mat_Mul/o_mem_unit/bram. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Complete_Mat_Mul/\pipe_gen[0].Pipeline /mult_core/\mul_gen[0].mult /multiplier/fp_mult. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Complete_Mat_Mul/\pipe_gen[0].Pipeline /mult_core/\mul_gen[1].mult /multiplier/fp_mult. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for Complete_Mat_Mul/\pipe_gen[0].Pipeline /acc_buff/add_core/\add_gen[0].add_unit /fp_adder. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:29 ; elapsed = 00:00:28 . Memory (MB): peak = 1680.180 ; gain = 772.340
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:21 ; elapsed = 00:00:21 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Preparing Guide Design
 ---------------------------------------------------------------------------------
 got a mismatch Computation_Pipeline
-Is not a child genome
 got a mismatch Multiplication_Core
-Is not a child genome
 got a mismatch Address_Selector
 got a mismatch Address_Selector
 got a mismatch Accordian_Buffer
 got a mismatch Accordian_Segment
 got a mismatch Accordian_Segment__parameterized0
-got a mismatch Accordian_Segment__parameterized1
-got a mismatch Accordian_Segment__parameterized2
-got a mismatch Accordian_Segment__parameterized3
-got a mismatch Accordian_Segment__parameterized4
-got a mismatch Accordian_Segment__parameterized5
-got a mismatch Accordian_Segment__parameterized6
-got a mismatch Computation_Pipeline
 Is not a child genome
-got a mismatch Multiplication_Core
-Is not a child genome
-got a mismatch Address_Selector
-got a mismatch Address_Selector
-got a mismatch Accordian_Buffer
-got a mismatch Accordian_Segment
-got a mismatch Accordian_Segment__parameterized0
-got a mismatch Accordian_Segment__parameterized1
-got a mismatch Accordian_Segment__parameterized2
-got a mismatch Accordian_Segment__parameterized3
-got a mismatch Accordian_Segment__parameterized4
-got a mismatch Accordian_Segment__parameterized5
-got a mismatch Accordian_Segment__parameterized6
+got a mismatch Addition_Core
+got a mismatch output_memory_controller2
+got a mismatch output_pipe_buffer
 WARNING: [Synth 8-6702] IncrSynth : Design change found in an area of the design that prevents previous synthesis information being used, Reverting to default synthesis
 ---------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1680.180 ; gain = 772.340
+Finished Doing Graph Differ : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1680.180 ; gain = 772.340
+Finished Preparing Guide Design : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit'
 INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized0'
-INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized1'
-INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized2'
-INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized3'
-INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized4'
-INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized5'
-INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Multiplier_Unit__parameterized6'
 INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module 'Indexer'
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
@@ -510,7 +427,6 @@ INFO: [Synth 8-802] inferred FSM for state register 'curr_state_reg' in module '
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -520,86 +436,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/
                   ENDING |                               11 |                               11
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized0'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    IDLE |                               00 |                               00
-                STARTING |                               01 |                               01
-                  ACTIVE |                               10 |                               10
-                  ENDING |                               11 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized1'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    IDLE |                               00 |                               00
-                STARTING |                               01 |                               01
-                  ACTIVE |                               10 |                               10
-                  ENDING |                               11 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized2'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    IDLE |                               00 |                               00
-                STARTING |                               01 |                               01
-                  ACTIVE |                               10 |                               10
-                  ENDING |                               11 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized3'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    IDLE |                               00 |                               00
-                STARTING |                               01 |                               01
-                  ACTIVE |                               10 |                               10
-                  ENDING |                               11 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized4'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    IDLE |                               00 |                               00
-                STARTING |                               01 |                               01
-                  ACTIVE |                               10 |                               10
-                  ENDING |                               11 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized5'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
----------------------------------------------------------------------------------------------------
-                   State |                     New Encoding |                Previous Encoding 
----------------------------------------------------------------------------------------------------
-                    IDLE |                               00 |                               00
-                STARTING |                               01 |                               01
-                  ACTIVE |                               10 |                               10
-                  ENDING |                               11 |                               11
----------------------------------------------------------------------------------------------------
-INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'sequential' in module 'Multiplier_Unit__parameterized6'
-WARNING: [Synth 8-327] inferring latch for variable 'm_pull_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Multiplier_Unit.sv:126]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'o_pulled_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:87]
-WARNING: [Synth 8-327] inferring latch for variable 'spacers_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Accordian_segment.sv:92]
-WARNING: [Synth 8-327] inferring latch for variable 'next_state_reg' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:64]
-WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[0]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
-WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[1]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:69]
+WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[0]' [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/Splitter.sv:68]
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -611,7 +448,7 @@ WARNING: [Synth 8-327] inferring latch for variable 'next_split_vals_reg[1]' [E:
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'curr_state_reg' using encoding 'one-hot' in module 'Indexer'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:37 ; elapsed = 00:00:37 . Memory (MB): peak = 1680.180 ; gain = 772.340
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 
 
@@ -628,50 +465,45 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   32 Bit       Adders := 146   
-	   3 Input   32 Bit       Adders := 162   
-	   4 Input   32 Bit       Adders := 48    
-	   5 Input   32 Bit       Adders := 2     
-	   2 Input    4 Bit       Adders := 46    
-	   2 Input    3 Bit       Adders := 18    
-	   3 Input    3 Bit       Adders := 80    
-	   4 Input    3 Bit       Adders := 26    
-	   5 Input    3 Bit       Adders := 4     
-	   4 Input    2 Bit       Adders := 42    
-	   2 Input    2 Bit       Adders := 14    
-	   3 Input    2 Bit       Adders := 12    
-	   2 Input    1 Bit       Adders := 2     
+	   2 Input   32 Bit       Adders := 25    
+	   3 Input   32 Bit       Adders := 22    
+	   4 Input   32 Bit       Adders := 6     
+	   5 Input   32 Bit       Adders := 1     
+	   2 Input    4 Bit       Adders := 4     
+	   2 Input    3 Bit       Adders := 1     
+	   2 Input    2 Bit       Adders := 2     
+	   2 Input    1 Bit       Adders := 3     
+	   3 Input    1 Bit       Adders := 3     
+	   4 Input    1 Bit       Adders := 2     
 +---Registers : 
-	               32 Bit    Registers := 303   
+	               32 Bit    Registers := 86    
 	               27 Bit    Registers := 4     
-	                4 Bit    Registers := 18    
-	                3 Bit    Registers := 22    
-	                2 Bit    Registers := 19    
-	                1 Bit    Registers := 478   
+	               12 Bit    Registers := 1     
+	                4 Bit    Registers := 6     
+	                2 Bit    Registers := 5     
+	                1 Bit    Registers := 70    
 +---Multipliers : 
-	              32x32  Multipliers := 17    
+	              32x32  Multipliers := 1     
 +---Muxes : 
-	   2 Input   32 Bit        Muxes := 164   
-	   4 Input   32 Bit        Muxes := 65    
-	   3 Input   32 Bit        Muxes := 80    
+	   2 Input   32 Bit        Muxes := 39    
+	   4 Input   32 Bit        Muxes := 7     
+	   3 Input   32 Bit        Muxes := 11    
 	   5 Input   32 Bit        Muxes := 5     
 	   2 Input   27 Bit        Muxes := 4     
+	   2 Input   16 Bit        Muxes := 1     
 	   5 Input    5 Bit        Muxes := 1     
 	   2 Input    5 Bit        Muxes := 2     
-	   2 Input    4 Bit        Muxes := 16    
-	   3 Input    4 Bit        Muxes := 2     
-	   8 Input    3 Bit        Muxes := 4     
-	   2 Input    3 Bit        Muxes := 18    
-	   4 Input    2 Bit        Muxes := 65    
-	   2 Input    2 Bit        Muxes := 147   
+	   2 Input    4 Bit        Muxes := 2     
+	   3 Input    4 Bit        Muxes := 1     
+	   2 Input    3 Bit        Muxes := 1     
+	   4 Input    2 Bit        Muxes := 9     
+	   2 Input    2 Bit        Muxes := 18    
 	   5 Input    2 Bit        Muxes := 1     
-	   2 Input    1 Bit        Muxes := 1251  
-	   4 Input    1 Bit        Muxes := 736   
-	   3 Input    1 Bit        Muxes := 128   
-	   8 Input    1 Bit        Muxes := 22    
-	   5 Input    1 Bit        Muxes := 17    
-	   6 Input    1 Bit        Muxes := 2     
-	   7 Input    1 Bit        Muxes := 2     
+	   3 Input    2 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 111   
+	   4 Input    1 Bit        Muxes := 82    
+	   3 Input    1 Bit        Muxes := 18    
+	   5 Input    1 Bit        Muxes := 15    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -688,150 +520,6 @@ Finished Part Resource Summary
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: Generating DSP o_result0, operation Mode is: A2*B2.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: register o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: operator o_result0 is absorbed into DSP o_result0.
-DSP Report: Generating DSP o_result_reg, operation Mode is: (PCIN>>17)+A2*B.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: register o_result_reg is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
-DSP Report: operator o_result0 is absorbed into DSP o_result_reg.
 DSP Report: Generating DSP p_3_in, operation Mode is: A*B.
 DSP Report: operator p_3_in is absorbed into DSP p_3_in.
 DSP Report: operator p_3_in is absorbed into DSP p_3_in.
@@ -844,191 +532,28 @@ DSP Report: operator p_3_in is absorbed into DSP p_3_in.
 DSP Report: Generating DSP p_3_in, operation Mode is: (PCIN>>17)+A*B.
 DSP Report: operator p_3_in is absorbed into DSP p_3_in.
 DSP Report: operator p_3_in is absorbed into DSP p_3_in.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[16]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[15]) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]__0) is unused and will be removed from module Mult_Comp_Unit__3.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[44]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[43]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[42]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[41]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[40]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[39]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[38]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[37]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[36]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[35]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[34]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[33]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[32]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[31]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[30]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[29]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[28]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[27]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[26]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[25]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[24]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[23]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[22]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[21]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[20]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[19]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[18]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[17]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[16]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[15]) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[47]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[46]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-WARNING: [Synth 8-3332] Sequential element (o_result_reg[45]__0) is unused and will be removed from module Mult_Comp_Unit__4.
-INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+WARNING: [Synth 8-3936] Found unconnected internal register 'wb_addr_reg' and it is trimmed from '12' to '9' bits. [E:/Seth stuff/Thesis/Thesis/Thesis.srcs/sources_1/new/output_memory_controller.sv:163]
+WARNING: [Synth 8-3917] design impl_top has port o_TxD driven by constant 0
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:34 ; elapsed = 00:02:36 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:42 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
- Sort Area is Multiplier_Unit__parameterized0 o_result0_0 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized0 o_result0_0 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_10 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_10 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_12 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_12 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized1 o_result0_6 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized1 o_result0_6 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_8 : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_8 : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_a : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_a : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_c : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_c : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_e : 0 0 : 3137 5981 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_e : 0 1 : 2844 5981 : Used 2 time 0
- Sort Area is Matrix_Multiplier__GC0 p_3_in_14 : 0 0 : 3101 5879 : Used 1 time 0
- Sort Area is Matrix_Multiplier__GC0 p_3_in_14 : 0 1 : 2778 5879 : Used 1 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_11 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_11 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_13 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB4 o_result0_13 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized0 o_result0_3 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized0 o_result0_3 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized1 o_result0_7 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplier_Unit__parameterized1 o_result0_7 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_9 : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_9 : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_b : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB0 o_result0_b : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_d : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_d : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_f : 0 0 : 2777 5484 : Used 2 time 0
- Sort Area is Multiplication_Core__GB3 o_result0_f : 0 1 : 2707 5484 : Used 2 time 0
- Sort Area is Matrix_Multiplier__GC0 p_3_in_17 : 0 0 : 2759 5418 : Used 1 time 0
- Sort Area is Matrix_Multiplier__GC0 p_3_in_17 : 0 1 : 2659 5418 : Used 1 time 0
+ Sort Area is  p_3_in_0 : 0 0 : 3101 5879 : Used 1 time 0
+ Sort Area is  p_3_in_0 : 0 1 : 2778 5879 : Used 1 time 0
+ Sort Area is  p_3_in_3 : 0 0 : 2759 5418 : Used 1 time 0
+ Sort Area is  p_3_in_3 : 0 1 : 2659 5418 : Used 1 time 0
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name    | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B            | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|Mult_Comp_Unit | A2*B2           | 18     | 18     | -      | -      | 48     | 1    | 1    | -    | -    | -     | 0    | 0    | 
-|Mult_Comp_Unit | (PCIN>>17)+A2*B | 18     | 16     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|Indexer        | A*B             | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|Indexer        | (PCIN>>17)+A*B  | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|Indexer        | A*B             | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|Indexer        | (PCIN>>17)+A*B  | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-+---------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Indexer     | A*B            | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Indexer     | (PCIN>>17)+A*B | 16     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Indexer     | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|Indexer     | (PCIN>>17)+A*B | 18     | 16     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -1038,19 +563,19 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:46 ; elapsed = 00:02:47 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:50 ; elapsed = 00:00:52 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:02:55 ; elapsed = 00:02:57 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Timing Optimization : Time (s): cpu = 00:00:55 ; elapsed = 00:00:57 . Memory (MB): peak = 1591.730 ; gain = 683.668
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:03:10 ; elapsed = 00:03:12 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Technology Mapping : Time (s): cpu = 00:00:59 ; elapsed = 00:01:00 . Memory (MB): peak = 1615.359 ; gain = 707.297
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1068,37 +593,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:03:17 ; elapsed = 00:03:19 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:03:18 ; elapsed = 00:03:19 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:06 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:03:22 ; elapsed = 00:03:24 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:03:23 ; elapsed = 00:03:24 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:03:24 ; elapsed = 00:03:26 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:03:24 ; elapsed = 00:03:26 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1115,59 +640,65 @@ DSP Final Report (the ' indicates corresponding REG is set)
 
 
 Report BlackBoxes: 
-+------+--------------+----------+
-|      |BlackBox name |Instances |
-+------+--------------+----------+
-|1     |blk_mem_gen_0 |         1|
-+------+--------------+----------+
++------+-------------------+----------+
+|      |BlackBox name      |Instances |
++------+-------------------+----------+
+|1     |blk_mem_gen_0      |         1|
+|2     |blk_mem_gen_1_1    |         1|
+|3     |floating_point_0_1 |         1|
+|4     |floating_point_1   |         2|
++------+-------------------+----------+
 
 Report Cell Usage: 
-+------+------------+------+
-|      |Cell        |Count |
-+------+------------+------+
-|1     |blk_mem_gen |     1|
-|2     |BUFG        |     3|
-|3     |CARRY4      |  3964|
-|4     |DSP48E1     |     3|
-|5     |LUT1        |   715|
-|6     |LUT2        |  9982|
-|7     |LUT3        |  2208|
-|8     |LUT4        |  6552|
-|9     |LUT5        |  1646|
-|10    |LUT6        |  5368|
-|11    |MUXF7       |    12|
-|12    |FDRE        |  5748|
-|13    |FDSE        |    24|
-|14    |LD          |    17|
-|15    |LDC         |    64|
-|16    |IBUF        |     2|
-|17    |OBUF        |     2|
-|18    |OBUFT       |    15|
-+------+------------+------+
++------+-----------------+------+
+|      |Cell             |Count |
++------+-----------------+------+
+|1     |blk_mem_gen      |     1|
+|2     |blk_mem_gen_1    |     1|
+|3     |floating_point_0 |     1|
+|4     |floating_point   |     1|
+|5     |floating_point_1 |     1|
+|6     |BUFG             |     2|
+|7     |CARRY4           |   621|
+|8     |DSP48E1          |     3|
+|9     |LUT1             |   245|
+|10    |LUT2             |  1446|
+|11    |LUT3             |   492|
+|12    |LUT4             |   887|
+|13    |LUT5             |   378|
+|14    |LUT6             |  1794|
+|15    |MUXF7            |   542|
+|16    |MUXF8            |    15|
+|17    |FDRE             |  2862|
+|18    |FDSE             |     5|
+|19    |LDC              |    32|
+|20    |IBUF             |    14|
+|21    |OBUF             |    17|
++------+-----------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:03:24 ; elapsed = 00:03:26 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:06 ; elapsed = 00:01:08 . Memory (MB): peak = 1629.273 ; gain = 721.211
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 918 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:03:04 ; elapsed = 00:03:17 . Memory (MB): peak = 1987.684 ; gain = 963.168
-Synthesis Optimization Complete : Time (s): cpu = 00:03:25 ; elapsed = 00:03:26 . Memory (MB): peak = 1987.684 ; gain = 1079.844
+Synthesis finished with 0 errors, 0 critical warnings and 138 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:54 ; elapsed = 00:01:04 . Memory (MB): peak = 1629.273 ; gain = 618.281
+Synthesis Optimization Complete : Time (s): cpu = 00:01:07 ; elapsed = 00:01:08 . Memory (MB): peak = 1629.273 ; gain = 721.211
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.565 . Memory (MB): peak = 1987.684 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 4060 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.155 . Memory (MB): peak = 1641.312 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 1213 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1987.684 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1645.004 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 81 instances were transformed.
-  LD => LDCE: 17 instances
-  LDC => LDCE: 64 instances
+  A total of 32 instances were transformed.
+  LDC => LDCE: 32 instances
 
-Synth Design complete | Checksum: f0735ef8
+Synth Design complete | Checksum: 4be44a7a
 INFO: [Common 17-83] Releasing license: Synthesis
-99 Infos, 358 Warnings, 0 Critical Warnings and 0 Errors encountered.
+75 Infos, 203 Warnings, 1 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:03:36 ; elapsed = 00:03:39 . Memory (MB): peak = 1987.684 ; gain = 1469.074
-Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.095 . Memory (MB): peak = 1987.684 ; gain = 0.000
+synth_design: Time (s): cpu = 00:01:14 ; elapsed = 00:01:16 . Memory (MB): peak = 1645.004 ; gain = 1125.805
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+Write ShapeDB Complete: Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.028 . Memory (MB): peak = 1645.004 ; gain = 0.000
 INFO: [Common 17-1381] The checkpoint 'E:/Seth stuff/Thesis/Thesis/Thesis.runs/synth_1/impl_top.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file impl_top_utilization_synth.rpt -pb impl_top_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Apr  1 10:14:09 2025...
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 14 10:07:39 2025...

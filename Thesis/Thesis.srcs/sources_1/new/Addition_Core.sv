@@ -52,7 +52,7 @@ module Addition_Core#(
         // create adder units
         for (seg = 0; seg < SEGMENTS; seg += 2) begin : add_gen
             if(USE_FLOAT) begin
-                Simple_Adder add_unit(
+                Complex_Adder add_unit(
                     .i_clk(i_clk),
                     .i_count(count),
 

@@ -24,14 +24,17 @@ import data_packet_pkg::*;
 module Multiplier_Unit#(
     parameter PAGE_SIZE,
     parameter MULTIPLIER_INDEX,
-    parameter MULT_COUNT
+    parameter MULT_COUNT,
+    parameter USE_FLOAT
     )(
     input logic i_clk,
     input logic i_active,
     input logic i_done,
+
     input logic [31:0] i_M,
     input logic [31:0] i_N,
     input logic [31:0] i_P,
+
     input mult_pack i_idx,
     input logic i_L_ready,
     input logic i_R_ready,
@@ -45,8 +48,10 @@ module Multiplier_Unit#(
 
     output logic [31:0] o_L_mem_addr,
     output logic [31:0] o_R_mem_addr,
-    output logic        o_R_request,
-    output logic        o_L_request,
+
+    output logic        o_R_request = 0,
+    output logic        o_L_request = 0,
+
     output data_packet o_result = {0,0,0},
     output logic o_res_ready = 0
     );
@@ -79,14 +84,13 @@ module Multiplier_Unit#(
     logic [31:0] L_dex = 0, R_dex = 0;
     logic [31:0] L_val = 0, R_val = 0, M_res;
 
-    logic [1:0] count = 0, res_check = 0;
+    logic [1:0] count = 0;
 
     logic cont, data_old = 1;
 
     logic next_tail, next_head, curr_head, curr_tail;
-    logic r_ready, get_mul_res = 0;
-    data_packet next_result;
-    logic m_pull, mul_stale = 1, res_stale = 1, m_pend = 0;
+    logic r_ready;
+    logic m_pull, mul_stale = 1, m_pend = 0;
 
     assign cont = (i_pull == 1'b1) | (o_res_ready == 0);
 
@@ -113,20 +117,41 @@ module Multiplier_Unit#(
     assign full_R = part_R + y + i_R_offset;
     assign full_L = part_L + z + i_L_offset;
 
-    Mult_Comp_Unit multiplier(
-        .i_clk(i_clk),
-        .i_L_val(L_val),
-        .i_R_val(R_val),
-        .i_pull(m_pull),
+    generate
 
-        .o_result(M_res),
-        .o_ready(r_ready)
-    );
+        if(USE_FLOAT) begin
+
+            Mult_Comp_Unit_fp multiplier(
+                .i_clk(i_clk),
+                .i_L_val(L_val),
+                .i_R_val(R_val),
+                .i_pull(m_pull),
+
+                .o_result(M_res),
+                .o_ready(r_ready)
+            );
+
+        end
+
+        else begin
+            Mult_Comp_Unit multiplier(
+                .i_clk(i_clk),
+                .i_L_val(L_val),
+                .i_R_val(R_val),
+                .i_pull(m_pull),
+
+                .o_result(M_res),
+                .o_ready(r_ready)
+            );
+        end
+
+    endgenerate
 
     always_comb begin
         case(curr_state)
 
             IDLE: begin
+                m_pull = (dim == WAIT & !o_L_request & !o_R_request);
                 if(i_active) next_state = STARTING;
                 else next_state = IDLE;
             end
@@ -148,6 +173,7 @@ module Multiplier_Unit#(
             end
 
             ENDING: begin
+                m_pull = (!o_L_request & !o_R_request & mul_stale);
                 if(i_done) begin
                     next_state = IDLE;
                 end
@@ -173,9 +199,6 @@ module Multiplier_Unit#(
 
             IDLE: begin
                 //reset values
-                res_check <= 0;
-                get_mul_res <= 0;
-
                 x <= 0;
                 y <= 0;
 
@@ -306,7 +329,6 @@ module Multiplier_Unit#(
                 if(o_res_ready & i_pull) begin 
                     
                     //mark current value as stale
-                    res_stale <= 1;
                     o_res_ready <= 0;
                 end
 
@@ -316,7 +338,7 @@ module Multiplier_Unit#(
                 end
 
                 //check if everything is ready
-                if(r_ready & res_stale & !mul_stale) begin
+                if(r_ready & (!o_res_ready | i_pull) & !mul_stale) begin
 
                     //signal that output is ready
                     o_res_ready <= 1;
@@ -329,7 +351,6 @@ module Multiplier_Unit#(
                     o_result.is_end  <= 0;
 
                     //mark result as fresh, and multiplication result as stale
-                    res_stale <= 0;
                     mul_stale <= 1;
                     m_pend <= 0;
                 end
@@ -338,6 +359,7 @@ module Multiplier_Unit#(
                 if(i_R_ready & o_R_request) begin
                     o_R_request <= 0;
                     R_val <= i_R_data[R_dex[$clog2(PAGE_SIZE)-1:0]];
+
                 end
                 
                 if(i_L_ready & o_L_request) begin
@@ -359,6 +381,7 @@ module Multiplier_Unit#(
 
                                 y_path0 <= ((n0_y + 1) >= i_P);
                                 y_path1 <= ((n0_y + 1) - i_idx.alpha_y >= i_P);
+
                             end
                             else begin
                                 z <= n1_z;
@@ -443,22 +466,20 @@ module Multiplier_Unit#(
             end
 
             ENDING: begin
-                if(res_stale & mul_stale & !m_pend) begin
+                if(!o_res_ready & mul_stale & !m_pend) begin
                     o_result.val <= 0;
                     o_result.is_head <= 0;
                     o_result.is_tail <= 0;
                     o_result.is_end <= 1;
-                    res_check <= 2'b11;
 
                     o_res_ready <= 1;
                 end
                 else begin
                     if(o_res_ready & i_pull) begin 
-                        res_stale <= 1;
                         o_res_ready <= 0;
                     end
 
-                    if(r_ready & res_stale & !mul_stale) begin
+                    if(r_ready & !o_res_ready & !mul_stale) begin
 
                         o_res_ready <= 1;
 
@@ -468,7 +489,6 @@ module Multiplier_Unit#(
                         o_result.is_tail <= curr_tail;
                         o_result.is_end  <= 0;
 
-                        res_stale <= 0;
                         mul_stale <= 1;
                         m_pend <= 0;
                     end

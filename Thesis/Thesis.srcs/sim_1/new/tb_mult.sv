@@ -26,7 +26,7 @@ y = P
 z = N
 
 */
-
+`include "Signal_defs.sv"
 import data_packet_pkg::*;
 
 module tb_mult#(
@@ -82,8 +82,8 @@ module tb_mult#(
 
     logic [31:0] op_cnt;
 
-    //logic [31:0] m_val=7, n_val=3, p_val=5;
-    logic [31:0] m_val=52, n_val=33, p_val=47;
+    logic [31:0] m_val=7, n_val=3, p_val=5;
+    //logic [31:0] m_val=52, n_val=33, p_val=47;
 
     assign top_ready = ~out_buff_empty;
     assign uart_val = 65+output_topval;
@@ -101,9 +101,8 @@ module tb_mult#(
 
         .i_M(m_val),
         .i_N(n_val),
-        .i_P(p_val),
 
-        .o_ready(),
+        .o_ready(split_fin),
         .o_split_vals(split_vals),
         .o_mem_offset(offsets)
     );
@@ -272,52 +271,3 @@ module tb_mult#(
 endmodule
 
 
-module interview_prep(
-    input logic i_clk,
-    input logic i_rst,
-    output logic [2:0] o_count = 0
-);
-
-    typedef enum bit[1:0] {UP_COUNT, DOWN_COUNT, REPEAT_DOWN} state;
-
-    state curr_state, next_state;
-
-    always_comb begin
-        case(curr_state)
-            UP_COUNT: if(o_count+1 == 7) next_state = DOWN_COUNT;
-
-            DOWN_COUNT: begin
-                if(o_count-1 == 0) next_state = UP_COUNT;
-                else if(o_count-1 == 4) next_state = REPEAT_DOWN;
-            end
-
-            REPEAT_DOWN: next_state = DOWN_COUNT;
-
-            default: next_state = UP_COUNT;
-        endcase
-    end
-
-    always_ff @ ( posedge i_clk ) begin
-
-        if(i_rst) begin 
-            o_count <= 3'd0;
-            curr_state <= UP_COUNT;
-        end
-        else begin
-            curr_state <= next_state;
-
-            case(curr_state)
-
-            UP_COUNT: o_count <= o_count + 1;
-
-            DOWN_COUNT: o_count <= o_count - 1;
-
-            REPEAT_DOWN: o_count <= o_count;
-
-            default: o_count <= 0;
-
-            endcase
-        end
-    end
-    
-endmodule

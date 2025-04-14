@@ -20,12 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 import data_packet_pkg::*;
 
-`define M_IDX (idx+i_op_cnt)%MULT_COUNT
+`define M_IDX (idx+mul_dex)%MULT_COUNT
 
 module Multiplication_Core#(
     parameter PAGE_SIZE,
     parameter MULT_COUNT,
-    parameter SEG_COUNT
+    parameter SEG_COUNT,
+    parameter USE_FLOAT
     )(
     input logic i_clk,
     input logic i_start,
@@ -59,17 +60,21 @@ module Multiplication_Core#(
     output logic o_R_request,
 
     output logic       o_dready [MULT_COUNT],
-    output data_packet o_mults   [MULT_COUNT]
+    output data_packet o_mults   [MULT_COUNT],
+
+    output logic o_m_pull[MULT_COUNT],
+    output logic o_m_rdd[MULT_COUNT]
     );
 
     // logic idx_rdy;
     logic [31:0] dim_M = 0, dim_N = 0, dim_P = 0;
     // mult_pack indicies;
 
-    logic m_pull[MULT_COUNT];
+    logic m_pull[MULT_COUNT] = '{default:0};
     logic [31:0] diff, L_offset, R_offset, curr;
+    logic [$clog2(MULT_COUNT)-1:0] mul_dex = 0;
 
-    assign diff = SEG_COUNT - curr;
+    assign diff = SEG_COUNT - i_curr;
     
 
     logic [31:0]                   L_raw_addrs [MULT_COUNT];
@@ -123,7 +128,8 @@ module Multiplication_Core#(
             Multiplier_Unit#(
             .PAGE_SIZE(PAGE_SIZE),
             .MULTIPLIER_INDEX(mul),
-            .MULT_COUNT(MULT_COUNT)
+            .MULT_COUNT(MULT_COUNT),
+            .USE_FLOAT(USE_FLOAT)
             ) mult(
                 .i_clk(i_clk),
                 .i_active(i_start),
@@ -159,6 +165,7 @@ module Multiplication_Core#(
     always_ff @ ( posedge i_clk ) begin
 
         curr <= i_curr;
+        mul_dex <= i_op_cnt;
 
         //on start: read in matrix dimensions
         if(i_start) begin
@@ -178,30 +185,41 @@ module Multiplication_Core#(
             R_offset <= R_offset;
         end
 
-    end
-
-    always_comb begin
         
         for (int idx = 0; idx < MULT_COUNT; idx++) begin
-            m_pull[idx] = 0;
-
-            L_mem_addrs[idx] = L_raw_addrs[idx][31:$clog2(PAGE_SIZE)];
-            R_mem_addrs[idx] = R_raw_addrs[idx][31:$clog2(PAGE_SIZE)];
+            m_pull[idx] <= 0;
         end
-
         if(i_step) begin
 
             for (int idx = 0; (idx < SEG_COUNT) & (idx < diff) & (idx < MULT_COUNT); idx++) begin
 
                 //signal multipliers that their value has been pulled
                 if(o_dready[`M_IDX]) begin 
-                    m_pull[`M_IDX] = 1;
+                    m_pull[`M_IDX] <= 1;
                 end
                 else break;
                 
             end
 
         end 
+
+
+    end
+
+    always_comb begin
+        
+
+
+        for (int idx = 0; idx < MULT_COUNT; idx++) begin
+            //m_pull[idx] = 0;
+            o_m_pull[idx] = m_pull[idx];
+            o_m_rdd[idx] = o_dready[idx];
+
+            L_mem_addrs[idx] = L_raw_addrs[idx][31:$clog2(PAGE_SIZE)];
+            R_mem_addrs[idx] = R_raw_addrs[idx][31:$clog2(PAGE_SIZE)];
+        end
+
+        
     end
 
 
