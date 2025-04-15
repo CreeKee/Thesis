@@ -1,0 +1,49 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.gen/sources_1/ip/floating_point_1/sim/floating_point_1.v" \
+"../../../../Thesis.gen/sources_1/ip/floating_point_0_1/floating_point_0_1_sim_netlist.v" \
+
+sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.srcs/sources_1/new/Matrix_Multiplier.sv" \
+"../../../../Thesis.srcs/sources_1/new/AccordianBuffer.sv" \
+"../../../../Thesis.srcs/sources_1/new/Accordian_segment.sv" \
+"../../../../Thesis.srcs/sources_1/new/Output_Buffer.sv" \
+"../../../../Thesis.srcs/sources_1/new/Simple_Adder.sv" \
+"../../../../Thesis.srcs/sources_1/new/Multiplier_Unit.sv" \
+"../../../../Thesis.srcs/sources_1/new/uart/uart_top.sv" \
+"../../../../Thesis.srcs/sources_1/new/impl_top.sv" \
+"../../../../Thesis.srcs/sources_1/new/Buffer_Port.sv" \
+"../../../../Thesis.srcs/sources_1/new/Indexer.sv" \
+"../../../../Thesis.srcs/sources_1/new/Multiplication_Core.sv" \
+"../../../../Thesis.srcs/sources_1/new/Addition_Core.sv" \
+"../../../../Thesis.srcs/sources_1/new/mem_controller.sv" \
+"../../../../Thesis.srcs/sources_1/new/output_memory_controller.sv" \
+"../../../../Thesis.srcs/sources_1/new/Mult_Comp_Unit.sv" \
+
+verilog xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.gen/sources_1/ip/blk_mem_gen_0/sim/blk_mem_gen_0.v" \
+
+sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.srcs/sources_1/new/Splitter.sv" \
+"../../../../Thesis.srcs/sources_1/new/Computation_Pipeline.sv" \
+"../../../../Thesis.srcs/sources_1/new/Signal_defs.sv" \
+"../../../../Thesis.srcs/sources_1/new/Address_Selector.sv" \
+"../../../../Thesis.srcs/sources_1/new/Complex_Adder.sv" \
+"../../../../Thesis.srcs/sources_1/new/Mult_Comp_Unit_fp.sv" \
+"../../../../Thesis.srcs/sources_1/new/Simple_impl.sv" \
+
+verilog xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.gen/sources_1/ip/blk_mem_gen_1_1/sim/blk_mem_gen_1_1.v" \
+
+sv xil_defaultlib  --include "../../../../Thesis.srcs/sources_1/new" --include "../../../../Thesis.srcs/sources_1/new/uvm_stuff" \
+"../../../../Thesis.srcs/sources_1/new/Test_Bench.sv" \
+"../../../../Thesis.srcs/sim_1/new/tb_mult.sv" \
+"../../../../Thesis.srcs/sim_1/new/UVM_testbench.sv" \
+"../../../../Thesis.srcs/sim_1/new/tb_ult.sv" \
+"../../../../Thesis.srcs/sim_1/new/tb_impl.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

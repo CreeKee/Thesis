@@ -29,7 +29,7 @@ module impl_top #(
     parameter MULT_COUNT=MULT_PER_PIPE*PIPE_COUNT,
     parameter ADD_COUNT =ADDS_PER_PIPE*PIPE_COUNT,
 
-    parameter SEGS_PER_PIPE=2,
+    parameter SEGS_PER_PIPE=4,
     parameter ADDS_PER_PIPE=SEGS_PER_PIPE/2,
     parameter MULT_PER_PIPE=2,
 

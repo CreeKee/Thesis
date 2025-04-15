@@ -1,0 +1,6 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Thesis.gen/sources_1/ip/floating_point_1/demo_tb/tb_floating_point_1.vhd" \
+
+# Do not sort compile order
+nosort

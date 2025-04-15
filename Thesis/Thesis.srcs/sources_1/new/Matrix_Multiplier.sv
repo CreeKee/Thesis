@@ -277,12 +277,59 @@ module Matrix_Multiplier#(
     end
 
 
-        always_comb begin
-        donedone = 1;
-        for(int p = 0; p<PIPE_COUNT; p++) begin
+    /***************************************************************************************/
+    int file = $fopen("./matmul_output.txt", "w");
+    
+    logic tick;
+    logic [31:0] stored_offsets [PIPE_COUNT];
 
-            donedone &= done[p];
 
+    function write_file(int file, int addr, logic [31:0] data);
+
+
+        //rewind the file ptr
+        if($fseek(file,0,0)== -1)$display("fseek failed...");
+
+        //reposition the file ptr
+        if($fseek(file,addr,0)== -1)$display("fseek failed...");
+
+        $fdisplay(file,"%4d",data);
+
+    endfunction
+
+    function do_updates();
+        static int addrs [PIPE_COUNT] = '{default:0};
+
+        for(int p = 0; p < PIPE_COUNT; p++) begin
+            if(acc_step[p]) begin
+                for(int i = 0; i < ADDS_PER_PIPE; i++) begin
+                    if(adder_push[p][i]) begin
+                        write_file(file, (addrs[p]+stored_offsets[p])*16,adds[p][i]);
+                        //$display("%0d %0d %0d", addrs[p], stored_offsets[p], addrs[p]+stored_offsets[p]);
+                        addrs[p]++;
+                    end
+                    //$fdisplay(file, "%0d ", adds[i]);
+                end
+            end
+        end
+
+    endfunction
+
+
+    always_ff @ ( posedge i_clk ) begin
+
+        if(split_fin) begin
+            for(int p = 0; p < PIPE_COUNT; p++) begin
+                stored_offsets[p] <= (offsets[p]/n_val)*p_val;
+            end 
+        end
+
+        do_updates();
+        
+        if(donedone) begin
+            $fclose(file); 
+
+            $finish;
         end
     end
 
