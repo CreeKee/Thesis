@@ -1,0 +1,29 @@
+Time resolution is 1 ps
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_impl.dut0.Complete_Mat_Mul.input_mem.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb_impl.dut0.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_impl.dut0i.Complete_Mat_Mul.input_mem.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb_impl.dut0i.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_impl.dut1.Complete_Mat_Mul.input_mem.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb_impl.dut1.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_impl.dut1i.Complete_Mat_Mul.input_mem.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb_impl.dut1i.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_impl.dut2.Complete_Mat_Mul.input_mem.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb_impl.dut2.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+ Block Memory Generator module loading initial data...
+ Block Memory Generator data initialization complete.
+Block Memory Generator module tb_impl.dut2i.Complete_Mat_Mul.input_mem.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+Block Memory Generator module tb_impl.dut2i.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
+blk_mem_gen_v8_4_7 collision detected at time: 457000, Instance: tb_impl.dut0i.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst , A write address: 0, B  read address: 0
+blk_mem_gen_v8_4_7 collision detected at time: 459000, Instance: tb_impl.dut0i.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst , A write address: 0, B  read address: 0
+blk_mem_gen_v8_4_7 collision detected at time: 469000, Instance: tb_impl.dut0i.Complete_Mat_Mul.o_mem_unit.bram.inst.\native_mem_module.blk_mem_gen_v8_4_7_inst , A write address: 0, B  read address: 0
+blk_mem_gen_v8_4_7 collision detected at time: 471000, Instance: tb_impl.dut0i.Complete_Mat_Mul.o_mem_u

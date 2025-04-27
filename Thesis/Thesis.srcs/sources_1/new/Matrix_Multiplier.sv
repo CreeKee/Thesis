@@ -72,8 +72,9 @@ module Matrix_Multiplier#(
     );
 
     logic active = 1;
-    logic [31:0] m_val=7, n_val=3, p_val=5;
-    //logic [31:0] m_val=52, n_val=33, p_val=47;
+    //logic [31:0] m_val=7, n_val=3, p_val=5;
+    logic [31:0] m_val=52, n_val=33, p_val=47;
+    //logic [31:0] m_val=103, n_val=187, p_val=150;
 
     logic [31:0] stored_offsets [PIPE_COUNT];
     logic [31:0] read_data;
@@ -324,12 +325,17 @@ module Matrix_Multiplier#(
             end 
         end
 
-        do_updates();
+        //do_updates();
         
         if(donedone) begin
-            $fclose(file); 
+            
+            if(file != 0) begin
+                $fclose(file); 
+                file = 0;
+                $display("%0d MUs, %0d acc segs, %0d pipes, %0d page size %0t", MULT_PER_PIPE, SEGS_PER_PIPE, PIPE_COUNT, PAGE_SIZE, $time);
 
-            $finish;
+                $finish;
+            end
         end
     end
 
